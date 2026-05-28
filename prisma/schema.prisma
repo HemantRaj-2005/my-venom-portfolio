@@ -157,3 +157,18 @@ model NewsletterSubscriber {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+// Developer profile integrations & coding tracker caches
+model DevProfile {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  github        String?
+  leetcode      String?
+  codeforces    String?
+  codechef      String?
+  geeksforgeeks String?
+  hackerrank    String?
+  atcoder       String?
+  hackerearth   String?
+  statsCache    String?  // Large JSON string caching stats and history logs
+  updatedAt     DateTime @updatedAt
+}

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { 
   Users, Briefcase, Calendar, Mail, FileDown, LogOut, CheckCircle, 
   Trash2, Search, BarChart3, Database, Package, FileText, Download,
-  ShieldAlert
+  ShieldAlert, Cpu, RefreshCw
 } from "lucide-react";
 import { 
   ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, 
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   // Selected tab state
-  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations">("overview");
 
   // Database lists
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -78,6 +78,14 @@ export default function AdminDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [visitors, setVisitors] = useState<Visitor[]>([]);
+
+  // Integration handles state
+  const [github, setGithub] = useState("");
+  const [leetcode, setLeetcode] = useState("");
+  const [codeforces, setCodeforces] = useState("");
+  const [codechef, setCodechef] = useState("");
+  const [geeksforgeeks, setGeeksforgeeks] = useState("");
+  const [saveLoading, setSaveLoading] = useState(false);
 
   // Search filter
   const [searchQuery, setSearchQuery] = useState("");
@@ -113,9 +121,57 @@ export default function AdminDashboard() {
     }
   };
 
+  // Fetch integrations config
+  const fetchIntegrations = async () => {
+    try {
+      const res = await fetch("/api/admin/integrations");
+      const result = await res.json();
+      if (result.success && result.profile) {
+        setGithub(result.profile.github || "");
+        setLeetcode(result.profile.leetcode || "");
+        setCodeforces(result.profile.codeforces || "");
+        setCodechef(result.profile.codechef || "");
+        setGeeksforgeeks(result.profile.geeksforgeeks || "");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleSaveIntegrations = async (triggerSync: boolean) => {
+    setSaveLoading(true);
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch("/api/admin/integrations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          github,
+          leetcode,
+          codeforces,
+          codechef,
+          geeksforgeeks,
+          triggerSync
+        })
+      });
+      const result = await res.json();
+      if (result.success) {
+        alert(triggerSync ? "Account sync successfully executed!" : "Integrations successfully saved!");
+      } else {
+        alert(result.error || "Failed to update configuration.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network connection error. Try again.");
+    } finally {
+      setSaveLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (status === "authenticated") {
       loadDashboardData();
+      fetchIntegrations();
     }
   }, [status]);
 
@@ -299,7 +355,8 @@ export default function AdminDashboard() {
             { id: "callbacks", name: "Callback Requests", icon: Calendar, count: totalCallbacksCount },
             { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
             { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
-            { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits }
+            { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
+            { id: "integrations", name: "Integrations Sync", icon: Cpu }
           ].map((tab) => {
             const Icon = tab.icon;
             const isSel = activeTab === tab.id;
@@ -755,6 +812,96 @@ export default function AdminDashboard() {
                           ))}
                         </tbody>
                       </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 7: Integrations Sync Settings */}
+              {activeTab === "integrations" && (
+                <div className="space-y-6 max-w-xl">
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
+                      Coding Profiles Integrations Control
+                    </h3>
+                    <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
+                      Connect your online profiles. If direct API fetches are rate-limited, the dashboard uses seeded fallback metrics automatically.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4 font-mono text-xs">
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">GitHub Username</label>
+                      <input
+                        type="text"
+                        value={github}
+                        onChange={(e) => setGithub(e.target.value)}
+                        placeholder="e.g. HemantRaj-2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">LeetCode Username</label>
+                      <input
+                        type="text"
+                        value={leetcode}
+                        onChange={(e) => setLeetcode(e.target.value)}
+                        placeholder="e.g. HemantRaj-2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Codeforces Handle</label>
+                      <input
+                        type="text"
+                        value={codeforces}
+                        onChange={(e) => setCodeforces(e.target.value)}
+                        placeholder="e.g. HemantRaj-2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">CodeChef Handle</label>
+                      <input
+                        type="text"
+                        value={codechef}
+                        onChange={(e) => setCodechef(e.target.value)}
+                        placeholder="e.g. hemant_2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">GeeksforGeeks Handle</label>
+                      <input
+                        type="text"
+                        value={geeksforgeeks}
+                        onChange={(e) => setGeeksforgeeks(e.target.value)}
+                        placeholder="e.g. hemantraj2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="flex gap-4 pt-4">
+                      <button
+                        onClick={() => handleSaveIntegrations(false)}
+                        disabled={saveLoading}
+                        className="flex-1 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-300 hover:text-white font-bold py-3.5 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs"
+                      >
+                        {saveLoading ? "Saving..." : "Save Config"}
+                      </button>
+
+                      <button
+                        onClick={() => handleSaveIntegrations(true)}
+                        disabled={saveLoading}
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 text-white font-bold py-3.5 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs flex items-center justify-center gap-2"
+                      >
+                        <RefreshCw className={`w-4 h-4 ${saveLoading ? "animate-spin" : ""}`} />
+                        <span>{saveLoading ? "Syncing..." : "Sync Database Now"}</span>
+                      </button>
                     </div>
                   </div>
                 </div>

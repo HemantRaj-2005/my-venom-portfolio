@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
+import { generateMockStats } from "./mock-stats";
 
 // Global type declaration for Prisma in Dev mode
 declare global {
@@ -301,7 +302,23 @@ function loadLocalDb() {
     products: mockProducts,
     posts: mockPosts,
     comments: [],
-    visitorLogs: []
+    visitorLogs: [],
+    devProfiles: [
+      {
+        id: "dev-profile-default",
+        github: "HemantRaj-2005",
+        leetcode: "HemantRaj-2005",
+        codeforces: "HemantRaj-2005",
+        codechef: "hemant_2005",
+        geeksforgeeks: "hemantraj2005",
+        hackerrank: "hemant_2005",
+        atcoder: "hemant_2005",
+        hackerearth: "hemant_2005",
+        statsCache: JSON.stringify(generateMockStats()),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+    ]
   };
 
   saveLocalDb();
@@ -497,6 +514,7 @@ const getDbEngine = () => {
       callbackRequest: prismaClient.callbackRequest,
       contactMessage: prismaClient.contactMessage,
       newsletterSubscriber: prismaClient.newsletterSubscriber,
+      devProfile: (prismaClient as any).devProfile,
       isPrisma: true
     };
   }
@@ -516,6 +534,7 @@ const getDbEngine = () => {
     callbackRequest: new MockCollection("callbackRequests"),
     contactMessage: new MockCollection("contactMessages"),
     newsletterSubscriber: new MockCollection("newsletterSubscribers"),
+    devProfile: new MockCollection("devProfiles"),
     isPrisma: false
   };
 };
