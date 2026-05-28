@@ -20,30 +20,30 @@ class CyberneticSynth {
       this.ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
       const ctx = this.ctx;
 
-      // 1. Create Oscillators for low drone
+      // 1. Create Oscillators for high-tech system hum
       this.osc1 = ctx.createOscillator();
-      this.osc1.type = "sawtooth";
-      this.osc1.frequency.setValueAtTime(55, ctx.currentTime); // A1 note (bass)
+      this.osc1.type = "sine";
+      this.osc1.frequency.setValueAtTime(110, ctx.currentTime); // A2 base hum
 
       this.osc2 = ctx.createOscillator();
       this.osc2.type = "triangle";
-      this.osc2.frequency.setValueAtTime(110.5, ctx.currentTime); // A2 note detuned
+      this.osc2.frequency.setValueAtTime(220.5, ctx.currentTime); // A3 octave detuned hum
 
-      // 2. Lowpass filter to make it a deep, rumbling atmosphere
+      // 2. High-tech lowpass filter
       this.filter = ctx.createBiquadFilter();
       this.filter.type = "lowpass";
-      this.filter.frequency.setValueAtTime(150, ctx.currentTime);
-      this.filter.Q.setValueAtTime(3, ctx.currentTime);
+      this.filter.frequency.setValueAtTime(320, ctx.currentTime);
+      this.filter.Q.setValueAtTime(1.5, ctx.currentTime);
 
-      // 3. LFO to modulate filter cutoff (creates organic, breathing texture)
+      // 3. Slow pulse LFO for modular scanline breathing texture
       this.lfo = ctx.createOscillator();
-      this.lfo.frequency.setValueAtTime(0.12, ctx.currentTime); // 0.12 Hz (very slow pulse)
+      this.lfo.frequency.setValueAtTime(0.2, ctx.currentTime); // 0.2 Hz
       this.lfoGain = ctx.createGain();
-      this.lfoGain.gain.setValueAtTime(70, ctx.currentTime); // sweep filter +-70Hz
+      this.lfoGain.gain.setValueAtTime(80, ctx.currentTime); // sweep filter +-80Hz
 
       // 4. Master Volume
       this.masterGain = ctx.createGain();
-      this.masterGain.gain.setValueAtTime(0.0, ctx.currentTime); // Start silent for fade-in
+      this.masterGain.gain.setValueAtTime(0.0, ctx.currentTime); // Start silent
 
       // 5. Connect node chain
       this.lfo.connect(this.lfoGain);
@@ -64,7 +64,7 @@ class CyberneticSynth {
       this.lfo.start();
 
       // Fade-in ambient drone
-      this.masterGain.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 3); // 3 seconds fade-in
+      this.masterGain.gain.linearRampToValueAtTime(0.035, ctx.currentTime + 3); // 3 seconds fade-in
 
       this.active = true;
     } catch (e) {
@@ -79,7 +79,7 @@ class CyberneticSynth {
     // Fade-out ambient drone
     this.masterGain.gain.cancelScheduledValues(ctx.currentTime);
     this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, ctx.currentTime);
-    this.masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.5);
+    this.masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.4);
 
     setTimeout(() => {
       try {
@@ -89,7 +89,7 @@ class CyberneticSynth {
         this.ctx?.close();
       } catch (err) {}
       this.active = false;
-    }, 550);
+    }, 450);
   }
 
   // Play synthetic quick high-frequency cybernetic click on hover
@@ -102,24 +102,24 @@ class CyberneticSynth {
     const filter = ctx.createBiquadFilter();
 
     osc.type = "sine";
-    osc.frequency.setValueAtTime(1200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.08);
+    osc.frequency.setValueAtTime(1400, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1800, ctx.currentTime + 0.06);
 
     filter.type = "bandpass";
-    filter.frequency.setValueAtTime(800, ctx.currentTime);
+    filter.frequency.setValueAtTime(1600, ctx.currentTime);
 
-    gain.gain.setValueAtTime(0.02, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.015, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.06);
 
     osc.connect(filter);
     filter.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(ctx.currentTime + 0.09);
+    osc.stop(ctx.currentTime + 0.07);
   }
 
-  // Play deep bass thud on click
+  // Play quick pitch-sliding upward frequency sweep mimicking a "web-shoot" sound
   playBtnClick() {
     if (!this.active || !this.ctx) return;
     const ctx = this.ctx;
@@ -127,18 +127,18 @@ class CyberneticSynth {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(90, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.2);
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(220, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(2600, ctx.currentTime + 0.11);
 
-    gain.gain.setValueAtTime(0.12, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+    gain.gain.setValueAtTime(0.07, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.13);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(ctx.currentTime + 0.26);
+    osc.stop(ctx.currentTime + 0.14);
   }
 }
 

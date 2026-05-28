@@ -91,18 +91,18 @@ export default function ContactForm() {
       
       {/* Box 1: Hire Me CRM Lead pipeline */}
       <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8 relative">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-500/20 rounded-t-2xl" />
-        <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest mb-3 select-none">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#E11D2E]/20 via-[#00E5FF]/20 to-[#E11D2E]/20 rounded-t-2xl" />
+        <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-3 select-none">
           <Mail className="w-4.5 h-4.5" /> Project Inquiry dossiers
         </div>
-        <h3 className="text-xl font-bold text-white mb-2 select-none">Hire Me</h3>
+        <h3 className="text-xl font-bold text-white mb-2 select-none font-heading">Hire Me</h3>
         <p className="text-xs text-zinc-400 font-sans leading-relaxed mb-6 select-none">
-          Deploy an aggressive symbiote-themed portfolio web app, custom AI models, or SaaS dashboards.
+          Deploy a high-performance Stark-tech portfolio web app, custom AI models, or SaaS dashboards.
         </p>
 
         {leadSuccess ? (
-          <div className="py-12 flex flex-col items-center justify-center text-center p-4 border border-emerald-500/30 bg-emerald-950/20 rounded-xl select-none">
-            <CheckCircle className="w-10 h-10 text-emerald-400 mb-4 animate-bounce" />
+          <div className="py-12 flex flex-col items-center justify-center text-center p-4 border border-[#00E5FF]/30 bg-zinc-900/30 rounded-xl select-none">
+            <CheckCircle className="w-10 h-10 text-[#00E5FF] mb-4 animate-bounce" />
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">Parameters Registered</h4>
             <p className="text-xs text-zinc-400 font-sans mt-2 max-w-xs leading-relaxed">
               Your project metrics are synchronized with our core dashboard. The administrator will inspect your parameters.
@@ -119,7 +119,7 @@ export default function ContactForm() {
                   value={leadName}
                   onChange={(e) => setLeadName(e.target.value)}
                   placeholder="Peter Parker"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans"
                 />
               </div>
               <div className="space-y-1">
@@ -130,7 +130,7 @@ export default function ContactForm() {
                   value={leadEmail}
                   onChange={(e) => setLeadEmail(e.target.value)}
                   placeholder="parker@dailybugle.com"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans"
                 />
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function ContactForm() {
                 <select
                   value={leadType}
                   onChange={(e) => setLeadType(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-[#00E5FF]/40 font-sans"
                 >
                   <option value="Full Stack Development">Full Stack Dev</option>
                   <option value="AI Integration & Pipelines">AI Integration</option>
@@ -155,9 +155,8 @@ export default function ContactForm() {
                 <select
                   value={leadBudget}
                   onChange={(e) => setLeadBudget(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-[#00E5FF]/40 font-sans"
                 >
-                  {/* Let's change the onChange parameter to use setLeadBudget */}
                   <option value="Under $1,000">Under $1,000</option>
                   <option value="$1,000 - $5,000">$1,000 - $5,000</option>
                   <option value="$5,000 - $10,000">$5,000 - $10,000</option>
@@ -171,7 +170,7 @@ export default function ContactForm() {
               <select
                 value={leadTimeline}
                 onChange={(e) => setLeadTimeline(e.target.value)}
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-emerald-500/40 font-sans"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-[#00E5FF]/40 font-sans"
               >
                 <option value="Under 1 month">Under 1 month (Aggressive)</option>
                 <option value="1 - 3 months">1 - 3 months</option>
@@ -187,14 +186,14 @@ export default function ContactForm() {
                 onChange={(e) => setLeadScope(e.target.value)}
                 placeholder="Details of integrations, user limits, required tools..."
                 rows={4}
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans resize-none"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans resize-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={leadLoading}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white py-3 rounded-xl shadow-lg hover:shadow-emerald-500/10 cursor-pointer active:scale-98 transition-all uppercase tracking-wider text-xs"
+              className="w-full bg-[#E11D2E] hover:bg-[#c11524] disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white py-3 rounded-xl shadow-lg hover:shadow-red-500/10 cursor-pointer active:scale-98 transition-all uppercase tracking-wider text-xs"
             >
               {leadLoading ? "Locking target..." : "Transmit Project Dossier"}
             </button>
@@ -204,18 +203,18 @@ export default function ContactForm() {
 
       {/* Box 2: Request Callback Appointment */}
       <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8 relative">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-500/20 rounded-t-2xl" />
-        <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest mb-3 select-none">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#E11D2E]/20 via-[#00E5FF]/20 to-[#E11D2E]/20 rounded-t-2xl" />
+        <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-3 select-none">
           <PhoneCall className="w-4.5 h-4.5" /> Direct voice channel
         </div>
-        <h3 className="text-xl font-bold text-white mb-2 select-none">Book Callback</h3>
+        <h3 className="text-xl font-bold text-white mb-2 select-none font-heading">Book Callback</h3>
         <p className="text-xs text-zinc-400 font-sans leading-relaxed mb-6 select-none">
           Schedule a direct voice callback or meeting parameters with Hemant Raj.
         </p>
 
         {cbSuccess ? (
-          <div className="py-12 flex flex-col items-center justify-center text-center p-4 border border-emerald-500/30 bg-emerald-950/20 rounded-xl select-none">
-            <CheckCircle className="w-10 h-10 text-emerald-400 mb-4 animate-bounce" />
+          <div className="py-12 flex flex-col items-center justify-center text-center p-4 border border-[#00E5FF]/30 bg-zinc-900/30 rounded-xl select-none">
+            <CheckCircle className="w-10 h-10 text-[#00E5FF] mb-4 animate-bounce" />
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">Callback Synchronized</h4>
             <p className="text-xs text-zinc-400 font-sans mt-2 max-w-xs leading-relaxed">
               Your voice slot is locked in. The admin dashboard has logged your schedule index.
@@ -231,7 +230,7 @@ export default function ContactForm() {
                 value={cbName}
                 onChange={(e) => setCbName(e.target.value)}
                 placeholder="Gwen Stacy"
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans"
               />
             </div>
 
@@ -244,12 +243,12 @@ export default function ContactForm() {
                   value={cbEmail}
                   onChange={(e) => setCbEmail(e.target.value)}
                   placeholder="gwen@oscorp.dev"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans"
                 />
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1 flex items-center gap-1">
-                  <Smartphone className="w-3.5 h-3.5 text-emerald-400" /> Phone Node
+                  <Smartphone className="w-3.5 h-3.5 text-[#00E5FF]" /> Phone Node
                 </label>
                 <input
                   type="tel"
@@ -257,7 +256,7 @@ export default function ContactForm() {
                   value={cbPhone}
                   onChange={(e) => setCbPhone(e.target.value)}
                   placeholder="+91 98765 43210"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans"
                 />
               </div>
             </div>
@@ -267,7 +266,7 @@ export default function ContactForm() {
               <select
                 value={cbTime}
                 onChange={(e) => setCbTime(e.target.value)}
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-emerald-500/40 font-sans"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-300 outline-none focus:border-[#00E5FF]/40 font-sans"
               >
                 <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
                 <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
@@ -282,14 +281,14 @@ export default function ContactForm() {
                 onChange={(e) => setCbMsg(e.target.value)}
                 placeholder="Details about preferred discussion parameters..."
                 rows={3}
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans resize-none"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-[#00E5FF]/40 font-sans resize-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={cbLoading}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white py-3 rounded-xl shadow-lg hover:shadow-emerald-500/10 cursor-pointer active:scale-98 transition-all uppercase tracking-wider text-xs"
+              className="w-full bg-[#E11D2E] hover:bg-[#c11524] disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white py-3 rounded-xl shadow-lg hover:shadow-red-500/10 cursor-pointer active:scale-98 transition-all uppercase tracking-wider text-xs"
             >
               {cbLoading ? "Booking slot..." : "Lock Callback Appointment"}
             </button>

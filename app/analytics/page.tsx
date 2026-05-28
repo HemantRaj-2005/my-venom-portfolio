@@ -112,20 +112,20 @@ export default function DeveloperAnalytics() {
     return <AnalyticsLoading />;
   }
 
-  // Get color for contribution box
+  // Get color for contribution box (electric cyan shades)
   const getContributionColor = (count: number) => {
-    if (count === 0) return "bg-zinc-900 border-zinc-950";
-    if (count <= 2) return "bg-emerald-950/50 border-emerald-900/10";
-    if (count <= 4) return "bg-emerald-800/60 border-emerald-700/20";
-    if (count <= 6) return "bg-emerald-600/80 border-emerald-500/20";
-    return "bg-emerald-400 border-emerald-300/30";
+    if (count === 0) return "bg-zinc-950 border-zinc-950/60";
+    if (count <= 2) return "bg-[#0b2838] border-cyan-950/10";
+    if (count <= 4) return "bg-[#0f4b62] border-cyan-800/20";
+    if (count <= 6) return "bg-[#147a96] border-cyan-600/20";
+    return "bg-cyan-400 border-cyan-300/30";
   };
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans select-none">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans select-none">
       {/* Cinematic grid overlays */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c0c_1px,transparent_1px),linear-gradient(to_bottom,#0c0c0c_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/1 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0e1726_1px,transparent_1px),linear-gradient(to_bottom,#0e1726_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-cyan-500/2 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none animate-pulse" />
 
       {/* Header Navigation */}
       <div className="max-w-6xl mx-auto w-full mb-12 select-none relative z-10">
@@ -140,11 +140,11 @@ export default function DeveloperAnalytics() {
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest">
-              <Activity className="w-4.5 h-4.5" /> Intelligence Matrix Core
+            <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-widest">
+              <Activity className="w-4.5 h-4.5" /> Stark-Tech Diagnostics Core
             </div>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white mt-2 font-heading">
-              Developer Analytics
+              Suit Telemetry & Diagnostics
             </h1>
             <p className="text-xs text-zinc-500 max-w-xl leading-relaxed mt-2 font-mono uppercase">
               Synapsing real-time profiles, contest ratings, streaks, and repository telemetry.
@@ -158,7 +158,7 @@ export default function DeveloperAnalytics() {
             <button
               onClick={() => loadStats(true)}
               disabled={syncing}
-              className="flex items-center gap-2 border border-zinc-900 hover:border-emerald-500/30 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-white px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer disabled:opacity-50 active:scale-95"
+              className="flex items-center gap-2 border border-zinc-900 hover:border-red-500/30 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-white px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer disabled:opacity-50 active:scale-95"
             >
               <RefreshCw className={`w-4 h-4 ${syncing ? "animate-spin" : ""}`} />
               <span>{syncing ? "Syncing..." : "Sync Stats"}</span>
@@ -172,17 +172,17 @@ export default function DeveloperAnalytics() {
         
         {/* Left Column: Developer Aura Card */}
         <div className="space-y-6">
-          <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative overflow-hidden shadow-xl shadow-black/40">
+          <div className="bg-zinc-950/80 backdrop-blur-sm border border-zinc-900 rounded-2xl p-6 relative overflow-hidden shadow-xl shadow-black/40">
             {/* Glowing active nodes */}
-            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-500/20" />
-            <div className="absolute bottom-[-150px] right-[-150px] w-64 h-64 bg-emerald-500/2 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-red-500/20 via-cyan-400/20 to-red-500/20" />
+            <div className="absolute bottom-[-150px] right-[-150px] w-64 h-64 bg-cyan-500/2 rounded-full blur-[80px] pointer-events-none" />
 
             <div className="flex justify-between items-start select-none">
               <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest border border-zinc-900 px-2 py-0.5 rounded">
                 Node ID: dev-core-01
               </span>
-              <div className="flex items-center gap-1.5 text-orange-500 bg-orange-950/20 border border-orange-800/20 px-2.5 py-0.5 rounded-full">
-                <Flame className="w-3.5 h-3.5 fill-current animate-pulse" />
+              <div className="flex items-center gap-1.5 text-red-500 bg-red-950/20 border border-red-800/20 px-2.5 py-0.5 rounded-full">
+                <Flame className="w-3.5 h-3.5 fill-current animate-pulse text-red-400" />
                 <span className="text-xs font-bold font-mono">{stats.github.metrics.streak} Day Streak</span>
               </div>
             </div>
@@ -195,29 +195,29 @@ export default function DeveloperAnalytics() {
                   alt={stats.github.profile.name}
                   className="w-full h-full rounded-full object-cover grayscale opacity-90 border border-zinc-900"
                 />
-                <div className="absolute inset-0 rounded-full bg-emerald-500/5 animate-pulse pointer-events-none" />
+                <div className="absolute inset-0 rounded-full bg-cyan-500/5 animate-pulse pointer-events-none" />
               </div>
               <h2 className="text-xl font-bold text-white mt-4 font-sans tracking-wide">
                 {stats.github.profile.name}
               </h2>
-              <p className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mt-1">
-                Aura Rank: Elite Developer
+              <p className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest mt-1">
+                Suit Rank: Cyber-Slinger V2
               </p>
             </div>
 
             {/* Aura Score Circular Chart */}
             <div className="mt-8 pt-6 border-t border-zinc-900/60 flex items-center justify-between">
               <div>
-                <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Developer Aura</h4>
+                <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Suit Sync Level</h4>
                 <div className="text-4xl font-extrabold text-white font-mono mt-1 tracking-tight">
-                  {stats.auraScore} <span className="text-xs text-zinc-600 font-normal">/ 100</span>
+                  {stats.auraScore} <span className="text-xs text-zinc-650 font-normal">/ 100</span>
                 </div>
               </div>
               <div className="w-16 h-16 rounded-full border-4 border-zinc-900 flex items-center justify-center relative select-none">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="32" cy="32" r="26" strokeWidth="4" stroke="#10b981" fill="transparent" strokeDasharray="163" strokeDashoffset={163 - (163 * stats.auraScore) / 100} className="transition-all duration-1000" />
+                  <circle cx="32" cy="32" r="26" strokeWidth="4" stroke="#00e5ff" fill="transparent" strokeDasharray="163" strokeDashoffset={163 - (163 * stats.auraScore) / 100} className="transition-all duration-1000" />
                 </svg>
-                <span className="absolute text-xs font-bold text-emerald-400 font-mono">{stats.auraScore}%</span>
+                <span className="absolute text-xs font-bold text-cyan-400 font-mono">{stats.auraScore}%</span>
               </div>
             </div>
 
@@ -229,23 +229,23 @@ export default function DeveloperAnalytics() {
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-600">Git Public Repos:</span>
-                <span className="text-emerald-400 font-bold">{stats.github.profile.publicRepos}</span>
+                <span className="text-cyan-400 font-bold">{stats.github.profile.publicRepos}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-600">LeetCode Solved:</span>
-                <span className="text-emerald-400 font-bold">{stats.leetcode.solved.total}</span>
+                <span className="text-cyan-400 font-bold">{stats.leetcode.solved.total}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-600">Codeforces Rating:</span>
-                <span className="text-emerald-400 font-bold">{stats.codeforces.rating}</span>
+                <span className="text-cyan-400 font-bold">{stats.codeforces.rating}</span>
               </div>
             </div>
           </div>
 
           {/* Interactive Resume Analyzer Card */}
-          <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative">
+          <div className="bg-zinc-950/80 backdrop-blur-sm border border-zinc-900 rounded-2xl p-6 relative">
             <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4 flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-emerald-400" /> AI Resume Core
+              <FileText className="w-4 h-4 text-cyan-400" /> AI Resume Core
             </h3>
             <p className="text-[11px] text-zinc-500 font-sans leading-relaxed mb-6">
               Simulate portfolio performance scoring based on repository commits and DSA stats.
@@ -253,7 +253,7 @@ export default function DeveloperAnalytics() {
 
             {resumeScore !== null ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-4">
-                <div className="text-5xl font-black font-mono text-emerald-400">{resumeScore}</div>
+                <div className="text-5xl font-black font-mono text-cyan-400">{resumeScore}</div>
                 <div className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mt-2">
                   ATS Recruiter Match Score
                 </div>
@@ -268,15 +268,15 @@ export default function DeveloperAnalytics() {
               <button
                 onClick={analyzeResume}
                 disabled={analyzing}
-                className="w-full flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-300 hover:text-white py-3 rounded-xl transition-all cursor-pointer text-xs uppercase tracking-widest font-mono"
+                className="w-full flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-850 border border-zinc-850 text-zinc-300 hover:text-white py-3 rounded-xl transition-all cursor-pointer text-xs uppercase tracking-widest font-mono hover:border-cyan-500/20"
               >
                 {analyzing ? (
                   <>
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                    <span>Analyzing ASTs...</span>
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
+                    <span>Scanning Codebases...</span>
                   </>
                 ) : (
-                  <span>Trigger ATS Scan</span>
+                  <span>Trigger Suit AST Scan</span>
                 )}
               </button>
             )}
@@ -304,7 +304,7 @@ export default function DeveloperAnalytics() {
                   }}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                     isSel
-                      ? "bg-emerald-600 text-white border border-emerald-500/20 shadow-lg shadow-emerald-950/20"
+                      ? "bg-red-600 text-white border border-red-500/20 shadow-lg shadow-red-950/20"
                       : "bg-zinc-950 border border-zinc-900 text-zinc-500 hover:text-white"
                   }`}
                 >
@@ -333,12 +333,12 @@ export default function DeveloperAnalytics() {
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative select-none">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Global Commit Rate</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.github.metrics.totalCommits}</div>
-                      <div className="text-[8px] font-mono text-emerald-400 mt-1 uppercase tracking-wider">Sync Active</div>
+                      <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Sync Active</div>
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative select-none">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">LeetCode Solved</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.leetcode.solved.total}</div>
-                      <div className="text-[8px] font-mono text-emerald-400 mt-1 uppercase tracking-wider">Acceptance: {stats.leetcode.acceptance}</div>
+                      <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Acceptance: {stats.leetcode.acceptance}</div>
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative select-none">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Recruiter Dossier Clicks</span>
@@ -359,7 +359,7 @@ export default function DeveloperAnalytics() {
                             <PolarGrid stroke="#1f1f1f" />
                             <PolarAngleAxis dataKey="subject" tick={{ fill: "#666", fontSize: 9, fontFamily: "monospace" }} />
                             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#444" }} />
-                            <Radar name="Proficiency" dataKey="value" stroke="#10b981" fill="#10b981" fillOpacity={0.15} />
+                            <Radar name="Proficiency" dataKey="value" stroke="#00e5ff" fill="#00e5ff" fillOpacity={0.15} />
                           </RadarChart>
                         </ResponsiveContainer>
                       </div>
@@ -378,7 +378,7 @@ export default function DeveloperAnalytics() {
                             { date: "Feb 2026", text: "Created open-source NextAuth MongoDB credentials boilerplate." }
                           ].map((milestone, idx) => (
                             <div key={idx} className="flex gap-3 items-start">
-                              <span className="text-[9px] font-mono text-emerald-400 bg-emerald-950/20 border border-emerald-800/10 px-1.5 py-0.5 rounded tracking-wide shrink-0">
+                              <span className="text-[9px] font-mono text-cyan-400 bg-cyan-950/20 border border-cyan-800/10 px-1.5 py-0.5 rounded tracking-wide shrink-0">
                                 {milestone.date}
                               </span>
                               <p className="text-zinc-400 leading-relaxed">{milestone.text}</p>
@@ -389,7 +389,7 @@ export default function DeveloperAnalytics() {
 
                       <div className="border-t border-zinc-900/60 pt-4 mt-6 flex justify-between items-center select-none">
                         <span className="text-[10px] font-mono text-zinc-500 uppercase">Recruiter Action Target:</span>
-                        <Link href="/#contact-form" className="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+                        <Link href="/#contact-form" className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
                           <span>Initiate Developer Inquiry</span>
                           <ChevronRight className="w-3.5 h-3.5" />
                         </Link>
@@ -406,7 +406,7 @@ export default function DeveloperAnalytics() {
                   <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6">
                     <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-6 flex justify-between items-center select-none">
                       <span>Contribution Streak Heatmap (Last 365 Days)</span>
-                      <span className="text-[10px] text-emerald-400 font-bold font-mono">
+                      <span className="text-[10px] text-cyan-400 font-bold font-mono">
                         {stats.github.metrics.totalCommits} Commits / Year
                       </span>
                     </h3>
@@ -435,10 +435,10 @@ export default function DeveloperAnalytics() {
                     <div className="flex justify-end gap-1.5 items-center mt-3 text-[9px] font-mono text-zinc-500 uppercase select-none">
                       <span>Less</span>
                       <div className="w-2.5 h-2.5 rounded-sm bg-zinc-900 border border-zinc-950" />
-                      <div className="w-2.5 h-2.5 rounded-sm bg-emerald-950 border border-emerald-900/10" />
-                      <div className="w-2.5 h-2.5 rounded-sm bg-emerald-800 border border-emerald-700/20" />
-                      <div className="w-2.5 h-2.5 rounded-sm bg-emerald-600 border border-emerald-500/20" />
-                      <div className="w-2.5 h-2.5 rounded-sm bg-emerald-400 border border-emerald-300/30" />
+                      <div className="w-2.5 h-2.5 rounded-sm bg-[#0b2838] border border-cyan-950/10" />
+                      <div className="w-2.5 h-2.5 rounded-sm bg-[#0f4b62] border border-cyan-800/20" />
+                      <div className="w-2.5 h-2.5 rounded-sm bg-[#147a96] border border-cyan-600/20" />
+                      <div className="w-2.5 h-2.5 rounded-sm bg-cyan-400 border border-cyan-300/30" />
                       <span>More</span>
                     </div>
                   </div>
@@ -500,8 +500,8 @@ export default function DeveloperAnalytics() {
                             <CartesianGrid strokeDasharray="3 3" stroke="#141414" />
                             <XAxis dataKey="month" stroke="#444" tick={{ fontSize: 9, fontFamily: "monospace" }} />
                             <YAxis stroke="#444" tick={{ fontSize: 9, fontFamily: "monospace" }} />
-                            <Tooltip contentStyle={{ backgroundColor: "#09090b", borderColor: "#18181b" }} labelStyle={{ color: "#a1a1aa", fontSize: 10, fontFamily: "monospace" }} itemStyle={{ color: "#10b981", fontSize: 11, fontFamily: "monospace" }} />
-                            <Line type="monotone" dataKey="stars" stroke="#10b981" strokeWidth={2} dot={{ fill: "#10b981", r: 4 }} activeDot={{ r: 6 }} />
+                            <Tooltip contentStyle={{ backgroundColor: "#09090b", borderColor: "#18181b" }} labelStyle={{ color: "#a1a1aa", fontSize: 10, fontFamily: "monospace" }} itemStyle={{ color: "#00e5ff", fontSize: 11, fontFamily: "monospace" }} />
+                            <Line type="monotone" dataKey="stars" stroke="#e11d2e" strokeWidth={2} dot={{ fill: "#e11d2e", r: 4 }} activeDot={{ r: 6 }} />
                           </LineChart>
                         </ResponsiveContainer>
                       </div>
@@ -521,11 +521,11 @@ export default function DeveloperAnalytics() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={playClick}
-                          className="group border border-zinc-900 hover:border-emerald-500/30 bg-zinc-950 hover:bg-zinc-900/40 p-4 rounded-xl space-y-3 transition-all duration-300 flex flex-col justify-between"
+                          className="group border border-zinc-900 hover:border-cyan-500/30 bg-zinc-950 hover:bg-zinc-900/40 p-4 rounded-xl space-y-3 transition-all duration-300 flex flex-col justify-between"
                         >
                           <div>
                             <div className="flex justify-between items-center">
-                              <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors font-mono uppercase">
+                              <span className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors font-mono uppercase">
                                 {repo.name}
                               </span>
                               <span className="text-[8px] font-mono text-zinc-500 bg-zinc-900 px-1.5 py-0.5 rounded uppercase">
@@ -556,17 +556,17 @@ export default function DeveloperAnalytics() {
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">LeetCode Contest Max</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.leetcode.contestRating}</div>
-                      <div className="text-[8px] font-mono text-emerald-400 mt-1 uppercase tracking-wider">Rank: {stats.leetcode.contestRank}</div>
+                      <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rank: {stats.leetcode.contestRank}</div>
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Codeforces Rating</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.codeforces.rating}</div>
-                      <div className="text-[8px] font-mono text-emerald-400 mt-1 uppercase tracking-wider">Rank: {stats.codeforces.rank}</div>
+                      <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rank: {stats.codeforces.rank}</div>
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">CodeChef Tier</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.codechef.stars}</div>
-                      <div className="text-[8px] font-mono text-emerald-400 mt-1 uppercase tracking-wider">Rating: {stats.codechef.rating}</div>
+                      <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rating: {stats.codechef.rating}</div>
                     </div>
                   </div>
 
@@ -582,7 +582,7 @@ export default function DeveloperAnalytics() {
                         {/* Easy/Medium/Hard columns */}
                         <div className="space-y-4 w-full md:w-1/2">
                           {[
-                            { name: "Easy Problems", count: stats.leetcode.solved.easy, total: 400, color: "bg-emerald-500" },
+                            { name: "Easy Problems", count: stats.leetcode.solved.easy, total: 400, color: "bg-cyan-400" },
                             { name: "Medium Problems", count: stats.leetcode.solved.medium, total: 600, color: "bg-amber-500" },
                             { name: "Hard Problems", count: stats.leetcode.solved.hard, total: 300, color: "bg-red-500" }
                           ].map((level, idx) => {
@@ -623,8 +623,8 @@ export default function DeveloperAnalytics() {
                             <CartesianGrid strokeDasharray="3 3" stroke="#141414" />
                             <XAxis dataKey="contest" stroke="#444" tick={false} />
                             <YAxis stroke="#444" tick={{ fontSize: 9, fontFamily: "monospace" }} />
-                            <Tooltip contentStyle={{ backgroundColor: "#09090b", borderColor: "#18181b" }} labelStyle={{ color: "#a1a1aa", fontSize: 10, fontFamily: "monospace" }} itemStyle={{ color: "#10b981", fontSize: 11, fontFamily: "monospace" }} />
-                            <Line type="monotone" dataKey="rating" stroke="#10b981" strokeWidth={2} dot={{ fill: "#10b981", r: 4 }} activeDot={{ r: 6 }} />
+                            <Tooltip contentStyle={{ backgroundColor: "#09090b", borderColor: "#18181b" }} labelStyle={{ color: "#a1a1aa", fontSize: 10, fontFamily: "monospace" }} itemStyle={{ color: "#00e5ff", fontSize: 11, fontFamily: "monospace" }} />
+                            <Line type="monotone" dataKey="rating" stroke="#e11d2e" strokeWidth={2} dot={{ fill: "#e11d2e", r: 4 }} activeDot={{ r: 6 }} />
                           </LineChart>
                         </ResponsiveContainer>
                       </div>
@@ -673,7 +673,7 @@ export default function DeveloperAnalytics() {
                 <div className="space-y-6">
                   {/* AI report card items */}
                   <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative">
-                    <div className="absolute top-[-8px] right-4 bg-emerald-600 text-white text-[8px] font-bold px-2 py-0.5 rounded font-mono uppercase tracking-widest">
+                    <div className="absolute top-[-8px] right-4 bg-red-600 text-white text-[8px] font-bold px-2 py-0.5 rounded font-mono uppercase tracking-widest shadow-lg shadow-red-950/20">
                       AI Generated
                     </div>
                     <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-6">
@@ -683,30 +683,30 @@ export default function DeveloperAnalytics() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Weakest DSA Node</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Weakest DSA Node</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">{stats.weakestDSA}</p>
                         </div>
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Consistency Peak</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Consistency Peak</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">{stats.mostConsistentPeriod}</p>
                         </div>
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Target Strengths</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Target Strengths</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">{stats.bestPerformingTopics}</p>
                         </div>
                       </div>
 
                       <div className="space-y-4">
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">GitHub Productivity</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">GitHub Productivity</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">Score: <span className="font-bold text-white">{stats.githubProductivity}</span></p>
                         </div>
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Interview Readiness</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Interview Readiness</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">Match Index: <span className="font-bold text-white">{stats.interviewReadiness}</span></p>
                         </div>
                         <div className="border border-zinc-900 bg-black/30 p-4.5 rounded-xl space-y-1">
-                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Open Source Impact</span>
+                          <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Open Source Impact</span>
                           <p className="text-xs text-zinc-300 font-sans leading-relaxed">{stats.openSourceImpact}</p>
                         </div>
                       </div>
@@ -718,7 +718,7 @@ export default function DeveloperAnalytics() {
                     <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
                       Weekly Developer Summary Report
                     </h3>
-                    <p className="text-xs text-zinc-300 leading-relaxed font-sans border-l-2 border-emerald-500 pl-4 py-1 italic">
+                    <p className="text-xs text-zinc-300 leading-relaxed font-sans border-l-2 border-cyan-500 pl-4 py-1 italic">
                       {stats.weeklyReport}
                     </p>
                   </div>

@@ -32,9 +32,9 @@ export default function CommandPalette() {
       if (formSection) formSection.scrollIntoView({ behavior: "smooth" });
     }},
     { name: "Open Administrator Panel", category: "Settings", icon: Moon, action: () => router.push("/admin") },
-    { name: "Inspect Project: Venom Core AI", category: "Projects", icon: Code, action: () => router.push("/projects/venom-core-ai") },
-    { name: "Inspect Project: Symbiote SaaS Core", category: "Projects", icon: Code, action: () => router.push("/projects/symbiote-saas-core") },
-    { name: "Inspect Project: Web3 Gas Tracker", category: "Projects", icon: Code, action: () => router.push("/projects/web3-carnage") }
+    { name: "Inspect Project: Stark-Tech Spider OS", category: "Projects", icon: Code, action: () => router.push("/projects/stark-spider-os") },
+    { name: "Inspect Project: Sling-Shot SaaS Core", category: "Projects", icon: Code, action: () => router.push("/projects/slingshot-saas-core") },
+    { name: "Inspect Project: Web3 Web-Slinger Gas Tracker", category: "Projects", icon: Code, action: () => router.push("/projects/web3-webslinger") }
   ];
 
   // Register Global Key Listeners (Ctrl+K and /)
@@ -95,7 +95,7 @@ export default function CommandPalette() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-xl bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl shadow-emerald-500/5 flex flex-col max-h-[450px]"
+        className="w-full max-w-xl bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl shadow-[#00E5FF]/5 flex flex-col max-h-[450px]"
       >
         {/* Search input header */}
         <div className="flex items-center gap-3 px-4 py-3 bg-zinc-950 border-b border-zinc-900">
@@ -129,10 +129,11 @@ export default function CommandPalette() {
                 if (!acc[item.category]) acc[item.category] = [];
                 acc[item.category].push(item);
                 return acc;
+                return acc;
               }, {})
             ).map(([category, catItems]: [string, any]) => (
               <div key={category} className="space-y-1">
-                <div className="px-3 text-[9px] font-bold font-mono text-emerald-500 uppercase tracking-widest">
+                <div className="px-3 text-[9px] font-bold font-mono text-[#00E5FF] uppercase tracking-widest">
                   {category}
                 </div>
                 {catItems.map((item: any) => {
@@ -155,11 +156,11 @@ export default function CommandPalette() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <IconComp className={`w-4.5 h-4.5 ${isSelected ? "text-emerald-400" : "text-zinc-500"}`} />
+                        <IconComp className={`w-4.5 h-4.5 ${isSelected ? "text-[#00E5FF]" : "text-zinc-500"}`} />
                         <span className="text-sm font-sans">{item.name}</span>
                       </div>
                       {isSelected && (
-                        <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400">
+                        <div className="flex items-center gap-1 text-[10px] font-mono text-[#00E5FF]">
                           <span>Run</span>
                           <ArrowRight className="w-3 h-3" />
                         </div>

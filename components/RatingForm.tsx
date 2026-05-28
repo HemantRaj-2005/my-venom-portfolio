@@ -59,12 +59,12 @@ export default function RatingForm({ productId }: RatingFormProps) {
 
   if (success) {
     return (
-      <div className="flex items-center gap-3 p-4 border border-emerald-500/30 bg-emerald-950/20 rounded-xl">
-        <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
-          <Check className="w-4.5 h-4.5 text-emerald-400" />
+      <div className="flex items-center gap-3 p-4 border border-[#00E5FF]/30 bg-zinc-950 rounded-xl">
+        <div className="w-8 h-8 rounded-full bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center shrink-0">
+          <Check className="w-4.5 h-4.5 text-[#00E5FF]" />
         </div>
         <div>
-          <h4 className="text-xs font-bold text-white uppercase tracking-wider">Review Logged</h4>
+          <h4 className="text-xs font-bold text-white uppercase tracking-wider font-heading">Review Logged</h4>
           <p className="text-[10px] text-zinc-400 font-sans mt-0.5">
             Thank you! Your feedback has been verified and stored in the database.
           </p>
@@ -87,7 +87,7 @@ export default function RatingForm({ productId }: RatingFormProps) {
             onChange={(e) => setAuthor(e.target.value)}
             placeholder="John Watson"
             required
-            className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/10 transition-all font-sans"
+            className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-[#00E5FF]/40 focus:ring-1 focus:ring-[#00E5FF]/10 transition-all font-sans"
           />
         </div>
 
@@ -126,7 +126,7 @@ export default function RatingForm({ productId }: RatingFormProps) {
           onChange={(e) => setComment(e.target.value)}
           placeholder="Share your experience using this code asset..."
           rows={3}
-          className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/10 transition-all font-sans resize-none"
+          className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-[#00E5FF]/40 focus:ring-1 focus:ring-[#00E5FF]/10 transition-all font-sans resize-none"
         />
       </div>
 
@@ -139,7 +139,7 @@ export default function RatingForm({ productId }: RatingFormProps) {
       <button
         type="submit"
         disabled={loading}
-        className="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 disabled:border-zinc-850 hover:border-zinc-750 disabled:text-zinc-600 font-bold text-zinc-300 hover:text-white px-4 py-2 rounded-lg text-[10px] uppercase tracking-widest cursor-pointer active:scale-95 transition-all"
+        className="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 disabled:border-zinc-850 hover:border-zinc-750 disabled:text-zinc-600 font-bold text-zinc-300 hover:text-[#00E5FF] px-4 py-2 rounded-lg text-[10px] uppercase tracking-widest cursor-pointer active:scale-95 transition-all"
       >
         {loading ? "Logging..." : "Submit Review"}
       </button>

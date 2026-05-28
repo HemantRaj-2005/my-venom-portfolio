@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   if (!post) return { title: "Article Not Found" };
 
   return {
-    title: `${post.title} - The Symbiote Ledger`,
+    title: `${post.title} - The Stark Ledger`,
     description: post.summary || "Technical chronicles.",
     openGraph: {
       title: post.seoTitle || post.title,
@@ -43,15 +43,15 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
   }
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
       {/* Dynamic Scroll Progress Bar */}
       <BlogScrollProgress />
 
       {/* Background glow overlay */}
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/2 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none" />
 
       {/* Hero Banner Header Area */}
-      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-28 pb-12 select-none border-b border-zinc-900">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-28 pb-12 select-none border-b border-[#00E5FF]/15">
         {/* Back navigation */}
         <Link
           href="/blog"
@@ -63,7 +63,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
 
         {/* Category & Stats */}
         <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-4">
-          <span className="text-emerald-400 bg-emerald-950/20 px-2 py-0.5 rounded border border-emerald-800/10">
+          <span className="text-[#00E5FF] bg-[#00E5FF]/5 px-2 py-0.5 rounded border border-[#00E5FF]/20">
             {post.category || "Development"}
           </span>
           <div className="flex items-center gap-1">
@@ -77,14 +77,14 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight">
+        <h1 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-white leading-tight neon-glow-red">
           {post.title}
         </h1>
 
         {/* Summary banner */}
         {post.summary && (
           <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mt-6 bg-zinc-950 p-4 rounded-xl border border-zinc-900/60 leading-relaxed max-w-3xl">
-            <span className="text-emerald-400 font-bold font-mono text-[9px] border border-emerald-500/20 px-1 rounded mr-2 uppercase">AI Summary</span>
+            <span className="text-[#00E5FF] font-bold font-mono text-[9px] border border-[#00E5FF]/20 px-1 rounded mr-2 uppercase">AI Summary</span>
             {post.summary}
           </p>
         )}
@@ -98,7 +98,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
         </article>
 
         {/* Tag blocks */}
-        <div className="flex flex-wrap gap-1 border-b border-zinc-900 pb-10 select-none">
+        <div className="flex flex-wrap gap-1 border-b border-[#00E5FF]/15 pb-10 select-none">
           {post.tags.map((tag: string, idx: number) => (
             <span
               key={idx}
@@ -114,6 +114,5 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
           <BlogCommentSection postId={post.id || ""} comments={post.comments} />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }

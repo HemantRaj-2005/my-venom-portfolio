@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!product) return { title: "Product Not Found" };
 
   return {
-    title: `${product.title} - Symbiote Code Marketplace`,
+    title: `${product.title} - Stark-Tech Code Marketplace`,
     description: product.description,
   };
 }
@@ -43,12 +43,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     : "5.0";
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
       {/* Glow overlays */}
-      <div className="absolute w-[450px] h-[450px] bg-emerald-500/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
+      <div className="absolute w-[450px] h-[450px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
 
       {/* Hero Header Area */}
-      <div className="relative h-[30vh] bg-zinc-950 border-b border-zinc-900 select-none">
+      <div className="relative h-[30vh] bg-zinc-950 border-b border-[#00E5FF]/15 select-none">
         <Image
           src={product.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=60"}
           alt={product.title}
@@ -56,7 +56,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           className="object-cover opacity-25"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/30 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-black/60 pointer-events-none" />
 
         <div className="absolute top-8 left-6 md:left-12 z-20">
           <Link
@@ -69,10 +69,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </div>
 
         <div className="absolute bottom-8 left-6 md:left-12 z-10 max-w-4xl">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 bg-emerald-950/20 border border-emerald-800/20 px-2.5 py-0.5 rounded">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] bg-[#00E5FF]/5 border border-[#00E5FF]/20 px-2.5 py-0.5 rounded">
             {product.category}
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white mt-4">
+          <h1 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-white mt-4 neon-glow-red">
             {product.title}
           </h1>
         </div>
@@ -107,10 +107,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           {/* Section 2: Licensing terms */}
           <section className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8">
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest mb-4">
+            <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-4">
               <FileText className="w-4.5 h-4.5" /> Licensing Agreement
             </div>
-            <p className="text-zinc-300 leading-relaxed font-sans text-sm border-l-2 border-emerald-500 pl-4">
+            <p className="text-zinc-300 leading-relaxed font-sans text-sm border-l-2 border-[#00E5FF] pl-4">
               {product.licensing || "Standard Developer Single License. Re-distribution of source codes is forbidden. Custom integrations and commercial SaaS deployment are permitted."}
             </p>
           </section>
@@ -122,7 +122,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </h2>
 
             {/* Averages block */}
-            <div className="flex items-center gap-6 mb-8 p-4 rounded-xl border border-zinc-900 bg-black/40">
+            <div className="flex items-center gap-6 mb-8 p-4 rounded-xl border border-[#00E5FF]/15 bg-black/40">
               <div className="text-center shrink-0">
                 <div className="text-4xl font-extrabold text-white font-mono">{averageRating}</div>
                 <div className="text-[10px] text-zinc-500 uppercase tracking-widest mt-1 font-mono">Out of 5</div>
@@ -192,7 +192,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         {/* Right Column: Checkout Pricing info */}
         <div className="space-y-6">
           <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative">
-            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-500/20 rounded-t-2xl" />
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#E11D2E]/20 via-[#00E5FF]/20 to-[#E11D2E]/20 rounded-t-2xl" />
             <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4">
               Checkout Gateway
             </h3>
@@ -208,7 +208,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 href={product.demoUrl || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 font-bold text-white py-3.5 rounded-xl shadow-lg shadow-emerald-950/20 transition-all cursor-pointer text-xs uppercase tracking-widest active:scale-95"
+                className="w-full flex items-center justify-center gap-2 bg-[#E11D2E] hover:bg-[#c11524] font-bold text-white py-3.5 rounded-xl shadow-lg shadow-red-950/20 transition-all cursor-pointer text-xs uppercase tracking-widest active:scale-95"
               >
                 <ShoppingCart className="w-4.5 h-4.5" />
                 <span>Acquire Asset</span>

@@ -9,15 +9,17 @@ interface LoadingScreenProps {
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0);
-  const [videoError, setVideoError] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Store onComplete in a ref so the interval effect doesn't depend on it directly
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => { onCompleteRef.current = onComplete; }, [onComplete]);
 
   // 1. Simulate Progress Loading (0 to 100)
   useEffect(() => {
-    const duration = 2800; // 2.8 seconds loading simulation
-    const interval = 30;
+    const duration = 2400; // 2.4 seconds loading simulation
+    const interval = 25;
     const step = 100 / (duration / interval);
 
     const timer = setInterval(() => {
@@ -26,8 +28,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           clearInterval(timer);
           setTimeout(() => {
             setFadeOut(true);
-            setTimeout(onComplete, 800); // Allow fadeout animation to complete
-          }, 400);
+            setTimeout(() => onCompleteRef.current(), 700); // Allow fadeout animation
+          }, 300);
           return 100;
         }
         return Math.min(prev + step, 100);
@@ -35,12 +37,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [onComplete]);
+  }, []);
 
-  // 2. Matrix rain fallback canvas animation (when video is missing or errors out)
+  // 2. Holographic Web-Grid Canvas Animation
   useEffect(() => {
-    if (!videoError) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -56,34 +56,74 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Matrix characters: venom symbols, code fragments, alien text
-    const chars = "WEAREVENOMAIERROR0110SYSTEMHARNESSINGSYMBIOTE☠".split("");
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(columns).fill(0).map(() => Math.floor(Math.random() * -100));
+    let time = 0;
 
     const draw = () => {
-      // Semi-transparent black background to leave trails
-      ctx.fillStyle = "rgba(2, 2, 2, 0.12)";
+      time += 0.02;
+      ctx.fillStyle = "rgba(5, 10, 21, 0.15)"; // Dark blue-black trace background
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "rgba(0, 255, 102, 0.35)"; // Venom Green
-      ctx.font = `${fontSize}px monospace`;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const maxRadius = Math.max(canvas.width, canvas.height) * 0.8;
 
-      for (let i = 0; i < drops.length; i++) {
-        // Random character
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+      // 1. Draw Tech grid lines
+      ctx.strokeStyle = "rgba(0, 229, 255, 0.03)";
+      ctx.lineWidth = 1;
+      const gridSize = 60;
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
 
-        // Draw character
-        ctx.fillText(text, x, y);
+      // 2. Draw Concentric Spider Web Rings
+      ctx.strokeStyle = "rgba(0, 229, 255, 0.08)";
+      ctx.lineWidth = 1.5;
+      const ringCount = 8;
+      for (let i = 1; i <= ringCount; i++) {
+        const baseRadius = (i / ringCount) * 350;
+        const pulse = Math.sin(time * 2 + i) * 12;
+        const r = Math.max(10, baseRadius + pulse);
 
-        // Reset drop to top if it reaches bottom
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // 3. Draw Web Radial Spoke Lines
+      ctx.strokeStyle = "rgba(225, 29, 46, 0.06)";
+      const spokes = 12;
+      for (let i = 0; i < spokes; i++) {
+        const angle = (i / spokes) * Math.PI * 2 + time * 0.05;
+        const endX = centerX + Math.cos(angle) * maxRadius;
+        const endY = centerY + Math.sin(angle) * maxRadius;
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+      }
+
+      // 4. Sweeping HUD scanning circle
+      const sweepRadius = (Math.sin(time * 1.5) * 0.5 + 0.5) * 450 + 50;
+      ctx.strokeStyle = "rgba(0, 229, 255, 0.15)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, sweepRadius, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Draw subtle green/cyan scan lines on top
+      ctx.fillStyle = "rgba(0, 229, 255, 0.015)";
+      for (let y = 0; y < canvas.height; y += 4) {
+        ctx.fillRect(0, y, canvas.width, 1);
       }
 
       animationId = requestAnimationFrame(draw);
@@ -95,12 +135,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationId);
     };
-  }, [videoError]);
-
-  const handleVideoError = () => {
-    console.warn("Venom loading video missing or unsupported. Playing organic symbiote fallback.");
-    setVideoError(true);
-  };
+  }, []);
 
   return (
     <AnimatePresence>
@@ -108,139 +143,90 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#020202] select-none overflow-hidden"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#050a15] select-none overflow-hidden"
         >
-          {/* Main Cinematic Video Background */}
-          {!videoError ? (
-            <video
-              ref={videoRef}
-              src="/venom_loading.mp4"
-              autoPlay
-              muted
-              playsInline
-              loop
-              onError={handleVideoError}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen"
-            />
-          ) : (
-            // Canvas for Matrix Digital Symbiote Rain
-            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover" />
-          )}
+          {/* Web/HUD Canvas Background */}
+          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover" />
 
-          {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#000000_90%)] pointer-events-none" />
+          {/* Holographic Vignette Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050505_95%)] pointer-events-none" />
 
-          {/* Fallback Graphic (Symbiote Eyes and Roar) */}
-          {videoError && (
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ 
-                scale: [0.95, 1.05, 0.95],
-                opacity: 0.95,
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative w-64 h-64 flex items-center justify-center mb-8"
+          {/* Central Logo Panel */}
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{
+              scale: [0.96, 1.04, 0.96],
+              opacity: 1,
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="relative w-48 h-48 flex items-center justify-center mb-6"
+          >
+            {/* Glowing background circles */}
+            <div className="absolute w-36 h-36 bg-cyan-500/10 rounded-full blur-[40px] animate-pulse" />
+            <div className="absolute w-28 h-28 bg-red-500/5 rounded-full blur-[25px]" />
+
+            {/* Custom SVG Spider Logo with Glitch Effects */}
+            <svg
+              width="140"
+              height="140"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-red-500 drop-shadow-[0_0_15px_rgba(225,29,46,0.65)] hover:text-cyan-400 transition-colors"
             >
-              {/* Pulsing Glow behind fangs */}
-              <div className="absolute w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px]" />
-              <div className="absolute w-40 h-40 bg-red-500/5 rounded-full blur-[60px]" />
+              {/* Spider Body */}
+              <circle cx="50" cy="45" r="7" fill="currentColor" />
+              <circle cx="50" cy="58" r="10.5" fill="currentColor" />
+              <circle cx="50" cy="35" r="4.5" fill="currentColor" />
               
-              {/* Vector Symbiote Fangs / Eyes */}
-              <svg
-                width="200"
-                height="200"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.7)]"
-              >
-                {/* Left Eye */}
-                <motion.path
-                  d="M15 35 C 25 32, 40 40, 48 50 C 35 48, 20 45, 15 35 Z"
-                  fill="white"
-                  initial={{ d: "M15 35 C 25 32, 40 40, 48 50 C 35 48, 20 45, 15 35 Z" }}
-                  animate={{
-                    d: [
-                      "M15 35 C 25 32, 40 40, 48 50 C 35 48, 20 45, 15 35 Z",
-                      "M12 33 C 27 28, 42 38, 49 53 C 33 49, 18 44, 12 33 Z",
-                      "M15 35 C 25 32, 40 40, 48 50 C 35 48, 20 45, 15 35 Z"
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                {/* Right Eye */}
-                <motion.path
-                  d="M85 35 C 75 32, 60 40, 52 50 C 65 48, 80 45, 85 35 Z"
-                  fill="white"
-                  initial={{ d: "M85 35 C 75 32, 60 40, 52 50 C 65 48, 80 45, 85 35 Z" }}
-                  animate={{
-                    d: [
-                      "M85 35 C 75 32, 60 40, 52 50 C 65 48, 80 45, 85 35 Z",
-                      "M88 33 C 73 28, 58 38, 51 53 C 67 49, 82 44, 88 33 Z",
-                      "M85 35 C 75 32, 60 40, 52 50 C 65 48, 80 45, 85 35 Z"
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                {/* Fangs Opening Roar */}
-                <motion.path
-                  d="M25 65 Q 50 55 75 65 Q 50 90 25 65 Z"
-                  fill="#0c0c0c"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  animate={{
-                    d: [
-                      "M25 65 Q 50 55 75 65 Q 50 90 25 65 Z",
-                      "M20 62 Q 50 48 80 62 Q 50 96 20 62 Z", // Open wider
-                      "M25 65 Q 50 55 75 65 Q 50 90 25 65 Z"
-                    ]
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                />
-                {/* Fangs details - Top Fangs */}
-                <path d="M32 60 L36 67 L39 60 M68 60 L64 67 L61 60" fill="white" stroke="white" strokeWidth="1" />
-                {/* Bottom Fangs */}
-                <path d="M42 78 L45 71 L48 77 M58 78 L55 71 L52 77" fill="white" stroke="white" strokeWidth="1" />
-              </svg>
-            </motion.div>
-          )}
+              {/* Left Legs */}
+              <path d="M 45 42 Q 26 34 16 48" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 43 48 Q 22 43 14 62" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 43 55 Q 23 60 19 76" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 44 62 Q 28 73 25 86" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              
+              {/* Right Legs */}
+              <path d="M 55 42 Q 74 34 84 48" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 57 48 Q 78 43 86 62" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 57 55 Q 77 60 81 76" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+              <path d="M 56 62 Q 72 73 75 86" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+            </svg>
+          </motion.div>
 
-          {/* Loading Progress Information */}
-          <div className="relative z-10 flex flex-col items-center max-w-sm w-full px-8 text-center mt-auto mb-16">
-            {/* Glowing Tagline */}
+          {/* Loading Progress Info */}
+          <div className="relative z-10 flex flex-col items-center max-w-sm w-full px-8 text-center mt-2 select-none">
+            {/* Tagline */}
             <motion.h2
               initial={{ letterSpacing: "0.1em", opacity: 0 }}
-              animate={{ letterSpacing: "0.25em", opacity: 1 }}
+              animate={{ letterSpacing: "0.22em", opacity: 0.9 }}
               transition={{ duration: 1 }}
-              className="text-white text-xs font-bold tracking-[0.25em] uppercase mb-4 drop-shadow-[0_0_10px_rgba(0,255,102,0.4)]"
+              className="text-cyan-400 text-[10px] font-mono font-bold tracking-[0.22em] uppercase mb-4 drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]"
             >
-              We Are Venom
+              Stark Tech HUD Diagnostics
             </motion.h2>
 
             {/* Counter */}
-            <div className="text-4xl font-extrabold text-white font-mono mb-4 tabular-nums">
+            <div className="text-4xl font-black text-white font-mono mb-4 tabular-nums">
               {Math.round(progress)}
-              <span className="text-emerald-400 text-2xl ml-1">%</span>
+              <span className="text-red-500 text-2xl ml-1 font-sans">%</span>
             </div>
 
             {/* Progress Bar Container */}
-            <div className="w-full h-1 bg-zinc-900 border border-zinc-800 rounded-full overflow-hidden relative shadow-inner">
-              {/* Pulse overlay inside loader */}
+            <div className="w-full h-1 bg-zinc-950 border border-zinc-900 rounded-full overflow-hidden relative shadow-inner">
               <motion.div
-                className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-emerald-600 via-emerald-400 to-white"
+                className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-red-600 via-cyan-400 to-white"
                 style={{ width: `${progress}%` }}
                 transition={{ type: "tween" }}
               />
             </div>
 
-            <p className="text-zinc-500 text-[10px] uppercase tracking-widest mt-3 font-mono">
-              Booting Cybernetic Interface...
+            <p className="text-zinc-500 text-[9px] uppercase tracking-[0.18em] mt-3.5 font-mono">
+              Booting Stark-AI OS Matrix...
             </p>
           </div>
         </motion.div>

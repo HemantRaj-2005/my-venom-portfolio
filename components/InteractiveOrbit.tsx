@@ -26,15 +26,15 @@ export default function InteractiveOrbit() {
         animate={{
           scale: [1, 1.08, 1],
           boxShadow: [
-            "0 0 20px rgba(0, 255, 102, 0.2)",
-            "0 0 35px rgba(0, 255, 102, 0.4)",
-            "0 0 20px rgba(0, 255, 102, 0.2)"
+            "0 0 20px rgba(0, 229, 255, 0.2)",
+            "0 0 35px rgba(0, 229, 255, 0.4)",
+            "0 0 20px rgba(0, 229, 255, 0.2)"
           ]
         }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="w-20 h-20 rounded-full bg-zinc-950 border-2 border-emerald-500/60 flex flex-col items-center justify-center z-10 shadow-lg shadow-emerald-500/20"
+        className="w-20 h-20 rounded-full bg-zinc-950 border-2 border-[#00E5FF]/60 flex flex-col items-center justify-center z-10 shadow-lg shadow-[#00E5FF]/20"
       >
-        <Cpu className="w-8 h-8 text-emerald-400 animate-pulse" />
+        <Cpu className="w-8 h-8 text-[#00E5FF] animate-pulse" />
         <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest mt-1">Core AI</span>
       </motion.div>
 
@@ -57,7 +57,7 @@ export default function InteractiveOrbit() {
           return (
             <motion.div
               key={idx}
-              className="absolute w-10 h-10 rounded-lg bg-zinc-950 border border-zinc-800 flex items-center justify-center shadow-lg hover:border-emerald-500/40 cursor-help"
+              className="absolute w-10 h-10 rounded-lg bg-zinc-950 border border-zinc-800 flex items-center justify-center shadow-lg hover:border-[#00E5FF]/40 cursor-help"
               style={{
                 top: `calc(50% + ${y}px)`,
                 left: `calc(50% + ${x}px)`,

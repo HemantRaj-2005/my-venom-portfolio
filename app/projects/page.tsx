@@ -90,10 +90,11 @@ export default function ProjectsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
+  return (
+    <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
       {/* Background Ambient lights */}
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/2 rounded-full blur-[150px] top-[-100px] right-[-100px] pointer-events-none" />
-      <div className="absolute w-[400px] h-[400px] bg-zinc-900/10 rounded-full blur-[100px] bottom-[-100px] left-[-100px] pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-red-500/2 rounded-full blur-[150px] top-[-100px] right-[-100px] pointer-events-none animate-pulse" />
+      <div className="absolute w-[400px] h-[400px] bg-cyan-500/2 rounded-full blur-[100px] bottom-[-100px] left-[-100px] pointer-events-none" />
 
       {/* Main Header Container */}
       <div className="max-w-6xl mx-auto mb-16 select-none">
@@ -101,7 +102,7 @@ export default function ProjectsPage() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest"
+            className="flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-widest"
           >
             <Shield className="w-4 h-4" /> SECURE CODE ARCHIVE
           </motion.div>
@@ -109,7 +110,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black tracking-tight text-white mt-2"
+            className="text-4xl md:text-5xl font-black tracking-tight text-white mt-2 font-heading"
           >
             Intelligence Dossiers
           </motion.h1>
@@ -119,7 +120,7 @@ export default function ProjectsPage() {
             transition={{ delay: 0.2 }}
             className="text-sm text-zinc-500 max-w-xl leading-relaxed mt-2"
           >
-            Monitor and explore fully realized, high-performance production codebases, AI pipelines, and smart contracts wrapped in a dark cybernetic shell.
+            Monitor and explore fully realized, high-performance production codebases, AI pipelines, and smart contracts wrapped in a Stark-tech cybernetic shell.
           </motion.p>
         </div>
       </div>
@@ -140,7 +141,7 @@ export default function ProjectsPage() {
                 onMouseEnter={handleHover}
                 className={`px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   isSel
-                    ? "bg-emerald-600 text-white border border-emerald-500/30 shadow-md shadow-emerald-700/10 scale-105"
+                    ? "bg-red-600 text-white border border-red-500/30 shadow-md shadow-red-700/10 scale-105"
                     : "bg-zinc-950 border border-zinc-900 text-zinc-400 hover:text-white hover:border-zinc-800"
                 }`}
               >
@@ -151,7 +152,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Search bar input */}
-        <div className="flex items-center gap-3 px-3 py-2 rounded-lg border border-zinc-800 bg-zinc-950/80 w-full max-w-xs backdrop-blur">
+        <div className="flex items-center gap-3 px-3 py-2 rounded-lg border border-zinc-850 bg-zinc-950/80 w-full max-w-xs backdrop-blur focus-within:border-cyan-500/30 transition-colors">
           <Search className="w-4.5 h-4.5 text-zinc-500" />
           <input
             type="text"
@@ -166,7 +167,7 @@ export default function ProjectsPage() {
       {/* Projects Cards Grid */}
       <div className="max-w-6xl mx-auto">
         {loading ? (
-          <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-600 animate-pulse">
+          <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-650 animate-pulse">
             Decrypting index matrices...
           </div>
         ) : filteredProjects.length === 0 ? (
@@ -181,10 +182,10 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group relative flex flex-col bg-zinc-950 border border-zinc-900 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 shadow-xl shadow-black/40 hover:shadow-emerald-500/2"
+                className="group relative flex flex-col bg-zinc-955 border border-zinc-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 shadow-xl shadow-black/40 hover:shadow-cyan-500/2"
               >
                 {/* Custom top bar decoration */}
-                <div className="absolute top-0 inset-x-0 h-[2px] bg-zinc-900 group-hover:bg-emerald-500 transition-colors duration-300" />
+                <div className="absolute top-0 inset-x-0 h-[2px] bg-zinc-900 group-hover:bg-cyan-400 transition-colors duration-300" />
 
                 {/* Card Thumbnail */}
                 <div className="h-44 relative overflow-hidden bg-zinc-900">
@@ -197,15 +198,15 @@ export default function ProjectsPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
                   
                   {/* Performance stats indicator */}
-                  <div className="absolute top-4 right-4 bg-black/85 border border-zinc-800 rounded-lg px-2.5 py-1 flex items-center gap-1.5 font-mono text-[10px] text-emerald-400 font-bold backdrop-blur">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="absolute top-4 right-4 bg-black/85 border border-zinc-850 rounded-lg px-2.5 py-1 flex items-center gap-1.5 font-mono text-[10px] text-cyan-400 font-bold backdrop-blur">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                     <span>LHS: {proj.performance}%</span>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h2 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors duration-200">
+                <div className="p-6 flex-1 flex flex-col bg-zinc-950/80 backdrop-blur-sm">
+                  <h2 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors duration-200 font-sans tracking-wide">
                     {proj.title}
                   </h2>
                   <p className="text-xs text-zinc-400 mt-2 font-sans line-clamp-3 leading-relaxed flex-1">
@@ -217,7 +218,7 @@ export default function ProjectsPage() {
                     {proj.techStack.slice(0, 3).map((badge, bIdx) => (
                       <span
                         key={bIdx}
-                        className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-850 text-[9px] font-mono text-zinc-500 uppercase tracking-wide"
+                        className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-850 text-[9px] font-mono text-zinc-550 uppercase tracking-wide"
                       >
                         {badge}
                       </span>
@@ -234,7 +235,7 @@ export default function ProjectsPage() {
                     href={`/projects/${proj.slug}`}
                     onClick={handleClick}
                     onMouseEnter={handleHover}
-                    className="mt-6 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-zinc-400 group-hover:text-emerald-400 transition-colors border-t border-zinc-900 pt-4 cursor-pointer"
+                    className="mt-6 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-zinc-400 group-hover:text-cyan-400 transition-colors border-t border-zinc-900 pt-4 cursor-pointer"
                   >
                     <span>Read Dossier</span>
                     <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -246,5 +247,6 @@ export default function ProjectsPage() {
         )}
       </div>
     </div>
+  );
   );
 }

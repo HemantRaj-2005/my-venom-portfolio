@@ -68,8 +68,8 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
 
   return (
     <div className="space-y-8 select-none">
-      <h3 className="text-sm font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 flex items-center gap-2">
-        <MessageSquare className="w-4 h-4 text-emerald-400" /> Synchronization logs ({comments.length})
+      <h3 className="text-sm font-mono uppercase tracking-widest text-zinc-400 border-b border-[#00E5FF]/15 pb-3 flex items-center gap-2">
+        <MessageSquare className="w-4 h-4 text-[#00E5FF]" /> Synchronization logs ({comments.length})
       </h3>
 
       {/* Comments grid */}
@@ -100,17 +100,17 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
 
       {/* Submit comment form */}
       <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6">
-        <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-4">
+        <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-4 font-heading">
           Add comment dossier
         </h4>
 
         {success ? (
-          <div className="flex items-center gap-3 p-4 border border-emerald-500/30 bg-emerald-950/20 rounded-xl mb-4">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
-              <Check className="w-4.5 h-4.5 text-emerald-400" />
+          <div className="flex items-center gap-3 p-4 border border-[#00E5FF]/30 bg-zinc-950 rounded-xl mb-4">
+            <div className="w-8 h-8 rounded-full bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center shrink-0">
+              <Check className="w-4.5 h-4.5 text-[#00E5FF]" />
             </div>
             <div>
-              <h5 className="text-xs font-bold text-white uppercase tracking-wider">Comment Linked</h5>
+              <h5 className="text-xs font-bold text-white uppercase tracking-wider font-heading">Comment Linked</h5>
               <p className="text-[10px] text-zinc-400 font-sans mt-0.5">
                 Your entry has been synchronized with the blog ledger.
               </p>
@@ -129,7 +129,7 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
                   onChange={(e) => setAuthor(e.target.value)}
                   placeholder="Gwen Stacy"
                   required
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/10 transition-all font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-[#00E5FF]/40 focus:ring-1 focus:ring-[#00E5FF]/10 transition-all font-sans"
                 />
               </div>
 
@@ -142,7 +142,7 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="gwen@oscorp.dev"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/10 transition-all font-sans"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-[#00E5FF]/40 focus:ring-1 focus:ring-[#00E5FF]/10 transition-all font-sans"
                 />
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
                 placeholder="Submit your comments or queries on these technical parameters..."
                 rows={4}
                 required
-                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/10 transition-all font-sans resize-none"
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white placeholder-zinc-700 outline-none focus:border-[#00E5FF]/40 focus:ring-1 focus:ring-[#00E5FF]/10 transition-all font-sans resize-none"
               />
             </div>
 
@@ -170,7 +170,7 @@ export default function BlogCommentSection({ postId, comments }: BlogCommentSect
             <button
               type="submit"
               disabled={loading}
-              className="bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white px-5 py-2.5 rounded-lg text-xs uppercase tracking-wider cursor-pointer active:scale-95 transition-all shadow hover:shadow-emerald-500/10 flex items-center gap-2"
+              className="bg-[#E11D2E] hover:bg-[#c11524] disabled:bg-zinc-800 disabled:text-zinc-500 font-bold text-white px-5 py-2.5 rounded-lg text-xs uppercase tracking-wider cursor-pointer active:scale-95 transition-all shadow hover:shadow-red-500/10 flex items-center gap-2"
             >
               <Send className="w-4 h-4" />
               <span>{loading ? "Transmitting..." : "Send Comment"}</span>

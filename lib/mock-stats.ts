@@ -105,7 +105,7 @@ export function generateMockStats(
       profile: {
         name: "Hemant Raj",
         avatarUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=150&auto=format&fit=crop&q=60",
-        bio: "AI Engineer & Full Stack Developer | Shaders, Symbiotes, & Cybernetics",
+        bio: "AI Engineer & Full Stack Developer | Shaders, Cyber-Webs, & Holographic HUDs",
         location: "Delhi, India",
         followers: 124,
         following: 56,
@@ -128,9 +128,9 @@ export function generateMockStats(
       ],
       heatmap,
       recentRepos: [
-        { name: "venom-portfolio", desc: "AAA cinematic dark theme symbiote-inspired developer portfolio.", stars: 45, forks: 12, language: "TypeScript", url: `https://github.com/${githubUser}/venom-portfolio` },
+        { name: "spider-hud-portfolio", desc: "AAA cinematic dark theme HUD-inspired developer command center.", stars: 45, forks: 12, language: "TypeScript", url: `https://github.com/${githubUser}/spider-hud-portfolio` },
         { name: "ai-code-analyzer", desc: "A self-healing code reviewer powered by Large Language Models.", stars: 32, forks: 8, language: "TypeScript", url: `https://github.com/${githubUser}/ai-code-analyzer` },
-        { name: "webgl-morph-core", desc: "Custom noise-deformed WebGL liquid metal sphere core engine.", stars: 28, forks: 4, language: "GLSL", url: `https://github.com/${githubUser}/webgl-morph-core` },
+        { name: "webgl-hologram-portal", desc: "Custom noise-deformed WebGL holographic portal ring engine.", stars: 28, forks: 4, language: "GLSL", url: `https://github.com/${githubUser}/webgl-hologram-portal` },
         { name: "saas-stripe-boil", desc: "Preconfigured full-stack SaaS boilerplate with user profiles & webhooks.", stars: 24, forks: 7, language: "TypeScript", url: `https://github.com/${githubUser}/saas-stripe-boil` },
       ],
       growth: [
@@ -200,8 +200,8 @@ export function generateMockStats(
     bestPerformingTopics: "Binary Trees & Graph Traversals (DFS/BFS)",
     githubProductivity: "92%",
     interviewReadiness: "95%",
-    openSourceImpact: "High: Creator of Symbiote Core Shader Engine",
-    weeklyReport: "Admin logged 34 GitHub commits across 4 active repositories, solving 9 Medium/Hard LeetCode problems. Focus lay heavily on WebGL shader logic and local JSON DB transactional wrapper safety checks.",
+    openSourceImpact: "High: Creator of Holographic Portal Shader Engine",
+    weeklyReport: "Admin logged 34 GitHub commits across 4 active repositories, solving 9 Medium/Hard LeetCode problems. Focus lay heavily on WebGL shader portal logic and local JSON DB transactional wrapper safety checks.",
     skills: [
       { subject: "Dynamic Programming", value: 85 },
       { subject: "Arrays & Strings", value: 98 },

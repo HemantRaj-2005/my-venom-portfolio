@@ -1,8 +1,8 @@
 export default function AnalyticsLoading() {
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 py-24 px-6 md:px-12 flex flex-col font-sans select-none relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 flex flex-col font-sans select-none relative overflow-hidden">
       {/* Background glow overlay */}
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/2 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-red-500/2 rounded-full blur-[140px] top-1/4 left-1/4 pointer-events-none" />
       
       {/* Header Skeleton */}
       <div className="max-w-6xl mx-auto w-full mb-12 animate-pulse space-y-4">

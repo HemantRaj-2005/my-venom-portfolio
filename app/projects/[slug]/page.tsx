@@ -46,13 +46,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
       {/* Background elements */}
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
-      <div className="absolute w-[400px] h-[400px] bg-red-500/2 rounded-full blur-[120px] bottom-1/4 left-[-100px] pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
+      <div className="absolute w-[400px] h-[400px] bg-[#E11D2E]/2 rounded-full blur-[120px] bottom-1/4 left-[-100px] pointer-events-none" />
 
       {/* Hero Banner Grid */}
-      <div className="relative h-[40vh] md:h-[50vh] bg-zinc-950 border-b border-zinc-900 select-none">
+      <div className="relative h-[40vh] md:h-[50vh] bg-zinc-950 border-b border-[#00E5FF]/15 select-none">
         <Image
           src={project.gallery[0] || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=60"}
           alt={project.title}
@@ -60,7 +60,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           className="object-cover opacity-35"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/30 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-black/60 pointer-events-none" />
 
         {/* Floating Back Navigation */}
         <div className="absolute top-8 left-6 md:left-12 z-20">
@@ -75,11 +75,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
         {/* Hero Title details */}
         <div className="absolute bottom-8 left-6 md:left-12 z-10 max-w-4xl">
-          <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
             <span>Project Dossier: {project.id}</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white">
+          <h1 className="text-4xl md:text-6xl font-heading font-black tracking-tight text-white neon-glow-red">
             {project.title}
           </h1>
         </div>
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 font-semibold text-white px-5 py-3 rounded-xl shadow-lg shadow-emerald-950/20 transition-all cursor-pointer text-sm"
+                  className="flex items-center gap-2 bg-[#E11D2E] hover:bg-[#c11524] font-semibold text-white px-5 py-3 rounded-xl shadow-lg shadow-red-950/20 transition-all cursor-pointer text-sm"
                 >
                   <Globe className="w-4 h-4" />
                   <span>Launch Live Site</span>
@@ -137,7 +137,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   key={idx}
                   className="flex gap-3 p-4 rounded-xl border border-zinc-900 bg-zinc-950"
                 >
-                  <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <ShieldCheck className="w-5 h-5 text-[#00E5FF] shrink-0 mt-0.5" />
                   <p className="text-xs text-zinc-300 font-sans leading-relaxed">{feature}</p>
                 </div>
               ))}
@@ -155,32 +155,32 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               
               {/* Box 1: Client Gateway */}
               <div className="flex flex-col items-center justify-center p-4 w-36 bg-zinc-900 border border-zinc-800 rounded-lg text-center gap-1 shadow-md">
-                <Cpu className="w-5 h-5 text-emerald-400" />
+                <Cpu className="w-5 h-5 text-[#00E5FF]" />
                 <span className="font-bold text-white uppercase text-[10px]">Client UI</span>
                 <span className="text-[9px] text-zinc-500">React 19 / Canvas</span>
               </div>
 
               {/* Glowing Arrow Path Connector */}
-              <div className="h-6 w-0.5 md:h-0.5 md:w-10 bg-emerald-500/40 relative flex items-center justify-center">
-                <div className="absolute w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping" />
+              <div className="h-6 w-0.5 md:h-0.5 md:w-10 bg-[#00E5FF]/40 relative flex items-center justify-center">
+                <div className="absolute w-1.5 h-1.5 bg-[#00E5FF] rounded-full animate-ping" />
               </div>
 
               {/* Box 2: Next.js Middle Server */}
               <div className="flex flex-col items-center justify-center p-4 w-36 bg-zinc-900 border border-zinc-800 rounded-lg text-center gap-1 shadow-md relative">
-                <div className="absolute top-[-8px] right-2 bg-emerald-600 text-white text-[8px] font-bold px-1 rounded">JWT</div>
-                <Server className="w-5 h-5 text-emerald-400" />
+                <div className="absolute top-[-8px] right-2 bg-[#E11D2E] text-white text-[8px] font-bold px-1 rounded">JWT</div>
+                <Server className="w-5 h-5 text-[#00E5FF]" />
                 <span className="font-bold text-white uppercase text-[10px]">API Router</span>
                 <span className="text-[9px] text-zinc-500">Next.js Edge / Cache</span>
               </div>
 
               {/* Connector */}
-              <div className="h-6 w-0.5 md:h-0.5 md:w-10 bg-emerald-500/40 relative flex items-center justify-center">
-                <div className="absolute w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping" />
+              <div className="h-6 w-0.5 md:h-0.5 md:w-10 bg-[#00E5FF]/40 relative flex items-center justify-center">
+                <div className="absolute w-1.5 h-1.5 bg-[#00E5FF] rounded-full animate-ping" />
               </div>
 
               {/* Box 3: Data Core */}
               <div className="flex flex-col items-center justify-center p-4 w-36 bg-zinc-900 border border-zinc-800 rounded-lg text-center gap-1 shadow-md">
-                <Database className="w-5 h-5 text-emerald-400" />
+                <Database className="w-5 h-5 text-[#00E5FF]" />
                 <span className="font-bold text-white uppercase text-[10px]">Data Core</span>
                 <span className="text-[9px] text-zinc-500">Prisma / MongoDB</span>
               </div>
@@ -198,7 +198,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </h2>
             <div className="space-y-6 font-mono text-xs">
               <div className="p-4 rounded-xl border border-zinc-900 bg-black/40">
-                <div className="flex items-center gap-2 text-emerald-400 font-bold mb-2 uppercase text-[10px]">
+                <div className="flex items-center gap-2 text-[#00E5FF] font-bold mb-2 uppercase text-[10px]">
                   <GitBranch className="w-4 h-4" /> Database Schema Mappings
                 </div>
                 <div className="text-zinc-400 text-[11px] leading-relaxed whitespace-pre-wrap">
@@ -207,7 +207,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </div>
 
               <div className="p-4 rounded-xl border border-zinc-900 bg-black/40">
-                <div className="flex items-center gap-2 text-emerald-400 font-bold mb-2 uppercase text-[10px]">
+                <div className="flex items-center gap-2 text-[#00E5FF] font-bold mb-2 uppercase text-[10px]">
                   <Code2 className="w-4 h-4" /> API Endpoint Flowchart
                 </div>
                 <div className="text-zinc-400 text-[11px] leading-relaxed">
@@ -220,10 +220,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           {/* Section 5: Challenges faced */}
           {project.challenges && (
             <section className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8">
-              <div className="flex items-center gap-2 text-red-500 font-mono text-xs uppercase tracking-widest mb-4">
+              <div className="flex items-center gap-2 text-[#E11D2E] font-mono text-xs uppercase tracking-widest mb-4">
                 <AlertTriangle className="w-4.5 h-4.5" /> Engineering Challenges
               </div>
-              <p className="text-zinc-300 leading-relaxed font-sans text-sm border-l-2 border-red-500 pl-4">
+              <p className="text-zinc-300 leading-relaxed font-sans text-sm border-l-2 border-[#E11D2E] pl-4">
                 {project.challenges}
               </p>
             </section>
@@ -283,8 +283,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
           {/* Embedded Prefilled Lead Inquiry Form */}
           <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative">
-            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-500/20 rounded-t-2xl" />
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest mb-3">
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#E11D2E]/20 via-[#00E5FF]/20 to-[#E11D2E]/20 rounded-t-2xl" />
+            <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-3">
               <Mail className="w-4 h-4" /> Project Inquiry
             </div>
             <h3 className="text-sm font-bold text-white mb-2">Request Similar System</h3>

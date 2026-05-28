@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
@@ -7,7 +7,7 @@ import CustomCursor from "@/components/CustomCursor";
 import SoundToggle from "@/components/SoundToggle";
 import Achievements from "@/components/Achievements";
 
-const playfairDisplayHeading = Playfair_Display({
+const orbitronHeading = Orbitron({
   subsets: ["latin"],
   variable: "--font-heading"
 });
@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hemant Raj - AI Engineer & Full Stack Developer",
-  description: "Ultra-premium portfolio of Hemant Raj, showcasing dynamic Next.js applications, AI neural networks, and 3D WebGL designs in a Venom-inspired skin.",
+  description: "Ultra-premium portfolio of Hemant Raj, showcasing dynamic Next.js applications, Stark-tech AI HUD diagnostics, and 3D WebGL designs in a Spider-Man inspired command center skin.",
   keywords: ["AI Engineer", "Full Stack Developer", "WebGL", "Three.js", "Next.js", "React 19", "Prisma", "MongoDB"],
   manifest: "/manifest.json",
 };
@@ -50,7 +50,7 @@ export default function RootLayout({
         geistMono.variable,
         "font-sans",
         notoSans.variable,
-        playfairDisplayHeading.variable
+        orbitronHeading.variable
       )}
       style={{ colorScheme: "dark" }}
     >

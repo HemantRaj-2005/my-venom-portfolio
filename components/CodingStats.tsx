@@ -20,14 +20,14 @@ export default function CodingStats() {
         <div>
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-2.5">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-emerald-400"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-[#00E5FF]"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">GitHub Profile</span>
             </div>
             <a
               href="https://github.com/HemantRaj-2005"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] font-mono text-zinc-500 hover:text-emerald-400 border border-zinc-900 hover:border-emerald-500/20 bg-black/60 px-2 py-0.5 rounded transition-all"
+              className="text-[10px] font-mono text-zinc-500 hover:text-[#00E5FF] border border-zinc-900 hover:border-[#00E5FF]/20 bg-black/60 px-2 py-0.5 rounded transition-all"
             >
               @HemantRaj-2005
             </a>
@@ -60,9 +60,9 @@ export default function CodingStats() {
                 key={idx}
                 className={`w-3.5 h-3.5 rounded-sm transition-all ${
                   level === 0 ? "bg-zinc-900" :
-                  level === 1 ? "bg-emerald-950/40 border border-emerald-900/30" :
-                  level === 2 ? "bg-emerald-800/60 border border-emerald-700/30" :
-                  "bg-emerald-400 shadow-[0_0_6px_rgba(0,255,102,0.4)]"
+                  level === 1 ? "bg-[#00E5FF]/10 border border-[#00E5FF]/20" :
+                  level === 2 ? "bg-[#00E5FF]/30 border border-[#00E5FF]/40" :
+                  "bg-[#00E5FF] shadow-[0_0_6px_rgba(0,229,255,0.6)]"
                 }`}
                 title={`Level: ${level}`}
               />
@@ -76,14 +76,14 @@ export default function CodingStats() {
         <div>
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-2.5">
-              <Code className="w-5 h-5 text-emerald-400" />
+              <Code className="w-5 h-5 text-[#00E5FF]" />
               <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">LeetCode Metrics</span>
             </div>
             <a
               href="https://leetcode.com/u/HemantRaj"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] font-mono text-zinc-500 hover:text-emerald-400 border border-zinc-900 hover:border-emerald-500/20 bg-black/60 px-2 py-0.5 rounded transition-all"
+              className="text-[10px] font-mono text-zinc-500 hover:text-[#00E5FF] border border-zinc-900 hover:border-[#00E5FF]/20 bg-black/60 px-2 py-0.5 rounded transition-all"
             >
               @HemantRaj
             </a>
@@ -109,11 +109,11 @@ export default function CodingStats() {
           {/* Easy */}
           <div className="space-y-1">
             <div className="flex justify-between">
-              <span className="text-emerald-400">Easy (150/150)</span>
+              <span className="text-[#00E5FF]">Easy (150/150)</span>
               <span className="text-white font-bold">100%</span>
             </div>
             <div className="w-full h-1.5 bg-zinc-900 border border-zinc-850 rounded-full overflow-hidden">
-              <div className="h-full bg-emerald-400 rounded-full" style={{ width: "100%" }} />
+              <div className="h-full bg-[#00E5FF] rounded-full" style={{ width: "100%" }} />
             </div>
           </div>
           

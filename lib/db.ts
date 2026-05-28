@@ -40,16 +40,17 @@ const generateId = () => {
 };
 
 // Seed Mock Data
+// Seed Mock Data
 const mockProjects = [
   {
     id: "proj_1",
-    title: "Venom Core AI",
-    slug: "venom-core-ai",
-    overview: "An advanced, self-healing code analyzer that utilizes custom large language models to refactor codebases and fix security vulnerabilities instantly under a cybernetic command terminal.",
+    title: "Stark-Tech Spider OS",
+    slug: "stark-spider-os",
+    overview: "An advanced, self-healing code analyzer and HUD operating system that utilizes custom large language models to refactor codebases and fix security vulnerabilities instantly under a holographic command terminal.",
     features: [
       "Real-time static code analysis & linting",
       "AI-driven automated refactoring suggestions",
-      "Cybernetic console output styling",
+      "Holographic HUD console output styling",
       "CI/CD pipeline webhook integration"
     ],
     challenges: "Handling huge ASTs in real-time without blocking the main node process thread was solved using worker pools and custom buffer queues.",
@@ -63,19 +64,19 @@ const mockProjects = [
       "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&auto=format&fit=crop&q=60"
     ],
     demoVideo: "",
-    liveUrl: "https://venom-core-ai.dev",
-    githubUrl: "https://github.com/HemantRaj-2005/venom-core-ai",
+    liveUrl: "https://stark-spider-os.dev",
+    githubUrl: "https://github.com/HemantRaj-2005/stark-spider-os",
     performance: 98,
-    seoTitle: "Venom Core AI - Automated Code Refactoring & Security",
-    seoDesc: "Analyze and refactor your TypeScript codebases with an aggressive symbiote-powered artificial intelligence engine.",
+    seoTitle: "Stark-Tech Spider OS - Automated Code Refactoring & Security",
+    seoDesc: "Analyze and refactor your TypeScript codebases with an agile Stark-tech inspired artificial intelligence command engine.",
     createdAt: new Date("2026-01-15").toISOString(),
     updatedAt: new Date("2026-01-15").toISOString()
   },
   {
     id: "proj_2",
-    title: "Symbiote SaaS Core",
-    slug: "symbiote-saas-core",
-    overview: "A premium, high-converting brutalist landing template with integrated NextAuth credentials/social logs, stripe payments, and dynamic usage charts.",
+    title: "Sling-Shot SaaS Core",
+    slug: "slingshot-saas-core",
+    overview: "A premium, high-converting holographic landing template with integrated NextAuth credentials/social logs, stripe payments, and dynamic usage charts.",
     features: [
       "Credentials & OAuth logins (Google, GitHub)",
       "Dynamic usage metrics tracker (graphs and counters)",
@@ -93,18 +94,18 @@ const mockProjects = [
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=60"
     ],
     demoVideo: "",
-    liveUrl: "https://symbiote-saas.dev",
-    githubUrl: "https://github.com/HemantRaj-2005/symbiote-saas",
+    liveUrl: "https://slingshot-saas.dev",
+    githubUrl: "https://github.com/HemantRaj-2005/slingshot-saas-core",
     performance: 95,
-    seoTitle: "Symbiote SaaS - Preconfigured Premium Starter Kit",
-    seoDesc: "Fast-track your startup launch with NextAuth, MongoDB, Stripe, and rich brutalist analytics widgets pre-installed.",
+    seoTitle: "Sling-Shot SaaS - Preconfigured Premium Starter Kit",
+    seoDesc: "Fast-track your startup launch with NextAuth, MongoDB, Stripe, and rich holographic analytics widgets pre-installed.",
     createdAt: new Date("2026-03-10").toISOString(),
     updatedAt: new Date("2026-03-10").toISOString()
   },
   {
     id: "proj_3",
-    title: "Web3 Carnage Gas Tracker",
-    slug: "web3-carnage",
+    title: "Web3 Web-Slinger Gas Tracker",
+    slug: "web3-webslinger",
     overview: "A decentralized dashboard for tracking real-time gas fees, contract gas optimizations, and token burns across multiple EVM-compatible blockchains.",
     features: [
       "Web3 wallet connection (MetaMask, WalletConnect)",
@@ -122,11 +123,11 @@ const mockProjects = [
       "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format&fit=crop&q=60"
     ],
     demoVideo: "",
-    liveUrl: "https://carnage-gas.eth.limo",
-    githubUrl: "https://github.com/HemantRaj-2005/web3-carnage",
+    liveUrl: "https://web3-webslinger.dev",
+    githubUrl: "https://github.com/HemantRaj-2005/web3-webslinger",
     performance: 97,
-    seoTitle: "Web3 Carnage - High FPS EVM Gas Tracker & Optimizer",
-    seoDesc: "Monitor and optimize smart contract gas costs dynamically in a fluid symbiote environment.",
+    seoTitle: "Web3 Web-Slinger - High FPS EVM Gas Tracker & Optimizer",
+    seoDesc: "Monitor and optimize smart contract gas costs dynamically in an agile holographic environment.",
     createdAt: new Date("2026-04-20").toISOString(),
     updatedAt: new Date("2026-04-20").toISOString()
   }
@@ -135,13 +136,13 @@ const mockProjects = [
 const mockProducts = [
   {
     id: "prod_1",
-    title: "Symbiote Premium Landing UI Kit",
-    description: "An ultra-premium, dark glassmorphism component collection containing custom custom cursors, fluid canvas background shaders, and 30+ responsive hero blocks.",
+    title: "Spider-Verse Premium HUD UI Kit",
+    description: "An ultra-premium, dark glassmorphism component collection containing rotating HUD crosshair cursors, fluid canvas portal shaders, and 30+ responsive hero blocks.",
     price: 49.00,
     category: "UI Kit",
-    githubUrl: "https://github.com/HemantRaj-2005/symbiote-ui",
-    demoUrl: "https://symbiote-ui.dev",
-    downloadUrl: "/downloads/symbiote-ui.zip",
+    githubUrl: "https://github.com/HemantRaj-2005/spider-hud-ui",
+    demoUrl: "https://spider-hud-ui.dev",
+    downloadUrl: "/downloads/spider-hud-ui.zip",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60",
     features: ["Vanilla Tailwind v4 support", "Framer Motion animations built-in", "Custom SVG fluid distortions", "Sound FX hook packs"],
     licensing: "Single Developer License (Commercial Use Allowed)",
@@ -152,13 +153,13 @@ const mockProducts = [
   },
   {
     id: "prod_2",
-    title: "VenomGPT Chatbot Widget API",
-    description: "Embed an AI Assistant chatbot into your website styled like a comic book speech bubble. Comes with next-route handlers and streaming markdown parser.",
+    title: "StarkAI Chatbot Widget API",
+    description: "Embed an AI Assistant chatbot into your website styled like a high-tech HUD speech bubble. Comes with next-route handlers and streaming markdown parser.",
     price: 29.00,
     category: "API",
-    githubUrl: "https://github.com/HemantRaj-2005/venom-chatbot",
-    demoUrl: "https://venom-chatbot.dev",
-    downloadUrl: "/downloads/venom-chatbot.zip",
+    githubUrl: "https://github.com/HemantRaj-2005/stark-chatbot",
+    demoUrl: "https://stark-chatbot.dev",
+    downloadUrl: "/downloads/stark-chatbot.zip",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=60",
     features: ["Dynamic prompt loading", "Streaming API support", "Custom theme selectors", "Visitor logging hooks"],
     licensing: "Unlimited Commercial License",
@@ -172,15 +173,15 @@ const mockProducts = [
 const mockPosts = [
   {
     id: "post_1",
-    title: "Unleashing WebGL Shaders: Building Organic Symbiote Mesh",
-    slug: "unleashing-webgl-shaders-symbiote",
-    content: `## Building Organic Venom Shaders in WebGL
+    title: "Unleashing WebGL Shaders: Building Spider-Verse Hologram Portals",
+    slug: "unleashing-webgl-shaders-spiderverse",
+    content: `## Building Holographic Spider-Verse Portals in WebGL
 
 Web animations are often restricted by CPU cycles. Moving layout assets in response to cursor moves using JavaScript looks laggy. To achieve a **premium 60FPS fluid look**, we must offload calculations directly to the GPU using **custom GLSL fragment and vertex shaders**.
 
-### Noise-Based Mesh Deformation
+### Noise-Based Portal Displace
 
-The core of our symbiote sphere animation lies in the vertex shader. We deform a standard sphere by applying a 3D Simplex Noise function over its vertex normals, scaled by the current time elapsed:
+The core of our holographic portal animation lies in the vertex shader. We deform a standard torus by applying a 3D Simplex Noise function over its vertex normals, scaled by the current time elapsed:
 
 \`\`\`glsl
 // Vertex Shader
@@ -208,13 +209,13 @@ void main() {
 \`\`\`
 
 By writing our 3D logic this way, the animation is handled entirely on the GPU. The CPU only passes the time and mouse coordinate uniforms on every frame rendering step. This ensures high FPS on mobile and low-tier desktops alike.`,
-    summary: "A technical deep dive on writing custom WebGL vertex and fragment shaders to render a fluid, organic, noise-deformed symbiote sphere at 60FPS.",
+    summary: "A technical deep dive on writing custom WebGL vertex and fragment shaders to render a holographic, glitchy, noise-deformed portal ring at 60FPS.",
     published: true,
     tags: ["WebGL", "Three.js", "GLSL", "React 19"],
     category: "UI/UX Engineering",
     readTime: 6,
-    seoTitle: "WebGL Shaders Guide: Dynamic Organic Symbiotes",
-    seoDesc: "Learn how to build noise-deformed 3D meshes in Three.js and custom GLSL vertex shaders.",
+    seoTitle: "WebGL Shaders Guide: Holographic Spider-Verse Portals",
+    seoDesc: "Learn how to build noise-deformed 3D portal rings in Three.js and custom GLSL vertex shaders.",
     createdAt: new Date("2026-05-20").toISOString(),
     updatedAt: new Date("2026-05-20").toISOString()
   },

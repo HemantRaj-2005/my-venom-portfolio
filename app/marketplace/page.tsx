@@ -75,18 +75,18 @@ export default function MarketplacePage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
       {/* Background glow */}
-      <div className="absolute w-[500px] h-[500px] bg-emerald-500/2 rounded-full blur-[140px] top-1/3 left-1/3 pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/3 left-1/3 pointer-events-none" />
 
       {/* Header section */}
       <div className="max-w-6xl mx-auto mb-16 select-none">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest">
             <ShoppingBag className="w-4 h-4" /> DIGITAL ASSETS PLATFORM
           </div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white mt-2">
-            Symbiote Code Marketplace
+          <h1 className="text-4xl md:text-5xl font-heading font-black tracking-tight text-white mt-2 neon-glow-red">
+            Stark-Tech Code Marketplace
           </h1>
           <p className="text-sm text-zinc-500 max-w-xl leading-relaxed mt-2 font-sans">
             Acquire production-grade SaaS boilerplates, neural model API access weights, custom UI kits, and Web3 dashboards pre-engineered for rapid deployment.
@@ -95,7 +95,7 @@ export default function MarketplacePage() {
       </div>
 
       {/* Filters and search box */}
-      <div className="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between border-b border-zinc-900 pb-8 select-none">
+      <div className="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between border-b border-[#00E5FF]/15 pb-8 select-none">
         <div className="flex flex-wrap gap-2">
           {filters.map((filter, index) => {
             const isSel = selectedFilter === filter;
@@ -105,7 +105,7 @@ export default function MarketplacePage() {
                 onClick={() => setSelectedFilter(filter)}
                 className={`px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   isSel
-                    ? "bg-emerald-600 text-white border border-emerald-500/30 shadow-md shadow-emerald-700/10 scale-105"
+                    ? "bg-[#E11D2E] text-white border border-[#E11D2E]/30 shadow-md shadow-red-950/20 scale-105"
                     : "bg-zinc-950 border border-zinc-900 text-zinc-400 hover:text-white hover:border-zinc-800"
                 }`}
               >
@@ -130,7 +130,7 @@ export default function MarketplacePage() {
       {/* Featured Products Showcase */}
       {selectedFilter === "All" && searchQuery === "" && products.some(p => p.isFeatured) && (
         <div className="max-w-6xl mx-auto mb-16 select-none">
-          <div className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 mb-6 flex items-center gap-2">
+          <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#00E5FF] mb-6 flex items-center gap-2">
             <ShieldCheck className="w-4 h-4" /> Recommended Core Deployments
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -140,7 +140,7 @@ export default function MarketplacePage() {
               .map((prod) => (
                 <div
                   key={prod.id}
-                  className="bg-gradient-to-br from-zinc-950 to-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-emerald-500/30 transition-all duration-300 shadow-xl shadow-black/80 group"
+                  className="bg-gradient-to-br from-zinc-950 to-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-[#00E5FF]/30 transition-all duration-300 shadow-xl shadow-black/80 group"
                 >
                   <div className="w-full md:w-44 h-44 relative rounded-xl overflow-hidden shrink-0 bg-zinc-900">
                     <Image
@@ -153,12 +153,12 @@ export default function MarketplacePage() {
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start gap-4">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-500 bg-emerald-950/20 border border-emerald-800/20 px-2.5 py-0.5 rounded">
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] bg-[#00E5FF]/5 border border-[#00E5FF]/20 px-2.5 py-0.5 rounded">
                           {prod.category}
                         </span>
                         <div className="text-lg font-black text-white font-mono">${prod.price.toFixed(2)}</div>
                       </div>
-                      <h3 className="text-base font-bold text-white mt-3 group-hover:text-emerald-400 transition-colors">
+                      <h3 className="text-base font-bold text-white mt-3 group-hover:text-[#00E5FF] transition-colors">
                         {prod.title}
                       </h3>
                       <p className="text-xs text-zinc-400 mt-2 font-sans line-clamp-2 leading-relaxed">
@@ -175,7 +175,7 @@ export default function MarketplacePage() {
                       
                       <Link
                         href={`/marketplace/${prod.id}`}
-                        className="flex items-center gap-1 text-xs font-mono text-zinc-400 group-hover:text-emerald-400 font-bold transition-all uppercase tracking-wider cursor-pointer"
+                        className="flex items-center gap-1 text-xs font-mono text-zinc-400 group-hover:text-[#00E5FF] font-bold transition-all uppercase tracking-wider cursor-pointer"
                       >
                         <span>Buy Asset</span>
                         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
@@ -203,7 +203,7 @@ export default function MarketplacePage() {
             {filteredProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-zinc-950 border border-zinc-900 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 shadow-lg shadow-black/50 group flex flex-col justify-between"
+                className="bg-zinc-950 border border-zinc-900 rounded-2xl overflow-hidden hover:border-[#00E5FF]/30 transition-all duration-300 shadow-lg shadow-black/50 group flex flex-col justify-between"
               >
                 <div>
                   <div className="h-44 relative bg-zinc-900 overflow-hidden">
@@ -213,17 +213,17 @@ export default function MarketplacePage() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4 bg-black/80 border border-zinc-800 rounded px-2 py-0.5 text-[9px] font-mono text-emerald-400 uppercase tracking-widest backdrop-blur">
+                    <div className="absolute top-4 left-4 bg-black/80 border border-zinc-800 rounded px-2 py-0.5 text-[9px] font-mono text-[#00E5FF] uppercase tracking-widest backdrop-blur">
                       {prod.category}
                     </div>
                   </div>
 
                   <div className="p-6">
                     <div className="flex justify-between items-start gap-4">
-                      <h3 className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors leading-relaxed">
+                      <h3 className="text-sm font-bold text-white group-hover:text-[#00E5FF] transition-colors leading-relaxed">
                         {prod.title}
                       </h3>
-                      <div className="text-sm font-bold text-emerald-400 font-mono">${prod.price.toFixed(2)}</div>
+                      <div className="text-sm font-bold text-[#00E5FF] font-mono">${prod.price.toFixed(2)}</div>
                     </div>
                     <p className="text-xs text-zinc-400 mt-2 font-sans line-clamp-3 leading-relaxed">
                       {prod.description}
@@ -239,7 +239,7 @@ export default function MarketplacePage() {
                   
                   <Link
                     href={`/marketplace/${prod.id}`}
-                    className="flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 group-hover:text-emerald-400 font-bold transition-all uppercase tracking-widest cursor-pointer"
+                    className="flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 group-hover:text-[#00E5FF] font-bold transition-all uppercase tracking-widest cursor-pointer"
                   >
                     <span>Inspect License</span>
                     <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
