@@ -1,0 +1,247 @@
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { Terminal as TermIcon, ShieldAlert, Sparkles, X, ChevronRight } from "lucide-react";
+
+interface TerminalLine {
+  text: string;
+  type: "input" | "output" | "error" | "success" | "system";
+}
+
+export default function Terminal() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [history, setHistory] = useState<TerminalLine[]>([
+    { text: "Symbiote OS v1.0.8 - Initialized", type: "system" },
+    { text: "Type 'help' for a list of available cybernetic commands.", type: "output" }
+  ]);
+  const [inputValue, setInputValue] = useState("");
+  const [glitchActive, setGlitchActive] = useState(false);
+  const bufferEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-scroll to bottom of terminal output
+  useEffect(() => {
+    if (bufferEndRef.current) {
+      bufferEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [history]);
+
+  // Handle focus when terminal is clicked
+  const focusInput = () => {
+    if (inputRef.current) inputRef.current.focus();
+  };
+
+  const handleCommand = (cmd: string) => {
+    const trimmed = cmd.trim().toLowerCase();
+    const newHistory = [...history, { text: `visitor@symbiote-os:~$ ${cmd}`, type: "input" as const }];
+
+    if (trimmed === "") {
+      setHistory(newHistory);
+      return;
+    }
+
+    // Play click sound if defined globally
+    if ((window as any).playClickSound) (window as any).playClickSound();
+
+    let output: TerminalLine[] = [];
+
+    switch (trimmed) {
+      case "help":
+        output = [
+          { text: "Available commands:", type: "system" },
+          { text: "  about    - Details about the developer entity", type: "output" },
+          { text: "  skills   - View developer intelligence matrices (Tech Stack)", type: "output" },
+          { text: "  projects - Inspect advanced project components", type: "output" },
+          { text: "  contact  - Secure communications (WhatsApp/Telegram/Email)", type: "output" },
+          { text: "  venom    - [WARNING] Release the symbiote", type: "error" },
+          { text: "  clear    - Clear console buffer", type: "output" }
+        ];
+        break;
+      case "clear":
+        setHistory([]);
+        setInputValue("");
+        return;
+      case "about":
+        output = [
+          { text: "Entity Profile: Hemant Raj", type: "success" },
+          { text: "Role: AI Engineer | Full Stack Developer | Problem Solver", type: "output" },
+          { text: "Philosophy: 'Code is organic. It adapts, infects, and consumes complexity.'", type: "system" },
+          { text: "Focusing on high-performance dynamic Next.js templates, deep neural nets, and WebGL graphics.", type: "output" }
+        ];
+        break;
+      case "skills":
+        output = [
+          { text: "Intelligence Matrices (Skills Orbit):", type: "success" },
+          { text: "  [Frontend]  React 19, Next.js 16, TypeScript, Tailwind CSS, Framer Motion, Three.js", type: "output" },
+          { text: "  [Backend]   Node.js, Express, Go, Python, GraphQL, REST APIs", type: "output" },
+          { text: "  [Database]  MongoDB, PostgreSQL, Redis, Prisma ORM, SQL", type: "output" },
+          { text: "  [DevOps]    Docker, GitHub Actions, AWS, Vercel, Linux CLI", type: "output" },
+          { text: "  [AI/ML]     PyTorch, Transformers, LLM Finetuning, Vector Search", type: "output" }
+        ];
+        break;
+      case "projects":
+        output = [
+          { text: "Active Projects Showcase:", type: "success" },
+          { text: "  1. Venom Core AI - Code self-healing tool (Next.js & LLMs)", type: "output" },
+          { text: "  2. Symbiote SaaS Core - Stripe & NextAuth boilerplate template", type: "output" },
+          { text: "  3. Web3 Gas Tracker - Ethers.js multi-chain gas visualizer", type: "output" },
+          { text: "Type 'go [number]' (e.g. 'go 1') to visit or type '/projects' to search dynamic layouts.", type: "system" }
+        ];
+        break;
+      case "go 1":
+        window.open("/projects/venom-core-ai", "_blank");
+        output = [{ text: "Redirecting to Venom Core AI project page...", type: "system" }];
+        break;
+      case "go 2":
+        window.open("/projects/symbiote-saas-core", "_blank");
+        output = [{ text: "Redirecting to Symbiote SaaS page...", type: "system" }];
+        break;
+      case "go 3":
+        window.open("/projects/web3-carnage", "_blank");
+        output = [{ text: "Redirecting to Web3 Carnage page...", type: "system" }];
+        break;
+      case "contact":
+        output = [
+          { text: "Secure channels established:", type: "success" },
+          { text: "  Email:    hemantraj2005@gmail.com", type: "output" },
+          { text: "  WhatsApp: +91 9123456789 (Use click buttons below)", type: "output" },
+          { text: "  GitHub:   https://github.com/HemantRaj-2005", type: "output" },
+          { text: "  LeetCode: https://leetcode.com/u/HemantRaj", type: "output" }
+        ];
+        break;
+      case "venom":
+        setGlitchActive(true);
+        output = [
+          { text: "CRITICAL BREACH: SYMBIOTE UNLEASHED.", type: "error" },
+          { text: "WE ARE VENOM. THERE IS NO SYSTEM ESCAPE.", type: "error" },
+          { text: "Fangs locking... Morphing display matrix...", type: "error" }
+        ];
+        // Trigger screen shake & black/red screen flashing
+        setTimeout(() => {
+          setGlitchActive(false);
+          setHistory(prev => [...prev, { text: "Breach isolated. System restored.", type: "system" }]);
+        }, 3500);
+        break;
+      default:
+        output = [
+          { text: `Command not found: '${cmd}'. Type 'help' for options.`, type: "error" }
+        ];
+    }
+
+    setHistory([...newHistory, ...output]);
+    setInputValue("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleCommand(inputValue);
+    }
+  };
+
+  return (
+    <>
+      {/* Floating Action Badge to trigger Terminal */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 left-6 z-[999] flex items-center justify-center w-12 h-12 rounded-full border border-zinc-800 bg-black/80 text-white backdrop-blur shadow-lg shadow-black/50 transition-all hover:scale-110 hover:border-emerald-500/50 hover:shadow-emerald-500/10 cursor-pointer active:scale-95"
+        title="Open Cybernetic Console Terminal"
+      >
+        <TermIcon className="w-5 h-5 text-emerald-400 animate-pulse" />
+      </button>
+
+      {/* Terminal Full Drawer/Window Overlay */}
+      {isOpen && (
+        <div className={`fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-all duration-300`}>
+          <div
+            onClick={focusInput}
+            className={`relative flex flex-col w-full max-w-2xl h-[450px] bg-black border-2 rounded-lg overflow-hidden shadow-2xl transition-all duration-300 ${
+              glitchActive 
+                ? "border-red-600 animate-bounce shadow-red-500/30 scale-105" 
+                : "border-zinc-800 shadow-emerald-500/10"
+            }`}
+          >
+            {/* Scanlines Effect */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] z-50 opacity-40" />
+
+            {/* Title Bar */}
+            <div className="flex items-center justify-between px-4 py-2 bg-zinc-950 border-b border-zinc-900 select-none">
+              <div className="flex items-center gap-2">
+                <TermIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
+                  Symbiote OS Console
+                </span>
+                {glitchActive && (
+                  <span className="flex items-center gap-1 text-[9px] font-mono text-red-500 animate-pulse">
+                    <ShieldAlert className="w-3 h-3" /> INFECTED
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+                className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Output buffer screen area */}
+            <div className="flex-1 p-4 overflow-y-auto font-mono text-sm leading-relaxed space-y-2 select-text custom-scrollbar">
+              {history.map((line, idx) => {
+                let colorClass = "text-zinc-300";
+                if (line.type === "input") colorClass = "text-emerald-400";
+                if (line.type === "error") colorClass = "text-red-500 font-semibold";
+                if (line.type === "success") colorClass = "text-emerald-300 font-bold";
+                if (line.type === "system") colorClass = "text-zinc-500 italic";
+
+                return (
+                  <div key={idx} className={`${colorClass} break-words whitespace-pre-wrap`}>
+                    {glitchActive && line.type === "error" ? (
+                      <span className="inline-block animate-pulse">{line.text}</span>
+                    ) : (
+                      line.text
+                    )}
+                  </div>
+                );
+              })}
+              
+              {/* Fullscreen Takeover Glitch overlay */}
+              {glitchActive && (
+                <div className="absolute inset-0 bg-[#020202] z-40 flex flex-col items-center justify-center font-mono text-red-500 p-8 text-center animate-pulse">
+                  <div className="text-5xl font-black mb-4 tracking-tighter uppercase animate-bounce">
+                    WE ARE VENOM
+                  </div>
+                  <p className="max-w-md text-xs leading-5 text-zinc-500 uppercase tracking-widest">
+                    Your console buffers have been absorbed by the symbiote. Attempting database injection bypass...
+                  </p>
+                </div>
+              )}
+
+              <div ref={bufferEndRef} />
+            </div>
+
+            {/* Console Input Bar */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-zinc-950 border-t border-zinc-900 font-mono text-sm">
+              <ChevronRight className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type a command (e.g. 'help')..."
+                className="flex-1 bg-transparent border-none outline-none text-emerald-400 caret-emerald-500 placeholder-zinc-700 w-full"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

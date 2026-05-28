@@ -1,0 +1,61 @@
+import { MetadataRoute } from "next";
+import { db } from "@/lib/db";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+  let projectUrls: any[] = [];
+  let postUrls: any[] = [];
+
+  try {
+    const [projects, posts] = await Promise.all([
+      db.project.findMany(),
+      db.post.findMany({ where: { published: true } })
+    ]);
+
+    projectUrls = projects.map((p) => ({
+      url: `${baseUrl}/projects/${p.slug}`,
+      lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
+
+    postUrls = posts.map((p) => ({
+      url: `${baseUrl}/blog/${p.slug}`,
+      lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
+  } catch (e) {
+    console.warn("Failed to retrieve sitemap dynamic links:", e);
+  }
+
+  const staticUrls: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/marketplace`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+  ];
+
+  return [...staticUrls, ...projectUrls, ...postUrls];
+}

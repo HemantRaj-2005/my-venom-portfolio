@@ -1,0 +1,159 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// User model for NextAuth and dashboard
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  hashedPassword String?
+  role          String    @default("USER") // ADMIN or USER
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Submissions for lead generation
+model Lead {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String
+  company      String?
+  budget       String?
+  timeline     String?
+  requirements String?
+  projectType  String
+  preferredTime String?
+  createdAt    DateTime @default(now())
+  status       String   @default("PENDING") // PENDING, CONTACTED, ARCHIVED
+}
+
+// Products for marketplace
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  price       Float?
+  category    String   // Source Code, SaaS Template, AI Tool, Full Stack, UI Kit, API
+  githubUrl   String?
+  demoUrl     String?
+  downloadUrl String?
+  image       String?
+  features    String[]
+  licensing   String?
+  isFeatured  Boolean  @default(false)
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ratings     Rating[]
+}
+
+model Rating {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId String   @db.ObjectId
+  rating    Int
+  comment   String?
+  author    String
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// Projects showcase
+model Project {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  slug         String   @unique
+  overview     String
+  features     String[]
+  challenges   String?
+  architecture String?  // text description or JSON data
+  techStack    String[]
+  schemaUrl    String?  // schema diagram / text representation
+  apiFlow      String?  // API flow diagram / details
+  deployment   String?  // Deployment details
+  gallery      String[] // Cloudinary URLs
+  demoVideo    String?
+  liveUrl      String?
+  githubUrl    String?
+  performance  Float?   // e.g. Lighthouse score
+  seoTitle     String?
+  seoDesc      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// Technical Blog
+model Post {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug         String   @unique
+  content     String   // markdown content
+  summary     String?  // AI generated summary or manual summary
+  published   Boolean  @default(false)
+  tags        String[]
+  category    String?
+  readTime    Int?
+  seoTitle     String?
+  seoDesc      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  comments    Comment[]
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId    String   @db.ObjectId
+  author    String
+  email     String?
+  content   String
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+// Visitor Log and Tracking
+model VisitorLog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  ip        String?
+  userAgent String?
+  device    String?  // Mobile, Desktop, Tablet
+  browser   String?
+  os        String?
+  path      String
+  referrer  String?
+  createdAt DateTime @default(now())
+}
+
+// Callback Requests / Message submission / newsletter
+model CallbackRequest {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String
+  timeSlot  String?
+  message   String?
+  createdAt DateTime @default(now())
+  status    String   @default("PENDING") // PENDING, CALLED, ARCHIVED
+}
+
+model ContactMessage {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  subject   String?
+  message   String
+  createdAt DateTime @default(now())
+  status    String   @default("UNREAD") // UNREAD, READ, ARCHIVED
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
