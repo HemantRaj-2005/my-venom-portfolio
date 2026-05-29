@@ -117,6 +117,10 @@ export default function BlogIndexPage() {
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-600 animate-pulse">
             Retrieving blog databases...
           </div>
+        ) : posts.length === 0 ? (
+          <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-650">
+            No records available
+          </div>
         ) : filteredPosts.length === 0 ? (
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-700">
             No technical posts matched criteria.

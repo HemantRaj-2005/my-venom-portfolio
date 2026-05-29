@@ -8,7 +8,7 @@ interface Comment {
   id: string;
   author: string;
   content: string;
-  createdAt: string;
+  createdAt: Date | string;
 }
 
 interface BlogCommentSectionProps {

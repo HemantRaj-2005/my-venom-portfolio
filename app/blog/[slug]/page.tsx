@@ -92,9 +92,78 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
 
       {/* Main Content Layout */}
       <div className="max-w-4xl mx-auto px-6 md:px-12 mt-12 grid grid-cols-1 gap-12">
-        {/* Render article markdown content */}
+        {/* Render article content */}
         <article className="select-text bg-zinc-950/20 p-6 rounded-2xl border border-zinc-900/40 shadow-inner">
-          <MarkdownRenderer content={post.content} />
+          {(() => {
+            if (post.content && post.content.trim().startsWith("[")) {
+              try {
+                const blocks = JSON.parse(post.content);
+                if (Array.isArray(blocks)) {
+                  return (
+                    <div className="space-y-6">
+                      {blocks.map((block: any, idx: number) => {
+                        switch (block.type) {
+                          case "header":
+                            if (block.level === 1) {
+                              return <h1 key={idx} className="text-2xl md:text-3xl font-black text-white mt-10 mb-6 tracking-tight border-b border-zinc-900 pb-2">{block.content}</h1>;
+                            } else if (block.level === 3) {
+                              return <h3 key={idx} className="text-lg font-bold text-zinc-100 mt-6 mb-2 tracking-tight">{block.content}</h3>;
+                            } else {
+                              return <h2 key={idx} className="text-xl md:text-2xl font-extrabold text-white mt-8 mb-4 tracking-tight border-b border-zinc-900 pb-2">{block.content}</h2>;
+                            }
+                          case "paragraph":
+                            return <div key={idx} className="mb-4 text-zinc-300 text-sm md:text-base leading-relaxed"><MarkdownRenderer content={block.content} /></div>;
+                          case "code":
+                            return (
+                              <pre key={idx} className="bg-black/90 border border-zinc-850 p-5 rounded-xl my-6 overflow-x-auto text-zinc-300 font-mono text-xs md:text-sm leading-relaxed shadow-lg select-text">
+                                <div className="flex justify-between items-center text-[9px] font-mono text-zinc-650 uppercase tracking-widest border-b border-zinc-900 pb-2 mb-3 select-none">
+                                  <span>Language: {block.language || "generic"}</span>
+                                  <span>Dynamic Source</span>
+                                </div>
+                                <code>{block.content}</code>
+                              </pre>
+                            );
+                          case "quote":
+                            return (
+                              <blockquote key={idx} className="border-l-4 border-cyan-500 bg-zinc-950/60 px-4 py-3 my-4 italic text-zinc-300 rounded-r">
+                                {block.content}
+                              </blockquote>
+                            );
+                          case "callout":
+                            return (
+                              <div key={idx} className={`border-l-4 p-4 my-4 rounded-r bg-zinc-950/40 ${
+                                block.calloutType === "warning" 
+                                  ? "border-amber-500 bg-amber-950/5 text-amber-200" 
+                                  : block.calloutType === "success" 
+                                    ? "border-emerald-500 bg-emerald-950/5 text-emerald-200" 
+                                    : "border-cyan-500 bg-cyan-950/5 text-cyan-200"
+                              }`}>
+                                <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-1">
+                                  {block.calloutType || "info"} node
+                                </div>
+                                <MarkdownRenderer content={block.content} />
+                              </div>
+                            );
+                          case "image":
+                            return (
+                              <div key={idx} className="my-6 space-y-2 text-center select-none">
+                                <img src={block.url} alt={block.caption || ""} className="mx-auto rounded-xl max-h-[450px] object-cover border border-zinc-800" />
+                                {block.caption && <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">{block.caption}</p>}
+                              </div>
+                            );
+                          default:
+                            return null;
+                        }
+                      })}
+                    </div>
+                  );
+                }
+              } catch (e) {
+                console.error("Failed to parse dynamic blog blocks:", e);
+              }
+            }
+            return <MarkdownRenderer content={post.content} />;
+          })()}
         </article>
 
         {/* Tag blocks */}

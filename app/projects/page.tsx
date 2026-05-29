@@ -169,6 +169,10 @@ export default function ProjectsPage() {
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-650 animate-pulse">
             Decrypting index matrices...
           </div>
+        ) : projects.length === 0 ? (
+          <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-650">
+            No records available
+          </div>
         ) : filteredProjects.length === 0 ? (
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-700">
             No active code archives matched filters.

@@ -17,9 +17,11 @@ import CommandPalette from "@/components/CommandPalette";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState<any>(null);
+  const [experiences, setExperiences] = useState<any[]>([]);
 
   // Typewriter: displayed text in state (for rendering), all logic in refs
-  const WORDS = ["AI Engineer", "Full Stack Developer", "Problem Solver"];
+  const [words, setWords] = useState<string[]>([]);
   const [displayText, setDisplayText] = useState("");
 
   // All typewriter machine state lives in a single ref — never causes re-renders
@@ -31,13 +33,14 @@ export default function Home() {
 
   // Typewriter engine — runs once after loading, self-schedules with setTimeout
   useEffect(() => {
-    if (loading) return;
+    if (loading || words.length === 0) return;
 
     let timer: ReturnType<typeof setTimeout>;
 
     const tick = () => {
       const tw = twRef.current;
-      const fullWord = WORDS[tw.wordIdx];
+      const fullWord = words[tw.wordIdx];
+      if (!fullWord) return;
 
       if (!tw.isDeleting) {
         // Type next character
@@ -59,7 +62,7 @@ export default function Home() {
         if (tw.charIdx === 0) {
           // Finished deleting — move to next word
           tw.isDeleting = false;
-          tw.wordIdx = (tw.wordIdx + 1) % WORDS.length;
+          tw.wordIdx = (tw.wordIdx + 1) % words.length;
           timer = setTimeout(tick, 500);
         } else {
           timer = setTimeout(tick, 50);
@@ -69,12 +72,12 @@ export default function Home() {
 
     timer = setTimeout(tick, 800); // initial delay after loading
     return () => clearTimeout(timer);
-  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loading, words]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const [faqs, setFaqs] = useState<{ id: string; question: string; answer: string }[]>([]);
 
-  // Log visitor view analytics and fetch FAQs
+  // Log visitor view analytics, fetch FAQs, profile, and experiences
   useEffect(() => {
     if (!loading) {
       try {
@@ -97,7 +100,44 @@ export default function Home() {
           console.error("Failed to fetch FAQs:", e);
         }
       };
+
+      // Fetch Profile from API
+      const fetchProfile = async () => {
+        try {
+          const res = await fetch("/api/analytics");
+          const data = await res.json();
+          if (data.success && data.profile) {
+            setProfile(data.profile);
+            if (Array.isArray(data.profile.roles) && data.profile.roles.length > 0) {
+              setWords(data.profile.roles);
+            } else {
+              setWords(["Content coming soon"]);
+            }
+          } else {
+            setWords(["Content coming soon"]);
+          }
+        } catch (e) {
+          console.error("Failed to fetch profile:", e);
+          setWords(["Content coming soon"]);
+        }
+      };
+
+      // Fetch Experiences from API
+      const fetchExperiences = async () => {
+        try {
+          const res = await fetch("/api/experience");
+          const data = await res.json();
+          if (data.success && data.experiences) {
+            setExperiences(data.experiences);
+          }
+        } catch (e) {
+          console.error("Failed to fetch experiences:", e);
+        }
+      };
+
       fetchFaqs();
+      fetchProfile();
+      fetchExperiences();
     }
   }, [loading]);
 
@@ -135,7 +175,7 @@ export default function Home() {
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-none font-heading">
-                  Hi, I am Hemant <br />
+                  Hi, I am {profile?.name || "Content coming soon"} <br />
                   <span className="text-red-500 font-mono text-2xl md:text-3xl block mt-4 border-l-2 border-red-500 pl-4 h-10 select-none">
                     {displayText}
                     <span className="animate-pulse bg-red-500 inline-block w-1.5 h-6 ml-1.5 align-middle" />
@@ -143,7 +183,7 @@ export default function Home() {
                 </h1>
 
                 <p className="text-zinc-400 text-sm md:text-base font-sans max-w-lg leading-relaxed select-text">
-                  I construct ultra-premium full stack web systems, integrate deep model weight API pipelines, and write custom WebGL holographic portal shaders in high-tech Stark command skins.
+                  {profile?.bio || "Content coming soon"}
                 </p>
 
                 {/* CTAs Button list */}
@@ -169,16 +209,24 @@ export default function Home() {
                     <span>Explore Projects</span>
                   </Link>
 
-                  <a
-                    href="/resume.pdf"
-                    onClick={handleClick}
-                    onMouseEnter={handleHover}
-                    className="flex items-center gap-2 border border-zinc-800 bg-zinc-950/60 hover:bg-zinc-900 font-semibold text-zinc-300 hover:text-white px-5 py-3 rounded-xl transition-all cursor-pointer text-xs uppercase tracking-wider active:scale-95"
-                    title="Download Developer Resume"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Resume dossier</span>
-                  </a>
+                  {profile?.resumeUrl ? (
+                    <a
+                      href={profile.resumeUrl}
+                      download
+                      onClick={handleClick}
+                      onMouseEnter={handleHover}
+                      className="flex items-center gap-2 border border-zinc-800 bg-zinc-950/60 hover:bg-zinc-900 font-semibold text-zinc-300 hover:text-white px-5 py-3 rounded-xl transition-all cursor-pointer text-xs uppercase tracking-wider active:scale-95"
+                      title="Download Developer Resume"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Resume dossier</span>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-2 border border-zinc-900 bg-zinc-950/20 text-zinc-600 px-5 py-3 rounded-xl text-xs uppercase tracking-wider cursor-not-allowed">
+                      <Download className="w-4 h-4" />
+                      <span>Resume coming soon</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -223,17 +271,19 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-6 border-l-2 border-zinc-850 pl-6 font-mono text-xs text-zinc-400">
-                  {[
-                    { year: "2026", title: "Stark HUD Systems Architect", desc: "Forging Next.js 16 modular codebases, programmatically synthesized HUD Web Audio APIs, and WebGL holographic shaders." },
-                    { year: "2025", title: "AI Neural Net Integration", desc: "Constructed deep LLM worker pools, fine-tuned LLaMA model nodes, and deployed scalable vector retrieval indexing routes." },
-                    { year: "2024", title: "Full Stack Engineer", desc: "Assembled robust e-commerce architectures, integrated stripe payments, and secured credentials authentication matrices." }
-                  ].map((job, jIdx) => (
-                    <div key={jIdx} className="relative space-y-1">
-                      <div className="absolute top-1 left-[-31px] w-2.5 h-2.5 rounded-full bg-red-500 border border-black animate-pulse shadow-[0_0_5px_#e11d2e]" />
-                      <div className="text-cyan-400 font-bold tracking-widest uppercase">{job.year} - {job.title}</div>
-                      <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">{job.desc}</p>
+                  {experiences.length === 0 ? (
+                    <div className="text-zinc-650 uppercase tracking-widest font-mono py-2">
+                      Content coming soon
                     </div>
-                  ))}
+                  ) : (
+                    experiences.map((job, jIdx) => (
+                      <div key={job.id || jIdx} className="relative space-y-1">
+                        <div className="absolute top-1 left-[-31px] w-2.5 h-2.5 rounded-full bg-red-500 border border-black animate-pulse shadow-[0_0_5px_#e11d2e]" />
+                        <div className="text-cyan-400 font-bold tracking-widest uppercase">{job.year} - {job.title}</div>
+                        <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">{job.description}</p>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>

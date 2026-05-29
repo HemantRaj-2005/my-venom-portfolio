@@ -7,7 +7,8 @@ import { motion } from "framer-motion";
 import { 
   Users, Briefcase, Calendar, Mail, FileDown, LogOut, CheckCircle, 
   Trash2, Search, BarChart3, Database, Package, FileText, Download,
-  ShieldAlert, Cpu, RefreshCw, HelpCircle
+  ShieldAlert, Cpu, RefreshCw, HelpCircle, Plus, ArrowUp, ArrowDown,
+  Upload, FileCheck, AlertCircle, X
 } from "lucide-react";
 import { 
   ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, 
@@ -70,7 +71,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   // Selected tab state
-  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations" | "faqs">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations" | "faqs" | "blogs" | "resume" | "experience">("overview");
 
   // Database lists
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -79,17 +80,279 @@ export default function AdminDashboard() {
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [visitors, setVisitors] = useState<Visitor[]>([]);
 
-  // Integration handles state
+  // Profile metadata & Integration handles state
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+  const [roles, setRoles] = useState(""); // Comma separated in input
   const [github, setGithub] = useState("");
   const [leetcode, setLeetcode] = useState("");
   const [codeforces, setCodeforces] = useState("");
   const [codechef, setCodechef] = useState("");
   const [geeksforgeeks, setGeeksforgeeks] = useState("");
+  const [hackerrank, setHackerrank] = useState("");
+  const [atcoder, setAtcoder] = useState("");
+  const [hackerearth, setHackerearth] = useState("");
   const [saveLoading, setSaveLoading] = useState(false);
+
+  // Experience timeline states
+  const [experiences, setExperiences] = useState<any[]>([]);
+  const [expYear, setExpYear] = useState("");
+  const [expTitle, setExpTitle] = useState("");
+  const [expDescription, setExpDescription] = useState("");
+  const [expOrder, setExpOrder] = useState(0);
+  const [expId, setExpId] = useState(""); // for edit mode
+  const [expLoading, setExpLoading] = useState(false);
+
+  // Resume upload state
+  const [currentResumeUrl, setCurrentResumeUrl] = useState<string | null>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeUploading, setResumeUploading] = useState(false);
+  const [resumeUploadStatus, setResumeUploadStatus] = useState<"idle" | "success" | "error">("idle");
+  const [resumeUploadMessage, setResumeUploadMessage] = useState("");
 
   // Search filter
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+
+  // Blog states & editors
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogLoading, setBlogLoading] = useState(false);
+  const [blogEditorOpen, setBlogEditorOpen] = useState(false);
+  
+  // Blog form state
+  const [blogId, setBlogId] = useState("");
+  const [blogTitle, setBlogTitle] = useState("");
+  const [blogSlug, setBlogSlug] = useState("");
+  const [blogCategory, setBlogCategory] = useState("Development");
+  const [blogReadTime, setBlogReadTime] = useState(5);
+  const [blogTags, setBlogTags] = useState("");
+  const [blogPublished, setBlogPublished] = useState(false);
+  const [blogSummary, setBlogSummary] = useState("");
+  const [blogSeoTitle, setBlogSeoTitle] = useState("");
+  const [blogSeoDesc, setBlogSeoDesc] = useState("");
+  const [blogBlocks, setBlogBlocks] = useState<any[]>([]);
+
+  const addBlogBlock = (type: string) => {
+    let newBlock = {};
+    if (type === "header") {
+      newBlock = { type: "header", content: "Section Header", level: 2 };
+    } else if (type === "paragraph") {
+      newBlock = { type: "paragraph", content: "Paragraph content..." };
+    } else if (type === "code") {
+      newBlock = { type: "code", content: "// Paste code here", language: "typescript" };
+    } else if (type === "quote") {
+      newBlock = { type: "quote", content: "Important quote" };
+    } else if (type === "callout") {
+      newBlock = { type: "callout", content: "Callout warning text...", calloutType: "info" };
+    } else if (type === "image") {
+      newBlock = { type: "image", url: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800", caption: "Caption" };
+    }
+    setBlogBlocks([...blogBlocks, newBlock]);
+  };
+
+  const updateBlogBlock = (index: number, fields: any) => {
+    const updated = [...blogBlocks];
+    updated[index] = { ...updated[index], ...fields };
+    setBlogBlocks(updated);
+  };
+
+  const deleteBlogBlock = (index: number) => {
+    const updated = [...blogBlocks];
+    updated.splice(index, 1);
+    setBlogBlocks(updated);
+  };
+
+  const moveBlogBlock = (index: number, direction: "up" | "down") => {
+    if (direction === "up" && index === 0) return;
+    if (direction === "down" && index === blogBlocks.length - 1) return;
+    const targetIdx = direction === "up" ? index - 1 : index + 1;
+    const updated = [...blogBlocks];
+    const temp = updated[index];
+    updated[index] = updated[targetIdx];
+    updated[targetIdx] = temp;
+    setBlogBlocks(updated);
+  };
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await fetch("/api/admin/blogs");
+      const data = await res.json();
+      if (data.success) {
+        setBlogs(data.posts || []);
+      }
+    } catch (e) {
+      console.error("Error fetching blogs:", e);
+    }
+  };
+
+  const fetchResume = async () => {
+    try {
+      const res = await fetch("/api/admin/resume");
+      const data = await res.json();
+      if (data.success) {
+        setCurrentResumeUrl(data.resumeUrl || null);
+      }
+    } catch (e) {
+      console.error("Error fetching resume:", e);
+    }
+  };
+
+  const handleUploadResume = async () => {
+    if (!resumeFile) {
+      setResumeUploadStatus("error");
+      setResumeUploadMessage("Please select a PDF file first.");
+      return;
+    }
+    setResumeUploading(true);
+    setResumeUploadStatus("idle");
+    setResumeUploadMessage("");
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const form = new FormData();
+      form.append("resume", resumeFile);
+      const res = await fetch("/api/admin/resume", { method: "POST", body: form });
+      const result = await res.json();
+      if (result.success) {
+        setCurrentResumeUrl(result.resumeUrl);
+        setResumeFile(null);
+        setResumeUploadStatus("success");
+        setResumeUploadMessage("Resume uploaded successfully and is now live.");
+      } else {
+        setResumeUploadStatus("error");
+        setResumeUploadMessage(result.error || "Upload failed.");
+      }
+    } catch (e) {
+      setResumeUploadStatus("error");
+      setResumeUploadMessage("Network error. Please try again.");
+    } finally {
+      setResumeUploading(false);
+    }
+  };
+
+  const handleDeleteResume = async () => {
+    if (!confirm("Remove the current resume? It will no longer be publicly accessible.")) return;
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch("/api/admin/resume", { method: "DELETE" });
+      const result = await res.json();
+      if (result.success) {
+        setCurrentResumeUrl(null);
+        setResumeUploadStatus("success");
+        setResumeUploadMessage("Resume removed successfully.");
+      } else {
+        setResumeUploadStatus("error");
+        setResumeUploadMessage(result.error || "Delete failed.");
+      }
+    } catch (e) {
+      setResumeUploadStatus("error");
+      setResumeUploadMessage("Network error during deletion.");
+    }
+  };
+
+  const handleOpenBlogEditor = (post?: any) => {
+    if (post) {
+      setBlogId(post.id);
+      setBlogTitle(post.title);
+      setBlogSlug(post.slug);
+      setBlogCategory(post.category || "Development");
+      setBlogReadTime(post.readTime || 5);
+      setBlogTags(post.tags?.join(", ") || "");
+      setBlogPublished(post.published);
+      setBlogSummary(post.summary || "");
+      setBlogSeoTitle(post.seoTitle || "");
+      setBlogSeoDesc(post.seoDesc || "");
+      try {
+        if (post.content && post.content.trim().startsWith("[")) {
+          setBlogBlocks(JSON.parse(post.content));
+        } else {
+          setBlogBlocks([{ type: "paragraph", content: post.content || "" }]);
+        }
+      } catch (e) {
+        setBlogBlocks([{ type: "paragraph", content: post.content || "" }]);
+      }
+    } else {
+      setBlogId("");
+      setBlogTitle("");
+      setBlogSlug("");
+      setBlogCategory("Development");
+      setBlogReadTime(5);
+      setBlogTags("");
+      setBlogPublished(false);
+      setBlogSummary("");
+      setBlogSeoTitle("");
+      setBlogSeoDesc("");
+      setBlogBlocks([
+        { type: "header", content: "New Dynamic Ledger Entry", level: 2 },
+        { type: "paragraph", content: "Write details here..." }
+      ]);
+    }
+    setBlogEditorOpen(true);
+  };
+
+  const handleSaveBlog = async () => {
+    if (!blogTitle.trim() || !blogSlug.trim()) {
+      alert("Title and Slug are required.");
+      return;
+    }
+    setBlogLoading(true);
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const tagsArray = blogTags.split(",").map(t => t.trim()).filter(Boolean);
+      const contentString = JSON.stringify(blogBlocks);
+      
+      const payload = {
+        id: blogId || undefined,
+        title: blogTitle,
+        slug: blogSlug,
+        content: contentString,
+        summary: blogSummary || (blogBlocks.find(b => b.type === "paragraph")?.content?.slice(0, 150) + "...") || "",
+        published: blogPublished,
+        tags: tagsArray,
+        category: blogCategory,
+        readTime: Number(blogReadTime) || 5,
+        seoTitle: blogSeoTitle || blogTitle,
+        seoDesc: blogSeoDesc || blogSummary || "",
+      };
+
+      const method = blogId ? "PUT" : "POST";
+      const res = await fetch("/api/admin/blogs", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+      if (result.success) {
+        setBlogEditorOpen(false);
+        fetchBlogs();
+      } else {
+        alert(result.error || "Failed to save blog post.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error saving post.");
+    } finally {
+      setBlogLoading(false);
+    }
+  };
+
+  const handleDeleteBlog = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this blog post?")) return;
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch(`/api/admin/blogs?id=${id}`, {
+        method: "DELETE"
+      });
+      const result = await res.json();
+      if (result.success) {
+        fetchBlogs();
+      } else {
+        alert(result.error || "Failed to delete post.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error deleting post.");
+    }
+  };
 
   // Authenticate user check
   useEffect(() => {
@@ -127,11 +390,17 @@ export default function AdminDashboard() {
       const res = await fetch("/api/admin/integrations");
       const result = await res.json();
       if (result.success && result.profile) {
+        setName(result.profile.name || "");
+        setBio(result.profile.bio || "");
+        setRoles(result.profile.roles?.join(", ") || "");
         setGithub(result.profile.github || "");
         setLeetcode(result.profile.leetcode || "");
         setCodeforces(result.profile.codeforces || "");
         setCodechef(result.profile.codechef || "");
         setGeeksforgeeks(result.profile.geeksforgeeks || "");
+        setHackerrank(result.profile.hackerrank || "");
+        setAtcoder(result.profile.atcoder || "");
+        setHackerearth(result.profile.hackerearth || "");
       }
     } catch (e) {
       console.error(e);
@@ -142,15 +411,22 @@ export default function AdminDashboard() {
     setSaveLoading(true);
     if ((window as any).playClickSound) (window as any).playClickSound();
     try {
+      const rolesArray = roles.split(",").map(r => r.trim()).filter(Boolean);
       const res = await fetch("/api/admin/integrations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name,
+          bio,
+          roles: rolesArray,
           github,
           leetcode,
           codeforces,
           codechef,
           geeksforgeeks,
+          hackerrank,
+          atcoder,
+          hackerearth,
           triggerSync
         })
       });
@@ -165,6 +441,89 @@ export default function AdminDashboard() {
       alert("Network connection error. Try again.");
     } finally {
       setSaveLoading(false);
+    }
+  };
+
+  const fetchExperiences = async () => {
+    try {
+      const res = await fetch("/api/admin/experience");
+      const result = await res.json();
+      if (result.success) {
+        setExperiences(result.experiences || []);
+      }
+    } catch (e) {
+      console.error("Dashboard Experience fetch error:", e);
+    }
+  };
+
+  const handleSaveExperience = async () => {
+    if (!expYear.trim() || !expTitle.trim() || !expDescription.trim()) {
+      alert("Please fill in year, title, and description.");
+      return;
+    }
+    setExpLoading(true);
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const method = expId ? "PUT" : "POST";
+      const payload = expId 
+        ? { id: expId, year: expYear, title: expTitle, description: expDescription, order: expOrder }
+        : { year: expYear, title: expTitle, description: expDescription, order: expOrder };
+      
+      const res = await fetch("/api/admin/experience", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+      if (result.success) {
+        setExpYear("");
+        setExpTitle("");
+        setExpDescription("");
+        setExpOrder(0);
+        setExpId("");
+        fetchExperiences();
+      } else {
+        alert(result.error || "Failed to save experience.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error.");
+    } finally {
+      setExpLoading(false);
+    }
+  };
+
+  const handleEditExperience = (exp: any) => {
+    setExpId(exp.id);
+    setExpYear(exp.year);
+    setExpTitle(exp.title);
+    setExpDescription(exp.description);
+    setExpOrder(exp.order);
+  };
+
+  const handleDeleteExperience = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this experience timeline item?")) return;
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch(`/api/admin/experience?id=${id}`, {
+        method: "DELETE"
+      });
+      const result = await res.json();
+      if (result.success) {
+        fetchExperiences();
+        if (expId === id) {
+          setExpYear("");
+          setExpTitle("");
+          setExpDescription("");
+          setExpOrder(0);
+          setExpId("");
+        }
+      } else {
+        alert(result.error || "Failed to delete experience.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error.");
     }
   };
 
@@ -244,6 +603,9 @@ export default function AdminDashboard() {
       loadDashboardData();
       fetchIntegrations();
       fetchFaqs();
+      fetchBlogs();
+      fetchResume();
+      fetchExperiences();
     }
   }, [status]);
 
@@ -428,8 +790,11 @@ export default function AdminDashboard() {
             { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
             { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
             { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
+            { id: "blogs", name: "Blog Ledger", icon: FileText, count: blogs.length },
+            { id: "experience", name: "Timeline Manager", icon: Briefcase, count: experiences.length },
             { id: "integrations", name: "Integrations Sync", icon: Cpu },
-            { id: "faqs", name: "FAQ Manager", icon: HelpCircle, count: faqs.length }
+            { id: "faqs", name: "FAQ Manager", icon: HelpCircle, count: faqs.length },
+            { id: "resume", name: "Resume Upload", icon: Upload }
           ].map((tab) => {
             const Icon = tab.icon;
             const isSel = activeTab === tab.id;
@@ -895,14 +1260,52 @@ export default function AdminDashboard() {
                 <div className="space-y-6 max-w-xl">
                   <div>
                     <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
-                      Coding Profiles Integrations Control
+                      Hero Profile & Sync Settings
                     </h3>
                     <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
-                      Connect your online profiles. If direct API fetches are rate-limited, the dashboard uses seeded fallback metrics automatically.
+                      Configure your landing page Hero profile details and connect your public coding accounts to pull dynamic telemetry directly from database caches.
                     </p>
                   </div>
 
                   <div className="space-y-4 font-mono text-xs">
+                    {/* Hero Profile Metadata */}
+                    <div className="border-b border-zinc-900 pb-6 mb-4 space-y-4">
+                      <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] font-bold">Hero Profile Metadata</h4>
+                      <div className="space-y-1">
+                        <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Developer Name</label>
+                        <input
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="e.g. Hemant Raj"
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 font-sans"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Typewriter Roles (Comma separated)</label>
+                        <input
+                          type="text"
+                          value={roles}
+                          onChange={(e) => setRoles(e.target.value)}
+                          placeholder="e.g. AI Engineer, Full Stack Developer"
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 font-sans"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Biography / About</label>
+                        <textarea
+                          value={bio}
+                          onChange={(e) => setBio(e.target.value)}
+                          placeholder="Describe your engineering focus..."
+                          rows={4}
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 font-sans resize-none"
+                        />
+                      </div>
+                    </div>
+
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] font-bold">Coding Platform Handles</h4>
                     <div className="space-y-1">
                       <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">GitHub Username</label>
                       <input
@@ -958,6 +1361,39 @@ export default function AdminDashboard() {
                       />
                     </div>
 
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">HackerRank Handle</label>
+                      <input
+                        type="text"
+                        value={hackerrank}
+                        onChange={(e) => setHackerrank(e.target.value)}
+                        placeholder="e.g. hemant_2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">AtCoder Handle</label>
+                      <input
+                        type="text"
+                        value={atcoder}
+                        onChange={(e) => setAtcoder(e.target.value)}
+                        placeholder="e.g. hemant_2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">HackerEarth Handle</label>
+                      <input
+                        type="text"
+                        value={hackerearth}
+                        onChange={(e) => setHackerearth(e.target.value)}
+                        placeholder="e.g. hemant_2005"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
                     <div className="flex gap-4 pt-4">
                       <button
                         onClick={() => handleSaveIntegrations(false)}
@@ -979,6 +1415,135 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               )}
+
+              {/* Tab 11: Timeline Manager (Experience CRUD) */}
+              {activeTab === "experience" && (
+                <div className="space-y-8 max-w-4xl">
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
+                      Timeline Experience Manager
+                    </h3>
+                    <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
+                      Manage experience timeline items displayed on the landing page.
+                    </p>
+                  </div>
+
+                  {/* Add / Edit Form */}
+                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-4">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#00E5FF]">
+                      {expId ? "Modify Experience Item" : "Add New Experience Item"}
+                    </h4>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Year / Period</label>
+                          <input
+                            type="text"
+                            value={expYear}
+                            onChange={(e) => setExpYear(e.target.value)}
+                            placeholder="e.g. 2026 or 2025 - Present"
+                            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Display Order</label>
+                          <input
+                            type="number"
+                            value={expOrder}
+                            onChange={(e) => setExpOrder(parseInt(e.target.value) || 0)}
+                            placeholder="0"
+                            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-mono"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Title / Role</label>
+                        <input
+                          type="text"
+                          value={expTitle}
+                          onChange={(e) => setExpTitle(e.target.value)}
+                          placeholder="e.g. Senior Full Stack Engineer"
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Description</label>
+                        <textarea
+                          value={expDescription}
+                          onChange={(e) => setExpDescription(e.target.value)}
+                          placeholder="e.g. Developed Next.js 15 apps and synchronized coding metadata dashboards."
+                          rows={4}
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans resize-none"
+                        />
+                      </div>
+
+                      <div className="flex gap-3">
+                        <button
+                          onClick={handleSaveExperience}
+                          disabled={expLoading}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-6 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs active:scale-95 disabled:opacity-50"
+                        >
+                          {expLoading ? "Saving..." : expId ? "Update Item" : "Add Experience"}
+                        </button>
+                        {expId && (
+                          <button
+                            onClick={() => {
+                              setExpId("");
+                              setExpYear("");
+                              setExpTitle("");
+                              setExpDescription("");
+                              setExpOrder(0);
+                            }}
+                            className="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-400 py-2.5 px-6 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs"
+                          >
+                            Cancel Edit
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* List existing Experience items */}
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#00E5FF]">Existing Timeline Items ({experiences.length})</h4>
+                    
+                    {experiences.length === 0 ? (
+                      <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-8 text-center text-zinc-650 font-mono text-xs uppercase tracking-widest">
+                        No timeline records in database.
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {experiences.map((exp) => (
+                          <div key={exp.id} className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 flex justify-between items-start gap-4">
+                            <div className="space-y-1">
+                              <div className="text-[#00E5FF] text-xs font-bold font-mono">{exp.year} - {exp.title}</div>
+                              <p className="text-zinc-400 font-sans text-xs mt-1 leading-relaxed">{exp.description}</p>
+                              <div className="text-[8px] font-mono text-zinc-650 uppercase tracking-wider mt-2">Display Order: {exp.order}</div>
+                            </div>
+                            <div className="flex gap-2 shrink-0">
+                              <button
+                                onClick={() => handleEditExperience(exp)}
+                                className="text-[9px] font-mono text-cyan-400 hover:text-cyan-300 border border-zinc-900 hover:border-cyan-950 bg-black/60 px-2 py-1 rounded transition-all uppercase tracking-wider cursor-pointer"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => handleDeleteExperience(exp.id)}
+                                className="text-[9px] font-mono text-red-500 hover:text-red-400 border border-zinc-900 hover:border-red-950 bg-black/60 px-2 py-1 rounded transition-all uppercase tracking-wider cursor-pointer"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Tab 8: FAQ Manager */}
               {activeTab === "faqs" && (
                 <div className="space-y-8 max-w-4xl">
@@ -1062,6 +1627,576 @@ export default function AdminDashboard() {
                         ))}
                       </div>
                     )}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 9: Blog Ledger (Dynamic Block Editor) */}
+              {activeTab === "blogs" && (
+                <div className="space-y-6">
+                  {blogEditorOpen ? (
+                    // Editor Panel UI
+                    <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-6">
+                      <div className="flex justify-between items-center border-b border-zinc-900 pb-3 select-none">
+                        <div>
+                          <h3 className="text-sm font-mono uppercase tracking-widest text-[#00E5FF]">
+                            {blogId ? "Modify article coordinates" : "Create new article node"}
+                          </h3>
+                          <p className="text-[10px] text-zinc-550 font-mono mt-0.5 uppercase">
+                            Dynamic Block editor synapsing active
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setBlogEditorOpen(false)}
+                          className="text-xs font-mono text-zinc-500 hover:text-white border border-zinc-900 hover:border-zinc-800 bg-black/60 px-3 py-1.5 rounded cursor-pointer transition-colors"
+                        >
+                          Back to Ledger
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Article Title</label>
+                            <input
+                              type="text"
+                              value={blogTitle}
+                              onChange={(e) => {
+                                setBlogTitle(e.target.value);
+                                if (!blogId) {
+                                  setBlogSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''));
+                                }
+                              }}
+                              placeholder="e.g. Building 3D Canvas Portal rings"
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Slug (URL coordinate)</label>
+                            <input
+                              type="text"
+                              value={blogSlug}
+                              onChange={(e) => setBlogSlug(e.target.value)}
+                              placeholder="e.g. building-3d-canvas-portal"
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-mono"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Category</label>
+                              <input
+                                type="text"
+                                value={blogCategory}
+                                onChange={(e) => setBlogCategory(e.target.value)}
+                                placeholder="Development"
+                                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans"
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Read Time (min)</label>
+                              <input
+                                type="number"
+                                value={blogReadTime}
+                                onChange={(e) => setBlogReadTime(parseInt(e.target.value) || 5)}
+                                className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-mono"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Tags (comma separated)</label>
+                            <input
+                              type="text"
+                              value={blogTags}
+                              onChange={(e) => setBlogTags(e.target.value)}
+                              placeholder="WebGL, Three.js, React"
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-mono"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Summary (AI or manual description)</label>
+                            <textarea
+                              value={blogSummary}
+                              onChange={(e) => setBlogSummary(e.target.value)}
+                              placeholder="Describe the article essence in 1-2 sentences..."
+                              rows={3}
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans resize-none"
+                            />
+                          </div>
+
+                          <div className="flex items-center gap-2 pt-2 select-none">
+                            <input
+                              type="checkbox"
+                              id="blogPublished"
+                              checked={blogPublished}
+                              onChange={(e) => setBlogPublished(e.target.checked)}
+                              className="rounded border-zinc-800 bg-zinc-900 text-emerald-500 focus:ring-0 w-4 h-4 cursor-pointer"
+                            />
+                            <label htmlFor="blogPublished" className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest cursor-pointer pl-1">
+                              Deploy live payload (Published)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* SEO Coordinates details */}
+                      <div className="border-t border-zinc-900 pt-4 space-y-4">
+                        <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF]">SEO Coordinates (Optional)</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Meta Title</label>
+                            <input
+                              type="text"
+                              value={blogSeoTitle}
+                              onChange={(e) => setBlogSeoTitle(e.target.value)}
+                              placeholder="SEO search result header"
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Meta Description</label>
+                            <input
+                              type="text"
+                              value={blogSeoDesc}
+                              onChange={(e) => setBlogSeoDesc(e.target.value)}
+                              placeholder="SEO snippet text"
+                              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Dynamic Blocks Section */}
+                      <div className="border-t border-zinc-900 pt-6 space-y-4">
+                        <div className="flex justify-between items-center select-none">
+                          <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#00E5FF]">Dynamic Block Sequence</h4>
+                          <span className="text-[9px] font-mono text-zinc-550 uppercase">Blocks count: {blogBlocks.length}</span>
+                        </div>
+
+                        {blogBlocks.length === 0 ? (
+                          <div className="border border-dashed border-zinc-800 bg-zinc-950/20 p-8 rounded-xl text-center text-[10px] font-mono uppercase text-zinc-500 tracking-wider">
+                            Block stack empty. Append a new coordinate layer below.
+                          </div>
+                        ) : (
+                          <div className="space-y-4">
+                            {blogBlocks.map((block, idx) => (
+                              <div key={idx} className="bg-zinc-900/40 border border-zinc-850 rounded-xl p-4 space-y-3 relative group/block">
+                                <div className="flex justify-between items-center border-b border-zinc-900 pb-2 mb-2 select-none">
+                                  <div className="flex items-center gap-3">
+                                    <span className="text-[9px] font-mono text-[#00E5FF] bg-cyan-950/20 border border-cyan-800/10 px-2 py-0.5 rounded uppercase">
+                                      Block #{idx + 1}: {block.type}
+                                    </span>
+                                    {block.type === "header" && (
+                                      <div className="flex gap-1">
+                                        {[1, 2, 3].map(lvl => (
+                                          <button
+                                            key={lvl}
+                                            onClick={() => updateBlogBlock(idx, { level: lvl })}
+                                            className={`text-[8px] font-mono px-1.5 py-0.5 rounded border cursor-pointer ${
+                                              block.level === lvl 
+                                                ? "bg-cyan-500 text-black border-cyan-400" 
+                                                : "bg-black/40 border-zinc-800 text-zinc-500"
+                                            }`}
+                                          >
+                                            H{lvl}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    )}
+                                    {block.type === "callout" && (
+                                      <div className="flex gap-1">
+                                        {["info", "success", "warning"].map(type => (
+                                          <button
+                                            key={type}
+                                            onClick={() => updateBlogBlock(idx, { calloutType: type })}
+                                            className={`text-[8px] font-mono px-1.5 py-0.5 rounded border cursor-pointer uppercase ${
+                                              block.calloutType === type 
+                                                ? type === "warning" ? "bg-amber-500 text-black border-amber-400" : type === "success" ? "bg-emerald-500 text-black border-emerald-400" : "bg-cyan-500 text-black border-cyan-400"
+                                                : "bg-black/40 border-zinc-800 text-zinc-500"
+                                            }`}
+                                          >
+                                            {type}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  <div className="flex items-center gap-1.5 opacity-45 group-hover/block:opacity-100 transition-opacity">
+                                    <button
+                                      onClick={() => moveBlogBlock(idx, "up")}
+                                      disabled={idx === 0}
+                                      className="p-1 rounded bg-black/40 border border-zinc-850 text-zinc-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                                      title="Move Up"
+                                    >
+                                      <ArrowUp className="w-3 h-3" />
+                                    </button>
+                                    <button
+                                      onClick={() => moveBlogBlock(idx, "down")}
+                                      disabled={idx === blogBlocks.length - 1}
+                                      className="p-1 rounded bg-black/40 border border-zinc-850 text-zinc-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                                      title="Move Down"
+                                    >
+                                      <ArrowDown className="w-3 h-3" />
+                                    </button>
+                                    <button
+                                      onClick={() => deleteBlogBlock(idx)}
+                                      className="p-1 rounded bg-red-955/20 border border-red-900/20 text-red-400 hover:bg-red-900/40 cursor-pointer"
+                                      title="Delete Block"
+                                    >
+                                      <Trash2 className="w-3.5 h-3.5" />
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {/* Render Block Specific Input Fields */}
+                                {block.type === "header" && (
+                                  <input
+                                    type="text"
+                                    value={block.content}
+                                    onChange={(e) => updateBlogBlock(idx, { content: e.target.value })}
+                                    placeholder="Header content text..."
+                                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-500/20 font-sans"
+                                  />
+                                )}
+
+                                {(block.type === "paragraph" || block.type === "quote" || block.type === "callout") && (
+                                  <textarea
+                                    value={block.content}
+                                    onChange={(e) => updateBlogBlock(idx, { content: e.target.value })}
+                                    placeholder={block.type === "paragraph" ? "Paragraph markdown rich content..." : block.type === "quote" ? "Quote body text..." : "Callout notification message..."}
+                                    rows={block.type === "paragraph" ? 5 : 3}
+                                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-500/20 font-sans resize-none"
+                                  />
+                                )}
+
+                                {block.type === "code" && (
+                                  <div className="space-y-2">
+                                    <div className="flex gap-4">
+                                      <div className="flex-1 space-y-1">
+                                        <label className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Syntax Language</label>
+                                        <input
+                                          type="text"
+                                          value={block.language || ""}
+                                          onChange={(e) => updateBlogBlock(idx, { language: e.target.value })}
+                                          placeholder="typescript, glsl, rust, python..."
+                                          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-white outline-none focus:border-cyan-500/20 font-mono"
+                                        />
+                                      </div>
+                                    </div>
+                                    <textarea
+                                      value={block.content}
+                                      onChange={(e) => updateBlogBlock(idx, { content: e.target.value })}
+                                      placeholder="Paste raw block code script..."
+                                      rows={6}
+                                      className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-xs text-zinc-300 outline-none focus:border-cyan-500/20 font-mono resize-none leading-relaxed"
+                                    />
+                                  </div>
+                                )}
+
+                                {block.type === "image" && (
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                      <label className="text-[8px] font-mono text-zinc-550 uppercase tracking-widest pl-1">Image URL</label>
+                                      <input
+                                        type="text"
+                                        value={block.url}
+                                        onChange={(e) => updateBlogBlock(idx, { url: e.target.value })}
+                                        placeholder="https://images.unsplash.com/..."
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-500/20 font-mono"
+                                      />
+                                    </div>
+                                    <div className="space-y-1">
+                                      <label className="text-[8px] font-mono text-zinc-550 uppercase tracking-widest pl-1">Caption / Alt Description</label>
+                                      <input
+                                        type="text"
+                                        value={block.caption}
+                                        onChange={(e) => updateBlogBlock(idx, { caption: e.target.value })}
+                                        placeholder="Torus mesh shader portal simulation"
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-500/20 font-sans"
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Add Blocks Action Hub */}
+                        <div className="border border-zinc-900 bg-zinc-950/40 p-4 rounded-2xl flex flex-wrap gap-2.5 items-center justify-center select-none">
+                          <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider pr-1">Append new block:</span>
+                          <button
+                            onClick={() => addBlogBlock("header")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Header
+                          </button>
+                          <button
+                            onClick={() => addBlogBlock("paragraph")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Paragraph
+                          </button>
+                          <button
+                            onClick={() => addBlogBlock("code")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Code Block
+                          </button>
+                          <button
+                            onClick={() => addBlogBlock("quote")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Quote
+                          </button>
+                          <button
+                            onClick={() => addBlogBlock("callout")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Callout
+                          </button>
+                          <button
+                            onClick={() => addBlogBlock("image")}
+                            className="flex items-center gap-1.5 border border-zinc-800 bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg text-[10px] font-mono uppercase tracking-wider cursor-pointer transition-colors"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Image
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Main Save / Cancel Trigger button bar */}
+                      <div className="flex gap-4 pt-4 border-t border-zinc-900 select-none">
+                        <button
+                          onClick={() => setBlogEditorOpen(false)}
+                          className="flex-1 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-400 hover:text-white font-bold py-3 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs"
+                        >
+                          Cancel / Discard Changes
+                        </button>
+                        <button
+                          onClick={handleSaveBlog}
+                          disabled={blogLoading}
+                          className="flex-1 bg-[#E11D2E] hover:bg-[#c81a28] disabled:bg-zinc-850 disabled:text-zinc-500 text-white font-bold py-3 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs"
+                        >
+                          {blogLoading ? "Saving Article payload..." : "Save and Deploy Article"}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    // Articles List UI
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center select-none">
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-950 w-full max-w-sm">
+                          <Search className="w-4 h-4 text-zinc-500" />
+                          <input
+                            type="text"
+                            placeholder="Search articles by title, tags..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="bg-transparent border-none outline-none text-xs text-white w-full"
+                          />
+                        </div>
+                        <button
+                          onClick={() => handleOpenBlogEditor()}
+                          className="bg-[#E11D2E] hover:bg-[#c81a28] text-white text-xs font-mono uppercase tracking-wider py-2.5 px-4 rounded-lg cursor-pointer transition-colors flex items-center gap-2"
+                        >
+                          <Plus className="w-4 h-4" />
+                          <span>Create New Article</span>
+                        </button>
+                      </div>
+
+                      <div className="bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden shadow-inner">
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left text-xs font-mono select-text border-collapse">
+                            <thead>
+                              <tr className="bg-zinc-900/60 text-zinc-500 uppercase tracking-wider border-b border-zinc-800">
+                                <th className="p-4">Title & Slug</th>
+                                <th className="p-4">Category</th>
+                                <th className="p-4">Tags</th>
+                                <th className="p-4">Read Time</th>
+                                <th className="p-4">Status</th>
+                                <th className="p-4 text-right">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-zinc-900">
+                              {blogs
+                                .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()) || b.slug.toLowerCase().includes(searchQuery.toLowerCase()))
+                                .map((b) => (
+                                  <tr key={b.id} className="hover:bg-zinc-900/20 text-zinc-300">
+                                    <td className="p-4 font-sans max-w-xs">
+                                      <div className="font-bold text-white leading-snug">{b.title}</div>
+                                      <div className="text-[10px] text-zinc-500 font-mono mt-0.5 font-semibold">/{b.slug}</div>
+                                      <div className="text-[9px] text-zinc-600 font-mono mt-0.5">Created: {new Date(b.createdAt).toLocaleDateString()}</div>
+                                    </td>
+                                    <td className="p-4 text-[#00E5FF]">{b.category || "Development"}</td>
+                                    <td className="p-4 max-w-[150px] truncate" title={b.tags?.join(", ")}>
+                                      {b.tags?.map((t: string) => `#${t}`).join(" ") || "None"}
+                                    </td>
+                                    <td className="p-4">{b.readTime || 5} min</td>
+                                    <td className="p-4">
+                                      <span className={`px-2 py-0.5 rounded-full text-[9px] uppercase font-bold border ${
+                                        b.published ? "bg-emerald-950/20 border-emerald-800 text-emerald-400" : "bg-zinc-900 border-zinc-800 text-zinc-450"
+                                      }`}>
+                                        {b.published ? "LIVE" : "DRAFT"}
+                                      </span>
+                                    </td>
+                                    <td className="p-4 text-right space-x-2">
+                                      <button
+                                        onClick={() => handleOpenBlogEditor(b)}
+                                        className="text-[9px] px-2 py-1 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-850 text-zinc-400 hover:text-white cursor-pointer uppercase transition-colors"
+                                      >
+                                        Edit
+                                      </button>
+                                      <button
+                                        onClick={() => handleDeleteBlog(b.id)}
+                                        className="text-[9px] px-2 py-1 rounded bg-red-950/20 hover:bg-red-900/40 border border-red-900/20 text-red-400 cursor-pointer uppercase transition-colors"
+                                      >
+                                        Delete
+                                      </button>
+                                    </td>
+                                  </tr>
+                                ))}
+                              {blogs.length === 0 && (
+                                <tr>
+                                  <td colSpan={6} className="p-8 text-center text-zinc-650 uppercase tracking-widest font-mono">
+                                    No articles logged in ledger.
+                                  </td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tab 10: Resume Upload */}
+              {activeTab === "resume" && (
+                <div className="space-y-8 max-w-2xl">
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-2">
+                      Resume Asset Manager
+                    </h3>
+                    <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
+                      Upload a PDF resume. It will be publicly accessible on the portfolio for download and will appear on the Dev Stats section.
+                    </p>
+                  </div>
+
+                  {/* Current Resume Status */}
+                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-4">
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF]">Current Resume Status</h4>
+                    {currentResumeUrl ? (
+                      <div className="flex items-center justify-between bg-emerald-950/10 border border-emerald-900/30 rounded-xl px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <FileCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                          <div>
+                            <p className="text-xs font-mono text-emerald-400 font-bold">Resume Active</p>
+                            <p className="text-[10px] font-mono text-zinc-500 mt-0.5">{currentResumeUrl}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={currentResumeUrl}
+                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[9px] font-mono uppercase tracking-widest border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+                          >
+                            <Download className="w-3 h-3" /> Preview
+                          </a>
+                          <button
+                            onClick={handleDeleteResume}
+                            className="text-[9px] font-mono uppercase tracking-widest border border-red-900/30 bg-red-950/20 hover:bg-red-900/40 text-red-400 px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+                          >
+                            <X className="w-3 h-3" /> Remove
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-3 bg-zinc-900/40 border border-zinc-800 rounded-xl px-4 py-3">
+                        <AlertCircle className="w-5 h-5 text-zinc-500 shrink-0" />
+                        <div>
+                          <p className="text-xs font-mono text-zinc-400">No Resume Uploaded</p>
+                          <p className="text-[10px] font-mono text-zinc-600 mt-0.5">Upload a PDF below to make it publicly available.</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Upload New Resume */}
+                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-5">
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF]">Upload New Resume</h4>
+
+                    {/* Drop / Click Zone */}
+                    <label
+                      htmlFor="resumeFileInput"
+                      className={`block w-full border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all ${
+                        resumeFile
+                          ? "border-emerald-600/50 bg-emerald-950/10"
+                          : "border-zinc-800 hover:border-zinc-600 bg-zinc-900/20 hover:bg-zinc-900/40"
+                      }`}
+                    >
+                      {resumeFile ? (
+                        <div className="flex flex-col items-center gap-2">
+                          <FileCheck className="w-10 h-10 text-emerald-400" />
+                          <p className="text-sm font-bold text-white">{resumeFile.name}</p>
+                          <p className="text-[10px] font-mono text-zinc-500 uppercase">
+                            {(resumeFile.size / 1024).toFixed(1)} KB — PDF Ready to Upload
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-3">
+                          <Upload className="w-10 h-10 text-zinc-600" />
+                          <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest">Click to select PDF</p>
+                          <p className="text-[10px] font-mono text-zinc-600">Max file size: 10 MB · PDF only</p>
+                        </div>
+                      )}
+                      <input
+                        id="resumeFileInput"
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        onChange={(e) => {
+                          const f = e.target.files?.[0] || null;
+                          setResumeFile(f);
+                          setResumeUploadStatus("idle");
+                          setResumeUploadMessage("");
+                        }}
+                      />
+                    </label>
+
+                    {/* Status feedback */}
+                    {resumeUploadStatus !== "idle" && (
+                      <div className={`flex items-center gap-2 text-[10px] font-mono rounded-lg px-3 py-2 ${
+                        resumeUploadStatus === "success"
+                          ? "bg-emerald-950/20 border border-emerald-900/30 text-emerald-400"
+                          : "bg-red-950/20 border border-red-900/30 text-red-400"
+                      }`}>
+                        {resumeUploadStatus === "success"
+                          ? <CheckCircle className="w-3.5 h-3.5 shrink-0" />
+                          : <AlertCircle className="w-3.5 h-3.5 shrink-0" />}
+                        <span>{resumeUploadMessage}</span>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={handleUploadResume}
+                      disabled={resumeUploading || !resumeFile}
+                      className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 disabled:text-zinc-600 text-white font-bold py-3.5 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs flex items-center justify-center gap-2"
+                    >
+                      {resumeUploading ? (
+                        <><RefreshCw className="w-4 h-4 animate-spin" /> Uploading...</>
+                      ) : (
+                        <><Upload className="w-4 h-4" /> Deploy Resume to Portfolio</>
+                      )}
+                    </button>
                   </div>
                 </div>
               )}

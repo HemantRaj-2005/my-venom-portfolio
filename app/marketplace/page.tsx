@@ -194,6 +194,10 @@ export default function MarketplacePage() {
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-600 animate-pulse">
             Loading products index...
           </div>
+        ) : products.length === 0 ? (
+          <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-650">
+            No records available
+          </div>
         ) : filteredProducts.length === 0 ? (
           <div className="py-24 text-center font-mono text-xs uppercase tracking-widest text-zinc-700">
             No matching products found.

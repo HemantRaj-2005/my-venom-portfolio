@@ -7,7 +7,7 @@ import { syncDeveloperStats } from "@/lib/api-sync";
 
 export async function GET() {
   await connection();
-  
+
   const session = await getServerSession(authOptions);
   const role = (session?.user as any)?.role;
 
@@ -18,21 +18,10 @@ export async function GET() {
   try {
     let profile = await db.devProfile.findFirst();
     if (!profile) {
-      profile = await db.devProfile.create({
-        data: {
-          github: "HemantRaj-2005",
-          leetcode: "HemantRaj-2005",
-          codeforces: "HemantRaj-2005",
-          codechef: "hemant_2005",
-          geeksforgeeks: "hemantraj2005",
-        }
-      });
+      profile = await db.devProfile.create({ data: {} });
     }
 
-    return NextResponse.json({
-      success: true,
-      profile
-    });
+    return NextResponse.json({ success: true, profile });
   } catch (e) {
     console.error("Integrations get error:", e);
     return NextResponse.json({ error: "Failed to retrieve configuration." }, { status: 500 });
@@ -51,32 +40,33 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { github, leetcode, codeforces, codechef, geeksforgeeks, hackerrank, atcoder, hackerearth, triggerSync } = body;
+    const {
+      name, bio, roles,
+      github, leetcode, codeforces, codechef,
+      geeksforgeeks, hackerrank, atcoder, hackerearth,
+      triggerSync
+    } = body;
 
     let profile = await db.devProfile.findFirst();
     if (!profile) {
       profile = await db.devProfile.create({
-        data: { github, leetcode, codeforces, codechef, geeksforgeeks, hackerrank, atcoder, hackerearth }
+        data: { name, bio, roles: roles || [], github, leetcode, codeforces, codechef, geeksforgeeks, hackerrank, atcoder, hackerearth }
       });
     } else {
       profile = await db.devProfile.update({
         where: { id: profile.id },
-        data: { github, leetcode, codeforces, codechef, geeksforgeeks, hackerrank, atcoder, hackerearth }
+        data: { name, bio, roles: roles || [], github, leetcode, codeforces, codechef, geeksforgeeks, hackerrank, atcoder, hackerearth }
       });
     }
 
     let stats = null;
-    if (triggerSync) {
+    if (triggerSync && (github || leetcode || codeforces)) {
       stats = await syncDeveloperStats(profile.id);
     } else if (profile.statsCache) {
       stats = JSON.parse(profile.statsCache);
     }
 
-    return NextResponse.json({
-      success: true,
-      profile,
-      stats
-    });
+    return NextResponse.json({ success: true, profile, stats });
   } catch (e) {
     console.error("Integrations save error:", e);
     return NextResponse.json({ error: "Failed to update configuration details." }, { status: 500 });

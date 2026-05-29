@@ -161,6 +161,9 @@ model NewsletterSubscriber {
 // Developer profile integrations & coding tracker caches
 model DevProfile {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  bio           String?
+  roles         String[]
   github        String?
   leetcode      String?
   codeforces    String?
@@ -169,6 +172,7 @@ model DevProfile {
   hackerrank    String?
   atcoder       String?
   hackerearth   String?
+  resumeUrl     String?  // Path to the uploaded resume PDF
   statsCache    String?  // Large JSON string caching stats and history logs
   updatedAt     DateTime @updatedAt
 }
@@ -180,4 +184,14 @@ model Faq {
   order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  year        String
+  title       String
+  description String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

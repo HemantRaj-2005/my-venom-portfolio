@@ -4,50 +4,47 @@ import { connection } from "next/server";
 import { syncDeveloperStats } from "@/lib/api-sync";
 
 export async function GET() {
-  await connection(); // Stop static compilation at build time
+  await connection();
 
   try {
-    // Retrieve default profile
+    // Retrieve the first DevProfile — create an empty one if none exists
     let profile = await db.devProfile.findFirst();
 
     if (!profile) {
-      // Create default mock profile if missing in DB
-      profile = await db.devProfile.create({
-        data: {
-          github: "HemantRaj-2005",
-          leetcode: "HemantRaj-2005",
-          codeforces: "HemantRaj-2005",
-          codechef: "hemant_2005",
-          geeksforgeeks: "hemantraj2005",
-          hackerrank: "hemant_2005",
-          atcoder: "hemant_2005",
-          hackerearth: "hemant_2005",
-        }
-      });
+      profile = await db.devProfile.create({ data: {} });
     }
 
-    let stats;
+    let stats = null;
     if (profile.statsCache) {
       stats = JSON.parse(profile.statsCache);
-    } else {
-      // Trigger dynamic sync if cache is empty
+    } else if (profile.github || profile.leetcode || profile.codeforces) {
+      // Only sync if at least one handle is configured
       stats = await syncDeveloperStats(profile.id);
     }
+
+    const isSynced: boolean = stats?.isSynced === true;
+    const lastSynced: string | null = stats?.lastSynced || null;
 
     return NextResponse.json({
       success: true,
       profile: {
-        github: profile.github,
-        leetcode: profile.leetcode,
-        codeforces: profile.codeforces,
-        codechef: profile.codechef,
-        geeksforgeeks: profile.geeksforgeeks,
-        hackerrank: profile.hackerrank,
-        atcoder: profile.atcoder,
-        hackerearth: profile.hackerearth,
         id: profile.id,
+        name: (profile as any).name || null,
+        bio: (profile as any).bio || null,
+        roles: (profile as any).roles || [],
+        github: profile.github || null,
+        leetcode: profile.leetcode || null,
+        codeforces: profile.codeforces || null,
+        codechef: profile.codechef || null,
+        geeksforgeeks: profile.geeksforgeeks || null,
+        hackerrank: profile.hackerrank || null,
+        atcoder: profile.atcoder || null,
+        hackerearth: profile.hackerearth || null,
+        resumeUrl: (profile as any).resumeUrl || null,
       },
-      stats
+      stats,
+      isSynced,
+      lastSynced,
     });
   } catch (e) {
     console.error("Public developer stats query failed:", e);
