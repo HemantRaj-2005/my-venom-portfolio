@@ -10,30 +10,30 @@ generator client {
 
 // User model for NextAuth and dashboard
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
   hashedPassword String?
-  role          String    @default("USER") // ADMIN or USER
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role           String    @default("USER") // ADMIN or USER
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 // Submissions for lead generation
 model Lead {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  email        String
-  company      String?
-  budget       String?
-  timeline     String?
-  requirements String?
-  projectType  String
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String
+  company       String?
+  budget        String?
+  timeline      String?
+  requirements  String?
+  projectType   String
   preferredTime String?
-  createdAt    DateTime @default(now())
-  status       String   @default("PENDING") // PENDING, CONTACTED, ARCHIVED
+  createdAt     DateTime @default(now())
+  status        String   @default("PENDING") // PENDING, CONTACTED, ARCHIVED
 }
 
 // Products for marketplace
@@ -42,7 +42,7 @@ model Product {
   title       String
   description String
   price       Float?
-  category    String   // Source Code, SaaS Template, AI Tool, Full Stack, UI Kit, API
+  category    String // Source Code, SaaS Template, AI Tool, Full Stack, UI Kit, API
   githubUrl   String?
   demoUrl     String?
   downloadUrl String?
@@ -74,16 +74,16 @@ model Project {
   overview     String
   features     String[]
   challenges   String?
-  architecture String?  // text description or JSON data
+  architecture String? // text description or JSON data
   techStack    String[]
-  schemaUrl    String?  // schema diagram / text representation
-  apiFlow      String?  // API flow diagram / details
-  deployment   String?  // Deployment details
+  schemaUrl    String? // schema diagram / text representation
+  apiFlow      String? // API flow diagram / details
+  deployment   String? // Deployment details
   gallery      String[] // Cloudinary URLs
   demoVideo    String?
   liveUrl      String?
   githubUrl    String?
-  performance  Float?   // e.g. Lighthouse score
+  performance  Float? // e.g. Lighthouse score
   seoTitle     String?
   seoDesc      String?
   createdAt    DateTime @default(now())
@@ -92,20 +92,20 @@ model Project {
 
 // Technical Blog
 model Post {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  slug         String   @unique
-  content     String   // markdown content
-  summary     String?  // AI generated summary or manual summary
-  published   Boolean  @default(false)
-  tags        String[]
-  category    String?
-  readTime    Int?
-  seoTitle     String?
-  seoDesc      String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  comments    Comment[]
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String    @unique
+  content   String // markdown content
+  summary   String? // AI generated summary or manual summary
+  published Boolean   @default(false)
+  tags      String[]
+  category  String?
+  readTime  Int?
+  seoTitle  String?
+  seoDesc   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  comments  Comment[]
 }
 
 model Comment {
@@ -123,7 +123,7 @@ model VisitorLog {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   ip        String?
   userAgent String?
-  device    String?  // Mobile, Desktop, Tablet
+  device    String? // Mobile, Desktop, Tablet
   browser   String?
   os        String?
   path      String
@@ -173,8 +173,8 @@ model DevProfile {
   hackerrank    String?
   atcoder       String?
   hackerearth   String?
-  resumeUrl     String?  // Path to the uploaded resume PDF
-  statsCache    String?  // Large JSON string caching stats and history logs
+  resumeUrl     String? // Path to the uploaded resume PDF
+  statsCache    String? // Large JSON string caching stats and history logs
   updatedAt     DateTime @updatedAt
 }
 
@@ -218,10 +218,10 @@ model GithubProfile {
   totalIssues  Int      @default(0)
   totalCommits Int      @default(0)
   streak       Int      @default(0)
-  languages    String?  // JSON string
-  heatmap      String?  // JSON string
-  recentRepos  String?  // JSON string
-  growth       String?  // JSON string
+  languages    String? // JSON string
+  heatmap      String? // JSON string
+  recentRepos  String? // JSON string
+  growth       String? // JSON string
   updatedAt    DateTime @updatedAt
 
   @@map("github_profiles")
@@ -253,8 +253,8 @@ model LeetcodeProfile {
   ranking        Int      @default(0)
   contestRating  Float    @default(0)
   contestRank    String   @default("N/A")
-  contestHistory String?  // JSON string
-  topicSolve     String?  // JSON string
+  contestHistory String? // JSON string
+  topicSolve     String? // JSON string
   updatedAt      DateTime @updatedAt
 
   @@map("leetcode_profiles")
@@ -273,16 +273,16 @@ model LeetcodeHistory {
 
 // Codeforces Profiles
 model CodeforcesProfile {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  username    String   @unique
-  rating      Int      @default(0)
-  maxRating   Int      @default(0)
-  rank        String   @default("N/A")
-  maxRank     String   @default("N/A")
-  solved      Int      @default(0)
-  history     String?  // JSON string
-  tags        String?  // JSON string
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  rating    Int      @default(0)
+  maxRating Int      @default(0)
+  rank      String   @default("N/A")
+  maxRank   String   @default("N/A")
+  solved    Int      @default(0)
+  history   String? // JSON string
+  tags      String? // JSON string
+  updatedAt DateTime @updatedAt
 
   @@map("codeforces_profiles")
 }
@@ -308,7 +308,7 @@ model CodechefProfile {
   globalRank  Int      @default(0)
   countryRank Int      @default(0)
   solved      Int      @default(0)
-  history     String?  // JSON string
+  history     String? // JSON string
   updatedAt   DateTime @updatedAt
 
   @@map("codechef_profiles")
@@ -333,8 +333,8 @@ model GfgProfile {
   institutionRank Int      @default(0)
   solved          Int      @default(0)
   streak          Int      @default(0)
-  practiceHistory String?  // JSON string
-  topicStrengths  String?  // JSON string
+  practiceHistory String? // JSON string
+  topicStrengths  String? // JSON string
   updatedAt       DateTime @updatedAt
 
   @@map("gfg_profiles")
@@ -437,7 +437,7 @@ model KaggleProfile {
 // Contest History
 model ContestHistory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  platform  String   // LeetCode, Codeforces, CodeChef, AtCoder
+  platform  String // LeetCode, Codeforces, CodeChef, AtCoder
   contestId String
   name      String
   date      DateTime
@@ -451,10 +451,10 @@ model ContestHistory {
 // Combined Activity History
 model ActivityHistory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  platform  String   // GitHub, LeetCode, Codeforces, etc.
+  platform  String // GitHub, LeetCode, Codeforces, etc.
   date      DateTime
   count     Int
-  details   String?  // Description or context
+  details   String? // Description or context
   createdAt DateTime @default(now())
 
   @@map("activity_history")
@@ -466,11 +466,11 @@ model AiReport {
   developerLevel  String
   strengths       String[]
   weaknesses      String[]
-  dsaAnalysis     String   // JSON or markdown
-  contestForecast String   // JSON or markdown
-  gitAnalysis     String   // JSON or markdown
-  careerReadiness String   // JSON or markdown
-  predictions     String   // JSON or markdown
+  dsaAnalysis     String // JSON or markdown
+  contestForecast String // JSON or markdown
+  gitAnalysis     String // JSON or markdown
+  careerReadiness String // JSON or markdown
+  predictions     String // JSON or markdown
   rawSummary      String?
   createdAt       DateTime @default(now())
 
@@ -481,7 +481,7 @@ model AiReport {
 model AnalyticsSnapshot {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   date         DateTime @default(now())
-  metrics      String   // Large JSON snapshot
+  metrics      String // Large JSON snapshot
   overallScore Float
 
   @@map("analytics_snapshots")
