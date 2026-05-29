@@ -92,6 +92,11 @@ export default function AdminDashboard() {
   const [hackerrank, setHackerrank] = useState("");
   const [atcoder, setAtcoder] = useState("");
   const [hackerearth, setHackerearth] = useState("");
+  const [stackoverflow, setStackoverflow] = useState("");
+  const [devto, setDevto] = useState("");
+  const [kaggle, setKaggle] = useState("");
+  const [syncLogs, setSyncLogs] = useState<{ platform: string; status: string; message: string | null; duration: number | null; createdAt: string }[]>([]);
+  const [envStatus, setEnvStatus] = useState<{ githubToken: boolean; geminiKey: boolean; stackexchangeKey: boolean; kaggleKeys: boolean } | null>(null);
   const [saveLoading, setSaveLoading] = useState(false);
 
   // Experience timeline states
@@ -401,13 +406,18 @@ export default function AdminDashboard() {
         setHackerrank(result.profile.hackerrank || "");
         setAtcoder(result.profile.atcoder || "");
         setHackerearth(result.profile.hackerearth || "");
+        setStackoverflow(result.profile.stackoverflow || "");
+        setDevto(result.profile.devto || "");
+        setKaggle(result.profile.kaggle || "");
+        setSyncLogs(result.syncLogs || []);
+        setEnvStatus(result.envStatus || null);
       }
     } catch (e) {
       console.error(e);
     }
   };
 
-  const handleSaveIntegrations = async (triggerSync: boolean) => {
+  const handleSaveIntegrations = async (triggerSync: boolean, syncPlatform?: string) => {
     setSaveLoading(true);
     if ((window as any).playClickSound) (window as any).playClickSound();
     try {
@@ -427,12 +437,17 @@ export default function AdminDashboard() {
           hackerrank,
           atcoder,
           hackerearth,
-          triggerSync
+          stackoverflow,
+          devto,
+          kaggle,
+          triggerSync,
+          syncPlatform
         })
       });
       const result = await res.json();
       if (result.success) {
         alert(triggerSync ? "Account sync successfully executed!" : "Integrations successfully saved!");
+        fetchIntegrations();
       } else {
         alert(result.error || "Failed to update configuration.");
       }
@@ -1409,6 +1424,69 @@ export default function AdminDashboard() {
                       />
                     </div>
 
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">StackOverflow User ID</label>
+                      <input
+                        type="text"
+                        value={stackoverflow}
+                        onChange={(e) => setStackoverflow(e.target.value)}
+                        placeholder="e.g. 12345678"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Dev.to Username</label>
+                      <input
+                        type="text"
+                        value={devto}
+                        onChange={(e) => setDevto(e.target.value)}
+                        placeholder="e.g. hemantraj"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Kaggle Username</label>
+                      <input
+                        type="text"
+                        value={kaggle}
+                        onChange={(e) => setKaggle(e.target.value)}
+                        placeholder="e.g. hemantraj"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    {envStatus && (
+                      <div className="border border-zinc-900 rounded-xl p-4 space-y-2">
+                        <h4 className="text-[10px] font-mono uppercase text-zinc-500">API Key Status</h4>
+                        {[
+                          { label: "GitHub Token", ok: envStatus.githubToken },
+                          { label: "Gemini API Key", ok: envStatus.geminiKey },
+                          { label: "StackExchange Key", ok: envStatus.stackexchangeKey },
+                          { label: "Kaggle Keys", ok: envStatus.kaggleKeys },
+                        ].map(({ label, ok }) => (
+                          <div key={label} className="flex justify-between text-[10px] font-mono">
+                            <span className="text-zinc-400">{label}</span>
+                            <span className={ok ? "text-emerald-400" : "text-zinc-600"}>{ok ? "Configured" : "Not set"}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {syncLogs.length > 0 && (
+                      <div className="border border-zinc-900 rounded-xl p-4 max-h-48 overflow-y-auto">
+                        <h4 className="text-[10px] font-mono uppercase text-zinc-500 mb-3">Sync Logs</h4>
+                        {syncLogs.slice(0, 20).map((log, i) => (
+                          <div key={i} className="flex justify-between text-[9px] font-mono py-1 border-b border-zinc-900/50">
+                            <span className="text-zinc-400">{log.platform}</span>
+                            <span className={log.status === "success" ? "text-emerald-400" : "text-red-400"}>{log.status}</span>
+                            <span className="text-zinc-600">{new Date(log.createdAt).toLocaleTimeString()}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex gap-4 pt-4">
                       <button
                         onClick={() => handleSaveIntegrations(false)}
@@ -1424,7 +1502,7 @@ export default function AdminDashboard() {
                         className="flex-1 bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-800 text-white font-bold py-3.5 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs flex items-center justify-center gap-2"
                       >
                         <RefreshCw className={`w-4 h-4 ${saveLoading ? "animate-spin" : ""}`} />
-                        <span>{saveLoading ? "Syncing..." : "Sync Database Now"}</span>
+                        <span>{saveLoading ? "Syncing..." : "Sync All Platforms"}</span>
                       </button>
                     </div>
                   </div>

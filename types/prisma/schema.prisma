@@ -161,21 +161,26 @@ model NewsletterSubscriber {
 
 // Developer profile integrations & coding tracker caches
 model DevProfile {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  bio           String?
-  roles         String[]
-  github        String?
-  leetcode      String?
-  codeforces    String?
-  codechef      String?
-  geeksforgeeks String?
-  hackerrank    String?
-  atcoder       String?
-  hackerearth   String?
-  resumeUrl     String? // Path to the uploaded resume PDF
-  statsCache    String? // Large JSON string caching stats and history logs
-  updatedAt     DateTime @updatedAt
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  name               String?
+  bio                String?
+  roles              String[]
+  github             String?
+  leetcode           String?
+  codeforces         String?
+  codechef           String?
+  geeksforgeeks      String?
+  hackerrank         String?
+  atcoder            String?
+  hackerearth        String?
+  stackoverflow      String?
+  devto              String?
+  kaggle             String?
+  resumeUrl          String?
+  statsCache         String?
+  platformVisibility String?
+  aiInsightsEnabled  Boolean  @default(true)
+  updatedAt          DateTime @updatedAt
 }
 
 model Faq {
@@ -203,26 +208,30 @@ model Experience {
 
 // GitHub Profiles
 model GithubProfile {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  username     String   @unique
-  name         String?
-  avatarUrl    String?
-  bio          String?
-  location     String?
-  followers    Int      @default(0)
-  following    Int      @default(0)
-  publicRepos  Int      @default(0)
-  totalStars   Int      @default(0)
-  totalForks   Int      @default(0)
-  totalPRs     Int      @default(0)
-  totalIssues  Int      @default(0)
-  totalCommits Int      @default(0)
-  streak       Int      @default(0)
-  languages    String? // JSON string
-  heatmap      String? // JSON string
-  recentRepos  String? // JSON string
-  growth       String? // JSON string
-  updatedAt    DateTime @updatedAt
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  username      String   @unique
+  name          String?
+  avatarUrl     String?
+  bio           String?
+  location      String?
+  followers     Int      @default(0)
+  following     Int      @default(0)
+  publicRepos   Int      @default(0)
+  privateRepos  Int      @default(0)
+  archivedRepos Int      @default(0)
+  forkedRepos   Int      @default(0)
+  totalStars    Int      @default(0)
+  totalForks    Int      @default(0)
+  totalPRs      Int      @default(0)
+  totalIssues   Int      @default(0)
+  totalCommits  Int      @default(0)
+  activeDays    Int      @default(0)
+  streak        Int      @default(0)
+  languages     String?
+  heatmap       String?
+  recentRepos   String?
+  growth        String?
+  updatedAt     DateTime @updatedAt
 
   @@map("github_profiles")
 }
@@ -380,11 +389,87 @@ model AtcoderProfile {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   username   String   @unique
   rating     Int      @default(0)
+  maxRating  Int      @default(0)
   rank       Int      @default(0)
   challenges Int      @default(0)
   updatedAt  DateTime @updatedAt
 
   @@map("atcoder_profiles")
+}
+
+model HackerrankHistory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String
+  date       DateTime
+  rating     Int
+  challenges Int
+  createdAt  DateTime @default(now())
+
+  @@map("hackerrank_history")
+}
+
+model HackerearthHistory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String
+  date       DateTime
+  rating     Int
+  challenges Int
+  createdAt  DateTime @default(now())
+
+  @@map("hackerearth_history")
+}
+
+model AtcoderHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  date      DateTime
+  rating    Int
+  createdAt DateTime @default(now())
+
+  @@map("atcoder_history")
+}
+
+model StackoverflowHistory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String
+  date       DateTime
+  reputation Int
+  createdAt  DateTime @default(now())
+
+  @@map("stackoverflow_history")
+}
+
+model DevtoHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  date      DateTime
+  articles  Int
+  reactions Int
+  createdAt DateTime @default(now())
+
+  @@map("devto_history")
+}
+
+model KaggleHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  date      DateTime
+  points    Int
+  rank      Int
+  createdAt DateTime @default(now())
+
+  @@map("kaggle_history")
+}
+
+model SyncLog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  platform  String
+  status    String
+  message   String?
+  duration  Int?
+  createdAt DateTime @default(now())
+
+  @@map("sync_logs")
 }
 
 // StackOverflow, Dev.to, LinkedIn, Kaggle

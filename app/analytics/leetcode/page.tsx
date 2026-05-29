@@ -13,11 +13,24 @@ import { Code2, Award, Trophy, Activity, CheckCircle2 } from "lucide-react";
 export default function LeetCodeAnalytics() {
   const { stats, profile } = useAnalytics();
 
-  if (!profile?.leetcode || !stats?.leetcode?.solved?.total) {
+  if (!profile?.leetcode || !stats?.leetcode) {
     return <AnalyticsEmptyState platformName="LeetCode" />;
   }
 
-  const lc = stats.leetcode;
+  const lc = stats.leetcode as {
+    solved: { total: number; easy: number; medium: number; hard: number };
+    acceptance: string;
+    streak: number;
+    ranking: number;
+    contestRating: number;
+    contestRank: string;
+    contestHistory: { name: string; rating: number; rank: number }[];
+    topicSolve: { name: string; solved: number; total: number }[];
+  };
+
+  if (!lc.solved?.total) {
+    return <AnalyticsEmptyState platformName="LeetCode" />;
+  }
 
   return (
     <div className="space-y-8 font-sans">
@@ -36,7 +49,7 @@ export default function LeetCodeAnalytics() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
         {[
           { label: "Problems Solved", val: lc.solved.total, sub: `Acceptance: ${lc.acceptance}`, color: "text-cyan-400" },
-          { label: "Global Ranking", val: `#${lc.ranking.toLocaleString()}`, sub: "Official LeetCode rank", color: "text-amber-400" },
+          { label: "Global Ranking", val: lc.ranking ? `#${lc.ranking.toLocaleString()}` : "N/A", sub: "Official LeetCode rank", color: "text-amber-400" },
           { label: "Contest Rating", val: lc.contestRating, sub: lc.contestRank, color: "text-red-400" },
           { label: "Active Streak", val: `${lc.streak} Days`, sub: "Daily submission log", color: "text-emerald-400" }
         ].map((card, idx) => (
@@ -57,16 +70,16 @@ export default function LeetCodeAnalytics() {
           </h3>
           <div className="space-y-4 font-mono text-xs">
             {[
-              { name: "Easy Solved", count: lc.solved.easy, total: 400, color: "bg-cyan-400", text: "text-cyan-400" },
-              { name: "Medium Solved", count: lc.solved.medium, total: 600, color: "bg-amber-500", text: "text-amber-500" },
-              { name: "Hard Solved", count: lc.solved.hard, total: 300, color: "bg-red-500", text: "text-red-500" }
+              { name: "Easy Solved", count: lc.solved.easy, total: lc.solved.total, color: "bg-cyan-400", text: "text-cyan-400" },
+              { name: "Medium Solved", count: lc.solved.medium, total: lc.solved.total, color: "bg-amber-500", text: "text-amber-500" },
+              { name: "Hard Solved", count: lc.solved.hard, total: lc.solved.total, color: "bg-red-500", text: "text-red-500" }
             ].map((level, idx) => {
-              const pct = Math.round((level.count / level.total) * 100);
+              const pct = level.total > 0 ? Math.round((level.count / level.total) * 100) : 0;
               return (
                 <div key={idx} className="space-y-1.5">
                   <div className="flex justify-between text-[9px] uppercase font-bold">
                     <span className={level.text}>{level.name}</span>
-                    <span className="text-zinc-500">{level.count} / {level.total} ({pct}%)</span>
+                    <span className="text-zinc-500">{level.count} ({pct}% of total)</span>
                   </div>
                   <div className="w-full h-2 bg-zinc-900 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full ${level.color}`} style={{ width: `${pct}%` }} />

@@ -52,27 +52,32 @@ export async function POST(req: NextRequest) {
     if (stats) {
       dynamicContext += `\n### Sync Coding Stats\n`;
       if (stats.leetcode) {
-        dynamicContext += `- LeetCode: Solved ${stats.leetcode.solved?.total || 642} problems (${stats.leetcode.solved?.easy || 215} easy, ${stats.leetcode.solved?.medium || 310} medium, ${stats.leetcode.solved?.hard || 117} hard). Acceptance rate is ${stats.leetcode.acceptance || "68.4%"}. Contest rating is ${stats.leetcode.contestRating || 1942} (${stats.leetcode.contestRank || "Top 1.8%"}).\n`;
+        const lc = stats.leetcode.solved;
+        dynamicContext += `- LeetCode: Solved ${lc?.total ?? "N/A"} problems (${lc?.easy ?? 0} easy, ${lc?.medium ?? 0} medium, ${lc?.hard ?? 0} hard). Acceptance rate is ${stats.leetcode.acceptance ?? "N/A"}. Contest rating is ${stats.leetcode.contestRating ?? "N/A"} (${stats.leetcode.contestRank ?? "N/A"}).\n`;
       }
       if (stats.codeforces) {
-        dynamicContext += `- Codeforces: Rating ${stats.codeforces.rating || 1684} (Max Rating ${stats.codeforces.maxRating || 1720}), Rank ${stats.codeforces.rank || "expert"}, Solved ${stats.codeforces.solved || 382} problems.\n`;
+        dynamicContext += `- Codeforces: Rating ${stats.codeforces.rating ?? "N/A"} (Max Rating ${stats.codeforces.maxRating ?? "N/A"}), Rank ${stats.codeforces.rank ?? "N/A"}, Solved ${stats.codeforces.solved ?? "N/A"} problems.\n`;
       }
       if (stats.codechef) {
-        dynamicContext += `- CodeChef: Rating ${stats.codechef.rating || 1892}, Global Rank ${stats.codechef.globalRank || 1482}, ${stats.codechef.stars || "4 Star"} coder.\n`;
+        dynamicContext += `- CodeChef: Rating ${stats.codechef.rating ?? "N/A"}, Global Rank ${stats.codechef.globalRank ?? "N/A"}, ${stats.codechef.stars ?? "N/A"} coder.\n`;
       }
       if (stats.geeksforgeeks) {
-        dynamicContext += `- GeeksforGeeks: Coding Score ${stats.geeksforgeeks.codingScore || 1480}, Institution Rank ${stats.geeksforgeeks.institutionRank || 42}, Solved ${stats.geeksforgeeks.solved || 312} problems.\n`;
+        dynamicContext += `- GeeksforGeeks: Coding Score ${stats.geeksforgeeks.codingScore ?? "N/A"}, Institution Rank ${stats.geeksforgeeks.institutionRank ?? "N/A"}, Solved ${stats.geeksforgeeks.solved ?? "N/A"} problems.\n`;
       }
-      dynamicContext += `- Profile Aura Score: ${stats.auraScore || 94}/100\n`;
+      if (stats.scores?.overallScore) {
+        dynamicContext += `- Overall Developer Score: ${stats.scores.overallScore}/100\n`;
+      }
       if (stats.github) {
-        dynamicContext += `- GitHub Sync Metrics: Total Commits ${stats.github.metrics?.totalCommits || 1482}, PRs ${stats.github.metrics?.totalPRs || 92}, Stars ${stats.github.metrics?.totalStars || 149}, Forks ${stats.github.metrics?.totalForks || 1}.\n`;
+        dynamicContext += `- GitHub Sync Metrics: Total Commits ${stats.github.metrics?.totalCommits ?? "N/A"}, PRs ${stats.github.metrics?.totalPRs ?? "N/A"}, Stars ${stats.github.metrics?.totalStars ?? "N/A"}, Forks ${stats.github.metrics?.totalForks ?? "N/A"}.\n`;
         if (stats.github.recentRepos && stats.github.recentRepos.length > 0) {
           dynamicContext += `- GitHub Repositories:\n`;
-          stats.github.recentRepos.forEach((repo: any) => {
+          stats.github.recentRepos.forEach((repo: { name: string; desc: string; stars: number; forks: number; language: string }) => {
             dynamicContext += `  * ${repo.name}: ${repo.desc} (${repo.stars} stars, ${repo.forks} forks, Language: ${repo.language})\n`;
           });
         }
       }
+    } else {
+      dynamicContext += `\n### Sync Coding Stats\nNo synced coding statistics available.\n`;
     }
 
     if (projects && projects.length > 0) {
@@ -129,13 +134,9 @@ He is expected to graduate in 2027.
 - CodeChef: https://www.codechef.com/users/hemantraj_2005
 - HackerRank: https://www.hackerrank.com/profile/hemantraj_2005
 - AtCoder: https://atcoder.jp/users/HemantRaj_2005
-- GitHub metrics: 1482 total commits, 92 PRs, 194 stars, 48 forks, streak of 42.
+- GitHub metrics: Use synced data from Dynamic Portfolio Database Data section below when available.
 - Programming stack/languages: TypeScript, React/TSX, Python, GLSL Shaders, C++.
-- Aura Score: 94/100.
-- LeetCode metrics: 642 total solved problems (215 easy, 310 medium, 117 hard), acceptance rate 68.4%, streak 124, contest rating 1942, contest rank in top 1.8%.
-- Codeforces metrics: rating 1684 (max rating 1720), rank expert, solved 382.
-- CodeChef metrics: 4 Star, rating 1892, global rank 1482, solved 242.
-- GeeksforGeeks metrics: coding score 1480, institution rank 42, solved 312.
+- LeetCode, Codeforces, CodeChef, GeeksforGeeks metrics: Use synced data from Dynamic Portfolio Database Data section below when available.
 - Weakest DSA: Dynamic Programming (Knapsack & Multi-stage Decision Trees).
 - Most Consistent Period: Q1 2026: 94 Consecutive Days Active.
 - Best Performing Topics: Binary Trees & Graph Traversals (DFS/BFS).

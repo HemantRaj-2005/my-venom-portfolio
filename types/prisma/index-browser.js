@@ -268,8 +268,13 @@ exports.Prisma.DevProfileScalarFieldEnum = {
   hackerrank: 'hackerrank',
   atcoder: 'atcoder',
   hackerearth: 'hackerearth',
+  stackoverflow: 'stackoverflow',
+  devto: 'devto',
+  kaggle: 'kaggle',
   resumeUrl: 'resumeUrl',
   statsCache: 'statsCache',
+  platformVisibility: 'platformVisibility',
+  aiInsightsEnabled: 'aiInsightsEnabled',
   updatedAt: 'updatedAt'
 };
 
@@ -302,11 +307,15 @@ exports.Prisma.GithubProfileScalarFieldEnum = {
   followers: 'followers',
   following: 'following',
   publicRepos: 'publicRepos',
+  privateRepos: 'privateRepos',
+  archivedRepos: 'archivedRepos',
+  forkedRepos: 'forkedRepos',
   totalStars: 'totalStars',
   totalForks: 'totalForks',
   totalPRs: 'totalPRs',
   totalIssues: 'totalIssues',
   totalCommits: 'totalCommits',
+  activeDays: 'activeDays',
   streak: 'streak',
   languages: 'languages',
   heatmap: 'heatmap',
@@ -441,9 +450,71 @@ exports.Prisma.AtcoderProfileScalarFieldEnum = {
   id: 'id',
   username: 'username',
   rating: 'rating',
+  maxRating: 'maxRating',
   rank: 'rank',
   challenges: 'challenges',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HackerrankHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  rating: 'rating',
+  challenges: 'challenges',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.HackerearthHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  rating: 'rating',
+  challenges: 'challenges',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AtcoderHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  rating: 'rating',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.StackoverflowHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  reputation: 'reputation',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.DevtoHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  articles: 'articles',
+  reactions: 'reactions',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.KaggleHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  points: 'points',
+  rank: 'rank',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SyncLogScalarFieldEnum = {
+  id: 'id',
+  platform: 'platform',
+  status: 'status',
+  message: 'message',
+  duration: 'duration',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.StackoverflowProfileScalarFieldEnum = {
@@ -564,6 +635,13 @@ exports.Prisma.ModelName = {
   HackerrankProfile: 'HackerrankProfile',
   HackerearthProfile: 'HackerearthProfile',
   AtcoderProfile: 'AtcoderProfile',
+  HackerrankHistory: 'HackerrankHistory',
+  HackerearthHistory: 'HackerearthHistory',
+  AtcoderHistory: 'AtcoderHistory',
+  StackoverflowHistory: 'StackoverflowHistory',
+  DevtoHistory: 'DevtoHistory',
+  KaggleHistory: 'KaggleHistory',
+  SyncLog: 'SyncLog',
   StackoverflowProfile: 'StackoverflowProfile',
   DevtoProfile: 'DevtoProfile',
   LinkedinProfile: 'LinkedinProfile',

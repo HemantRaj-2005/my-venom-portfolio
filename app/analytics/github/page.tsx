@@ -12,11 +12,21 @@ import { GitBranch, Star, GitFork, Users, BookOpen, Clock, Activity } from "luci
 export default function GitHubAnalytics() {
   const { stats, profile } = useAnalytics();
 
-  if (!profile?.github || !stats?.github?.profile?.name) {
+  if (!profile?.github || !stats?.github) {
     return <AnalyticsEmptyState platformName="GitHub" />;
   }
 
-  const gh = stats.github;
+  const gh = stats.github as {
+    profile: { name?: string; followers: number; following: number; publicRepos: number };
+    metrics: { totalStars: number; totalForks: number; totalPRs: number; totalCommits: number; totalIssues: number };
+    languages: { name: string; percent: number; color: string }[];
+    growth: { month: string; repos: number; stars: number }[];
+    recentRepos: { name: string; desc: string; stars: number; forks: number; language: string; url: string }[];
+  };
+
+  if (!gh.profile?.name) {
+    return <AnalyticsEmptyState platformName="GitHub" />;
+  }
 
   return (
     <div className="space-y-8 font-sans">

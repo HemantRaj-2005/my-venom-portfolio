@@ -149,6 +149,41 @@ export type HackerearthProfile = $Result.DefaultSelection<Prisma.$HackerearthPro
  */
 export type AtcoderProfile = $Result.DefaultSelection<Prisma.$AtcoderProfilePayload>
 /**
+ * Model HackerrankHistory
+ * 
+ */
+export type HackerrankHistory = $Result.DefaultSelection<Prisma.$HackerrankHistoryPayload>
+/**
+ * Model HackerearthHistory
+ * 
+ */
+export type HackerearthHistory = $Result.DefaultSelection<Prisma.$HackerearthHistoryPayload>
+/**
+ * Model AtcoderHistory
+ * 
+ */
+export type AtcoderHistory = $Result.DefaultSelection<Prisma.$AtcoderHistoryPayload>
+/**
+ * Model StackoverflowHistory
+ * 
+ */
+export type StackoverflowHistory = $Result.DefaultSelection<Prisma.$StackoverflowHistoryPayload>
+/**
+ * Model DevtoHistory
+ * 
+ */
+export type DevtoHistory = $Result.DefaultSelection<Prisma.$DevtoHistoryPayload>
+/**
+ * Model KaggleHistory
+ * 
+ */
+export type KaggleHistory = $Result.DefaultSelection<Prisma.$KaggleHistoryPayload>
+/**
+ * Model SyncLog
+ * 
+ */
+export type SyncLog = $Result.DefaultSelection<Prisma.$SyncLogPayload>
+/**
  * Model StackoverflowProfile
  * 
  */
@@ -548,6 +583,76 @@ export class PrismaClient<
     * ```
     */
   get atcoderProfile(): Prisma.AtcoderProfileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.hackerrankHistory`: Exposes CRUD operations for the **HackerrankHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HackerrankHistories
+    * const hackerrankHistories = await prisma.hackerrankHistory.findMany()
+    * ```
+    */
+  get hackerrankHistory(): Prisma.HackerrankHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.hackerearthHistory`: Exposes CRUD operations for the **HackerearthHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HackerearthHistories
+    * const hackerearthHistories = await prisma.hackerearthHistory.findMany()
+    * ```
+    */
+  get hackerearthHistory(): Prisma.HackerearthHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.atcoderHistory`: Exposes CRUD operations for the **AtcoderHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AtcoderHistories
+    * const atcoderHistories = await prisma.atcoderHistory.findMany()
+    * ```
+    */
+  get atcoderHistory(): Prisma.AtcoderHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.stackoverflowHistory`: Exposes CRUD operations for the **StackoverflowHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StackoverflowHistories
+    * const stackoverflowHistories = await prisma.stackoverflowHistory.findMany()
+    * ```
+    */
+  get stackoverflowHistory(): Prisma.StackoverflowHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.devtoHistory`: Exposes CRUD operations for the **DevtoHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DevtoHistories
+    * const devtoHistories = await prisma.devtoHistory.findMany()
+    * ```
+    */
+  get devtoHistory(): Prisma.DevtoHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.kaggleHistory`: Exposes CRUD operations for the **KaggleHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more KaggleHistories
+    * const kaggleHistories = await prisma.kaggleHistory.findMany()
+    * ```
+    */
+  get kaggleHistory(): Prisma.KaggleHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.syncLog`: Exposes CRUD operations for the **SyncLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SyncLogs
+    * const syncLogs = await prisma.syncLog.findMany()
+    * ```
+    */
+  get syncLog(): Prisma.SyncLogDelegate<ExtArgs>;
 
   /**
    * `prisma.stackoverflowProfile`: Exposes CRUD operations for the **StackoverflowProfile** model.
@@ -1096,6 +1201,13 @@ export namespace Prisma {
     HackerrankProfile: 'HackerrankProfile',
     HackerearthProfile: 'HackerearthProfile',
     AtcoderProfile: 'AtcoderProfile',
+    HackerrankHistory: 'HackerrankHistory',
+    HackerearthHistory: 'HackerearthHistory',
+    AtcoderHistory: 'AtcoderHistory',
+    StackoverflowHistory: 'StackoverflowHistory',
+    DevtoHistory: 'DevtoHistory',
+    KaggleHistory: 'KaggleHistory',
+    SyncLog: 'SyncLog',
     StackoverflowProfile: 'StackoverflowProfile',
     DevtoProfile: 'DevtoProfile',
     LinkedinProfile: 'LinkedinProfile',
@@ -1119,7 +1231,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "lead" | "product" | "rating" | "project" | "post" | "comment" | "visitorLog" | "callbackRequest" | "contactMessage" | "newsletterSubscriber" | "devProfile" | "faq" | "experience" | "githubProfile" | "githubHistory" | "leetcodeProfile" | "leetcodeHistory" | "codeforcesProfile" | "codeforcesHistory" | "codechefProfile" | "codechefHistory" | "gfgProfile" | "gfgHistory" | "hackerrankProfile" | "hackerearthProfile" | "atcoderProfile" | "stackoverflowProfile" | "devtoProfile" | "linkedinProfile" | "kaggleProfile" | "contestHistory" | "activityHistory" | "aiReport" | "analyticsSnapshot"
+      modelProps: "user" | "lead" | "product" | "rating" | "project" | "post" | "comment" | "visitorLog" | "callbackRequest" | "contactMessage" | "newsletterSubscriber" | "devProfile" | "faq" | "experience" | "githubProfile" | "githubHistory" | "leetcodeProfile" | "leetcodeHistory" | "codeforcesProfile" | "codeforcesHistory" | "codechefProfile" | "codechefHistory" | "gfgProfile" | "gfgHistory" | "hackerrankProfile" | "hackerearthProfile" | "atcoderProfile" | "hackerrankHistory" | "hackerearthHistory" | "atcoderHistory" | "stackoverflowHistory" | "devtoHistory" | "kaggleHistory" | "syncLog" | "stackoverflowProfile" | "devtoProfile" | "linkedinProfile" | "kaggleProfile" | "contestHistory" | "activityHistory" | "aiReport" | "analyticsSnapshot"
       txIsolationLevel: never
     }
     model: {
@@ -3118,6 +3230,524 @@ export namespace Prisma {
           count: {
             args: Prisma.AtcoderProfileCountArgs<ExtArgs>
             result: $Utils.Optional<AtcoderProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      HackerrankHistory: {
+        payload: Prisma.$HackerrankHistoryPayload<ExtArgs>
+        fields: Prisma.HackerrankHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HackerrankHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HackerrankHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.HackerrankHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HackerrankHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.HackerrankHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.HackerrankHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.HackerrankHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.HackerrankHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          update: {
+            args: Prisma.HackerrankHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.HackerrankHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HackerrankHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.HackerrankHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerrankHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.HackerrankHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHackerrankHistory>
+          }
+          groupBy: {
+            args: Prisma.HackerrankHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HackerrankHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.HackerrankHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.HackerrankHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.HackerrankHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<HackerrankHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      HackerearthHistory: {
+        payload: Prisma.$HackerearthHistoryPayload<ExtArgs>
+        fields: Prisma.HackerearthHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HackerearthHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HackerearthHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.HackerearthHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HackerearthHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.HackerearthHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.HackerearthHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.HackerearthHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.HackerearthHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          update: {
+            args: Prisma.HackerearthHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.HackerearthHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HackerearthHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.HackerearthHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HackerearthHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.HackerearthHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHackerearthHistory>
+          }
+          groupBy: {
+            args: Prisma.HackerearthHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HackerearthHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.HackerearthHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.HackerearthHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.HackerearthHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<HackerearthHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      AtcoderHistory: {
+        payload: Prisma.$AtcoderHistoryPayload<ExtArgs>
+        fields: Prisma.AtcoderHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AtcoderHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AtcoderHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.AtcoderHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AtcoderHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.AtcoderHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.AtcoderHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.AtcoderHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AtcoderHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          update: {
+            args: Prisma.AtcoderHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.AtcoderHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AtcoderHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AtcoderHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtcoderHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.AtcoderHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAtcoderHistory>
+          }
+          groupBy: {
+            args: Prisma.AtcoderHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AtcoderHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.AtcoderHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.AtcoderHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.AtcoderHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<AtcoderHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      StackoverflowHistory: {
+        payload: Prisma.$StackoverflowHistoryPayload<ExtArgs>
+        fields: Prisma.StackoverflowHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StackoverflowHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StackoverflowHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.StackoverflowHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StackoverflowHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.StackoverflowHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.StackoverflowHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.StackoverflowHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.StackoverflowHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          update: {
+            args: Prisma.StackoverflowHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.StackoverflowHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StackoverflowHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.StackoverflowHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StackoverflowHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.StackoverflowHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStackoverflowHistory>
+          }
+          groupBy: {
+            args: Prisma.StackoverflowHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StackoverflowHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.StackoverflowHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.StackoverflowHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.StackoverflowHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<StackoverflowHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      DevtoHistory: {
+        payload: Prisma.$DevtoHistoryPayload<ExtArgs>
+        fields: Prisma.DevtoHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DevtoHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DevtoHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.DevtoHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DevtoHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.DevtoHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.DevtoHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.DevtoHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.DevtoHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          update: {
+            args: Prisma.DevtoHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.DevtoHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DevtoHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DevtoHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DevtoHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.DevtoHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDevtoHistory>
+          }
+          groupBy: {
+            args: Prisma.DevtoHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DevtoHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.DevtoHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.DevtoHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.DevtoHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<DevtoHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      KaggleHistory: {
+        payload: Prisma.$KaggleHistoryPayload<ExtArgs>
+        fields: Prisma.KaggleHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KaggleHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KaggleHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.KaggleHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KaggleHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.KaggleHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.KaggleHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.KaggleHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.KaggleHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          update: {
+            args: Prisma.KaggleHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.KaggleHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KaggleHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.KaggleHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KaggleHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.KaggleHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKaggleHistory>
+          }
+          groupBy: {
+            args: Prisma.KaggleHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KaggleHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.KaggleHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.KaggleHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.KaggleHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<KaggleHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      SyncLog: {
+        payload: Prisma.$SyncLogPayload<ExtArgs>
+        fields: Prisma.SyncLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SyncLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SyncLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          findFirst: {
+            args: Prisma.SyncLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SyncLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          findMany: {
+            args: Prisma.SyncLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>[]
+          }
+          create: {
+            args: Prisma.SyncLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          createMany: {
+            args: Prisma.SyncLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SyncLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          update: {
+            args: Prisma.SyncLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.SyncLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SyncLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SyncLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SyncLogPayload>
+          }
+          aggregate: {
+            args: Prisma.SyncLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSyncLog>
+          }
+          groupBy: {
+            args: Prisma.SyncLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SyncLogGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.SyncLogFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.SyncLogAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.SyncLogCountArgs<ExtArgs>
+            result: $Utils.Optional<SyncLogCountAggregateOutputType> | number
           }
         }
       }
@@ -14566,8 +15196,13 @@ export namespace Prisma {
     hackerrank: string | null
     atcoder: string | null
     hackerearth: string | null
+    stackoverflow: string | null
+    devto: string | null
+    kaggle: string | null
     resumeUrl: string | null
     statsCache: string | null
+    platformVisibility: string | null
+    aiInsightsEnabled: boolean | null
     updatedAt: Date | null
   }
 
@@ -14583,8 +15218,13 @@ export namespace Prisma {
     hackerrank: string | null
     atcoder: string | null
     hackerearth: string | null
+    stackoverflow: string | null
+    devto: string | null
+    kaggle: string | null
     resumeUrl: string | null
     statsCache: string | null
+    platformVisibility: string | null
+    aiInsightsEnabled: boolean | null
     updatedAt: Date | null
   }
 
@@ -14601,8 +15241,13 @@ export namespace Prisma {
     hackerrank: number
     atcoder: number
     hackerearth: number
+    stackoverflow: number
+    devto: number
+    kaggle: number
     resumeUrl: number
     statsCache: number
+    platformVisibility: number
+    aiInsightsEnabled: number
     updatedAt: number
     _all: number
   }
@@ -14620,8 +15265,13 @@ export namespace Prisma {
     hackerrank?: true
     atcoder?: true
     hackerearth?: true
+    stackoverflow?: true
+    devto?: true
+    kaggle?: true
     resumeUrl?: true
     statsCache?: true
+    platformVisibility?: true
+    aiInsightsEnabled?: true
     updatedAt?: true
   }
 
@@ -14637,8 +15287,13 @@ export namespace Prisma {
     hackerrank?: true
     atcoder?: true
     hackerearth?: true
+    stackoverflow?: true
+    devto?: true
+    kaggle?: true
     resumeUrl?: true
     statsCache?: true
+    platformVisibility?: true
+    aiInsightsEnabled?: true
     updatedAt?: true
   }
 
@@ -14655,8 +15310,13 @@ export namespace Prisma {
     hackerrank?: true
     atcoder?: true
     hackerearth?: true
+    stackoverflow?: true
+    devto?: true
+    kaggle?: true
     resumeUrl?: true
     statsCache?: true
+    platformVisibility?: true
+    aiInsightsEnabled?: true
     updatedAt?: true
     _all?: true
   }
@@ -14746,8 +15406,13 @@ export namespace Prisma {
     hackerrank: string | null
     atcoder: string | null
     hackerearth: string | null
+    stackoverflow: string | null
+    devto: string | null
+    kaggle: string | null
     resumeUrl: string | null
     statsCache: string | null
+    platformVisibility: string | null
+    aiInsightsEnabled: boolean
     updatedAt: Date
     _count: DevProfileCountAggregateOutputType | null
     _min: DevProfileMinAggregateOutputType | null
@@ -14781,8 +15446,13 @@ export namespace Prisma {
     hackerrank?: boolean
     atcoder?: boolean
     hackerearth?: boolean
+    stackoverflow?: boolean
+    devto?: boolean
+    kaggle?: boolean
     resumeUrl?: boolean
     statsCache?: boolean
+    platformVisibility?: boolean
+    aiInsightsEnabled?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["devProfile"]>
 
@@ -14800,8 +15470,13 @@ export namespace Prisma {
     hackerrank?: boolean
     atcoder?: boolean
     hackerearth?: boolean
+    stackoverflow?: boolean
+    devto?: boolean
+    kaggle?: boolean
     resumeUrl?: boolean
     statsCache?: boolean
+    platformVisibility?: boolean
+    aiInsightsEnabled?: boolean
     updatedAt?: boolean
   }
 
@@ -14822,8 +15497,13 @@ export namespace Prisma {
       hackerrank: string | null
       atcoder: string | null
       hackerearth: string | null
+      stackoverflow: string | null
+      devto: string | null
+      kaggle: string | null
       resumeUrl: string | null
       statsCache: string | null
+      platformVisibility: string | null
+      aiInsightsEnabled: boolean
       updatedAt: Date
     }, ExtArgs["result"]["devProfile"]>
     composites: {}
@@ -15229,8 +15909,13 @@ export namespace Prisma {
     readonly hackerrank: FieldRef<"DevProfile", 'String'>
     readonly atcoder: FieldRef<"DevProfile", 'String'>
     readonly hackerearth: FieldRef<"DevProfile", 'String'>
+    readonly stackoverflow: FieldRef<"DevProfile", 'String'>
+    readonly devto: FieldRef<"DevProfile", 'String'>
+    readonly kaggle: FieldRef<"DevProfile", 'String'>
     readonly resumeUrl: FieldRef<"DevProfile", 'String'>
     readonly statsCache: FieldRef<"DevProfile", 'String'>
+    readonly platformVisibility: FieldRef<"DevProfile", 'String'>
+    readonly aiInsightsEnabled: FieldRef<"DevProfile", 'Boolean'>
     readonly updatedAt: FieldRef<"DevProfile", 'DateTime'>
   }
     
@@ -17413,11 +18098,15 @@ export namespace Prisma {
     followers: number | null
     following: number | null
     publicRepos: number | null
+    privateRepos: number | null
+    archivedRepos: number | null
+    forkedRepos: number | null
     totalStars: number | null
     totalForks: number | null
     totalPRs: number | null
     totalIssues: number | null
     totalCommits: number | null
+    activeDays: number | null
     streak: number | null
   }
 
@@ -17425,11 +18114,15 @@ export namespace Prisma {
     followers: number | null
     following: number | null
     publicRepos: number | null
+    privateRepos: number | null
+    archivedRepos: number | null
+    forkedRepos: number | null
     totalStars: number | null
     totalForks: number | null
     totalPRs: number | null
     totalIssues: number | null
     totalCommits: number | null
+    activeDays: number | null
     streak: number | null
   }
 
@@ -17443,11 +18136,15 @@ export namespace Prisma {
     followers: number | null
     following: number | null
     publicRepos: number | null
+    privateRepos: number | null
+    archivedRepos: number | null
+    forkedRepos: number | null
     totalStars: number | null
     totalForks: number | null
     totalPRs: number | null
     totalIssues: number | null
     totalCommits: number | null
+    activeDays: number | null
     streak: number | null
     languages: string | null
     heatmap: string | null
@@ -17466,11 +18163,15 @@ export namespace Prisma {
     followers: number | null
     following: number | null
     publicRepos: number | null
+    privateRepos: number | null
+    archivedRepos: number | null
+    forkedRepos: number | null
     totalStars: number | null
     totalForks: number | null
     totalPRs: number | null
     totalIssues: number | null
     totalCommits: number | null
+    activeDays: number | null
     streak: number | null
     languages: string | null
     heatmap: string | null
@@ -17489,11 +18190,15 @@ export namespace Prisma {
     followers: number
     following: number
     publicRepos: number
+    privateRepos: number
+    archivedRepos: number
+    forkedRepos: number
     totalStars: number
     totalForks: number
     totalPRs: number
     totalIssues: number
     totalCommits: number
+    activeDays: number
     streak: number
     languages: number
     heatmap: number
@@ -17508,11 +18213,15 @@ export namespace Prisma {
     followers?: true
     following?: true
     publicRepos?: true
+    privateRepos?: true
+    archivedRepos?: true
+    forkedRepos?: true
     totalStars?: true
     totalForks?: true
     totalPRs?: true
     totalIssues?: true
     totalCommits?: true
+    activeDays?: true
     streak?: true
   }
 
@@ -17520,11 +18229,15 @@ export namespace Prisma {
     followers?: true
     following?: true
     publicRepos?: true
+    privateRepos?: true
+    archivedRepos?: true
+    forkedRepos?: true
     totalStars?: true
     totalForks?: true
     totalPRs?: true
     totalIssues?: true
     totalCommits?: true
+    activeDays?: true
     streak?: true
   }
 
@@ -17538,11 +18251,15 @@ export namespace Prisma {
     followers?: true
     following?: true
     publicRepos?: true
+    privateRepos?: true
+    archivedRepos?: true
+    forkedRepos?: true
     totalStars?: true
     totalForks?: true
     totalPRs?: true
     totalIssues?: true
     totalCommits?: true
+    activeDays?: true
     streak?: true
     languages?: true
     heatmap?: true
@@ -17561,11 +18278,15 @@ export namespace Prisma {
     followers?: true
     following?: true
     publicRepos?: true
+    privateRepos?: true
+    archivedRepos?: true
+    forkedRepos?: true
     totalStars?: true
     totalForks?: true
     totalPRs?: true
     totalIssues?: true
     totalCommits?: true
+    activeDays?: true
     streak?: true
     languages?: true
     heatmap?: true
@@ -17584,11 +18305,15 @@ export namespace Prisma {
     followers?: true
     following?: true
     publicRepos?: true
+    privateRepos?: true
+    archivedRepos?: true
+    forkedRepos?: true
     totalStars?: true
     totalForks?: true
     totalPRs?: true
     totalIssues?: true
     totalCommits?: true
+    activeDays?: true
     streak?: true
     languages?: true
     heatmap?: true
@@ -17694,11 +18419,15 @@ export namespace Prisma {
     followers: number
     following: number
     publicRepos: number
+    privateRepos: number
+    archivedRepos: number
+    forkedRepos: number
     totalStars: number
     totalForks: number
     totalPRs: number
     totalIssues: number
     totalCommits: number
+    activeDays: number
     streak: number
     languages: string | null
     heatmap: string | null
@@ -17736,11 +18465,15 @@ export namespace Prisma {
     followers?: boolean
     following?: boolean
     publicRepos?: boolean
+    privateRepos?: boolean
+    archivedRepos?: boolean
+    forkedRepos?: boolean
     totalStars?: boolean
     totalForks?: boolean
     totalPRs?: boolean
     totalIssues?: boolean
     totalCommits?: boolean
+    activeDays?: boolean
     streak?: boolean
     languages?: boolean
     heatmap?: boolean
@@ -17760,11 +18493,15 @@ export namespace Prisma {
     followers?: boolean
     following?: boolean
     publicRepos?: boolean
+    privateRepos?: boolean
+    archivedRepos?: boolean
+    forkedRepos?: boolean
     totalStars?: boolean
     totalForks?: boolean
     totalPRs?: boolean
     totalIssues?: boolean
     totalCommits?: boolean
+    activeDays?: boolean
     streak?: boolean
     languages?: boolean
     heatmap?: boolean
@@ -17787,11 +18524,15 @@ export namespace Prisma {
       followers: number
       following: number
       publicRepos: number
+      privateRepos: number
+      archivedRepos: number
+      forkedRepos: number
       totalStars: number
       totalForks: number
       totalPRs: number
       totalIssues: number
       totalCommits: number
+      activeDays: number
       streak: number
       languages: string | null
       heatmap: string | null
@@ -18199,11 +18940,15 @@ export namespace Prisma {
     readonly followers: FieldRef<"GithubProfile", 'Int'>
     readonly following: FieldRef<"GithubProfile", 'Int'>
     readonly publicRepos: FieldRef<"GithubProfile", 'Int'>
+    readonly privateRepos: FieldRef<"GithubProfile", 'Int'>
+    readonly archivedRepos: FieldRef<"GithubProfile", 'Int'>
+    readonly forkedRepos: FieldRef<"GithubProfile", 'Int'>
     readonly totalStars: FieldRef<"GithubProfile", 'Int'>
     readonly totalForks: FieldRef<"GithubProfile", 'Int'>
     readonly totalPRs: FieldRef<"GithubProfile", 'Int'>
     readonly totalIssues: FieldRef<"GithubProfile", 'Int'>
     readonly totalCommits: FieldRef<"GithubProfile", 'Int'>
+    readonly activeDays: FieldRef<"GithubProfile", 'Int'>
     readonly streak: FieldRef<"GithubProfile", 'Int'>
     readonly languages: FieldRef<"GithubProfile", 'String'>
     readonly heatmap: FieldRef<"GithubProfile", 'String'>
@@ -29070,12 +29815,14 @@ export namespace Prisma {
 
   export type AtcoderProfileAvgAggregateOutputType = {
     rating: number | null
+    maxRating: number | null
     rank: number | null
     challenges: number | null
   }
 
   export type AtcoderProfileSumAggregateOutputType = {
     rating: number | null
+    maxRating: number | null
     rank: number | null
     challenges: number | null
   }
@@ -29084,6 +29831,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     rating: number | null
+    maxRating: number | null
     rank: number | null
     challenges: number | null
     updatedAt: Date | null
@@ -29093,6 +29841,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     rating: number | null
+    maxRating: number | null
     rank: number | null
     challenges: number | null
     updatedAt: Date | null
@@ -29102,6 +29851,7 @@ export namespace Prisma {
     id: number
     username: number
     rating: number
+    maxRating: number
     rank: number
     challenges: number
     updatedAt: number
@@ -29111,12 +29861,14 @@ export namespace Prisma {
 
   export type AtcoderProfileAvgAggregateInputType = {
     rating?: true
+    maxRating?: true
     rank?: true
     challenges?: true
   }
 
   export type AtcoderProfileSumAggregateInputType = {
     rating?: true
+    maxRating?: true
     rank?: true
     challenges?: true
   }
@@ -29125,6 +29877,7 @@ export namespace Prisma {
     id?: true
     username?: true
     rating?: true
+    maxRating?: true
     rank?: true
     challenges?: true
     updatedAt?: true
@@ -29134,6 +29887,7 @@ export namespace Prisma {
     id?: true
     username?: true
     rating?: true
+    maxRating?: true
     rank?: true
     challenges?: true
     updatedAt?: true
@@ -29143,6 +29897,7 @@ export namespace Prisma {
     id?: true
     username?: true
     rating?: true
+    maxRating?: true
     rank?: true
     challenges?: true
     updatedAt?: true
@@ -29239,6 +29994,7 @@ export namespace Prisma {
     id: string
     username: string
     rating: number
+    maxRating: number
     rank: number
     challenges: number
     updatedAt: Date
@@ -29267,6 +30023,7 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     rating?: boolean
+    maxRating?: boolean
     rank?: boolean
     challenges?: boolean
     updatedAt?: boolean
@@ -29277,6 +30034,7 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     rating?: boolean
+    maxRating?: boolean
     rank?: boolean
     challenges?: boolean
     updatedAt?: boolean
@@ -29290,6 +30048,7 @@ export namespace Prisma {
       id: string
       username: string
       rating: number
+      maxRating: number
       rank: number
       challenges: number
       updatedAt: Date
@@ -29688,6 +30447,7 @@ export namespace Prisma {
     readonly id: FieldRef<"AtcoderProfile", 'String'>
     readonly username: FieldRef<"AtcoderProfile", 'String'>
     readonly rating: FieldRef<"AtcoderProfile", 'Int'>
+    readonly maxRating: FieldRef<"AtcoderProfile", 'Int'>
     readonly rank: FieldRef<"AtcoderProfile", 'Int'>
     readonly challenges: FieldRef<"AtcoderProfile", 'Int'>
     readonly updatedAt: FieldRef<"AtcoderProfile", 'DateTime'>
@@ -29988,6 +30748,6489 @@ export namespace Prisma {
      * Select specific fields to fetch from the AtcoderProfile
      */
     select?: AtcoderProfileSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HackerrankHistory
+   */
+
+  export type AggregateHackerrankHistory = {
+    _count: HackerrankHistoryCountAggregateOutputType | null
+    _avg: HackerrankHistoryAvgAggregateOutputType | null
+    _sum: HackerrankHistorySumAggregateOutputType | null
+    _min: HackerrankHistoryMinAggregateOutputType | null
+    _max: HackerrankHistoryMaxAggregateOutputType | null
+  }
+
+  export type HackerrankHistoryAvgAggregateOutputType = {
+    rating: number | null
+    challenges: number | null
+  }
+
+  export type HackerrankHistorySumAggregateOutputType = {
+    rating: number | null
+    challenges: number | null
+  }
+
+  export type HackerrankHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    challenges: number | null
+    createdAt: Date | null
+  }
+
+  export type HackerrankHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    challenges: number | null
+    createdAt: Date | null
+  }
+
+  export type HackerrankHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    rating: number
+    challenges: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HackerrankHistoryAvgAggregateInputType = {
+    rating?: true
+    challenges?: true
+  }
+
+  export type HackerrankHistorySumAggregateInputType = {
+    rating?: true
+    challenges?: true
+  }
+
+  export type HackerrankHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+  }
+
+  export type HackerrankHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+  }
+
+  export type HackerrankHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HackerrankHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HackerrankHistory to aggregate.
+     */
+    where?: HackerrankHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerrankHistories to fetch.
+     */
+    orderBy?: HackerrankHistoryOrderByWithRelationInput | HackerrankHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HackerrankHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerrankHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerrankHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HackerrankHistories
+    **/
+    _count?: true | HackerrankHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HackerrankHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HackerrankHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HackerrankHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HackerrankHistoryMaxAggregateInputType
+  }
+
+  export type GetHackerrankHistoryAggregateType<T extends HackerrankHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateHackerrankHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHackerrankHistory[P]>
+      : GetScalarType<T[P], AggregateHackerrankHistory[P]>
+  }
+
+
+
+
+  export type HackerrankHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HackerrankHistoryWhereInput
+    orderBy?: HackerrankHistoryOrderByWithAggregationInput | HackerrankHistoryOrderByWithAggregationInput[]
+    by: HackerrankHistoryScalarFieldEnum[] | HackerrankHistoryScalarFieldEnum
+    having?: HackerrankHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HackerrankHistoryCountAggregateInputType | true
+    _avg?: HackerrankHistoryAvgAggregateInputType
+    _sum?: HackerrankHistorySumAggregateInputType
+    _min?: HackerrankHistoryMinAggregateInputType
+    _max?: HackerrankHistoryMaxAggregateInputType
+  }
+
+  export type HackerrankHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    rating: number
+    challenges: number
+    createdAt: Date
+    _count: HackerrankHistoryCountAggregateOutputType | null
+    _avg: HackerrankHistoryAvgAggregateOutputType | null
+    _sum: HackerrankHistorySumAggregateOutputType | null
+    _min: HackerrankHistoryMinAggregateOutputType | null
+    _max: HackerrankHistoryMaxAggregateOutputType | null
+  }
+
+  type GetHackerrankHistoryGroupByPayload<T extends HackerrankHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HackerrankHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HackerrankHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HackerrankHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], HackerrankHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HackerrankHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    challenges?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hackerrankHistory"]>
+
+
+  export type HackerrankHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    challenges?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $HackerrankHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HackerrankHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      rating: number
+      challenges: number
+      createdAt: Date
+    }, ExtArgs["result"]["hackerrankHistory"]>
+    composites: {}
+  }
+
+  type HackerrankHistoryGetPayload<S extends boolean | null | undefined | HackerrankHistoryDefaultArgs> = $Result.GetResult<Prisma.$HackerrankHistoryPayload, S>
+
+  type HackerrankHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<HackerrankHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: HackerrankHistoryCountAggregateInputType | true
+    }
+
+  export interface HackerrankHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HackerrankHistory'], meta: { name: 'HackerrankHistory' } }
+    /**
+     * Find zero or one HackerrankHistory that matches the filter.
+     * @param {HackerrankHistoryFindUniqueArgs} args - Arguments to find a HackerrankHistory
+     * @example
+     * // Get one HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HackerrankHistoryFindUniqueArgs>(args: SelectSubset<T, HackerrankHistoryFindUniqueArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one HackerrankHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {HackerrankHistoryFindUniqueOrThrowArgs} args - Arguments to find a HackerrankHistory
+     * @example
+     * // Get one HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HackerrankHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, HackerrankHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first HackerrankHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryFindFirstArgs} args - Arguments to find a HackerrankHistory
+     * @example
+     * // Get one HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HackerrankHistoryFindFirstArgs>(args?: SelectSubset<T, HackerrankHistoryFindFirstArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first HackerrankHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryFindFirstOrThrowArgs} args - Arguments to find a HackerrankHistory
+     * @example
+     * // Get one HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HackerrankHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, HackerrankHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more HackerrankHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HackerrankHistories
+     * const hackerrankHistories = await prisma.hackerrankHistory.findMany()
+     * 
+     * // Get first 10 HackerrankHistories
+     * const hackerrankHistories = await prisma.hackerrankHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hackerrankHistoryWithIdOnly = await prisma.hackerrankHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HackerrankHistoryFindManyArgs>(args?: SelectSubset<T, HackerrankHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a HackerrankHistory.
+     * @param {HackerrankHistoryCreateArgs} args - Arguments to create a HackerrankHistory.
+     * @example
+     * // Create one HackerrankHistory
+     * const HackerrankHistory = await prisma.hackerrankHistory.create({
+     *   data: {
+     *     // ... data to create a HackerrankHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends HackerrankHistoryCreateArgs>(args: SelectSubset<T, HackerrankHistoryCreateArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many HackerrankHistories.
+     * @param {HackerrankHistoryCreateManyArgs} args - Arguments to create many HackerrankHistories.
+     * @example
+     * // Create many HackerrankHistories
+     * const hackerrankHistory = await prisma.hackerrankHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HackerrankHistoryCreateManyArgs>(args?: SelectSubset<T, HackerrankHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a HackerrankHistory.
+     * @param {HackerrankHistoryDeleteArgs} args - Arguments to delete one HackerrankHistory.
+     * @example
+     * // Delete one HackerrankHistory
+     * const HackerrankHistory = await prisma.hackerrankHistory.delete({
+     *   where: {
+     *     // ... filter to delete one HackerrankHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HackerrankHistoryDeleteArgs>(args: SelectSubset<T, HackerrankHistoryDeleteArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one HackerrankHistory.
+     * @param {HackerrankHistoryUpdateArgs} args - Arguments to update one HackerrankHistory.
+     * @example
+     * // Update one HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HackerrankHistoryUpdateArgs>(args: SelectSubset<T, HackerrankHistoryUpdateArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more HackerrankHistories.
+     * @param {HackerrankHistoryDeleteManyArgs} args - Arguments to filter HackerrankHistories to delete.
+     * @example
+     * // Delete a few HackerrankHistories
+     * const { count } = await prisma.hackerrankHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HackerrankHistoryDeleteManyArgs>(args?: SelectSubset<T, HackerrankHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HackerrankHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HackerrankHistories
+     * const hackerrankHistory = await prisma.hackerrankHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HackerrankHistoryUpdateManyArgs>(args: SelectSubset<T, HackerrankHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one HackerrankHistory.
+     * @param {HackerrankHistoryUpsertArgs} args - Arguments to update or create a HackerrankHistory.
+     * @example
+     * // Update or create a HackerrankHistory
+     * const hackerrankHistory = await prisma.hackerrankHistory.upsert({
+     *   create: {
+     *     // ... data to create a HackerrankHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HackerrankHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HackerrankHistoryUpsertArgs>(args: SelectSubset<T, HackerrankHistoryUpsertArgs<ExtArgs>>): Prisma__HackerrankHistoryClient<$Result.GetResult<Prisma.$HackerrankHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more HackerrankHistories that matches the filter.
+     * @param {HackerrankHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const hackerrankHistory = await prisma.hackerrankHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: HackerrankHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a HackerrankHistory.
+     * @param {HackerrankHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const hackerrankHistory = await prisma.hackerrankHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: HackerrankHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of HackerrankHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryCountArgs} args - Arguments to filter HackerrankHistories to count.
+     * @example
+     * // Count the number of HackerrankHistories
+     * const count = await prisma.hackerrankHistory.count({
+     *   where: {
+     *     // ... the filter for the HackerrankHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends HackerrankHistoryCountArgs>(
+      args?: Subset<T, HackerrankHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HackerrankHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HackerrankHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HackerrankHistoryAggregateArgs>(args: Subset<T, HackerrankHistoryAggregateArgs>): Prisma.PrismaPromise<GetHackerrankHistoryAggregateType<T>>
+
+    /**
+     * Group by HackerrankHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerrankHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HackerrankHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HackerrankHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: HackerrankHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HackerrankHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHackerrankHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HackerrankHistory model
+   */
+  readonly fields: HackerrankHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HackerrankHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HackerrankHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HackerrankHistory model
+   */ 
+  interface HackerrankHistoryFieldRefs {
+    readonly id: FieldRef<"HackerrankHistory", 'String'>
+    readonly username: FieldRef<"HackerrankHistory", 'String'>
+    readonly date: FieldRef<"HackerrankHistory", 'DateTime'>
+    readonly rating: FieldRef<"HackerrankHistory", 'Int'>
+    readonly challenges: FieldRef<"HackerrankHistory", 'Int'>
+    readonly createdAt: FieldRef<"HackerrankHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HackerrankHistory findUnique
+   */
+  export type HackerrankHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerrankHistory to fetch.
+     */
+    where: HackerrankHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerrankHistory findUniqueOrThrow
+   */
+  export type HackerrankHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerrankHistory to fetch.
+     */
+    where: HackerrankHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerrankHistory findFirst
+   */
+  export type HackerrankHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerrankHistory to fetch.
+     */
+    where?: HackerrankHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerrankHistories to fetch.
+     */
+    orderBy?: HackerrankHistoryOrderByWithRelationInput | HackerrankHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HackerrankHistories.
+     */
+    cursor?: HackerrankHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerrankHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerrankHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HackerrankHistories.
+     */
+    distinct?: HackerrankHistoryScalarFieldEnum | HackerrankHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerrankHistory findFirstOrThrow
+   */
+  export type HackerrankHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerrankHistory to fetch.
+     */
+    where?: HackerrankHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerrankHistories to fetch.
+     */
+    orderBy?: HackerrankHistoryOrderByWithRelationInput | HackerrankHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HackerrankHistories.
+     */
+    cursor?: HackerrankHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerrankHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerrankHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HackerrankHistories.
+     */
+    distinct?: HackerrankHistoryScalarFieldEnum | HackerrankHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerrankHistory findMany
+   */
+  export type HackerrankHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerrankHistories to fetch.
+     */
+    where?: HackerrankHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerrankHistories to fetch.
+     */
+    orderBy?: HackerrankHistoryOrderByWithRelationInput | HackerrankHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HackerrankHistories.
+     */
+    cursor?: HackerrankHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerrankHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerrankHistories.
+     */
+    skip?: number
+    distinct?: HackerrankHistoryScalarFieldEnum | HackerrankHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerrankHistory create
+   */
+  export type HackerrankHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a HackerrankHistory.
+     */
+    data: XOR<HackerrankHistoryCreateInput, HackerrankHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * HackerrankHistory createMany
+   */
+  export type HackerrankHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HackerrankHistories.
+     */
+    data: HackerrankHistoryCreateManyInput | HackerrankHistoryCreateManyInput[]
+  }
+
+  /**
+   * HackerrankHistory update
+   */
+  export type HackerrankHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a HackerrankHistory.
+     */
+    data: XOR<HackerrankHistoryUpdateInput, HackerrankHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which HackerrankHistory to update.
+     */
+    where: HackerrankHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerrankHistory updateMany
+   */
+  export type HackerrankHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HackerrankHistories.
+     */
+    data: XOR<HackerrankHistoryUpdateManyMutationInput, HackerrankHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which HackerrankHistories to update
+     */
+    where?: HackerrankHistoryWhereInput
+  }
+
+  /**
+   * HackerrankHistory upsert
+   */
+  export type HackerrankHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the HackerrankHistory to update in case it exists.
+     */
+    where: HackerrankHistoryWhereUniqueInput
+    /**
+     * In case the HackerrankHistory found by the `where` argument doesn't exist, create a new HackerrankHistory with this data.
+     */
+    create: XOR<HackerrankHistoryCreateInput, HackerrankHistoryUncheckedCreateInput>
+    /**
+     * In case the HackerrankHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HackerrankHistoryUpdateInput, HackerrankHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * HackerrankHistory delete
+   */
+  export type HackerrankHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+    /**
+     * Filter which HackerrankHistory to delete.
+     */
+    where: HackerrankHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerrankHistory deleteMany
+   */
+  export type HackerrankHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HackerrankHistories to delete
+     */
+    where?: HackerrankHistoryWhereInput
+  }
+
+  /**
+   * HackerrankHistory findRaw
+   */
+  export type HackerrankHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * HackerrankHistory aggregateRaw
+   */
+  export type HackerrankHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * HackerrankHistory without action
+   */
+  export type HackerrankHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerrankHistory
+     */
+    select?: HackerrankHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HackerearthHistory
+   */
+
+  export type AggregateHackerearthHistory = {
+    _count: HackerearthHistoryCountAggregateOutputType | null
+    _avg: HackerearthHistoryAvgAggregateOutputType | null
+    _sum: HackerearthHistorySumAggregateOutputType | null
+    _min: HackerearthHistoryMinAggregateOutputType | null
+    _max: HackerearthHistoryMaxAggregateOutputType | null
+  }
+
+  export type HackerearthHistoryAvgAggregateOutputType = {
+    rating: number | null
+    challenges: number | null
+  }
+
+  export type HackerearthHistorySumAggregateOutputType = {
+    rating: number | null
+    challenges: number | null
+  }
+
+  export type HackerearthHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    challenges: number | null
+    createdAt: Date | null
+  }
+
+  export type HackerearthHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    challenges: number | null
+    createdAt: Date | null
+  }
+
+  export type HackerearthHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    rating: number
+    challenges: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HackerearthHistoryAvgAggregateInputType = {
+    rating?: true
+    challenges?: true
+  }
+
+  export type HackerearthHistorySumAggregateInputType = {
+    rating?: true
+    challenges?: true
+  }
+
+  export type HackerearthHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+  }
+
+  export type HackerearthHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+  }
+
+  export type HackerearthHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    challenges?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HackerearthHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HackerearthHistory to aggregate.
+     */
+    where?: HackerearthHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerearthHistories to fetch.
+     */
+    orderBy?: HackerearthHistoryOrderByWithRelationInput | HackerearthHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HackerearthHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerearthHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerearthHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HackerearthHistories
+    **/
+    _count?: true | HackerearthHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HackerearthHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HackerearthHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HackerearthHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HackerearthHistoryMaxAggregateInputType
+  }
+
+  export type GetHackerearthHistoryAggregateType<T extends HackerearthHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateHackerearthHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHackerearthHistory[P]>
+      : GetScalarType<T[P], AggregateHackerearthHistory[P]>
+  }
+
+
+
+
+  export type HackerearthHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HackerearthHistoryWhereInput
+    orderBy?: HackerearthHistoryOrderByWithAggregationInput | HackerearthHistoryOrderByWithAggregationInput[]
+    by: HackerearthHistoryScalarFieldEnum[] | HackerearthHistoryScalarFieldEnum
+    having?: HackerearthHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HackerearthHistoryCountAggregateInputType | true
+    _avg?: HackerearthHistoryAvgAggregateInputType
+    _sum?: HackerearthHistorySumAggregateInputType
+    _min?: HackerearthHistoryMinAggregateInputType
+    _max?: HackerearthHistoryMaxAggregateInputType
+  }
+
+  export type HackerearthHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    rating: number
+    challenges: number
+    createdAt: Date
+    _count: HackerearthHistoryCountAggregateOutputType | null
+    _avg: HackerearthHistoryAvgAggregateOutputType | null
+    _sum: HackerearthHistorySumAggregateOutputType | null
+    _min: HackerearthHistoryMinAggregateOutputType | null
+    _max: HackerearthHistoryMaxAggregateOutputType | null
+  }
+
+  type GetHackerearthHistoryGroupByPayload<T extends HackerearthHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HackerearthHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HackerearthHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HackerearthHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], HackerearthHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HackerearthHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    challenges?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hackerearthHistory"]>
+
+
+  export type HackerearthHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    challenges?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $HackerearthHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HackerearthHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      rating: number
+      challenges: number
+      createdAt: Date
+    }, ExtArgs["result"]["hackerearthHistory"]>
+    composites: {}
+  }
+
+  type HackerearthHistoryGetPayload<S extends boolean | null | undefined | HackerearthHistoryDefaultArgs> = $Result.GetResult<Prisma.$HackerearthHistoryPayload, S>
+
+  type HackerearthHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<HackerearthHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: HackerearthHistoryCountAggregateInputType | true
+    }
+
+  export interface HackerearthHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HackerearthHistory'], meta: { name: 'HackerearthHistory' } }
+    /**
+     * Find zero or one HackerearthHistory that matches the filter.
+     * @param {HackerearthHistoryFindUniqueArgs} args - Arguments to find a HackerearthHistory
+     * @example
+     * // Get one HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HackerearthHistoryFindUniqueArgs>(args: SelectSubset<T, HackerearthHistoryFindUniqueArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one HackerearthHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {HackerearthHistoryFindUniqueOrThrowArgs} args - Arguments to find a HackerearthHistory
+     * @example
+     * // Get one HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HackerearthHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, HackerearthHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first HackerearthHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryFindFirstArgs} args - Arguments to find a HackerearthHistory
+     * @example
+     * // Get one HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HackerearthHistoryFindFirstArgs>(args?: SelectSubset<T, HackerearthHistoryFindFirstArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first HackerearthHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryFindFirstOrThrowArgs} args - Arguments to find a HackerearthHistory
+     * @example
+     * // Get one HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HackerearthHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, HackerearthHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more HackerearthHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HackerearthHistories
+     * const hackerearthHistories = await prisma.hackerearthHistory.findMany()
+     * 
+     * // Get first 10 HackerearthHistories
+     * const hackerearthHistories = await prisma.hackerearthHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hackerearthHistoryWithIdOnly = await prisma.hackerearthHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HackerearthHistoryFindManyArgs>(args?: SelectSubset<T, HackerearthHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a HackerearthHistory.
+     * @param {HackerearthHistoryCreateArgs} args - Arguments to create a HackerearthHistory.
+     * @example
+     * // Create one HackerearthHistory
+     * const HackerearthHistory = await prisma.hackerearthHistory.create({
+     *   data: {
+     *     // ... data to create a HackerearthHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends HackerearthHistoryCreateArgs>(args: SelectSubset<T, HackerearthHistoryCreateArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many HackerearthHistories.
+     * @param {HackerearthHistoryCreateManyArgs} args - Arguments to create many HackerearthHistories.
+     * @example
+     * // Create many HackerearthHistories
+     * const hackerearthHistory = await prisma.hackerearthHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HackerearthHistoryCreateManyArgs>(args?: SelectSubset<T, HackerearthHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a HackerearthHistory.
+     * @param {HackerearthHistoryDeleteArgs} args - Arguments to delete one HackerearthHistory.
+     * @example
+     * // Delete one HackerearthHistory
+     * const HackerearthHistory = await prisma.hackerearthHistory.delete({
+     *   where: {
+     *     // ... filter to delete one HackerearthHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HackerearthHistoryDeleteArgs>(args: SelectSubset<T, HackerearthHistoryDeleteArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one HackerearthHistory.
+     * @param {HackerearthHistoryUpdateArgs} args - Arguments to update one HackerearthHistory.
+     * @example
+     * // Update one HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HackerearthHistoryUpdateArgs>(args: SelectSubset<T, HackerearthHistoryUpdateArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more HackerearthHistories.
+     * @param {HackerearthHistoryDeleteManyArgs} args - Arguments to filter HackerearthHistories to delete.
+     * @example
+     * // Delete a few HackerearthHistories
+     * const { count } = await prisma.hackerearthHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HackerearthHistoryDeleteManyArgs>(args?: SelectSubset<T, HackerearthHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HackerearthHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HackerearthHistories
+     * const hackerearthHistory = await prisma.hackerearthHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HackerearthHistoryUpdateManyArgs>(args: SelectSubset<T, HackerearthHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one HackerearthHistory.
+     * @param {HackerearthHistoryUpsertArgs} args - Arguments to update or create a HackerearthHistory.
+     * @example
+     * // Update or create a HackerearthHistory
+     * const hackerearthHistory = await prisma.hackerearthHistory.upsert({
+     *   create: {
+     *     // ... data to create a HackerearthHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HackerearthHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HackerearthHistoryUpsertArgs>(args: SelectSubset<T, HackerearthHistoryUpsertArgs<ExtArgs>>): Prisma__HackerearthHistoryClient<$Result.GetResult<Prisma.$HackerearthHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more HackerearthHistories that matches the filter.
+     * @param {HackerearthHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const hackerearthHistory = await prisma.hackerearthHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: HackerearthHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a HackerearthHistory.
+     * @param {HackerearthHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const hackerearthHistory = await prisma.hackerearthHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: HackerearthHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of HackerearthHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryCountArgs} args - Arguments to filter HackerearthHistories to count.
+     * @example
+     * // Count the number of HackerearthHistories
+     * const count = await prisma.hackerearthHistory.count({
+     *   where: {
+     *     // ... the filter for the HackerearthHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends HackerearthHistoryCountArgs>(
+      args?: Subset<T, HackerearthHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HackerearthHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HackerearthHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HackerearthHistoryAggregateArgs>(args: Subset<T, HackerearthHistoryAggregateArgs>): Prisma.PrismaPromise<GetHackerearthHistoryAggregateType<T>>
+
+    /**
+     * Group by HackerearthHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HackerearthHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HackerearthHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HackerearthHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: HackerearthHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HackerearthHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHackerearthHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HackerearthHistory model
+   */
+  readonly fields: HackerearthHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HackerearthHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HackerearthHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HackerearthHistory model
+   */ 
+  interface HackerearthHistoryFieldRefs {
+    readonly id: FieldRef<"HackerearthHistory", 'String'>
+    readonly username: FieldRef<"HackerearthHistory", 'String'>
+    readonly date: FieldRef<"HackerearthHistory", 'DateTime'>
+    readonly rating: FieldRef<"HackerearthHistory", 'Int'>
+    readonly challenges: FieldRef<"HackerearthHistory", 'Int'>
+    readonly createdAt: FieldRef<"HackerearthHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HackerearthHistory findUnique
+   */
+  export type HackerearthHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerearthHistory to fetch.
+     */
+    where: HackerearthHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerearthHistory findUniqueOrThrow
+   */
+  export type HackerearthHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerearthHistory to fetch.
+     */
+    where: HackerearthHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerearthHistory findFirst
+   */
+  export type HackerearthHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerearthHistory to fetch.
+     */
+    where?: HackerearthHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerearthHistories to fetch.
+     */
+    orderBy?: HackerearthHistoryOrderByWithRelationInput | HackerearthHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HackerearthHistories.
+     */
+    cursor?: HackerearthHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerearthHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerearthHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HackerearthHistories.
+     */
+    distinct?: HackerearthHistoryScalarFieldEnum | HackerearthHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerearthHistory findFirstOrThrow
+   */
+  export type HackerearthHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerearthHistory to fetch.
+     */
+    where?: HackerearthHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerearthHistories to fetch.
+     */
+    orderBy?: HackerearthHistoryOrderByWithRelationInput | HackerearthHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HackerearthHistories.
+     */
+    cursor?: HackerearthHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerearthHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerearthHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HackerearthHistories.
+     */
+    distinct?: HackerearthHistoryScalarFieldEnum | HackerearthHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerearthHistory findMany
+   */
+  export type HackerearthHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which HackerearthHistories to fetch.
+     */
+    where?: HackerearthHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HackerearthHistories to fetch.
+     */
+    orderBy?: HackerearthHistoryOrderByWithRelationInput | HackerearthHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HackerearthHistories.
+     */
+    cursor?: HackerearthHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HackerearthHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HackerearthHistories.
+     */
+    skip?: number
+    distinct?: HackerearthHistoryScalarFieldEnum | HackerearthHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * HackerearthHistory create
+   */
+  export type HackerearthHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a HackerearthHistory.
+     */
+    data: XOR<HackerearthHistoryCreateInput, HackerearthHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * HackerearthHistory createMany
+   */
+  export type HackerearthHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HackerearthHistories.
+     */
+    data: HackerearthHistoryCreateManyInput | HackerearthHistoryCreateManyInput[]
+  }
+
+  /**
+   * HackerearthHistory update
+   */
+  export type HackerearthHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a HackerearthHistory.
+     */
+    data: XOR<HackerearthHistoryUpdateInput, HackerearthHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which HackerearthHistory to update.
+     */
+    where: HackerearthHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerearthHistory updateMany
+   */
+  export type HackerearthHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HackerearthHistories.
+     */
+    data: XOR<HackerearthHistoryUpdateManyMutationInput, HackerearthHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which HackerearthHistories to update
+     */
+    where?: HackerearthHistoryWhereInput
+  }
+
+  /**
+   * HackerearthHistory upsert
+   */
+  export type HackerearthHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the HackerearthHistory to update in case it exists.
+     */
+    where: HackerearthHistoryWhereUniqueInput
+    /**
+     * In case the HackerearthHistory found by the `where` argument doesn't exist, create a new HackerearthHistory with this data.
+     */
+    create: XOR<HackerearthHistoryCreateInput, HackerearthHistoryUncheckedCreateInput>
+    /**
+     * In case the HackerearthHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HackerearthHistoryUpdateInput, HackerearthHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * HackerearthHistory delete
+   */
+  export type HackerearthHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+    /**
+     * Filter which HackerearthHistory to delete.
+     */
+    where: HackerearthHistoryWhereUniqueInput
+  }
+
+  /**
+   * HackerearthHistory deleteMany
+   */
+  export type HackerearthHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HackerearthHistories to delete
+     */
+    where?: HackerearthHistoryWhereInput
+  }
+
+  /**
+   * HackerearthHistory findRaw
+   */
+  export type HackerearthHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * HackerearthHistory aggregateRaw
+   */
+  export type HackerearthHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * HackerearthHistory without action
+   */
+  export type HackerearthHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HackerearthHistory
+     */
+    select?: HackerearthHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AtcoderHistory
+   */
+
+  export type AggregateAtcoderHistory = {
+    _count: AtcoderHistoryCountAggregateOutputType | null
+    _avg: AtcoderHistoryAvgAggregateOutputType | null
+    _sum: AtcoderHistorySumAggregateOutputType | null
+    _min: AtcoderHistoryMinAggregateOutputType | null
+    _max: AtcoderHistoryMaxAggregateOutputType | null
+  }
+
+  export type AtcoderHistoryAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type AtcoderHistorySumAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type AtcoderHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    createdAt: Date | null
+  }
+
+  export type AtcoderHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    rating: number | null
+    createdAt: Date | null
+  }
+
+  export type AtcoderHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    rating: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AtcoderHistoryAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type AtcoderHistorySumAggregateInputType = {
+    rating?: true
+  }
+
+  export type AtcoderHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    createdAt?: true
+  }
+
+  export type AtcoderHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    createdAt?: true
+  }
+
+  export type AtcoderHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    rating?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AtcoderHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AtcoderHistory to aggregate.
+     */
+    where?: AtcoderHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtcoderHistories to fetch.
+     */
+    orderBy?: AtcoderHistoryOrderByWithRelationInput | AtcoderHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AtcoderHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtcoderHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtcoderHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AtcoderHistories
+    **/
+    _count?: true | AtcoderHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AtcoderHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AtcoderHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AtcoderHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AtcoderHistoryMaxAggregateInputType
+  }
+
+  export type GetAtcoderHistoryAggregateType<T extends AtcoderHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateAtcoderHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAtcoderHistory[P]>
+      : GetScalarType<T[P], AggregateAtcoderHistory[P]>
+  }
+
+
+
+
+  export type AtcoderHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AtcoderHistoryWhereInput
+    orderBy?: AtcoderHistoryOrderByWithAggregationInput | AtcoderHistoryOrderByWithAggregationInput[]
+    by: AtcoderHistoryScalarFieldEnum[] | AtcoderHistoryScalarFieldEnum
+    having?: AtcoderHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AtcoderHistoryCountAggregateInputType | true
+    _avg?: AtcoderHistoryAvgAggregateInputType
+    _sum?: AtcoderHistorySumAggregateInputType
+    _min?: AtcoderHistoryMinAggregateInputType
+    _max?: AtcoderHistoryMaxAggregateInputType
+  }
+
+  export type AtcoderHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    rating: number
+    createdAt: Date
+    _count: AtcoderHistoryCountAggregateOutputType | null
+    _avg: AtcoderHistoryAvgAggregateOutputType | null
+    _sum: AtcoderHistorySumAggregateOutputType | null
+    _min: AtcoderHistoryMinAggregateOutputType | null
+    _max: AtcoderHistoryMaxAggregateOutputType | null
+  }
+
+  type GetAtcoderHistoryGroupByPayload<T extends AtcoderHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AtcoderHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AtcoderHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AtcoderHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], AtcoderHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AtcoderHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["atcoderHistory"]>
+
+
+  export type AtcoderHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    rating?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $AtcoderHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AtcoderHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      rating: number
+      createdAt: Date
+    }, ExtArgs["result"]["atcoderHistory"]>
+    composites: {}
+  }
+
+  type AtcoderHistoryGetPayload<S extends boolean | null | undefined | AtcoderHistoryDefaultArgs> = $Result.GetResult<Prisma.$AtcoderHistoryPayload, S>
+
+  type AtcoderHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AtcoderHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AtcoderHistoryCountAggregateInputType | true
+    }
+
+  export interface AtcoderHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AtcoderHistory'], meta: { name: 'AtcoderHistory' } }
+    /**
+     * Find zero or one AtcoderHistory that matches the filter.
+     * @param {AtcoderHistoryFindUniqueArgs} args - Arguments to find a AtcoderHistory
+     * @example
+     * // Get one AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AtcoderHistoryFindUniqueArgs>(args: SelectSubset<T, AtcoderHistoryFindUniqueArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one AtcoderHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {AtcoderHistoryFindUniqueOrThrowArgs} args - Arguments to find a AtcoderHistory
+     * @example
+     * // Get one AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AtcoderHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, AtcoderHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first AtcoderHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryFindFirstArgs} args - Arguments to find a AtcoderHistory
+     * @example
+     * // Get one AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AtcoderHistoryFindFirstArgs>(args?: SelectSubset<T, AtcoderHistoryFindFirstArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first AtcoderHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryFindFirstOrThrowArgs} args - Arguments to find a AtcoderHistory
+     * @example
+     * // Get one AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AtcoderHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, AtcoderHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more AtcoderHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AtcoderHistories
+     * const atcoderHistories = await prisma.atcoderHistory.findMany()
+     * 
+     * // Get first 10 AtcoderHistories
+     * const atcoderHistories = await prisma.atcoderHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const atcoderHistoryWithIdOnly = await prisma.atcoderHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AtcoderHistoryFindManyArgs>(args?: SelectSubset<T, AtcoderHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a AtcoderHistory.
+     * @param {AtcoderHistoryCreateArgs} args - Arguments to create a AtcoderHistory.
+     * @example
+     * // Create one AtcoderHistory
+     * const AtcoderHistory = await prisma.atcoderHistory.create({
+     *   data: {
+     *     // ... data to create a AtcoderHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends AtcoderHistoryCreateArgs>(args: SelectSubset<T, AtcoderHistoryCreateArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many AtcoderHistories.
+     * @param {AtcoderHistoryCreateManyArgs} args - Arguments to create many AtcoderHistories.
+     * @example
+     * // Create many AtcoderHistories
+     * const atcoderHistory = await prisma.atcoderHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AtcoderHistoryCreateManyArgs>(args?: SelectSubset<T, AtcoderHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AtcoderHistory.
+     * @param {AtcoderHistoryDeleteArgs} args - Arguments to delete one AtcoderHistory.
+     * @example
+     * // Delete one AtcoderHistory
+     * const AtcoderHistory = await prisma.atcoderHistory.delete({
+     *   where: {
+     *     // ... filter to delete one AtcoderHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AtcoderHistoryDeleteArgs>(args: SelectSubset<T, AtcoderHistoryDeleteArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one AtcoderHistory.
+     * @param {AtcoderHistoryUpdateArgs} args - Arguments to update one AtcoderHistory.
+     * @example
+     * // Update one AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AtcoderHistoryUpdateArgs>(args: SelectSubset<T, AtcoderHistoryUpdateArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more AtcoderHistories.
+     * @param {AtcoderHistoryDeleteManyArgs} args - Arguments to filter AtcoderHistories to delete.
+     * @example
+     * // Delete a few AtcoderHistories
+     * const { count } = await prisma.atcoderHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AtcoderHistoryDeleteManyArgs>(args?: SelectSubset<T, AtcoderHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AtcoderHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AtcoderHistories
+     * const atcoderHistory = await prisma.atcoderHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AtcoderHistoryUpdateManyArgs>(args: SelectSubset<T, AtcoderHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AtcoderHistory.
+     * @param {AtcoderHistoryUpsertArgs} args - Arguments to update or create a AtcoderHistory.
+     * @example
+     * // Update or create a AtcoderHistory
+     * const atcoderHistory = await prisma.atcoderHistory.upsert({
+     *   create: {
+     *     // ... data to create a AtcoderHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AtcoderHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AtcoderHistoryUpsertArgs>(args: SelectSubset<T, AtcoderHistoryUpsertArgs<ExtArgs>>): Prisma__AtcoderHistoryClient<$Result.GetResult<Prisma.$AtcoderHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more AtcoderHistories that matches the filter.
+     * @param {AtcoderHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const atcoderHistory = await prisma.atcoderHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: AtcoderHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a AtcoderHistory.
+     * @param {AtcoderHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const atcoderHistory = await prisma.atcoderHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: AtcoderHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of AtcoderHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryCountArgs} args - Arguments to filter AtcoderHistories to count.
+     * @example
+     * // Count the number of AtcoderHistories
+     * const count = await prisma.atcoderHistory.count({
+     *   where: {
+     *     // ... the filter for the AtcoderHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends AtcoderHistoryCountArgs>(
+      args?: Subset<T, AtcoderHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AtcoderHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AtcoderHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AtcoderHistoryAggregateArgs>(args: Subset<T, AtcoderHistoryAggregateArgs>): Prisma.PrismaPromise<GetAtcoderHistoryAggregateType<T>>
+
+    /**
+     * Group by AtcoderHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtcoderHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AtcoderHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AtcoderHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: AtcoderHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AtcoderHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAtcoderHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AtcoderHistory model
+   */
+  readonly fields: AtcoderHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AtcoderHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AtcoderHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AtcoderHistory model
+   */ 
+  interface AtcoderHistoryFieldRefs {
+    readonly id: FieldRef<"AtcoderHistory", 'String'>
+    readonly username: FieldRef<"AtcoderHistory", 'String'>
+    readonly date: FieldRef<"AtcoderHistory", 'DateTime'>
+    readonly rating: FieldRef<"AtcoderHistory", 'Int'>
+    readonly createdAt: FieldRef<"AtcoderHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AtcoderHistory findUnique
+   */
+  export type AtcoderHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AtcoderHistory to fetch.
+     */
+    where: AtcoderHistoryWhereUniqueInput
+  }
+
+  /**
+   * AtcoderHistory findUniqueOrThrow
+   */
+  export type AtcoderHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AtcoderHistory to fetch.
+     */
+    where: AtcoderHistoryWhereUniqueInput
+  }
+
+  /**
+   * AtcoderHistory findFirst
+   */
+  export type AtcoderHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AtcoderHistory to fetch.
+     */
+    where?: AtcoderHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtcoderHistories to fetch.
+     */
+    orderBy?: AtcoderHistoryOrderByWithRelationInput | AtcoderHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AtcoderHistories.
+     */
+    cursor?: AtcoderHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtcoderHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtcoderHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AtcoderHistories.
+     */
+    distinct?: AtcoderHistoryScalarFieldEnum | AtcoderHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * AtcoderHistory findFirstOrThrow
+   */
+  export type AtcoderHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AtcoderHistory to fetch.
+     */
+    where?: AtcoderHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtcoderHistories to fetch.
+     */
+    orderBy?: AtcoderHistoryOrderByWithRelationInput | AtcoderHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AtcoderHistories.
+     */
+    cursor?: AtcoderHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtcoderHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtcoderHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AtcoderHistories.
+     */
+    distinct?: AtcoderHistoryScalarFieldEnum | AtcoderHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * AtcoderHistory findMany
+   */
+  export type AtcoderHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AtcoderHistories to fetch.
+     */
+    where?: AtcoderHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtcoderHistories to fetch.
+     */
+    orderBy?: AtcoderHistoryOrderByWithRelationInput | AtcoderHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AtcoderHistories.
+     */
+    cursor?: AtcoderHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtcoderHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtcoderHistories.
+     */
+    skip?: number
+    distinct?: AtcoderHistoryScalarFieldEnum | AtcoderHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * AtcoderHistory create
+   */
+  export type AtcoderHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a AtcoderHistory.
+     */
+    data: XOR<AtcoderHistoryCreateInput, AtcoderHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * AtcoderHistory createMany
+   */
+  export type AtcoderHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AtcoderHistories.
+     */
+    data: AtcoderHistoryCreateManyInput | AtcoderHistoryCreateManyInput[]
+  }
+
+  /**
+   * AtcoderHistory update
+   */
+  export type AtcoderHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a AtcoderHistory.
+     */
+    data: XOR<AtcoderHistoryUpdateInput, AtcoderHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which AtcoderHistory to update.
+     */
+    where: AtcoderHistoryWhereUniqueInput
+  }
+
+  /**
+   * AtcoderHistory updateMany
+   */
+  export type AtcoderHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AtcoderHistories.
+     */
+    data: XOR<AtcoderHistoryUpdateManyMutationInput, AtcoderHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which AtcoderHistories to update
+     */
+    where?: AtcoderHistoryWhereInput
+  }
+
+  /**
+   * AtcoderHistory upsert
+   */
+  export type AtcoderHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the AtcoderHistory to update in case it exists.
+     */
+    where: AtcoderHistoryWhereUniqueInput
+    /**
+     * In case the AtcoderHistory found by the `where` argument doesn't exist, create a new AtcoderHistory with this data.
+     */
+    create: XOR<AtcoderHistoryCreateInput, AtcoderHistoryUncheckedCreateInput>
+    /**
+     * In case the AtcoderHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AtcoderHistoryUpdateInput, AtcoderHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * AtcoderHistory delete
+   */
+  export type AtcoderHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+    /**
+     * Filter which AtcoderHistory to delete.
+     */
+    where: AtcoderHistoryWhereUniqueInput
+  }
+
+  /**
+   * AtcoderHistory deleteMany
+   */
+  export type AtcoderHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AtcoderHistories to delete
+     */
+    where?: AtcoderHistoryWhereInput
+  }
+
+  /**
+   * AtcoderHistory findRaw
+   */
+  export type AtcoderHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AtcoderHistory aggregateRaw
+   */
+  export type AtcoderHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AtcoderHistory without action
+   */
+  export type AtcoderHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtcoderHistory
+     */
+    select?: AtcoderHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StackoverflowHistory
+   */
+
+  export type AggregateStackoverflowHistory = {
+    _count: StackoverflowHistoryCountAggregateOutputType | null
+    _avg: StackoverflowHistoryAvgAggregateOutputType | null
+    _sum: StackoverflowHistorySumAggregateOutputType | null
+    _min: StackoverflowHistoryMinAggregateOutputType | null
+    _max: StackoverflowHistoryMaxAggregateOutputType | null
+  }
+
+  export type StackoverflowHistoryAvgAggregateOutputType = {
+    reputation: number | null
+  }
+
+  export type StackoverflowHistorySumAggregateOutputType = {
+    reputation: number | null
+  }
+
+  export type StackoverflowHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    reputation: number | null
+    createdAt: Date | null
+  }
+
+  export type StackoverflowHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    reputation: number | null
+    createdAt: Date | null
+  }
+
+  export type StackoverflowHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    reputation: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type StackoverflowHistoryAvgAggregateInputType = {
+    reputation?: true
+  }
+
+  export type StackoverflowHistorySumAggregateInputType = {
+    reputation?: true
+  }
+
+  export type StackoverflowHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    reputation?: true
+    createdAt?: true
+  }
+
+  export type StackoverflowHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    reputation?: true
+    createdAt?: true
+  }
+
+  export type StackoverflowHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    reputation?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type StackoverflowHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StackoverflowHistory to aggregate.
+     */
+    where?: StackoverflowHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StackoverflowHistories to fetch.
+     */
+    orderBy?: StackoverflowHistoryOrderByWithRelationInput | StackoverflowHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StackoverflowHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StackoverflowHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StackoverflowHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StackoverflowHistories
+    **/
+    _count?: true | StackoverflowHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StackoverflowHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StackoverflowHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StackoverflowHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StackoverflowHistoryMaxAggregateInputType
+  }
+
+  export type GetStackoverflowHistoryAggregateType<T extends StackoverflowHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateStackoverflowHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStackoverflowHistory[P]>
+      : GetScalarType<T[P], AggregateStackoverflowHistory[P]>
+  }
+
+
+
+
+  export type StackoverflowHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StackoverflowHistoryWhereInput
+    orderBy?: StackoverflowHistoryOrderByWithAggregationInput | StackoverflowHistoryOrderByWithAggregationInput[]
+    by: StackoverflowHistoryScalarFieldEnum[] | StackoverflowHistoryScalarFieldEnum
+    having?: StackoverflowHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StackoverflowHistoryCountAggregateInputType | true
+    _avg?: StackoverflowHistoryAvgAggregateInputType
+    _sum?: StackoverflowHistorySumAggregateInputType
+    _min?: StackoverflowHistoryMinAggregateInputType
+    _max?: StackoverflowHistoryMaxAggregateInputType
+  }
+
+  export type StackoverflowHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    reputation: number
+    createdAt: Date
+    _count: StackoverflowHistoryCountAggregateOutputType | null
+    _avg: StackoverflowHistoryAvgAggregateOutputType | null
+    _sum: StackoverflowHistorySumAggregateOutputType | null
+    _min: StackoverflowHistoryMinAggregateOutputType | null
+    _max: StackoverflowHistoryMaxAggregateOutputType | null
+  }
+
+  type GetStackoverflowHistoryGroupByPayload<T extends StackoverflowHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StackoverflowHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StackoverflowHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StackoverflowHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], StackoverflowHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StackoverflowHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    reputation?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["stackoverflowHistory"]>
+
+
+  export type StackoverflowHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    reputation?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $StackoverflowHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StackoverflowHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      reputation: number
+      createdAt: Date
+    }, ExtArgs["result"]["stackoverflowHistory"]>
+    composites: {}
+  }
+
+  type StackoverflowHistoryGetPayload<S extends boolean | null | undefined | StackoverflowHistoryDefaultArgs> = $Result.GetResult<Prisma.$StackoverflowHistoryPayload, S>
+
+  type StackoverflowHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<StackoverflowHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: StackoverflowHistoryCountAggregateInputType | true
+    }
+
+  export interface StackoverflowHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StackoverflowHistory'], meta: { name: 'StackoverflowHistory' } }
+    /**
+     * Find zero or one StackoverflowHistory that matches the filter.
+     * @param {StackoverflowHistoryFindUniqueArgs} args - Arguments to find a StackoverflowHistory
+     * @example
+     * // Get one StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StackoverflowHistoryFindUniqueArgs>(args: SelectSubset<T, StackoverflowHistoryFindUniqueArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one StackoverflowHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {StackoverflowHistoryFindUniqueOrThrowArgs} args - Arguments to find a StackoverflowHistory
+     * @example
+     * // Get one StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StackoverflowHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, StackoverflowHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first StackoverflowHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryFindFirstArgs} args - Arguments to find a StackoverflowHistory
+     * @example
+     * // Get one StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StackoverflowHistoryFindFirstArgs>(args?: SelectSubset<T, StackoverflowHistoryFindFirstArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first StackoverflowHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryFindFirstOrThrowArgs} args - Arguments to find a StackoverflowHistory
+     * @example
+     * // Get one StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StackoverflowHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, StackoverflowHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more StackoverflowHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StackoverflowHistories
+     * const stackoverflowHistories = await prisma.stackoverflowHistory.findMany()
+     * 
+     * // Get first 10 StackoverflowHistories
+     * const stackoverflowHistories = await prisma.stackoverflowHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const stackoverflowHistoryWithIdOnly = await prisma.stackoverflowHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StackoverflowHistoryFindManyArgs>(args?: SelectSubset<T, StackoverflowHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a StackoverflowHistory.
+     * @param {StackoverflowHistoryCreateArgs} args - Arguments to create a StackoverflowHistory.
+     * @example
+     * // Create one StackoverflowHistory
+     * const StackoverflowHistory = await prisma.stackoverflowHistory.create({
+     *   data: {
+     *     // ... data to create a StackoverflowHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends StackoverflowHistoryCreateArgs>(args: SelectSubset<T, StackoverflowHistoryCreateArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many StackoverflowHistories.
+     * @param {StackoverflowHistoryCreateManyArgs} args - Arguments to create many StackoverflowHistories.
+     * @example
+     * // Create many StackoverflowHistories
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StackoverflowHistoryCreateManyArgs>(args?: SelectSubset<T, StackoverflowHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a StackoverflowHistory.
+     * @param {StackoverflowHistoryDeleteArgs} args - Arguments to delete one StackoverflowHistory.
+     * @example
+     * // Delete one StackoverflowHistory
+     * const StackoverflowHistory = await prisma.stackoverflowHistory.delete({
+     *   where: {
+     *     // ... filter to delete one StackoverflowHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StackoverflowHistoryDeleteArgs>(args: SelectSubset<T, StackoverflowHistoryDeleteArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one StackoverflowHistory.
+     * @param {StackoverflowHistoryUpdateArgs} args - Arguments to update one StackoverflowHistory.
+     * @example
+     * // Update one StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StackoverflowHistoryUpdateArgs>(args: SelectSubset<T, StackoverflowHistoryUpdateArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more StackoverflowHistories.
+     * @param {StackoverflowHistoryDeleteManyArgs} args - Arguments to filter StackoverflowHistories to delete.
+     * @example
+     * // Delete a few StackoverflowHistories
+     * const { count } = await prisma.stackoverflowHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StackoverflowHistoryDeleteManyArgs>(args?: SelectSubset<T, StackoverflowHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StackoverflowHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StackoverflowHistories
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StackoverflowHistoryUpdateManyArgs>(args: SelectSubset<T, StackoverflowHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one StackoverflowHistory.
+     * @param {StackoverflowHistoryUpsertArgs} args - Arguments to update or create a StackoverflowHistory.
+     * @example
+     * // Update or create a StackoverflowHistory
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.upsert({
+     *   create: {
+     *     // ... data to create a StackoverflowHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StackoverflowHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StackoverflowHistoryUpsertArgs>(args: SelectSubset<T, StackoverflowHistoryUpsertArgs<ExtArgs>>): Prisma__StackoverflowHistoryClient<$Result.GetResult<Prisma.$StackoverflowHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more StackoverflowHistories that matches the filter.
+     * @param {StackoverflowHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: StackoverflowHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a StackoverflowHistory.
+     * @param {StackoverflowHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const stackoverflowHistory = await prisma.stackoverflowHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: StackoverflowHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of StackoverflowHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryCountArgs} args - Arguments to filter StackoverflowHistories to count.
+     * @example
+     * // Count the number of StackoverflowHistories
+     * const count = await prisma.stackoverflowHistory.count({
+     *   where: {
+     *     // ... the filter for the StackoverflowHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends StackoverflowHistoryCountArgs>(
+      args?: Subset<T, StackoverflowHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StackoverflowHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StackoverflowHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StackoverflowHistoryAggregateArgs>(args: Subset<T, StackoverflowHistoryAggregateArgs>): Prisma.PrismaPromise<GetStackoverflowHistoryAggregateType<T>>
+
+    /**
+     * Group by StackoverflowHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StackoverflowHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StackoverflowHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StackoverflowHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: StackoverflowHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StackoverflowHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStackoverflowHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StackoverflowHistory model
+   */
+  readonly fields: StackoverflowHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StackoverflowHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StackoverflowHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StackoverflowHistory model
+   */ 
+  interface StackoverflowHistoryFieldRefs {
+    readonly id: FieldRef<"StackoverflowHistory", 'String'>
+    readonly username: FieldRef<"StackoverflowHistory", 'String'>
+    readonly date: FieldRef<"StackoverflowHistory", 'DateTime'>
+    readonly reputation: FieldRef<"StackoverflowHistory", 'Int'>
+    readonly createdAt: FieldRef<"StackoverflowHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StackoverflowHistory findUnique
+   */
+  export type StackoverflowHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which StackoverflowHistory to fetch.
+     */
+    where: StackoverflowHistoryWhereUniqueInput
+  }
+
+  /**
+   * StackoverflowHistory findUniqueOrThrow
+   */
+  export type StackoverflowHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which StackoverflowHistory to fetch.
+     */
+    where: StackoverflowHistoryWhereUniqueInput
+  }
+
+  /**
+   * StackoverflowHistory findFirst
+   */
+  export type StackoverflowHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which StackoverflowHistory to fetch.
+     */
+    where?: StackoverflowHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StackoverflowHistories to fetch.
+     */
+    orderBy?: StackoverflowHistoryOrderByWithRelationInput | StackoverflowHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StackoverflowHistories.
+     */
+    cursor?: StackoverflowHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StackoverflowHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StackoverflowHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StackoverflowHistories.
+     */
+    distinct?: StackoverflowHistoryScalarFieldEnum | StackoverflowHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * StackoverflowHistory findFirstOrThrow
+   */
+  export type StackoverflowHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which StackoverflowHistory to fetch.
+     */
+    where?: StackoverflowHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StackoverflowHistories to fetch.
+     */
+    orderBy?: StackoverflowHistoryOrderByWithRelationInput | StackoverflowHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StackoverflowHistories.
+     */
+    cursor?: StackoverflowHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StackoverflowHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StackoverflowHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StackoverflowHistories.
+     */
+    distinct?: StackoverflowHistoryScalarFieldEnum | StackoverflowHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * StackoverflowHistory findMany
+   */
+  export type StackoverflowHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which StackoverflowHistories to fetch.
+     */
+    where?: StackoverflowHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StackoverflowHistories to fetch.
+     */
+    orderBy?: StackoverflowHistoryOrderByWithRelationInput | StackoverflowHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StackoverflowHistories.
+     */
+    cursor?: StackoverflowHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StackoverflowHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StackoverflowHistories.
+     */
+    skip?: number
+    distinct?: StackoverflowHistoryScalarFieldEnum | StackoverflowHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * StackoverflowHistory create
+   */
+  export type StackoverflowHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a StackoverflowHistory.
+     */
+    data: XOR<StackoverflowHistoryCreateInput, StackoverflowHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * StackoverflowHistory createMany
+   */
+  export type StackoverflowHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StackoverflowHistories.
+     */
+    data: StackoverflowHistoryCreateManyInput | StackoverflowHistoryCreateManyInput[]
+  }
+
+  /**
+   * StackoverflowHistory update
+   */
+  export type StackoverflowHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a StackoverflowHistory.
+     */
+    data: XOR<StackoverflowHistoryUpdateInput, StackoverflowHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which StackoverflowHistory to update.
+     */
+    where: StackoverflowHistoryWhereUniqueInput
+  }
+
+  /**
+   * StackoverflowHistory updateMany
+   */
+  export type StackoverflowHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StackoverflowHistories.
+     */
+    data: XOR<StackoverflowHistoryUpdateManyMutationInput, StackoverflowHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which StackoverflowHistories to update
+     */
+    where?: StackoverflowHistoryWhereInput
+  }
+
+  /**
+   * StackoverflowHistory upsert
+   */
+  export type StackoverflowHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the StackoverflowHistory to update in case it exists.
+     */
+    where: StackoverflowHistoryWhereUniqueInput
+    /**
+     * In case the StackoverflowHistory found by the `where` argument doesn't exist, create a new StackoverflowHistory with this data.
+     */
+    create: XOR<StackoverflowHistoryCreateInput, StackoverflowHistoryUncheckedCreateInput>
+    /**
+     * In case the StackoverflowHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StackoverflowHistoryUpdateInput, StackoverflowHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * StackoverflowHistory delete
+   */
+  export type StackoverflowHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+    /**
+     * Filter which StackoverflowHistory to delete.
+     */
+    where: StackoverflowHistoryWhereUniqueInput
+  }
+
+  /**
+   * StackoverflowHistory deleteMany
+   */
+  export type StackoverflowHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StackoverflowHistories to delete
+     */
+    where?: StackoverflowHistoryWhereInput
+  }
+
+  /**
+   * StackoverflowHistory findRaw
+   */
+  export type StackoverflowHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * StackoverflowHistory aggregateRaw
+   */
+  export type StackoverflowHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * StackoverflowHistory without action
+   */
+  export type StackoverflowHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StackoverflowHistory
+     */
+    select?: StackoverflowHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DevtoHistory
+   */
+
+  export type AggregateDevtoHistory = {
+    _count: DevtoHistoryCountAggregateOutputType | null
+    _avg: DevtoHistoryAvgAggregateOutputType | null
+    _sum: DevtoHistorySumAggregateOutputType | null
+    _min: DevtoHistoryMinAggregateOutputType | null
+    _max: DevtoHistoryMaxAggregateOutputType | null
+  }
+
+  export type DevtoHistoryAvgAggregateOutputType = {
+    articles: number | null
+    reactions: number | null
+  }
+
+  export type DevtoHistorySumAggregateOutputType = {
+    articles: number | null
+    reactions: number | null
+  }
+
+  export type DevtoHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    articles: number | null
+    reactions: number | null
+    createdAt: Date | null
+  }
+
+  export type DevtoHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    articles: number | null
+    reactions: number | null
+    createdAt: Date | null
+  }
+
+  export type DevtoHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    articles: number
+    reactions: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type DevtoHistoryAvgAggregateInputType = {
+    articles?: true
+    reactions?: true
+  }
+
+  export type DevtoHistorySumAggregateInputType = {
+    articles?: true
+    reactions?: true
+  }
+
+  export type DevtoHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    articles?: true
+    reactions?: true
+    createdAt?: true
+  }
+
+  export type DevtoHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    articles?: true
+    reactions?: true
+    createdAt?: true
+  }
+
+  export type DevtoHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    articles?: true
+    reactions?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type DevtoHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DevtoHistory to aggregate.
+     */
+    where?: DevtoHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DevtoHistories to fetch.
+     */
+    orderBy?: DevtoHistoryOrderByWithRelationInput | DevtoHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DevtoHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DevtoHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DevtoHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DevtoHistories
+    **/
+    _count?: true | DevtoHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DevtoHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DevtoHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DevtoHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DevtoHistoryMaxAggregateInputType
+  }
+
+  export type GetDevtoHistoryAggregateType<T extends DevtoHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateDevtoHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDevtoHistory[P]>
+      : GetScalarType<T[P], AggregateDevtoHistory[P]>
+  }
+
+
+
+
+  export type DevtoHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DevtoHistoryWhereInput
+    orderBy?: DevtoHistoryOrderByWithAggregationInput | DevtoHistoryOrderByWithAggregationInput[]
+    by: DevtoHistoryScalarFieldEnum[] | DevtoHistoryScalarFieldEnum
+    having?: DevtoHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DevtoHistoryCountAggregateInputType | true
+    _avg?: DevtoHistoryAvgAggregateInputType
+    _sum?: DevtoHistorySumAggregateInputType
+    _min?: DevtoHistoryMinAggregateInputType
+    _max?: DevtoHistoryMaxAggregateInputType
+  }
+
+  export type DevtoHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    articles: number
+    reactions: number
+    createdAt: Date
+    _count: DevtoHistoryCountAggregateOutputType | null
+    _avg: DevtoHistoryAvgAggregateOutputType | null
+    _sum: DevtoHistorySumAggregateOutputType | null
+    _min: DevtoHistoryMinAggregateOutputType | null
+    _max: DevtoHistoryMaxAggregateOutputType | null
+  }
+
+  type GetDevtoHistoryGroupByPayload<T extends DevtoHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DevtoHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DevtoHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DevtoHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], DevtoHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DevtoHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    articles?: boolean
+    reactions?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["devtoHistory"]>
+
+
+  export type DevtoHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    articles?: boolean
+    reactions?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $DevtoHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DevtoHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      articles: number
+      reactions: number
+      createdAt: Date
+    }, ExtArgs["result"]["devtoHistory"]>
+    composites: {}
+  }
+
+  type DevtoHistoryGetPayload<S extends boolean | null | undefined | DevtoHistoryDefaultArgs> = $Result.GetResult<Prisma.$DevtoHistoryPayload, S>
+
+  type DevtoHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<DevtoHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: DevtoHistoryCountAggregateInputType | true
+    }
+
+  export interface DevtoHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DevtoHistory'], meta: { name: 'DevtoHistory' } }
+    /**
+     * Find zero or one DevtoHistory that matches the filter.
+     * @param {DevtoHistoryFindUniqueArgs} args - Arguments to find a DevtoHistory
+     * @example
+     * // Get one DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DevtoHistoryFindUniqueArgs>(args: SelectSubset<T, DevtoHistoryFindUniqueArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one DevtoHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {DevtoHistoryFindUniqueOrThrowArgs} args - Arguments to find a DevtoHistory
+     * @example
+     * // Get one DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DevtoHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, DevtoHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first DevtoHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryFindFirstArgs} args - Arguments to find a DevtoHistory
+     * @example
+     * // Get one DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DevtoHistoryFindFirstArgs>(args?: SelectSubset<T, DevtoHistoryFindFirstArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first DevtoHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryFindFirstOrThrowArgs} args - Arguments to find a DevtoHistory
+     * @example
+     * // Get one DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DevtoHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, DevtoHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more DevtoHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DevtoHistories
+     * const devtoHistories = await prisma.devtoHistory.findMany()
+     * 
+     * // Get first 10 DevtoHistories
+     * const devtoHistories = await prisma.devtoHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const devtoHistoryWithIdOnly = await prisma.devtoHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DevtoHistoryFindManyArgs>(args?: SelectSubset<T, DevtoHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a DevtoHistory.
+     * @param {DevtoHistoryCreateArgs} args - Arguments to create a DevtoHistory.
+     * @example
+     * // Create one DevtoHistory
+     * const DevtoHistory = await prisma.devtoHistory.create({
+     *   data: {
+     *     // ... data to create a DevtoHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends DevtoHistoryCreateArgs>(args: SelectSubset<T, DevtoHistoryCreateArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many DevtoHistories.
+     * @param {DevtoHistoryCreateManyArgs} args - Arguments to create many DevtoHistories.
+     * @example
+     * // Create many DevtoHistories
+     * const devtoHistory = await prisma.devtoHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DevtoHistoryCreateManyArgs>(args?: SelectSubset<T, DevtoHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DevtoHistory.
+     * @param {DevtoHistoryDeleteArgs} args - Arguments to delete one DevtoHistory.
+     * @example
+     * // Delete one DevtoHistory
+     * const DevtoHistory = await prisma.devtoHistory.delete({
+     *   where: {
+     *     // ... filter to delete one DevtoHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DevtoHistoryDeleteArgs>(args: SelectSubset<T, DevtoHistoryDeleteArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one DevtoHistory.
+     * @param {DevtoHistoryUpdateArgs} args - Arguments to update one DevtoHistory.
+     * @example
+     * // Update one DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DevtoHistoryUpdateArgs>(args: SelectSubset<T, DevtoHistoryUpdateArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more DevtoHistories.
+     * @param {DevtoHistoryDeleteManyArgs} args - Arguments to filter DevtoHistories to delete.
+     * @example
+     * // Delete a few DevtoHistories
+     * const { count } = await prisma.devtoHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DevtoHistoryDeleteManyArgs>(args?: SelectSubset<T, DevtoHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DevtoHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DevtoHistories
+     * const devtoHistory = await prisma.devtoHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DevtoHistoryUpdateManyArgs>(args: SelectSubset<T, DevtoHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DevtoHistory.
+     * @param {DevtoHistoryUpsertArgs} args - Arguments to update or create a DevtoHistory.
+     * @example
+     * // Update or create a DevtoHistory
+     * const devtoHistory = await prisma.devtoHistory.upsert({
+     *   create: {
+     *     // ... data to create a DevtoHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DevtoHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DevtoHistoryUpsertArgs>(args: SelectSubset<T, DevtoHistoryUpsertArgs<ExtArgs>>): Prisma__DevtoHistoryClient<$Result.GetResult<Prisma.$DevtoHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more DevtoHistories that matches the filter.
+     * @param {DevtoHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const devtoHistory = await prisma.devtoHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: DevtoHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a DevtoHistory.
+     * @param {DevtoHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const devtoHistory = await prisma.devtoHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: DevtoHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of DevtoHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryCountArgs} args - Arguments to filter DevtoHistories to count.
+     * @example
+     * // Count the number of DevtoHistories
+     * const count = await prisma.devtoHistory.count({
+     *   where: {
+     *     // ... the filter for the DevtoHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends DevtoHistoryCountArgs>(
+      args?: Subset<T, DevtoHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DevtoHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DevtoHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DevtoHistoryAggregateArgs>(args: Subset<T, DevtoHistoryAggregateArgs>): Prisma.PrismaPromise<GetDevtoHistoryAggregateType<T>>
+
+    /**
+     * Group by DevtoHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DevtoHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DevtoHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DevtoHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: DevtoHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DevtoHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDevtoHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DevtoHistory model
+   */
+  readonly fields: DevtoHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DevtoHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DevtoHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DevtoHistory model
+   */ 
+  interface DevtoHistoryFieldRefs {
+    readonly id: FieldRef<"DevtoHistory", 'String'>
+    readonly username: FieldRef<"DevtoHistory", 'String'>
+    readonly date: FieldRef<"DevtoHistory", 'DateTime'>
+    readonly articles: FieldRef<"DevtoHistory", 'Int'>
+    readonly reactions: FieldRef<"DevtoHistory", 'Int'>
+    readonly createdAt: FieldRef<"DevtoHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DevtoHistory findUnique
+   */
+  export type DevtoHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which DevtoHistory to fetch.
+     */
+    where: DevtoHistoryWhereUniqueInput
+  }
+
+  /**
+   * DevtoHistory findUniqueOrThrow
+   */
+  export type DevtoHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which DevtoHistory to fetch.
+     */
+    where: DevtoHistoryWhereUniqueInput
+  }
+
+  /**
+   * DevtoHistory findFirst
+   */
+  export type DevtoHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which DevtoHistory to fetch.
+     */
+    where?: DevtoHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DevtoHistories to fetch.
+     */
+    orderBy?: DevtoHistoryOrderByWithRelationInput | DevtoHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DevtoHistories.
+     */
+    cursor?: DevtoHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DevtoHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DevtoHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DevtoHistories.
+     */
+    distinct?: DevtoHistoryScalarFieldEnum | DevtoHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * DevtoHistory findFirstOrThrow
+   */
+  export type DevtoHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which DevtoHistory to fetch.
+     */
+    where?: DevtoHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DevtoHistories to fetch.
+     */
+    orderBy?: DevtoHistoryOrderByWithRelationInput | DevtoHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DevtoHistories.
+     */
+    cursor?: DevtoHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DevtoHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DevtoHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DevtoHistories.
+     */
+    distinct?: DevtoHistoryScalarFieldEnum | DevtoHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * DevtoHistory findMany
+   */
+  export type DevtoHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which DevtoHistories to fetch.
+     */
+    where?: DevtoHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DevtoHistories to fetch.
+     */
+    orderBy?: DevtoHistoryOrderByWithRelationInput | DevtoHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DevtoHistories.
+     */
+    cursor?: DevtoHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DevtoHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DevtoHistories.
+     */
+    skip?: number
+    distinct?: DevtoHistoryScalarFieldEnum | DevtoHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * DevtoHistory create
+   */
+  export type DevtoHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a DevtoHistory.
+     */
+    data: XOR<DevtoHistoryCreateInput, DevtoHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * DevtoHistory createMany
+   */
+  export type DevtoHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DevtoHistories.
+     */
+    data: DevtoHistoryCreateManyInput | DevtoHistoryCreateManyInput[]
+  }
+
+  /**
+   * DevtoHistory update
+   */
+  export type DevtoHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a DevtoHistory.
+     */
+    data: XOR<DevtoHistoryUpdateInput, DevtoHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which DevtoHistory to update.
+     */
+    where: DevtoHistoryWhereUniqueInput
+  }
+
+  /**
+   * DevtoHistory updateMany
+   */
+  export type DevtoHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DevtoHistories.
+     */
+    data: XOR<DevtoHistoryUpdateManyMutationInput, DevtoHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which DevtoHistories to update
+     */
+    where?: DevtoHistoryWhereInput
+  }
+
+  /**
+   * DevtoHistory upsert
+   */
+  export type DevtoHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the DevtoHistory to update in case it exists.
+     */
+    where: DevtoHistoryWhereUniqueInput
+    /**
+     * In case the DevtoHistory found by the `where` argument doesn't exist, create a new DevtoHistory with this data.
+     */
+    create: XOR<DevtoHistoryCreateInput, DevtoHistoryUncheckedCreateInput>
+    /**
+     * In case the DevtoHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DevtoHistoryUpdateInput, DevtoHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * DevtoHistory delete
+   */
+  export type DevtoHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+    /**
+     * Filter which DevtoHistory to delete.
+     */
+    where: DevtoHistoryWhereUniqueInput
+  }
+
+  /**
+   * DevtoHistory deleteMany
+   */
+  export type DevtoHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DevtoHistories to delete
+     */
+    where?: DevtoHistoryWhereInput
+  }
+
+  /**
+   * DevtoHistory findRaw
+   */
+  export type DevtoHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * DevtoHistory aggregateRaw
+   */
+  export type DevtoHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * DevtoHistory without action
+   */
+  export type DevtoHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DevtoHistory
+     */
+    select?: DevtoHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model KaggleHistory
+   */
+
+  export type AggregateKaggleHistory = {
+    _count: KaggleHistoryCountAggregateOutputType | null
+    _avg: KaggleHistoryAvgAggregateOutputType | null
+    _sum: KaggleHistorySumAggregateOutputType | null
+    _min: KaggleHistoryMinAggregateOutputType | null
+    _max: KaggleHistoryMaxAggregateOutputType | null
+  }
+
+  export type KaggleHistoryAvgAggregateOutputType = {
+    points: number | null
+    rank: number | null
+  }
+
+  export type KaggleHistorySumAggregateOutputType = {
+    points: number | null
+    rank: number | null
+  }
+
+  export type KaggleHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    points: number | null
+    rank: number | null
+    createdAt: Date | null
+  }
+
+  export type KaggleHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    points: number | null
+    rank: number | null
+    createdAt: Date | null
+  }
+
+  export type KaggleHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    points: number
+    rank: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type KaggleHistoryAvgAggregateInputType = {
+    points?: true
+    rank?: true
+  }
+
+  export type KaggleHistorySumAggregateInputType = {
+    points?: true
+    rank?: true
+  }
+
+  export type KaggleHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    points?: true
+    rank?: true
+    createdAt?: true
+  }
+
+  export type KaggleHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    points?: true
+    rank?: true
+    createdAt?: true
+  }
+
+  export type KaggleHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    points?: true
+    rank?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type KaggleHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KaggleHistory to aggregate.
+     */
+    where?: KaggleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KaggleHistories to fetch.
+     */
+    orderBy?: KaggleHistoryOrderByWithRelationInput | KaggleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KaggleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KaggleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KaggleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned KaggleHistories
+    **/
+    _count?: true | KaggleHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: KaggleHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: KaggleHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KaggleHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KaggleHistoryMaxAggregateInputType
+  }
+
+  export type GetKaggleHistoryAggregateType<T extends KaggleHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateKaggleHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKaggleHistory[P]>
+      : GetScalarType<T[P], AggregateKaggleHistory[P]>
+  }
+
+
+
+
+  export type KaggleHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KaggleHistoryWhereInput
+    orderBy?: KaggleHistoryOrderByWithAggregationInput | KaggleHistoryOrderByWithAggregationInput[]
+    by: KaggleHistoryScalarFieldEnum[] | KaggleHistoryScalarFieldEnum
+    having?: KaggleHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KaggleHistoryCountAggregateInputType | true
+    _avg?: KaggleHistoryAvgAggregateInputType
+    _sum?: KaggleHistorySumAggregateInputType
+    _min?: KaggleHistoryMinAggregateInputType
+    _max?: KaggleHistoryMaxAggregateInputType
+  }
+
+  export type KaggleHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    points: number
+    rank: number
+    createdAt: Date
+    _count: KaggleHistoryCountAggregateOutputType | null
+    _avg: KaggleHistoryAvgAggregateOutputType | null
+    _sum: KaggleHistorySumAggregateOutputType | null
+    _min: KaggleHistoryMinAggregateOutputType | null
+    _max: KaggleHistoryMaxAggregateOutputType | null
+  }
+
+  type GetKaggleHistoryGroupByPayload<T extends KaggleHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KaggleHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KaggleHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KaggleHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], KaggleHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KaggleHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    points?: boolean
+    rank?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["kaggleHistory"]>
+
+
+  export type KaggleHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    points?: boolean
+    rank?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $KaggleHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "KaggleHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      points: number
+      rank: number
+      createdAt: Date
+    }, ExtArgs["result"]["kaggleHistory"]>
+    composites: {}
+  }
+
+  type KaggleHistoryGetPayload<S extends boolean | null | undefined | KaggleHistoryDefaultArgs> = $Result.GetResult<Prisma.$KaggleHistoryPayload, S>
+
+  type KaggleHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<KaggleHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: KaggleHistoryCountAggregateInputType | true
+    }
+
+  export interface KaggleHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['KaggleHistory'], meta: { name: 'KaggleHistory' } }
+    /**
+     * Find zero or one KaggleHistory that matches the filter.
+     * @param {KaggleHistoryFindUniqueArgs} args - Arguments to find a KaggleHistory
+     * @example
+     * // Get one KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KaggleHistoryFindUniqueArgs>(args: SelectSubset<T, KaggleHistoryFindUniqueArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one KaggleHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {KaggleHistoryFindUniqueOrThrowArgs} args - Arguments to find a KaggleHistory
+     * @example
+     * // Get one KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KaggleHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, KaggleHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first KaggleHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryFindFirstArgs} args - Arguments to find a KaggleHistory
+     * @example
+     * // Get one KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KaggleHistoryFindFirstArgs>(args?: SelectSubset<T, KaggleHistoryFindFirstArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first KaggleHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryFindFirstOrThrowArgs} args - Arguments to find a KaggleHistory
+     * @example
+     * // Get one KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KaggleHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, KaggleHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more KaggleHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all KaggleHistories
+     * const kaggleHistories = await prisma.kaggleHistory.findMany()
+     * 
+     * // Get first 10 KaggleHistories
+     * const kaggleHistories = await prisma.kaggleHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const kaggleHistoryWithIdOnly = await prisma.kaggleHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends KaggleHistoryFindManyArgs>(args?: SelectSubset<T, KaggleHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a KaggleHistory.
+     * @param {KaggleHistoryCreateArgs} args - Arguments to create a KaggleHistory.
+     * @example
+     * // Create one KaggleHistory
+     * const KaggleHistory = await prisma.kaggleHistory.create({
+     *   data: {
+     *     // ... data to create a KaggleHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends KaggleHistoryCreateArgs>(args: SelectSubset<T, KaggleHistoryCreateArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many KaggleHistories.
+     * @param {KaggleHistoryCreateManyArgs} args - Arguments to create many KaggleHistories.
+     * @example
+     * // Create many KaggleHistories
+     * const kaggleHistory = await prisma.kaggleHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KaggleHistoryCreateManyArgs>(args?: SelectSubset<T, KaggleHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a KaggleHistory.
+     * @param {KaggleHistoryDeleteArgs} args - Arguments to delete one KaggleHistory.
+     * @example
+     * // Delete one KaggleHistory
+     * const KaggleHistory = await prisma.kaggleHistory.delete({
+     *   where: {
+     *     // ... filter to delete one KaggleHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KaggleHistoryDeleteArgs>(args: SelectSubset<T, KaggleHistoryDeleteArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one KaggleHistory.
+     * @param {KaggleHistoryUpdateArgs} args - Arguments to update one KaggleHistory.
+     * @example
+     * // Update one KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KaggleHistoryUpdateArgs>(args: SelectSubset<T, KaggleHistoryUpdateArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more KaggleHistories.
+     * @param {KaggleHistoryDeleteManyArgs} args - Arguments to filter KaggleHistories to delete.
+     * @example
+     * // Delete a few KaggleHistories
+     * const { count } = await prisma.kaggleHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KaggleHistoryDeleteManyArgs>(args?: SelectSubset<T, KaggleHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KaggleHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many KaggleHistories
+     * const kaggleHistory = await prisma.kaggleHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KaggleHistoryUpdateManyArgs>(args: SelectSubset<T, KaggleHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one KaggleHistory.
+     * @param {KaggleHistoryUpsertArgs} args - Arguments to update or create a KaggleHistory.
+     * @example
+     * // Update or create a KaggleHistory
+     * const kaggleHistory = await prisma.kaggleHistory.upsert({
+     *   create: {
+     *     // ... data to create a KaggleHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the KaggleHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KaggleHistoryUpsertArgs>(args: SelectSubset<T, KaggleHistoryUpsertArgs<ExtArgs>>): Prisma__KaggleHistoryClient<$Result.GetResult<Prisma.$KaggleHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more KaggleHistories that matches the filter.
+     * @param {KaggleHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const kaggleHistory = await prisma.kaggleHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: KaggleHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a KaggleHistory.
+     * @param {KaggleHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const kaggleHistory = await prisma.kaggleHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: KaggleHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of KaggleHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryCountArgs} args - Arguments to filter KaggleHistories to count.
+     * @example
+     * // Count the number of KaggleHistories
+     * const count = await prisma.kaggleHistory.count({
+     *   where: {
+     *     // ... the filter for the KaggleHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends KaggleHistoryCountArgs>(
+      args?: Subset<T, KaggleHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KaggleHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a KaggleHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KaggleHistoryAggregateArgs>(args: Subset<T, KaggleHistoryAggregateArgs>): Prisma.PrismaPromise<GetKaggleHistoryAggregateType<T>>
+
+    /**
+     * Group by KaggleHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KaggleHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KaggleHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KaggleHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: KaggleHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KaggleHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKaggleHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the KaggleHistory model
+   */
+  readonly fields: KaggleHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for KaggleHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KaggleHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the KaggleHistory model
+   */ 
+  interface KaggleHistoryFieldRefs {
+    readonly id: FieldRef<"KaggleHistory", 'String'>
+    readonly username: FieldRef<"KaggleHistory", 'String'>
+    readonly date: FieldRef<"KaggleHistory", 'DateTime'>
+    readonly points: FieldRef<"KaggleHistory", 'Int'>
+    readonly rank: FieldRef<"KaggleHistory", 'Int'>
+    readonly createdAt: FieldRef<"KaggleHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * KaggleHistory findUnique
+   */
+  export type KaggleHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which KaggleHistory to fetch.
+     */
+    where: KaggleHistoryWhereUniqueInput
+  }
+
+  /**
+   * KaggleHistory findUniqueOrThrow
+   */
+  export type KaggleHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which KaggleHistory to fetch.
+     */
+    where: KaggleHistoryWhereUniqueInput
+  }
+
+  /**
+   * KaggleHistory findFirst
+   */
+  export type KaggleHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which KaggleHistory to fetch.
+     */
+    where?: KaggleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KaggleHistories to fetch.
+     */
+    orderBy?: KaggleHistoryOrderByWithRelationInput | KaggleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KaggleHistories.
+     */
+    cursor?: KaggleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KaggleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KaggleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KaggleHistories.
+     */
+    distinct?: KaggleHistoryScalarFieldEnum | KaggleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * KaggleHistory findFirstOrThrow
+   */
+  export type KaggleHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which KaggleHistory to fetch.
+     */
+    where?: KaggleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KaggleHistories to fetch.
+     */
+    orderBy?: KaggleHistoryOrderByWithRelationInput | KaggleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KaggleHistories.
+     */
+    cursor?: KaggleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KaggleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KaggleHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KaggleHistories.
+     */
+    distinct?: KaggleHistoryScalarFieldEnum | KaggleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * KaggleHistory findMany
+   */
+  export type KaggleHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which KaggleHistories to fetch.
+     */
+    where?: KaggleHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KaggleHistories to fetch.
+     */
+    orderBy?: KaggleHistoryOrderByWithRelationInput | KaggleHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing KaggleHistories.
+     */
+    cursor?: KaggleHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KaggleHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KaggleHistories.
+     */
+    skip?: number
+    distinct?: KaggleHistoryScalarFieldEnum | KaggleHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * KaggleHistory create
+   */
+  export type KaggleHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a KaggleHistory.
+     */
+    data: XOR<KaggleHistoryCreateInput, KaggleHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * KaggleHistory createMany
+   */
+  export type KaggleHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many KaggleHistories.
+     */
+    data: KaggleHistoryCreateManyInput | KaggleHistoryCreateManyInput[]
+  }
+
+  /**
+   * KaggleHistory update
+   */
+  export type KaggleHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a KaggleHistory.
+     */
+    data: XOR<KaggleHistoryUpdateInput, KaggleHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which KaggleHistory to update.
+     */
+    where: KaggleHistoryWhereUniqueInput
+  }
+
+  /**
+   * KaggleHistory updateMany
+   */
+  export type KaggleHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update KaggleHistories.
+     */
+    data: XOR<KaggleHistoryUpdateManyMutationInput, KaggleHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which KaggleHistories to update
+     */
+    where?: KaggleHistoryWhereInput
+  }
+
+  /**
+   * KaggleHistory upsert
+   */
+  export type KaggleHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the KaggleHistory to update in case it exists.
+     */
+    where: KaggleHistoryWhereUniqueInput
+    /**
+     * In case the KaggleHistory found by the `where` argument doesn't exist, create a new KaggleHistory with this data.
+     */
+    create: XOR<KaggleHistoryCreateInput, KaggleHistoryUncheckedCreateInput>
+    /**
+     * In case the KaggleHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KaggleHistoryUpdateInput, KaggleHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * KaggleHistory delete
+   */
+  export type KaggleHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+    /**
+     * Filter which KaggleHistory to delete.
+     */
+    where: KaggleHistoryWhereUniqueInput
+  }
+
+  /**
+   * KaggleHistory deleteMany
+   */
+  export type KaggleHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KaggleHistories to delete
+     */
+    where?: KaggleHistoryWhereInput
+  }
+
+  /**
+   * KaggleHistory findRaw
+   */
+  export type KaggleHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * KaggleHistory aggregateRaw
+   */
+  export type KaggleHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * KaggleHistory without action
+   */
+  export type KaggleHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KaggleHistory
+     */
+    select?: KaggleHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SyncLog
+   */
+
+  export type AggregateSyncLog = {
+    _count: SyncLogCountAggregateOutputType | null
+    _avg: SyncLogAvgAggregateOutputType | null
+    _sum: SyncLogSumAggregateOutputType | null
+    _min: SyncLogMinAggregateOutputType | null
+    _max: SyncLogMaxAggregateOutputType | null
+  }
+
+  export type SyncLogAvgAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type SyncLogSumAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type SyncLogMinAggregateOutputType = {
+    id: string | null
+    platform: string | null
+    status: string | null
+    message: string | null
+    duration: number | null
+    createdAt: Date | null
+  }
+
+  export type SyncLogMaxAggregateOutputType = {
+    id: string | null
+    platform: string | null
+    status: string | null
+    message: string | null
+    duration: number | null
+    createdAt: Date | null
+  }
+
+  export type SyncLogCountAggregateOutputType = {
+    id: number
+    platform: number
+    status: number
+    message: number
+    duration: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SyncLogAvgAggregateInputType = {
+    duration?: true
+  }
+
+  export type SyncLogSumAggregateInputType = {
+    duration?: true
+  }
+
+  export type SyncLogMinAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    message?: true
+    duration?: true
+    createdAt?: true
+  }
+
+  export type SyncLogMaxAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    message?: true
+    duration?: true
+    createdAt?: true
+  }
+
+  export type SyncLogCountAggregateInputType = {
+    id?: true
+    platform?: true
+    status?: true
+    message?: true
+    duration?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SyncLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SyncLog to aggregate.
+     */
+    where?: SyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncLogs to fetch.
+     */
+    orderBy?: SyncLogOrderByWithRelationInput | SyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SyncLogs
+    **/
+    _count?: true | SyncLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SyncLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SyncLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SyncLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SyncLogMaxAggregateInputType
+  }
+
+  export type GetSyncLogAggregateType<T extends SyncLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateSyncLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSyncLog[P]>
+      : GetScalarType<T[P], AggregateSyncLog[P]>
+  }
+
+
+
+
+  export type SyncLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SyncLogWhereInput
+    orderBy?: SyncLogOrderByWithAggregationInput | SyncLogOrderByWithAggregationInput[]
+    by: SyncLogScalarFieldEnum[] | SyncLogScalarFieldEnum
+    having?: SyncLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SyncLogCountAggregateInputType | true
+    _avg?: SyncLogAvgAggregateInputType
+    _sum?: SyncLogSumAggregateInputType
+    _min?: SyncLogMinAggregateInputType
+    _max?: SyncLogMaxAggregateInputType
+  }
+
+  export type SyncLogGroupByOutputType = {
+    id: string
+    platform: string
+    status: string
+    message: string | null
+    duration: number | null
+    createdAt: Date
+    _count: SyncLogCountAggregateOutputType | null
+    _avg: SyncLogAvgAggregateOutputType | null
+    _sum: SyncLogSumAggregateOutputType | null
+    _min: SyncLogMinAggregateOutputType | null
+    _max: SyncLogMaxAggregateOutputType | null
+  }
+
+  type GetSyncLogGroupByPayload<T extends SyncLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SyncLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SyncLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SyncLogGroupByOutputType[P]>
+            : GetScalarType<T[P], SyncLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SyncLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    message?: boolean
+    duration?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["syncLog"]>
+
+
+  export type SyncLogSelectScalar = {
+    id?: boolean
+    platform?: boolean
+    status?: boolean
+    message?: boolean
+    duration?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $SyncLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SyncLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      platform: string
+      status: string
+      message: string | null
+      duration: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["syncLog"]>
+    composites: {}
+  }
+
+  type SyncLogGetPayload<S extends boolean | null | undefined | SyncLogDefaultArgs> = $Result.GetResult<Prisma.$SyncLogPayload, S>
+
+  type SyncLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SyncLogFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SyncLogCountAggregateInputType | true
+    }
+
+  export interface SyncLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SyncLog'], meta: { name: 'SyncLog' } }
+    /**
+     * Find zero or one SyncLog that matches the filter.
+     * @param {SyncLogFindUniqueArgs} args - Arguments to find a SyncLog
+     * @example
+     * // Get one SyncLog
+     * const syncLog = await prisma.syncLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SyncLogFindUniqueArgs>(args: SelectSubset<T, SyncLogFindUniqueArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SyncLog that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SyncLogFindUniqueOrThrowArgs} args - Arguments to find a SyncLog
+     * @example
+     * // Get one SyncLog
+     * const syncLog = await prisma.syncLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SyncLogFindUniqueOrThrowArgs>(args: SelectSubset<T, SyncLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SyncLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogFindFirstArgs} args - Arguments to find a SyncLog
+     * @example
+     * // Get one SyncLog
+     * const syncLog = await prisma.syncLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SyncLogFindFirstArgs>(args?: SelectSubset<T, SyncLogFindFirstArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SyncLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogFindFirstOrThrowArgs} args - Arguments to find a SyncLog
+     * @example
+     * // Get one SyncLog
+     * const syncLog = await prisma.syncLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SyncLogFindFirstOrThrowArgs>(args?: SelectSubset<T, SyncLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SyncLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SyncLogs
+     * const syncLogs = await prisma.syncLog.findMany()
+     * 
+     * // Get first 10 SyncLogs
+     * const syncLogs = await prisma.syncLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const syncLogWithIdOnly = await prisma.syncLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SyncLogFindManyArgs>(args?: SelectSubset<T, SyncLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SyncLog.
+     * @param {SyncLogCreateArgs} args - Arguments to create a SyncLog.
+     * @example
+     * // Create one SyncLog
+     * const SyncLog = await prisma.syncLog.create({
+     *   data: {
+     *     // ... data to create a SyncLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends SyncLogCreateArgs>(args: SelectSubset<T, SyncLogCreateArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SyncLogs.
+     * @param {SyncLogCreateManyArgs} args - Arguments to create many SyncLogs.
+     * @example
+     * // Create many SyncLogs
+     * const syncLog = await prisma.syncLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SyncLogCreateManyArgs>(args?: SelectSubset<T, SyncLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SyncLog.
+     * @param {SyncLogDeleteArgs} args - Arguments to delete one SyncLog.
+     * @example
+     * // Delete one SyncLog
+     * const SyncLog = await prisma.syncLog.delete({
+     *   where: {
+     *     // ... filter to delete one SyncLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SyncLogDeleteArgs>(args: SelectSubset<T, SyncLogDeleteArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SyncLog.
+     * @param {SyncLogUpdateArgs} args - Arguments to update one SyncLog.
+     * @example
+     * // Update one SyncLog
+     * const syncLog = await prisma.syncLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SyncLogUpdateArgs>(args: SelectSubset<T, SyncLogUpdateArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SyncLogs.
+     * @param {SyncLogDeleteManyArgs} args - Arguments to filter SyncLogs to delete.
+     * @example
+     * // Delete a few SyncLogs
+     * const { count } = await prisma.syncLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SyncLogDeleteManyArgs>(args?: SelectSubset<T, SyncLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SyncLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SyncLogs
+     * const syncLog = await prisma.syncLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SyncLogUpdateManyArgs>(args: SelectSubset<T, SyncLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SyncLog.
+     * @param {SyncLogUpsertArgs} args - Arguments to update or create a SyncLog.
+     * @example
+     * // Update or create a SyncLog
+     * const syncLog = await prisma.syncLog.upsert({
+     *   create: {
+     *     // ... data to create a SyncLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SyncLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SyncLogUpsertArgs>(args: SelectSubset<T, SyncLogUpsertArgs<ExtArgs>>): Prisma__SyncLogClient<$Result.GetResult<Prisma.$SyncLogPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more SyncLogs that matches the filter.
+     * @param {SyncLogFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const syncLog = await prisma.syncLog.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: SyncLogFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a SyncLog.
+     * @param {SyncLogAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const syncLog = await prisma.syncLog.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: SyncLogAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of SyncLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogCountArgs} args - Arguments to filter SyncLogs to count.
+     * @example
+     * // Count the number of SyncLogs
+     * const count = await prisma.syncLog.count({
+     *   where: {
+     *     // ... the filter for the SyncLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SyncLogCountArgs>(
+      args?: Subset<T, SyncLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SyncLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SyncLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SyncLogAggregateArgs>(args: Subset<T, SyncLogAggregateArgs>): Prisma.PrismaPromise<GetSyncLogAggregateType<T>>
+
+    /**
+     * Group by SyncLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SyncLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SyncLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SyncLogGroupByArgs['orderBy'] }
+        : { orderBy?: SyncLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SyncLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSyncLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SyncLog model
+   */
+  readonly fields: SyncLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SyncLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SyncLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SyncLog model
+   */ 
+  interface SyncLogFieldRefs {
+    readonly id: FieldRef<"SyncLog", 'String'>
+    readonly platform: FieldRef<"SyncLog", 'String'>
+    readonly status: FieldRef<"SyncLog", 'String'>
+    readonly message: FieldRef<"SyncLog", 'String'>
+    readonly duration: FieldRef<"SyncLog", 'Int'>
+    readonly createdAt: FieldRef<"SyncLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SyncLog findUnique
+   */
+  export type SyncLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter, which SyncLog to fetch.
+     */
+    where: SyncLogWhereUniqueInput
+  }
+
+  /**
+   * SyncLog findUniqueOrThrow
+   */
+  export type SyncLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter, which SyncLog to fetch.
+     */
+    where: SyncLogWhereUniqueInput
+  }
+
+  /**
+   * SyncLog findFirst
+   */
+  export type SyncLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter, which SyncLog to fetch.
+     */
+    where?: SyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncLogs to fetch.
+     */
+    orderBy?: SyncLogOrderByWithRelationInput | SyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SyncLogs.
+     */
+    cursor?: SyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SyncLogs.
+     */
+    distinct?: SyncLogScalarFieldEnum | SyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * SyncLog findFirstOrThrow
+   */
+  export type SyncLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter, which SyncLog to fetch.
+     */
+    where?: SyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncLogs to fetch.
+     */
+    orderBy?: SyncLogOrderByWithRelationInput | SyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SyncLogs.
+     */
+    cursor?: SyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SyncLogs.
+     */
+    distinct?: SyncLogScalarFieldEnum | SyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * SyncLog findMany
+   */
+  export type SyncLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter, which SyncLogs to fetch.
+     */
+    where?: SyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SyncLogs to fetch.
+     */
+    orderBy?: SyncLogOrderByWithRelationInput | SyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SyncLogs.
+     */
+    cursor?: SyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SyncLogs.
+     */
+    skip?: number
+    distinct?: SyncLogScalarFieldEnum | SyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * SyncLog create
+   */
+  export type SyncLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * The data needed to create a SyncLog.
+     */
+    data: XOR<SyncLogCreateInput, SyncLogUncheckedCreateInput>
+  }
+
+  /**
+   * SyncLog createMany
+   */
+  export type SyncLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SyncLogs.
+     */
+    data: SyncLogCreateManyInput | SyncLogCreateManyInput[]
+  }
+
+  /**
+   * SyncLog update
+   */
+  export type SyncLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * The data needed to update a SyncLog.
+     */
+    data: XOR<SyncLogUpdateInput, SyncLogUncheckedUpdateInput>
+    /**
+     * Choose, which SyncLog to update.
+     */
+    where: SyncLogWhereUniqueInput
+  }
+
+  /**
+   * SyncLog updateMany
+   */
+  export type SyncLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SyncLogs.
+     */
+    data: XOR<SyncLogUpdateManyMutationInput, SyncLogUncheckedUpdateManyInput>
+    /**
+     * Filter which SyncLogs to update
+     */
+    where?: SyncLogWhereInput
+  }
+
+  /**
+   * SyncLog upsert
+   */
+  export type SyncLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * The filter to search for the SyncLog to update in case it exists.
+     */
+    where: SyncLogWhereUniqueInput
+    /**
+     * In case the SyncLog found by the `where` argument doesn't exist, create a new SyncLog with this data.
+     */
+    create: XOR<SyncLogCreateInput, SyncLogUncheckedCreateInput>
+    /**
+     * In case the SyncLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SyncLogUpdateInput, SyncLogUncheckedUpdateInput>
+  }
+
+  /**
+   * SyncLog delete
+   */
+  export type SyncLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
+    /**
+     * Filter which SyncLog to delete.
+     */
+    where: SyncLogWhereUniqueInput
+  }
+
+  /**
+   * SyncLog deleteMany
+   */
+  export type SyncLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SyncLogs to delete
+     */
+    where?: SyncLogWhereInput
+  }
+
+  /**
+   * SyncLog findRaw
+   */
+  export type SyncLogFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * SyncLog aggregateRaw
+   */
+  export type SyncLogAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * SyncLog without action
+   */
+  export type SyncLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SyncLog
+     */
+    select?: SyncLogSelect<ExtArgs> | null
   }
 
 
@@ -37672,8 +44915,13 @@ export namespace Prisma {
     hackerrank: 'hackerrank',
     atcoder: 'atcoder',
     hackerearth: 'hackerearth',
+    stackoverflow: 'stackoverflow',
+    devto: 'devto',
+    kaggle: 'kaggle',
     resumeUrl: 'resumeUrl',
     statsCache: 'statsCache',
+    platformVisibility: 'platformVisibility',
+    aiInsightsEnabled: 'aiInsightsEnabled',
     updatedAt: 'updatedAt'
   };
 
@@ -37715,11 +44963,15 @@ export namespace Prisma {
     followers: 'followers',
     following: 'following',
     publicRepos: 'publicRepos',
+    privateRepos: 'privateRepos',
+    archivedRepos: 'archivedRepos',
+    forkedRepos: 'forkedRepos',
     totalStars: 'totalStars',
     totalForks: 'totalForks',
     totalPRs: 'totalPRs',
     totalIssues: 'totalIssues',
     totalCommits: 'totalCommits',
+    activeDays: 'activeDays',
     streak: 'streak',
     languages: 'languages',
     heatmap: 'heatmap',
@@ -37890,12 +45142,95 @@ export namespace Prisma {
     id: 'id',
     username: 'username',
     rating: 'rating',
+    maxRating: 'maxRating',
     rank: 'rank',
     challenges: 'challenges',
     updatedAt: 'updatedAt'
   };
 
   export type AtcoderProfileScalarFieldEnum = (typeof AtcoderProfileScalarFieldEnum)[keyof typeof AtcoderProfileScalarFieldEnum]
+
+
+  export const HackerrankHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    rating: 'rating',
+    challenges: 'challenges',
+    createdAt: 'createdAt'
+  };
+
+  export type HackerrankHistoryScalarFieldEnum = (typeof HackerrankHistoryScalarFieldEnum)[keyof typeof HackerrankHistoryScalarFieldEnum]
+
+
+  export const HackerearthHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    rating: 'rating',
+    challenges: 'challenges',
+    createdAt: 'createdAt'
+  };
+
+  export type HackerearthHistoryScalarFieldEnum = (typeof HackerearthHistoryScalarFieldEnum)[keyof typeof HackerearthHistoryScalarFieldEnum]
+
+
+  export const AtcoderHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    rating: 'rating',
+    createdAt: 'createdAt'
+  };
+
+  export type AtcoderHistoryScalarFieldEnum = (typeof AtcoderHistoryScalarFieldEnum)[keyof typeof AtcoderHistoryScalarFieldEnum]
+
+
+  export const StackoverflowHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    reputation: 'reputation',
+    createdAt: 'createdAt'
+  };
+
+  export type StackoverflowHistoryScalarFieldEnum = (typeof StackoverflowHistoryScalarFieldEnum)[keyof typeof StackoverflowHistoryScalarFieldEnum]
+
+
+  export const DevtoHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    articles: 'articles',
+    reactions: 'reactions',
+    createdAt: 'createdAt'
+  };
+
+  export type DevtoHistoryScalarFieldEnum = (typeof DevtoHistoryScalarFieldEnum)[keyof typeof DevtoHistoryScalarFieldEnum]
+
+
+  export const KaggleHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    points: 'points',
+    rank: 'rank',
+    createdAt: 'createdAt'
+  };
+
+  export type KaggleHistoryScalarFieldEnum = (typeof KaggleHistoryScalarFieldEnum)[keyof typeof KaggleHistoryScalarFieldEnum]
+
+
+  export const SyncLogScalarFieldEnum: {
+    id: 'id',
+    platform: 'platform',
+    status: 'status',
+    message: 'message',
+    duration: 'duration',
+    createdAt: 'createdAt'
+  };
+
+  export type SyncLogScalarFieldEnum = (typeof SyncLogScalarFieldEnum)[keyof typeof SyncLogScalarFieldEnum]
 
 
   export const StackoverflowProfileScalarFieldEnum: {
@@ -38956,8 +46291,13 @@ export namespace Prisma {
     hackerrank?: StringNullableFilter<"DevProfile"> | string | null
     atcoder?: StringNullableFilter<"DevProfile"> | string | null
     hackerearth?: StringNullableFilter<"DevProfile"> | string | null
+    stackoverflow?: StringNullableFilter<"DevProfile"> | string | null
+    devto?: StringNullableFilter<"DevProfile"> | string | null
+    kaggle?: StringNullableFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableFilter<"DevProfile"> | string | null
     statsCache?: StringNullableFilter<"DevProfile"> | string | null
+    platformVisibility?: StringNullableFilter<"DevProfile"> | string | null
+    aiInsightsEnabled?: BoolFilter<"DevProfile"> | boolean
     updatedAt?: DateTimeFilter<"DevProfile"> | Date | string
   }
 
@@ -38974,8 +46314,13 @@ export namespace Prisma {
     hackerrank?: SortOrder
     atcoder?: SortOrder
     hackerearth?: SortOrder
+    stackoverflow?: SortOrder
+    devto?: SortOrder
+    kaggle?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
+    platformVisibility?: SortOrder
+    aiInsightsEnabled?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -38995,8 +46340,13 @@ export namespace Prisma {
     hackerrank?: StringNullableFilter<"DevProfile"> | string | null
     atcoder?: StringNullableFilter<"DevProfile"> | string | null
     hackerearth?: StringNullableFilter<"DevProfile"> | string | null
+    stackoverflow?: StringNullableFilter<"DevProfile"> | string | null
+    devto?: StringNullableFilter<"DevProfile"> | string | null
+    kaggle?: StringNullableFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableFilter<"DevProfile"> | string | null
     statsCache?: StringNullableFilter<"DevProfile"> | string | null
+    platformVisibility?: StringNullableFilter<"DevProfile"> | string | null
+    aiInsightsEnabled?: BoolFilter<"DevProfile"> | boolean
     updatedAt?: DateTimeFilter<"DevProfile"> | Date | string
   }, "id">
 
@@ -39013,8 +46363,13 @@ export namespace Prisma {
     hackerrank?: SortOrder
     atcoder?: SortOrder
     hackerearth?: SortOrder
+    stackoverflow?: SortOrder
+    devto?: SortOrder
+    kaggle?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
+    platformVisibility?: SortOrder
+    aiInsightsEnabled?: SortOrder
     updatedAt?: SortOrder
     _count?: DevProfileCountOrderByAggregateInput
     _max?: DevProfileMaxOrderByAggregateInput
@@ -39037,8 +46392,13 @@ export namespace Prisma {
     hackerrank?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     atcoder?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     hackerearth?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    stackoverflow?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    devto?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    kaggle?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     statsCache?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    platformVisibility?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    aiInsightsEnabled?: BoolWithAggregatesFilter<"DevProfile"> | boolean
     updatedAt?: DateTimeWithAggregatesFilter<"DevProfile"> | Date | string
   }
 
@@ -39178,11 +46538,15 @@ export namespace Prisma {
     followers?: IntFilter<"GithubProfile"> | number
     following?: IntFilter<"GithubProfile"> | number
     publicRepos?: IntFilter<"GithubProfile"> | number
+    privateRepos?: IntFilter<"GithubProfile"> | number
+    archivedRepos?: IntFilter<"GithubProfile"> | number
+    forkedRepos?: IntFilter<"GithubProfile"> | number
     totalStars?: IntFilter<"GithubProfile"> | number
     totalForks?: IntFilter<"GithubProfile"> | number
     totalPRs?: IntFilter<"GithubProfile"> | number
     totalIssues?: IntFilter<"GithubProfile"> | number
     totalCommits?: IntFilter<"GithubProfile"> | number
+    activeDays?: IntFilter<"GithubProfile"> | number
     streak?: IntFilter<"GithubProfile"> | number
     languages?: StringNullableFilter<"GithubProfile"> | string | null
     heatmap?: StringNullableFilter<"GithubProfile"> | string | null
@@ -39201,11 +46565,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
     languages?: SortOrder
     heatmap?: SortOrder
@@ -39227,11 +46595,15 @@ export namespace Prisma {
     followers?: IntFilter<"GithubProfile"> | number
     following?: IntFilter<"GithubProfile"> | number
     publicRepos?: IntFilter<"GithubProfile"> | number
+    privateRepos?: IntFilter<"GithubProfile"> | number
+    archivedRepos?: IntFilter<"GithubProfile"> | number
+    forkedRepos?: IntFilter<"GithubProfile"> | number
     totalStars?: IntFilter<"GithubProfile"> | number
     totalForks?: IntFilter<"GithubProfile"> | number
     totalPRs?: IntFilter<"GithubProfile"> | number
     totalIssues?: IntFilter<"GithubProfile"> | number
     totalCommits?: IntFilter<"GithubProfile"> | number
+    activeDays?: IntFilter<"GithubProfile"> | number
     streak?: IntFilter<"GithubProfile"> | number
     languages?: StringNullableFilter<"GithubProfile"> | string | null
     heatmap?: StringNullableFilter<"GithubProfile"> | string | null
@@ -39250,11 +46622,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
     languages?: SortOrder
     heatmap?: SortOrder
@@ -39281,11 +46657,15 @@ export namespace Prisma {
     followers?: IntWithAggregatesFilter<"GithubProfile"> | number
     following?: IntWithAggregatesFilter<"GithubProfile"> | number
     publicRepos?: IntWithAggregatesFilter<"GithubProfile"> | number
+    privateRepos?: IntWithAggregatesFilter<"GithubProfile"> | number
+    archivedRepos?: IntWithAggregatesFilter<"GithubProfile"> | number
+    forkedRepos?: IntWithAggregatesFilter<"GithubProfile"> | number
     totalStars?: IntWithAggregatesFilter<"GithubProfile"> | number
     totalForks?: IntWithAggregatesFilter<"GithubProfile"> | number
     totalPRs?: IntWithAggregatesFilter<"GithubProfile"> | number
     totalIssues?: IntWithAggregatesFilter<"GithubProfile"> | number
     totalCommits?: IntWithAggregatesFilter<"GithubProfile"> | number
+    activeDays?: IntWithAggregatesFilter<"GithubProfile"> | number
     streak?: IntWithAggregatesFilter<"GithubProfile"> | number
     languages?: StringNullableWithAggregatesFilter<"GithubProfile"> | string | null
     heatmap?: StringNullableWithAggregatesFilter<"GithubProfile"> | string | null
@@ -40065,6 +47445,7 @@ export namespace Prisma {
     id?: StringFilter<"AtcoderProfile"> | string
     username?: StringFilter<"AtcoderProfile"> | string
     rating?: IntFilter<"AtcoderProfile"> | number
+    maxRating?: IntFilter<"AtcoderProfile"> | number
     rank?: IntFilter<"AtcoderProfile"> | number
     challenges?: IntFilter<"AtcoderProfile"> | number
     updatedAt?: DateTimeFilter<"AtcoderProfile"> | Date | string
@@ -40074,6 +47455,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
     updatedAt?: SortOrder
@@ -40086,6 +47468,7 @@ export namespace Prisma {
     OR?: AtcoderProfileWhereInput[]
     NOT?: AtcoderProfileWhereInput | AtcoderProfileWhereInput[]
     rating?: IntFilter<"AtcoderProfile"> | number
+    maxRating?: IntFilter<"AtcoderProfile"> | number
     rank?: IntFilter<"AtcoderProfile"> | number
     challenges?: IntFilter<"AtcoderProfile"> | number
     updatedAt?: DateTimeFilter<"AtcoderProfile"> | Date | string
@@ -40095,6 +47478,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
     updatedAt?: SortOrder
@@ -40112,9 +47496,413 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"AtcoderProfile"> | string
     username?: StringWithAggregatesFilter<"AtcoderProfile"> | string
     rating?: IntWithAggregatesFilter<"AtcoderProfile"> | number
+    maxRating?: IntWithAggregatesFilter<"AtcoderProfile"> | number
     rank?: IntWithAggregatesFilter<"AtcoderProfile"> | number
     challenges?: IntWithAggregatesFilter<"AtcoderProfile"> | number
     updatedAt?: DateTimeWithAggregatesFilter<"AtcoderProfile"> | Date | string
+  }
+
+  export type HackerrankHistoryWhereInput = {
+    AND?: HackerrankHistoryWhereInput | HackerrankHistoryWhereInput[]
+    OR?: HackerrankHistoryWhereInput[]
+    NOT?: HackerrankHistoryWhereInput | HackerrankHistoryWhereInput[]
+    id?: StringFilter<"HackerrankHistory"> | string
+    username?: StringFilter<"HackerrankHistory"> | string
+    date?: DateTimeFilter<"HackerrankHistory"> | Date | string
+    rating?: IntFilter<"HackerrankHistory"> | number
+    challenges?: IntFilter<"HackerrankHistory"> | number
+    createdAt?: DateTimeFilter<"HackerrankHistory"> | Date | string
+  }
+
+  export type HackerrankHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerrankHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HackerrankHistoryWhereInput | HackerrankHistoryWhereInput[]
+    OR?: HackerrankHistoryWhereInput[]
+    NOT?: HackerrankHistoryWhereInput | HackerrankHistoryWhereInput[]
+    username?: StringFilter<"HackerrankHistory"> | string
+    date?: DateTimeFilter<"HackerrankHistory"> | Date | string
+    rating?: IntFilter<"HackerrankHistory"> | number
+    challenges?: IntFilter<"HackerrankHistory"> | number
+    createdAt?: DateTimeFilter<"HackerrankHistory"> | Date | string
+  }, "id">
+
+  export type HackerrankHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+    _count?: HackerrankHistoryCountOrderByAggregateInput
+    _avg?: HackerrankHistoryAvgOrderByAggregateInput
+    _max?: HackerrankHistoryMaxOrderByAggregateInput
+    _min?: HackerrankHistoryMinOrderByAggregateInput
+    _sum?: HackerrankHistorySumOrderByAggregateInput
+  }
+
+  export type HackerrankHistoryScalarWhereWithAggregatesInput = {
+    AND?: HackerrankHistoryScalarWhereWithAggregatesInput | HackerrankHistoryScalarWhereWithAggregatesInput[]
+    OR?: HackerrankHistoryScalarWhereWithAggregatesInput[]
+    NOT?: HackerrankHistoryScalarWhereWithAggregatesInput | HackerrankHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HackerrankHistory"> | string
+    username?: StringWithAggregatesFilter<"HackerrankHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"HackerrankHistory"> | Date | string
+    rating?: IntWithAggregatesFilter<"HackerrankHistory"> | number
+    challenges?: IntWithAggregatesFilter<"HackerrankHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"HackerrankHistory"> | Date | string
+  }
+
+  export type HackerearthHistoryWhereInput = {
+    AND?: HackerearthHistoryWhereInput | HackerearthHistoryWhereInput[]
+    OR?: HackerearthHistoryWhereInput[]
+    NOT?: HackerearthHistoryWhereInput | HackerearthHistoryWhereInput[]
+    id?: StringFilter<"HackerearthHistory"> | string
+    username?: StringFilter<"HackerearthHistory"> | string
+    date?: DateTimeFilter<"HackerearthHistory"> | Date | string
+    rating?: IntFilter<"HackerearthHistory"> | number
+    challenges?: IntFilter<"HackerearthHistory"> | number
+    createdAt?: DateTimeFilter<"HackerearthHistory"> | Date | string
+  }
+
+  export type HackerearthHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerearthHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HackerearthHistoryWhereInput | HackerearthHistoryWhereInput[]
+    OR?: HackerearthHistoryWhereInput[]
+    NOT?: HackerearthHistoryWhereInput | HackerearthHistoryWhereInput[]
+    username?: StringFilter<"HackerearthHistory"> | string
+    date?: DateTimeFilter<"HackerearthHistory"> | Date | string
+    rating?: IntFilter<"HackerearthHistory"> | number
+    challenges?: IntFilter<"HackerearthHistory"> | number
+    createdAt?: DateTimeFilter<"HackerearthHistory"> | Date | string
+  }, "id">
+
+  export type HackerearthHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+    _count?: HackerearthHistoryCountOrderByAggregateInput
+    _avg?: HackerearthHistoryAvgOrderByAggregateInput
+    _max?: HackerearthHistoryMaxOrderByAggregateInput
+    _min?: HackerearthHistoryMinOrderByAggregateInput
+    _sum?: HackerearthHistorySumOrderByAggregateInput
+  }
+
+  export type HackerearthHistoryScalarWhereWithAggregatesInput = {
+    AND?: HackerearthHistoryScalarWhereWithAggregatesInput | HackerearthHistoryScalarWhereWithAggregatesInput[]
+    OR?: HackerearthHistoryScalarWhereWithAggregatesInput[]
+    NOT?: HackerearthHistoryScalarWhereWithAggregatesInput | HackerearthHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HackerearthHistory"> | string
+    username?: StringWithAggregatesFilter<"HackerearthHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"HackerearthHistory"> | Date | string
+    rating?: IntWithAggregatesFilter<"HackerearthHistory"> | number
+    challenges?: IntWithAggregatesFilter<"HackerearthHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"HackerearthHistory"> | Date | string
+  }
+
+  export type AtcoderHistoryWhereInput = {
+    AND?: AtcoderHistoryWhereInput | AtcoderHistoryWhereInput[]
+    OR?: AtcoderHistoryWhereInput[]
+    NOT?: AtcoderHistoryWhereInput | AtcoderHistoryWhereInput[]
+    id?: StringFilter<"AtcoderHistory"> | string
+    username?: StringFilter<"AtcoderHistory"> | string
+    date?: DateTimeFilter<"AtcoderHistory"> | Date | string
+    rating?: IntFilter<"AtcoderHistory"> | number
+    createdAt?: DateTimeFilter<"AtcoderHistory"> | Date | string
+  }
+
+  export type AtcoderHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AtcoderHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AtcoderHistoryWhereInput | AtcoderHistoryWhereInput[]
+    OR?: AtcoderHistoryWhereInput[]
+    NOT?: AtcoderHistoryWhereInput | AtcoderHistoryWhereInput[]
+    username?: StringFilter<"AtcoderHistory"> | string
+    date?: DateTimeFilter<"AtcoderHistory"> | Date | string
+    rating?: IntFilter<"AtcoderHistory"> | number
+    createdAt?: DateTimeFilter<"AtcoderHistory"> | Date | string
+  }, "id">
+
+  export type AtcoderHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+    _count?: AtcoderHistoryCountOrderByAggregateInput
+    _avg?: AtcoderHistoryAvgOrderByAggregateInput
+    _max?: AtcoderHistoryMaxOrderByAggregateInput
+    _min?: AtcoderHistoryMinOrderByAggregateInput
+    _sum?: AtcoderHistorySumOrderByAggregateInput
+  }
+
+  export type AtcoderHistoryScalarWhereWithAggregatesInput = {
+    AND?: AtcoderHistoryScalarWhereWithAggregatesInput | AtcoderHistoryScalarWhereWithAggregatesInput[]
+    OR?: AtcoderHistoryScalarWhereWithAggregatesInput[]
+    NOT?: AtcoderHistoryScalarWhereWithAggregatesInput | AtcoderHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AtcoderHistory"> | string
+    username?: StringWithAggregatesFilter<"AtcoderHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"AtcoderHistory"> | Date | string
+    rating?: IntWithAggregatesFilter<"AtcoderHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AtcoderHistory"> | Date | string
+  }
+
+  export type StackoverflowHistoryWhereInput = {
+    AND?: StackoverflowHistoryWhereInput | StackoverflowHistoryWhereInput[]
+    OR?: StackoverflowHistoryWhereInput[]
+    NOT?: StackoverflowHistoryWhereInput | StackoverflowHistoryWhereInput[]
+    id?: StringFilter<"StackoverflowHistory"> | string
+    username?: StringFilter<"StackoverflowHistory"> | string
+    date?: DateTimeFilter<"StackoverflowHistory"> | Date | string
+    reputation?: IntFilter<"StackoverflowHistory"> | number
+    createdAt?: DateTimeFilter<"StackoverflowHistory"> | Date | string
+  }
+
+  export type StackoverflowHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    reputation?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StackoverflowHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StackoverflowHistoryWhereInput | StackoverflowHistoryWhereInput[]
+    OR?: StackoverflowHistoryWhereInput[]
+    NOT?: StackoverflowHistoryWhereInput | StackoverflowHistoryWhereInput[]
+    username?: StringFilter<"StackoverflowHistory"> | string
+    date?: DateTimeFilter<"StackoverflowHistory"> | Date | string
+    reputation?: IntFilter<"StackoverflowHistory"> | number
+    createdAt?: DateTimeFilter<"StackoverflowHistory"> | Date | string
+  }, "id">
+
+  export type StackoverflowHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    reputation?: SortOrder
+    createdAt?: SortOrder
+    _count?: StackoverflowHistoryCountOrderByAggregateInput
+    _avg?: StackoverflowHistoryAvgOrderByAggregateInput
+    _max?: StackoverflowHistoryMaxOrderByAggregateInput
+    _min?: StackoverflowHistoryMinOrderByAggregateInput
+    _sum?: StackoverflowHistorySumOrderByAggregateInput
+  }
+
+  export type StackoverflowHistoryScalarWhereWithAggregatesInput = {
+    AND?: StackoverflowHistoryScalarWhereWithAggregatesInput | StackoverflowHistoryScalarWhereWithAggregatesInput[]
+    OR?: StackoverflowHistoryScalarWhereWithAggregatesInput[]
+    NOT?: StackoverflowHistoryScalarWhereWithAggregatesInput | StackoverflowHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StackoverflowHistory"> | string
+    username?: StringWithAggregatesFilter<"StackoverflowHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"StackoverflowHistory"> | Date | string
+    reputation?: IntWithAggregatesFilter<"StackoverflowHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"StackoverflowHistory"> | Date | string
+  }
+
+  export type DevtoHistoryWhereInput = {
+    AND?: DevtoHistoryWhereInput | DevtoHistoryWhereInput[]
+    OR?: DevtoHistoryWhereInput[]
+    NOT?: DevtoHistoryWhereInput | DevtoHistoryWhereInput[]
+    id?: StringFilter<"DevtoHistory"> | string
+    username?: StringFilter<"DevtoHistory"> | string
+    date?: DateTimeFilter<"DevtoHistory"> | Date | string
+    articles?: IntFilter<"DevtoHistory"> | number
+    reactions?: IntFilter<"DevtoHistory"> | number
+    createdAt?: DateTimeFilter<"DevtoHistory"> | Date | string
+  }
+
+  export type DevtoHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    articles?: SortOrder
+    reactions?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DevtoHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DevtoHistoryWhereInput | DevtoHistoryWhereInput[]
+    OR?: DevtoHistoryWhereInput[]
+    NOT?: DevtoHistoryWhereInput | DevtoHistoryWhereInput[]
+    username?: StringFilter<"DevtoHistory"> | string
+    date?: DateTimeFilter<"DevtoHistory"> | Date | string
+    articles?: IntFilter<"DevtoHistory"> | number
+    reactions?: IntFilter<"DevtoHistory"> | number
+    createdAt?: DateTimeFilter<"DevtoHistory"> | Date | string
+  }, "id">
+
+  export type DevtoHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    articles?: SortOrder
+    reactions?: SortOrder
+    createdAt?: SortOrder
+    _count?: DevtoHistoryCountOrderByAggregateInput
+    _avg?: DevtoHistoryAvgOrderByAggregateInput
+    _max?: DevtoHistoryMaxOrderByAggregateInput
+    _min?: DevtoHistoryMinOrderByAggregateInput
+    _sum?: DevtoHistorySumOrderByAggregateInput
+  }
+
+  export type DevtoHistoryScalarWhereWithAggregatesInput = {
+    AND?: DevtoHistoryScalarWhereWithAggregatesInput | DevtoHistoryScalarWhereWithAggregatesInput[]
+    OR?: DevtoHistoryScalarWhereWithAggregatesInput[]
+    NOT?: DevtoHistoryScalarWhereWithAggregatesInput | DevtoHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DevtoHistory"> | string
+    username?: StringWithAggregatesFilter<"DevtoHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"DevtoHistory"> | Date | string
+    articles?: IntWithAggregatesFilter<"DevtoHistory"> | number
+    reactions?: IntWithAggregatesFilter<"DevtoHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"DevtoHistory"> | Date | string
+  }
+
+  export type KaggleHistoryWhereInput = {
+    AND?: KaggleHistoryWhereInput | KaggleHistoryWhereInput[]
+    OR?: KaggleHistoryWhereInput[]
+    NOT?: KaggleHistoryWhereInput | KaggleHistoryWhereInput[]
+    id?: StringFilter<"KaggleHistory"> | string
+    username?: StringFilter<"KaggleHistory"> | string
+    date?: DateTimeFilter<"KaggleHistory"> | Date | string
+    points?: IntFilter<"KaggleHistory"> | number
+    rank?: IntFilter<"KaggleHistory"> | number
+    createdAt?: DateTimeFilter<"KaggleHistory"> | Date | string
+  }
+
+  export type KaggleHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    points?: SortOrder
+    rank?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KaggleHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: KaggleHistoryWhereInput | KaggleHistoryWhereInput[]
+    OR?: KaggleHistoryWhereInput[]
+    NOT?: KaggleHistoryWhereInput | KaggleHistoryWhereInput[]
+    username?: StringFilter<"KaggleHistory"> | string
+    date?: DateTimeFilter<"KaggleHistory"> | Date | string
+    points?: IntFilter<"KaggleHistory"> | number
+    rank?: IntFilter<"KaggleHistory"> | number
+    createdAt?: DateTimeFilter<"KaggleHistory"> | Date | string
+  }, "id">
+
+  export type KaggleHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    points?: SortOrder
+    rank?: SortOrder
+    createdAt?: SortOrder
+    _count?: KaggleHistoryCountOrderByAggregateInput
+    _avg?: KaggleHistoryAvgOrderByAggregateInput
+    _max?: KaggleHistoryMaxOrderByAggregateInput
+    _min?: KaggleHistoryMinOrderByAggregateInput
+    _sum?: KaggleHistorySumOrderByAggregateInput
+  }
+
+  export type KaggleHistoryScalarWhereWithAggregatesInput = {
+    AND?: KaggleHistoryScalarWhereWithAggregatesInput | KaggleHistoryScalarWhereWithAggregatesInput[]
+    OR?: KaggleHistoryScalarWhereWithAggregatesInput[]
+    NOT?: KaggleHistoryScalarWhereWithAggregatesInput | KaggleHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"KaggleHistory"> | string
+    username?: StringWithAggregatesFilter<"KaggleHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"KaggleHistory"> | Date | string
+    points?: IntWithAggregatesFilter<"KaggleHistory"> | number
+    rank?: IntWithAggregatesFilter<"KaggleHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"KaggleHistory"> | Date | string
+  }
+
+  export type SyncLogWhereInput = {
+    AND?: SyncLogWhereInput | SyncLogWhereInput[]
+    OR?: SyncLogWhereInput[]
+    NOT?: SyncLogWhereInput | SyncLogWhereInput[]
+    id?: StringFilter<"SyncLog"> | string
+    platform?: StringFilter<"SyncLog"> | string
+    status?: StringFilter<"SyncLog"> | string
+    message?: StringNullableFilter<"SyncLog"> | string | null
+    duration?: IntNullableFilter<"SyncLog"> | number | null
+    createdAt?: DateTimeFilter<"SyncLog"> | Date | string
+  }
+
+  export type SyncLogOrderByWithRelationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SyncLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SyncLogWhereInput | SyncLogWhereInput[]
+    OR?: SyncLogWhereInput[]
+    NOT?: SyncLogWhereInput | SyncLogWhereInput[]
+    platform?: StringFilter<"SyncLog"> | string
+    status?: StringFilter<"SyncLog"> | string
+    message?: StringNullableFilter<"SyncLog"> | string | null
+    duration?: IntNullableFilter<"SyncLog"> | number | null
+    createdAt?: DateTimeFilter<"SyncLog"> | Date | string
+  }, "id">
+
+  export type SyncLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+    _count?: SyncLogCountOrderByAggregateInput
+    _avg?: SyncLogAvgOrderByAggregateInput
+    _max?: SyncLogMaxOrderByAggregateInput
+    _min?: SyncLogMinOrderByAggregateInput
+    _sum?: SyncLogSumOrderByAggregateInput
+  }
+
+  export type SyncLogScalarWhereWithAggregatesInput = {
+    AND?: SyncLogScalarWhereWithAggregatesInput | SyncLogScalarWhereWithAggregatesInput[]
+    OR?: SyncLogScalarWhereWithAggregatesInput[]
+    NOT?: SyncLogScalarWhereWithAggregatesInput | SyncLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SyncLog"> | string
+    platform?: StringWithAggregatesFilter<"SyncLog"> | string
+    status?: StringWithAggregatesFilter<"SyncLog"> | string
+    message?: StringNullableWithAggregatesFilter<"SyncLog"> | string | null
+    duration?: IntNullableWithAggregatesFilter<"SyncLog"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"SyncLog"> | Date | string
   }
 
   export type StackoverflowProfileWhereInput = {
@@ -41577,8 +49365,13 @@ export namespace Prisma {
     hackerrank?: string | null
     atcoder?: string | null
     hackerearth?: string | null
+    stackoverflow?: string | null
+    devto?: string | null
+    kaggle?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
+    platformVisibility?: string | null
+    aiInsightsEnabled?: boolean
     updatedAt?: Date | string
   }
 
@@ -41595,8 +49388,13 @@ export namespace Prisma {
     hackerrank?: string | null
     atcoder?: string | null
     hackerearth?: string | null
+    stackoverflow?: string | null
+    devto?: string | null
+    kaggle?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
+    platformVisibility?: string | null
+    aiInsightsEnabled?: boolean
     updatedAt?: Date | string
   }
 
@@ -41612,8 +49410,13 @@ export namespace Prisma {
     hackerrank?: NullableStringFieldUpdateOperationsInput | string | null
     atcoder?: NullableStringFieldUpdateOperationsInput | string | null
     hackerearth?: NullableStringFieldUpdateOperationsInput | string | null
+    stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
+    devto?: NullableStringFieldUpdateOperationsInput | string | null
+    kaggle?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
+    platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
+    aiInsightsEnabled?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41629,8 +49432,13 @@ export namespace Prisma {
     hackerrank?: NullableStringFieldUpdateOperationsInput | string | null
     atcoder?: NullableStringFieldUpdateOperationsInput | string | null
     hackerearth?: NullableStringFieldUpdateOperationsInput | string | null
+    stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
+    devto?: NullableStringFieldUpdateOperationsInput | string | null
+    kaggle?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
+    platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
+    aiInsightsEnabled?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41647,8 +49455,13 @@ export namespace Prisma {
     hackerrank?: string | null
     atcoder?: string | null
     hackerearth?: string | null
+    stackoverflow?: string | null
+    devto?: string | null
+    kaggle?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
+    platformVisibility?: string | null
+    aiInsightsEnabled?: boolean
     updatedAt?: Date | string
   }
 
@@ -41664,8 +49477,13 @@ export namespace Prisma {
     hackerrank?: NullableStringFieldUpdateOperationsInput | string | null
     atcoder?: NullableStringFieldUpdateOperationsInput | string | null
     hackerearth?: NullableStringFieldUpdateOperationsInput | string | null
+    stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
+    devto?: NullableStringFieldUpdateOperationsInput | string | null
+    kaggle?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
+    platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
+    aiInsightsEnabled?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41681,8 +49499,13 @@ export namespace Prisma {
     hackerrank?: NullableStringFieldUpdateOperationsInput | string | null
     atcoder?: NullableStringFieldUpdateOperationsInput | string | null
     hackerearth?: NullableStringFieldUpdateOperationsInput | string | null
+    stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
+    devto?: NullableStringFieldUpdateOperationsInput | string | null
+    kaggle?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
+    platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
+    aiInsightsEnabled?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41821,11 +49644,15 @@ export namespace Prisma {
     followers?: number
     following?: number
     publicRepos?: number
+    privateRepos?: number
+    archivedRepos?: number
+    forkedRepos?: number
     totalStars?: number
     totalForks?: number
     totalPRs?: number
     totalIssues?: number
     totalCommits?: number
+    activeDays?: number
     streak?: number
     languages?: string | null
     heatmap?: string | null
@@ -41844,11 +49671,15 @@ export namespace Prisma {
     followers?: number
     following?: number
     publicRepos?: number
+    privateRepos?: number
+    archivedRepos?: number
+    forkedRepos?: number
     totalStars?: number
     totalForks?: number
     totalPRs?: number
     totalIssues?: number
     totalCommits?: number
+    activeDays?: number
     streak?: number
     languages?: string | null
     heatmap?: string | null
@@ -41866,11 +49697,15 @@ export namespace Prisma {
     followers?: IntFieldUpdateOperationsInput | number
     following?: IntFieldUpdateOperationsInput | number
     publicRepos?: IntFieldUpdateOperationsInput | number
+    privateRepos?: IntFieldUpdateOperationsInput | number
+    archivedRepos?: IntFieldUpdateOperationsInput | number
+    forkedRepos?: IntFieldUpdateOperationsInput | number
     totalStars?: IntFieldUpdateOperationsInput | number
     totalForks?: IntFieldUpdateOperationsInput | number
     totalPRs?: IntFieldUpdateOperationsInput | number
     totalIssues?: IntFieldUpdateOperationsInput | number
     totalCommits?: IntFieldUpdateOperationsInput | number
+    activeDays?: IntFieldUpdateOperationsInput | number
     streak?: IntFieldUpdateOperationsInput | number
     languages?: NullableStringFieldUpdateOperationsInput | string | null
     heatmap?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41888,11 +49723,15 @@ export namespace Prisma {
     followers?: IntFieldUpdateOperationsInput | number
     following?: IntFieldUpdateOperationsInput | number
     publicRepos?: IntFieldUpdateOperationsInput | number
+    privateRepos?: IntFieldUpdateOperationsInput | number
+    archivedRepos?: IntFieldUpdateOperationsInput | number
+    forkedRepos?: IntFieldUpdateOperationsInput | number
     totalStars?: IntFieldUpdateOperationsInput | number
     totalForks?: IntFieldUpdateOperationsInput | number
     totalPRs?: IntFieldUpdateOperationsInput | number
     totalIssues?: IntFieldUpdateOperationsInput | number
     totalCommits?: IntFieldUpdateOperationsInput | number
+    activeDays?: IntFieldUpdateOperationsInput | number
     streak?: IntFieldUpdateOperationsInput | number
     languages?: NullableStringFieldUpdateOperationsInput | string | null
     heatmap?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41911,11 +49750,15 @@ export namespace Prisma {
     followers?: number
     following?: number
     publicRepos?: number
+    privateRepos?: number
+    archivedRepos?: number
+    forkedRepos?: number
     totalStars?: number
     totalForks?: number
     totalPRs?: number
     totalIssues?: number
     totalCommits?: number
+    activeDays?: number
     streak?: number
     languages?: string | null
     heatmap?: string | null
@@ -41933,11 +49776,15 @@ export namespace Prisma {
     followers?: IntFieldUpdateOperationsInput | number
     following?: IntFieldUpdateOperationsInput | number
     publicRepos?: IntFieldUpdateOperationsInput | number
+    privateRepos?: IntFieldUpdateOperationsInput | number
+    archivedRepos?: IntFieldUpdateOperationsInput | number
+    forkedRepos?: IntFieldUpdateOperationsInput | number
     totalStars?: IntFieldUpdateOperationsInput | number
     totalForks?: IntFieldUpdateOperationsInput | number
     totalPRs?: IntFieldUpdateOperationsInput | number
     totalIssues?: IntFieldUpdateOperationsInput | number
     totalCommits?: IntFieldUpdateOperationsInput | number
+    activeDays?: IntFieldUpdateOperationsInput | number
     streak?: IntFieldUpdateOperationsInput | number
     languages?: NullableStringFieldUpdateOperationsInput | string | null
     heatmap?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41955,11 +49802,15 @@ export namespace Prisma {
     followers?: IntFieldUpdateOperationsInput | number
     following?: IntFieldUpdateOperationsInput | number
     publicRepos?: IntFieldUpdateOperationsInput | number
+    privateRepos?: IntFieldUpdateOperationsInput | number
+    archivedRepos?: IntFieldUpdateOperationsInput | number
+    forkedRepos?: IntFieldUpdateOperationsInput | number
     totalStars?: IntFieldUpdateOperationsInput | number
     totalForks?: IntFieldUpdateOperationsInput | number
     totalPRs?: IntFieldUpdateOperationsInput | number
     totalIssues?: IntFieldUpdateOperationsInput | number
     totalCommits?: IntFieldUpdateOperationsInput | number
+    activeDays?: IntFieldUpdateOperationsInput | number
     streak?: IntFieldUpdateOperationsInput | number
     languages?: NullableStringFieldUpdateOperationsInput | string | null
     heatmap?: NullableStringFieldUpdateOperationsInput | string | null
@@ -42782,6 +50633,7 @@ export namespace Prisma {
     id?: string
     username: string
     rating?: number
+    maxRating?: number
     rank?: number
     challenges?: number
     updatedAt?: Date | string
@@ -42791,6 +50643,7 @@ export namespace Prisma {
     id?: string
     username: string
     rating?: number
+    maxRating?: number
     rank?: number
     challenges?: number
     updatedAt?: Date | string
@@ -42799,6 +50652,7 @@ export namespace Prisma {
   export type AtcoderProfileUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    maxRating?: IntFieldUpdateOperationsInput | number
     rank?: IntFieldUpdateOperationsInput | number
     challenges?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42807,6 +50661,7 @@ export namespace Prisma {
   export type AtcoderProfileUncheckedUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    maxRating?: IntFieldUpdateOperationsInput | number
     rank?: IntFieldUpdateOperationsInput | number
     challenges?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42816,6 +50671,7 @@ export namespace Prisma {
     id?: string
     username: string
     rating?: number
+    maxRating?: number
     rank?: number
     challenges?: number
     updatedAt?: Date | string
@@ -42824,6 +50680,7 @@ export namespace Prisma {
   export type AtcoderProfileUpdateManyMutationInput = {
     username?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    maxRating?: IntFieldUpdateOperationsInput | number
     rank?: IntFieldUpdateOperationsInput | number
     challenges?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42832,9 +50689,409 @@ export namespace Prisma {
   export type AtcoderProfileUncheckedUpdateManyInput = {
     username?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    maxRating?: IntFieldUpdateOperationsInput | number
     rank?: IntFieldUpdateOperationsInput | number
     challenges?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerrankHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerrankHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerrankHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerrankHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerrankHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerrankHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerrankHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerearthHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerearthHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerearthHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerearthHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerearthHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    challenges: number
+    createdAt?: Date | string
+  }
+
+  export type HackerearthHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HackerearthHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    challenges?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtcoderHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type AtcoderHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type AtcoderHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtcoderHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtcoderHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type AtcoderHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtcoderHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StackoverflowHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    reputation: number
+    createdAt?: Date | string
+  }
+
+  export type StackoverflowHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    reputation: number
+    createdAt?: Date | string
+  }
+
+  export type StackoverflowHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reputation?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StackoverflowHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reputation?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StackoverflowHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    reputation: number
+    createdAt?: Date | string
+  }
+
+  export type StackoverflowHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reputation?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StackoverflowHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reputation?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DevtoHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    articles: number
+    reactions: number
+    createdAt?: Date | string
+  }
+
+  export type DevtoHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    articles: number
+    reactions: number
+    createdAt?: Date | string
+  }
+
+  export type DevtoHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    articles?: IntFieldUpdateOperationsInput | number
+    reactions?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DevtoHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    articles?: IntFieldUpdateOperationsInput | number
+    reactions?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DevtoHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    articles: number
+    reactions: number
+    createdAt?: Date | string
+  }
+
+  export type DevtoHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    articles?: IntFieldUpdateOperationsInput | number
+    reactions?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DevtoHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    articles?: IntFieldUpdateOperationsInput | number
+    reactions?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KaggleHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    points: number
+    rank: number
+    createdAt?: Date | string
+  }
+
+  export type KaggleHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    points: number
+    rank: number
+    createdAt?: Date | string
+  }
+
+  export type KaggleHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    points?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KaggleHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    points?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KaggleHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    points: number
+    rank: number
+    createdAt?: Date | string
+  }
+
+  export type KaggleHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    points?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KaggleHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    points?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncLogCreateInput = {
+    id?: string
+    platform: string
+    status: string
+    message?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+  }
+
+  export type SyncLogUncheckedCreateInput = {
+    id?: string
+    platform: string
+    status: string
+    message?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+  }
+
+  export type SyncLogUpdateInput = {
+    platform?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncLogUncheckedUpdateInput = {
+    platform?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncLogCreateManyInput = {
+    id?: string
+    platform: string
+    status: string
+    message?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+  }
+
+  export type SyncLogUpdateManyMutationInput = {
+    platform?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SyncLogUncheckedUpdateManyInput = {
+    platform?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StackoverflowProfileCreateInput = {
@@ -44069,8 +52326,13 @@ export namespace Prisma {
     hackerrank?: SortOrder
     atcoder?: SortOrder
     hackerearth?: SortOrder
+    stackoverflow?: SortOrder
+    devto?: SortOrder
+    kaggle?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
+    platformVisibility?: SortOrder
+    aiInsightsEnabled?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -44086,8 +52348,13 @@ export namespace Prisma {
     hackerrank?: SortOrder
     atcoder?: SortOrder
     hackerearth?: SortOrder
+    stackoverflow?: SortOrder
+    devto?: SortOrder
+    kaggle?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
+    platformVisibility?: SortOrder
+    aiInsightsEnabled?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -44103,8 +52370,13 @@ export namespace Prisma {
     hackerrank?: SortOrder
     atcoder?: SortOrder
     hackerearth?: SortOrder
+    stackoverflow?: SortOrder
+    devto?: SortOrder
+    kaggle?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
+    platformVisibility?: SortOrder
+    aiInsightsEnabled?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -44191,11 +52463,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
     languages?: SortOrder
     heatmap?: SortOrder
@@ -44208,11 +52484,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
   }
 
@@ -44226,11 +52506,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
     languages?: SortOrder
     heatmap?: SortOrder
@@ -44249,11 +52533,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
     languages?: SortOrder
     heatmap?: SortOrder
@@ -44266,11 +52554,15 @@ export namespace Prisma {
     followers?: SortOrder
     following?: SortOrder
     publicRepos?: SortOrder
+    privateRepos?: SortOrder
+    archivedRepos?: SortOrder
+    forkedRepos?: SortOrder
     totalStars?: SortOrder
     totalForks?: SortOrder
     totalPRs?: SortOrder
     totalIssues?: SortOrder
     totalCommits?: SortOrder
+    activeDays?: SortOrder
     streak?: SortOrder
   }
 
@@ -44807,6 +53099,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
     updatedAt?: SortOrder
@@ -44814,6 +53107,7 @@ export namespace Prisma {
 
   export type AtcoderProfileAvgOrderByAggregateInput = {
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
   }
@@ -44822,6 +53116,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
     updatedAt?: SortOrder
@@ -44831,6 +53126,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
     updatedAt?: SortOrder
@@ -44838,8 +53134,256 @@ export namespace Prisma {
 
   export type AtcoderProfileSumOrderByAggregateInput = {
     rating?: SortOrder
+    maxRating?: SortOrder
     rank?: SortOrder
     challenges?: SortOrder
+  }
+
+  export type HackerrankHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerrankHistoryAvgOrderByAggregateInput = {
+    rating?: SortOrder
+    challenges?: SortOrder
+  }
+
+  export type HackerrankHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerrankHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerrankHistorySumOrderByAggregateInput = {
+    rating?: SortOrder
+    challenges?: SortOrder
+  }
+
+  export type HackerearthHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerearthHistoryAvgOrderByAggregateInput = {
+    rating?: SortOrder
+    challenges?: SortOrder
+  }
+
+  export type HackerearthHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerearthHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    challenges?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HackerearthHistorySumOrderByAggregateInput = {
+    rating?: SortOrder
+    challenges?: SortOrder
+  }
+
+  export type AtcoderHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AtcoderHistoryAvgOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type AtcoderHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AtcoderHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AtcoderHistorySumOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type StackoverflowHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    reputation?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StackoverflowHistoryAvgOrderByAggregateInput = {
+    reputation?: SortOrder
+  }
+
+  export type StackoverflowHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    reputation?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StackoverflowHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    reputation?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StackoverflowHistorySumOrderByAggregateInput = {
+    reputation?: SortOrder
+  }
+
+  export type DevtoHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    articles?: SortOrder
+    reactions?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DevtoHistoryAvgOrderByAggregateInput = {
+    articles?: SortOrder
+    reactions?: SortOrder
+  }
+
+  export type DevtoHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    articles?: SortOrder
+    reactions?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DevtoHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    articles?: SortOrder
+    reactions?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DevtoHistorySumOrderByAggregateInput = {
+    articles?: SortOrder
+    reactions?: SortOrder
+  }
+
+  export type KaggleHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    points?: SortOrder
+    rank?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KaggleHistoryAvgOrderByAggregateInput = {
+    points?: SortOrder
+    rank?: SortOrder
+  }
+
+  export type KaggleHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    points?: SortOrder
+    rank?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KaggleHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    points?: SortOrder
+    rank?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KaggleHistorySumOrderByAggregateInput = {
+    points?: SortOrder
+    rank?: SortOrder
+  }
+
+  export type SyncLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SyncLogAvgOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
+  export type SyncLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SyncLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    platform?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SyncLogSumOrderByAggregateInput = {
+    duration?: SortOrder
   }
 
   export type StackoverflowProfileCountOrderByAggregateInput = {
@@ -46099,6 +54643,34 @@ export namespace Prisma {
      * @deprecated Use AtcoderProfileDefaultArgs instead
      */
     export type AtcoderProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AtcoderProfileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use HackerrankHistoryDefaultArgs instead
+     */
+    export type HackerrankHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HackerrankHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use HackerearthHistoryDefaultArgs instead
+     */
+    export type HackerearthHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HackerearthHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AtcoderHistoryDefaultArgs instead
+     */
+    export type AtcoderHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AtcoderHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use StackoverflowHistoryDefaultArgs instead
+     */
+    export type StackoverflowHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StackoverflowHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use DevtoHistoryDefaultArgs instead
+     */
+    export type DevtoHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DevtoHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use KaggleHistoryDefaultArgs instead
+     */
+    export type KaggleHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = KaggleHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SyncLogDefaultArgs instead
+     */
+    export type SyncLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SyncLogDefaultArgs<ExtArgs>
     /**
      * @deprecated Use StackoverflowProfileDefaultArgs instead
      */

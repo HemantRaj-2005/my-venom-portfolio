@@ -16,7 +16,15 @@ export default function CodeforcesAnalytics() {
     return <AnalyticsEmptyState platformName="Codeforces" />;
   }
 
-  const cf = stats.codeforces;
+  const cf = stats.codeforces as {
+    rating: number;
+    maxRating: number;
+    rank: string;
+    maxRank: string;
+    solved: number;
+    history?: { contest: string; rating: number; rank: string }[];
+    tags?: { name: string; count: number }[];
+  };
 
   return (
     <div className="space-y-8 font-sans">

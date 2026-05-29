@@ -245,38 +245,25 @@ export default function CodingStats() {
 
             {/* Solve splits Progress bars */}
             <div className="space-y-3 font-mono text-[9px] uppercase text-zinc-500 tracking-wider">
-              {/* Easy */}
-              <div className="space-y-1">
-                <div className="flex justify-between">
-                  <span className="text-cyan-400">Easy ({stats.leetcode.solved.easy}/150)</span>
-                  <span className="text-white font-bold">{Math.min(100, Math.round((stats.leetcode.solved.easy / 150) * 100))}%</span>
-                </div>
-                <div className="w-full h-1.5 bg-zinc-900 border border-zinc-850 rounded-full overflow-hidden">
-                  <div className="h-full bg-cyan-400 rounded-full" style={{ width: `${Math.min(100, Math.round((stats.leetcode.solved.easy / 150) * 100))}%` }} />
-                </div>
-              </div>
-
-              {/* Medium */}
-              <div className="space-y-1">
-                <div className="flex justify-between">
-                  <span className="text-amber-400">Medium ({stats.leetcode.solved.medium}/300)</span>
-                  <span className="text-white font-bold">{Math.min(100, Math.round((stats.leetcode.solved.medium / 300) * 100))}%</span>
-                </div>
-                <div className="w-full h-1.5 bg-zinc-900 border border-zinc-850 rounded-full overflow-hidden">
-                  <div className="h-full bg-amber-400 rounded-full" style={{ width: `${Math.min(100, Math.round((stats.leetcode.solved.medium / 300) * 100))}%` }} />
-                </div>
-              </div>
-
-              {/* Hard */}
-              <div className="space-y-1">
-                <div className="flex justify-between">
-                  <span className="text-red-500">Hard ({stats.leetcode.solved.hard}/100)</span>
-                  <span className="text-white font-bold">{Math.min(100, Math.round((stats.leetcode.solved.hard / 100) * 100))}%</span>
-                </div>
-                <div className="w-full h-1.5 bg-zinc-900 border border-zinc-850 rounded-full overflow-hidden">
-                  <div className="h-full bg-red-500 rounded-full" style={{ width: `${Math.min(100, Math.round((stats.leetcode.solved.hard / 100) * 100))}%` }} />
-                </div>
-              </div>
+              {[
+                { label: "Easy", count: stats.leetcode.solved.easy, color: "text-cyan-400", bar: "bg-cyan-400" },
+                { label: "Medium", count: stats.leetcode.solved.medium, color: "text-amber-400", bar: "bg-amber-400" },
+                { label: "Hard", count: stats.leetcode.solved.hard, color: "text-red-500", bar: "bg-red-500" },
+              ].map(({ label, count, color, bar }) => {
+                const total = stats.leetcode.solved.total;
+                const pct = total > 0 ? Math.min(100, Math.round((count / total) * 100)) : 0;
+                return (
+                  <div key={label} className="space-y-1">
+                    <div className="flex justify-between">
+                      <span className={color}>{label} ({count})</span>
+                      <span className="text-white font-bold">{pct}%</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-zinc-900 border border-zinc-850 rounded-full overflow-hidden">
+                      <div className={`h-full ${bar} rounded-full`} style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
