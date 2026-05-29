@@ -108,8 +108,41 @@ export default function DeveloperAnalytics() {
     }, 2000);
   };
 
-  if (loading || !stats) {
+  if (loading) {
     return <AnalyticsLoading />;
+  }
+
+  if (!stats) {
+    return (
+      <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 flex flex-col items-center justify-center relative overflow-hidden font-sans select-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0e1726_1px,transparent_1px),linear-gradient(to_bottom,#0e1726_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+        <div className="absolute w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="max-w-md w-full bg-zinc-950 border border-zinc-900 rounded-2xl p-8 text-center flex flex-col items-center justify-center shadow-2xl relative z-10">
+          <Shield className="w-16 h-16 text-red-500 mb-6 animate-pulse" />
+          <h2 className="text-xl font-bold text-white font-heading">Diagnostics Offline</h2>
+          <p className="text-xs text-zinc-500 mt-3 leading-relaxed font-sans">
+            No synchronized developer statistics found in the database. Please visit the Admin panel to configure your coding platform credentials and synchronize metrics.
+          </p>
+          <div className="flex gap-4 mt-8 w-full">
+            <Link
+              href="/admin/dashboard"
+              onClick={playClick}
+              className="flex-1 text-center py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-mono uppercase tracking-wider rounded-lg border border-red-500/20 active:scale-95 transition-all cursor-pointer font-semibold"
+            >
+              Admin Panel
+            </Link>
+            <Link
+              href="/"
+              onClick={playClick}
+              className="flex-1 text-center py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-lg border border-zinc-800 active:scale-95 transition-all cursor-pointer"
+            >
+              Control Center
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   // Get color for contribution box (electric cyan shades)
@@ -406,9 +439,21 @@ export default function DeveloperAnalytics() {
                   <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6">
                     <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-6 flex justify-between items-center select-none">
                       <span>Contribution Streak Heatmap (Last 365 Days)</span>
-                      <span className="text-[10px] text-cyan-400 font-bold font-mono">
-                        {stats.github.metrics.totalCommits} Commits / Year
-                      </span>
+                      <div className="flex items-center gap-3">
+                        {profile?.github && (
+                          <a
+                            href={`https://github.com/${profile.github}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[9px] font-mono text-[#00E5FF] hover:underline normal-case mr-2"
+                          >
+                            Visit Profile &rarr;
+                          </a>
+                        )}
+                        <span className="text-[10px] text-cyan-400 font-bold font-mono">
+                          {stats.github.metrics.totalCommits} Commits / Year
+                        </span>
+                      </div>
                     </h3>
                     
                     {/* Heatmap container */}
@@ -419,7 +464,7 @@ export default function DeveloperAnalytics() {
                           <div key={wIdx} className="flex flex-col gap-1">
                             {Array.from({ length: 7 }).map((_, dIdx) => {
                               const cellIdx = wIdx * 7 + dIdx;
-                              const cell = stats.github.heatmap[cellIdx] || { count: 0 };
+                              const cell = stats.github.heatmap[cellIdx] || { count: 0, date: "" };
                               return (
                                 <div
                                   key={dIdx}
@@ -557,16 +602,46 @@ export default function DeveloperAnalytics() {
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">LeetCode Contest Max</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.leetcode.contestRating}</div>
                       <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rank: {stats.leetcode.contestRank}</div>
+                      {profile?.leetcode && (
+                        <a
+                          href={`https://leetcode.com/u/${profile.leetcode}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute top-4 right-4 text-[9px] font-mono text-[#00E5FF] hover:underline"
+                        >
+                          Visit &rarr;
+                        </a>
+                      )}
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Codeforces Rating</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.codeforces.rating}</div>
                       <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rank: {stats.codeforces.rank}</div>
+                      {profile?.codeforces && (
+                        <a
+                          href={`https://codeforces.com/profile/${profile.codeforces}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute top-4 right-4 text-[9px] font-mono text-[#00E5FF] hover:underline"
+                        >
+                          Visit &rarr;
+                        </a>
+                      )}
                     </div>
                     <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 relative">
                       <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">CodeChef Tier</span>
                       <div className="text-3xl font-bold font-mono text-white mt-1">{stats.codechef.stars}</div>
                       <div className="text-[8px] font-mono text-cyan-400 mt-1 uppercase tracking-wider">Rating: {stats.codechef.rating}</div>
+                      {profile?.codechef && (
+                        <a
+                          href={`https://www.codechef.com/users/${profile.codechef}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute top-4 right-4 text-[9px] font-mono text-[#00E5FF] hover:underline"
+                        >
+                          Visit &rarr;
+                        </a>
+                      )}
                     </div>
                   </div>
 
@@ -634,8 +709,18 @@ export default function DeveloperAnalytics() {
                   {/* GeeksforGeeks & CodeChef secondary badges */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6">
-                      <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
-                        GeeksforGeeks Metrics
+                      <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4 flex justify-between items-center">
+                        <span>GeeksforGeeks Metrics</span>
+                        {profile?.geeksforgeeks && (
+                          <a
+                            href={`https://www.geeksforgeeks.org/user/${profile.geeksforgeeks}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[9px] font-mono text-[#00E5FF] hover:underline normal-case"
+                          >
+                            Visit Profile &rarr;
+                          </a>
+                        )}
                       </h3>
                       <div className="grid grid-cols-2 gap-4 font-mono text-center">
                         <div className="border border-zinc-900 bg-black/40 p-4 rounded-xl">

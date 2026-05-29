@@ -113,6 +113,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
         <div className="mt-4">
           <BlogCommentSection postId={post.id || ""} comments={post.comments} />
         </div>
-      </div>
-    </div>;
+    </div>
+  </div>
+);
 }

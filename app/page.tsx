@@ -72,7 +72,9 @@ export default function Home() {
   }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
-  // Log visitor view analytics
+  const [faqs, setFaqs] = useState<{ id: string; question: string; answer: string }[]>([]);
+
+  // Log visitor view analytics and fetch FAQs
   useEffect(() => {
     if (!loading) {
       try {
@@ -82,6 +84,20 @@ export default function Home() {
           body: JSON.stringify({ path: "/" }),
         });
       } catch (e) {}
+
+      // Fetch FAQs from API
+      const fetchFaqs = async () => {
+        try {
+          const res = await fetch("/api/faqs");
+          const data = await res.json();
+          if (data.success && data.faqs) {
+            setFaqs(data.faqs);
+          }
+        } catch (e) {
+          console.error("Failed to fetch FAQs:", e);
+        }
+      };
+      fetchFaqs();
     }
   }, [loading]);
 
@@ -103,49 +119,7 @@ export default function Home() {
           {/* Scanline lines overlays */}
           <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.15)_50%)] bg-[size:100%_4px] z-50 opacity-10" />
 
-          {/* Transparent Header Navigation */}
-          <header className="fixed top-0 inset-x-0 h-20 bg-gradient-to-b from-[#050505]/95 to-transparent z-40 px-6 md:px-12 flex items-center justify-between select-none">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-zinc-900 border border-cyan-500/30 flex items-center justify-center">
-                <span className="text-[10px] text-cyan-400 font-black animate-pulse">S</span>
-              </div>
-              <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase hidden sm:inline">
-                Stark HUD Command Center
-              </span>
-            </div>
 
-            <nav className="hidden md:flex items-center gap-8 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
-              <Link href="/" className="text-cyan-400 hover:text-white transition-colors" onMouseEnter={handleHover}>Home</Link>
-              <Link href="/projects" className="hover:text-white transition-colors" onMouseEnter={handleHover}>Projects</Link>
-              <Link href="/marketplace" className="hover:text-white transition-colors" onMouseEnter={handleHover}>Marketplace</Link>
-              <Link href="/blog" className="hover:text-white transition-colors" onMouseEnter={handleHover}>Blog</Link>
-              <Link href="/analytics" className="hover:text-white transition-colors" onMouseEnter={handleHover}>Suit Analytics</Link>
-              <button 
-                onClick={() => {
-                  handleClick();
-                  document.getElementById("lead-forms")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="hover:text-white transition-colors cursor-pointer"
-              >
-                Hire Me
-              </button>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              {/* Command Palette Trigger */}
-              <button
-                onClick={() => {
-                  handleClick();
-                  const e = new KeyboardEvent("keydown", { ctrlKey: true, key: "k" });
-                  window.dispatchEvent(e);
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-950/80 text-[10px] font-mono text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30 transition-all cursor-pointer"
-              >
-                <span>Console</span>
-                <span className="text-[8px] uppercase border border-zinc-800 px-1 rounded bg-black">Ctrl K</span>
-              </button>
-            </div>
-          </header>
 
           {/* 2. Fullscreen cinematic Hero section */}
           <main className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 relative bg-[#050505] overflow-hidden">
@@ -265,53 +239,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* 5. Services pricing list comparison card */}
-          <section className="py-24 bg-[#050a12] border-y border-zinc-900 px-6 md:px-12">
-            <div className="max-w-6xl mx-auto w-full space-y-12">
-              <div className="text-center space-y-2 select-none">
-                <span className="text-[10px] font-mono tracking-widest text-cyan-400 uppercase">Available dossiers packages</span>
-                <h2 className="text-3xl font-extrabold text-white tracking-tight font-heading">Services & Pricing Matrices</h2>
-              </div>
 
-              {/* Pricing Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs select-none">
-                {[
-                  { name: "Single Portfolio", price: "$499", desc: "A custom 3-page brutalist template preconfigured with contact forms, visitor logs, and custom SVGs.", features: ["3 custom pages", "Interactive Contact Form", "SEO Meta configurations", "Holographic Loading Screen"] },
-                  { name: "SaaS Startup Core", price: "$1,499", desc: "Full stack core pre-built with NextAuth credentials logins, Stripe checkout gateways, and database logs.", features: ["NextAuth & MongoDB settings", "Stripe API configurations", "Analytics dashboards", "Lead scoring systems"] },
-                  { name: "Enterprise Custom Shaders", price: "$2,999", desc: "Advanced visuals, WebGL shaders morphing nodes, custom synthesiser drones, and AI chatbots.", features: ["WebGL hologram portal canvases", "Web Audio API Synths", "Offline AI Chatbot widgets", "PWA offline configurations"] }
-                ].map((tier, idx) => (
-                  <div key={idx} className="bg-zinc-950/80 backdrop-blur-sm border border-zinc-900 rounded-2xl p-6 flex flex-col justify-between hover:border-cyan-500/20 transition-all shadow-md group">
-                    <div className="space-y-4">
-                      <span className="text-[10px] uppercase font-bold text-zinc-500">{tier.name}</span>
-                      <div className="text-3xl font-black text-white font-mono">{tier.price}</div>
-                      <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">{tier.desc}</p>
-                      
-                      <div className="h-[1px] bg-zinc-900" />
-                      
-                      <ul className="space-y-2 pt-2 text-[10px] text-zinc-400 font-sans">
-                        {tier.features.map((f, fIdx) => (
-                          <li key={fIdx} className="flex items-center gap-2">
-                            <Check className="w-3.5 h-3.5 text-cyan-400" />
-                            <span>{f}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        handleClick();
-                        document.getElementById("lead-forms")?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="mt-8 w-full bg-zinc-900 border border-zinc-800 hover:border-red-500/30 hover:text-red-500 text-zinc-300 py-2.5 rounded-xl uppercase tracking-wider text-[10px] font-bold cursor-pointer active:scale-95 transition-all"
-                    >
-                      Select dossier
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* 6. FAQ collapsible section */}
           <section className="py-24 px-6 md:px-12 select-none bg-[#050505]">
@@ -322,16 +250,18 @@ export default function Home() {
               </div>
 
               <div className="space-y-4 font-mono text-xs">
-                {[
-                  { q: "Is MongoDB database setup required?", a: "No. If DATABASE_URL is not configured, the website automatically executes local JSON-dossier fallbacks inside the .data/ folder. Form submissions persist instantly." },
-                  { q: "How does the sound synthesiser function?", a: "It utilizes the native browser Web Audio API to construct ambient noise. No static file triggers are downloaded, ensuring 100% security against copyright blockages." },
-                  { q: "How is PWA offline capabilities handled?", a: "By loading caching service-workers that cache root layout matrices. Visitors can open the dossier offline." }
-                ].map((faq, idx) => (
-                  <div key={idx} className="bg-zinc-950/80 border border-zinc-900 rounded-xl p-5 space-y-2">
-                    <div className="text-white font-bold tracking-wide">{faq.q}</div>
-                    <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">{faq.a}</p>
+                {faqs.length === 0 ? (
+                  <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-xl p-8 text-center text-zinc-650 uppercase tracking-widest font-mono">
+                    No FAQs present. Add FAQs in the admin dashboard panel.
                   </div>
-                ))}
+                ) : (
+                  faqs.map((faq, idx) => (
+                    <div key={faq.id || idx} className="bg-zinc-950/80 border border-zinc-900 rounded-xl p-5 space-y-2">
+                      <div className="text-white font-bold tracking-wide">{faq.question}</div>
+                      <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </section>

@@ -183,6 +183,7 @@ export default function BlogIndexPage() {
             </motion.div>
           ))
         )}
-      </div>
-    </div>;
+    </div>
+  </div>
+);
 }

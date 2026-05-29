@@ -13,14 +13,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       db.post.findMany({ where: { published: true } })
     ]);
 
-    projectUrls = projects.map((p) => ({
+    projectUrls = (projects as any[]).map((p: any) => ({
       url: `${baseUrl}/projects/${p.slug}`,
       lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     }));
 
-    postUrls = posts.map((p) => ({
+    postUrls = (posts as any[]).map((p: any) => ({
       url: `${baseUrl}/blog/${p.slug}`,
       lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
       changeFrequency: "weekly",

@@ -90,7 +90,6 @@ export default function ProjectsPage() {
   );
 
   return (
-  return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
       {/* Background Ambient lights */}
       <div className="absolute w-[500px] h-[500px] bg-red-500/2 rounded-full blur-[150px] top-[-100px] right-[-100px] pointer-events-none animate-pulse" />
@@ -245,8 +244,7 @@ export default function ProjectsPage() {
             ))}
           </div>
         )}
-      </div>
     </div>
-  );
-  );
+  </div>
+);
 }

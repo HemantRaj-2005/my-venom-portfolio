@@ -269,10 +269,41 @@ function loadLocalDb() {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 
+  const defaultFaqs = [
+    {
+      id: "faq_1",
+      question: "What is your main technology stack?",
+      answer: "I specialize in the React ecosystem, specifically Next.js 15/16, TypeScript, Tailwind CSS, Prisma ORM, and database systems like MongoDB, PostgreSQL, and Redis.",
+      order: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    },
+    {
+      id: "faq_2",
+      question: "How does the Stark-Tech theme fit into your workflow?",
+      answer: "It represents my dedication to building futuristic, modular, highly animated, and technologically advanced user interfaces inspired by premium HUD dashboards.",
+      order: 1,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    },
+    {
+      id: "faq_3",
+      question: "Do you offer custom WebGL or R3F design services?",
+      answer: "Yes, I build immersive 3D portals, custom shaders, and interactive animation setups using Three.js, React Three Fiber, and GSAP.",
+      order: 2,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    }
+  ];
+
   if (fs.existsSync(LOCAL_DB_PATH)) {
     try {
       const data = fs.readFileSync(LOCAL_DB_PATH, "utf8");
       localDbState = JSON.parse(data);
+      if (!localDbState.faqs) {
+        localDbState.faqs = defaultFaqs;
+        saveLocalDb();
+      }
       return localDbState;
     } catch (e) {
       console.error("Error reading local db file, rewriting...", e);
@@ -304,6 +335,7 @@ function loadLocalDb() {
     posts: mockPosts,
     comments: [],
     visitorLogs: [],
+    faqs: defaultFaqs,
     devProfiles: [
       {
         id: "dev-profile-default",
@@ -500,30 +532,61 @@ export async function isDbConnected(): Promise<boolean> {
   }
 }
 
+// Proxy wrapper to intercept connection errors and dynamically fallback to Mock database
+const wrapPrismaCollection = (prismaCol: any, mockCol: any) => {
+  return new Proxy(prismaCol || {}, {
+    get(target, prop, receiver) {
+      const originalValue = target[prop];
+
+      // If prisma collection or property doesn't exist, or db is down, fall back
+      if (!databaseAvailable || typeof originalValue !== "function") {
+        if (typeof mockCol[prop] === "function") {
+          return async function (...args: any[]) {
+            return await mockCol[prop](...args);
+          };
+        }
+        return originalValue;
+      }
+
+      return async function (...args: any[]) {
+        try {
+          return await originalValue.apply(target, args);
+        } catch (err: any) {
+          const errMsg = err.message || "";
+          if (
+            errMsg.includes("Server selection timeout") ||
+            errMsg.includes("No available servers") ||
+            errMsg.includes("Transactions are not supported") ||
+            errMsg.includes("Can't reach database") ||
+            errMsg.includes("Can not connect") ||
+            err.code === "P2010" ||
+            err.code === "P2009" ||
+            err.code === "P2021" ||
+            err.code === "P2022" ||
+            err.code === "P2023" ||
+            err.code === "P2024" ||
+            err.code === "P2026"
+          ) {
+            console.warn(`Prisma operation '${String(prop)}' failed. Gracefully falling back to local DB. Error:`, errMsg);
+            databaseAvailable = false;
+            if (typeof mockCol[prop] === "function") {
+              return await mockCol[prop](...args);
+            }
+            return undefined;
+          }
+          throw err;
+        }
+      };
+    }
+  });
+};
+
 // Helper to determine if we should execute Prisma or Mock DB
 const getDbEngine = () => {
-  if (databaseAvailable && prismaClient) {
-    return {
-      user: prismaClient.user,
-      lead: prismaClient.lead,
-      product: prismaClient.product,
-      rating: prismaClient.rating,
-      project: prismaClient.project,
-      post: prismaClient.post,
-      comment: prismaClient.comment,
-      visitorLog: prismaClient.visitorLog,
-      callbackRequest: prismaClient.callbackRequest,
-      contactMessage: prismaClient.contactMessage,
-      newsletterSubscriber: prismaClient.newsletterSubscriber,
-      devProfile: (prismaClient as any).devProfile,
-      isPrisma: true
-    };
-  }
-
   // Preload local database mock states
   loadLocalDb();
 
-  return {
+  const mockDb = {
     user: new MockCollection("users"),
     lead: new MockCollection("leads"),
     product: new MockCollection("products"),
@@ -536,7 +599,26 @@ const getDbEngine = () => {
     contactMessage: new MockCollection("contactMessages"),
     newsletterSubscriber: new MockCollection("newsletterSubscribers"),
     devProfile: new MockCollection("devProfiles"),
-    isPrisma: false
+    faq: new MockCollection("faqs")
+  };
+
+  return {
+    user: wrapPrismaCollection(prismaClient?.user, mockDb.user),
+    lead: wrapPrismaCollection(prismaClient?.lead, mockDb.lead),
+    product: wrapPrismaCollection(prismaClient?.product, mockDb.product),
+    rating: wrapPrismaCollection(prismaClient?.rating, mockDb.rating),
+    project: wrapPrismaCollection(prismaClient?.project, mockDb.project),
+    post: wrapPrismaCollection(prismaClient?.post, mockDb.post),
+    comment: wrapPrismaCollection(prismaClient?.comment, mockDb.comment),
+    visitorLog: wrapPrismaCollection(prismaClient?.visitorLog, mockDb.visitorLog),
+    callbackRequest: wrapPrismaCollection(prismaClient?.callbackRequest, mockDb.callbackRequest),
+    contactMessage: wrapPrismaCollection(prismaClient?.contactMessage, mockDb.contactMessage),
+    newsletterSubscriber: wrapPrismaCollection(prismaClient?.newsletterSubscriber, mockDb.newsletterSubscriber),
+    devProfile: wrapPrismaCollection((prismaClient as any)?.devProfile, mockDb.devProfile),
+    faq: wrapPrismaCollection((prismaClient as any)?.faq, mockDb.faq),
+    get isPrisma() {
+      return databaseAvailable;
+    }
   };
 };
 

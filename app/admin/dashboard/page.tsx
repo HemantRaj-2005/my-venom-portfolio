@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { 
   Users, Briefcase, Calendar, Mail, FileDown, LogOut, CheckCircle, 
   Trash2, Search, BarChart3, Database, Package, FileText, Download,
-  ShieldAlert, Cpu, RefreshCw
+  ShieldAlert, Cpu, RefreshCw, HelpCircle
 } from "lucide-react";
 import { 
   ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, 
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   // Selected tab state
-  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations" | "faqs">("overview");
 
   // Database lists
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -168,10 +168,82 @@ export default function AdminDashboard() {
     }
   };
 
+  const [faqs, setFaqs] = useState<any[]>([]);
+  const [faqQuestion, setFaqQuestion] = useState("");
+  const [faqAnswer, setFaqAnswer] = useState("");
+  const [faqOrder, setFaqOrder] = useState(0);
+  const [faqLoading, setFaqLoading] = useState(false);
+
+  const fetchFaqs = async () => {
+    try {
+      const res = await fetch("/api/faqs");
+      const result = await res.json();
+      if (result.success) {
+        setFaqs(result.faqs || []);
+      }
+    } catch (e) {
+      console.error("Dashboard FAQ fetch error:", e);
+    }
+  };
+
+  const handleAddFaq = async () => {
+    if (!faqQuestion.trim() || !faqAnswer.trim()) {
+      alert("Please fill in both question and answer.");
+      return;
+    }
+    setFaqLoading(true);
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch("/api/faqs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: faqQuestion,
+          answer: faqAnswer,
+          order: faqOrder
+        })
+      });
+      const result = await res.json();
+      if (result.success) {
+        setFaqQuestion("");
+        setFaqAnswer("");
+        setFaqOrder(0);
+        fetchFaqs();
+      } else {
+        alert(result.error || "Failed to add FAQ.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error.");
+    } finally {
+      setFaqLoading(false);
+    }
+  };
+
+  const handleDeleteFaq = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this FAQ?")) return;
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch(`/api/faqs?id=${id}`, {
+        method: "DELETE"
+      });
+      const result = await res.json();
+      if (result.success) {
+        fetchFaqs();
+      } else {
+        alert(result.error || "Failed to delete FAQ.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error.");
+    }
+  };
+
   useEffect(() => {
     if (status === "authenticated") {
       loadDashboardData();
       fetchIntegrations();
+      fetchFaqs();
     }
   }, [status]);
 
@@ -356,7 +428,8 @@ export default function AdminDashboard() {
             { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
             { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
             { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
-            { id: "integrations", name: "Integrations Sync", icon: Cpu }
+            { id: "integrations", name: "Integrations Sync", icon: Cpu },
+            { id: "faqs", name: "FAQ Manager", icon: HelpCircle, count: faqs.length }
           ].map((tab) => {
             const Icon = tab.icon;
             const isSel = activeTab === tab.id;
@@ -369,7 +442,7 @@ export default function AdminDashboard() {
                 }}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   isSel 
-                    ? "bg-zinc-900 border border-zinc-800 text-emerald-400 shadow-md" 
+                    ? "bg-zinc-900 border border-zinc-800 text-cyan-400 shadow-md" 
                     : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -903,6 +976,92 @@ export default function AdminDashboard() {
                         <span>{saveLoading ? "Syncing..." : "Sync Database Now"}</span>
                       </button>
                     </div>
+                  </div>
+                </div>
+              )}
+              {/* Tab 8: FAQ Manager */}
+              {activeTab === "faqs" && (
+                <div className="space-y-8 max-w-4xl">
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
+                      Security & Integration FAQ Manager
+                    </h3>
+                    <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
+                      Manage FAQs rendered dynamically on the portfolio landing page.
+                    </p>
+                  </div>
+
+                  {/* Add FAQ Form */}
+                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-4">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#00E5FF]">Add New FAQ Log</h4>
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Question</label>
+                        <input
+                          type="text"
+                          value={faqQuestion}
+                          onChange={(e) => setFaqQuestion(e.target.value)}
+                          placeholder="e.g. Is MongoDB setup required?"
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Answer</label>
+                        <textarea
+                          value={faqAnswer}
+                          onChange={(e) => setFaqAnswer(e.target.value)}
+                          placeholder="e.g. No. If DATABASE_URL is missing, it falls back to local file storage."
+                          rows={4}
+                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans resize-none"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Display Order</label>
+                        <input
+                          type="number"
+                          value={faqOrder}
+                          onChange={(e) => setFaqOrder(parseInt(e.target.value) || 0)}
+                          placeholder="0"
+                          className="w-24 bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-mono"
+                        />
+                      </div>
+                      <button
+                        onClick={handleAddFaq}
+                        disabled={faqLoading}
+                        className="bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 px-6 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs active:scale-95 disabled:opacity-50"
+                      >
+                        {faqLoading ? "Adding..." : "Add FAQ Entry"}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* List existing FAQs */}
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#00E5FF]">Existing FAQ Entries ({faqs.length})</h4>
+                    
+                    {faqs.length === 0 ? (
+                      <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-8 text-center text-zinc-650 font-mono text-xs uppercase tracking-widest">
+                        No FAQ entries in database.
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {faqs.map((faq) => (
+                          <div key={faq.id} className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 flex justify-between items-start gap-4">
+                            <div className="space-y-1">
+                              <div className="text-white text-xs font-bold font-mono">Q: {faq.question}</div>
+                              <p className="text-zinc-500 font-sans text-xs">A: {faq.answer}</p>
+                              <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-wider mt-1">Display Order: {faq.order}</div>
+                            </div>
+                            <button
+                              onClick={() => handleDeleteFaq(faq.id)}
+                              className="text-[9px] font-mono text-red-500 hover:text-red-400 border border-zinc-900 hover:border-red-950 bg-black/60 px-2 py-1 rounded transition-all shrink-0 uppercase tracking-wider cursor-pointer"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

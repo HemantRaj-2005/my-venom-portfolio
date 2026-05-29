@@ -1,31 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import CustomCursor from "@/components/CustomCursor";
 import SoundToggle from "@/components/SoundToggle";
 import Achievements from "@/components/Achievements";
-
-const orbitronHeading = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-heading"
-});
-
-const notoSans = Noto_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans"
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Hemant Raj - AI Engineer & Full Stack Developer",
@@ -42,21 +21,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        "dark",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        notoSans.variable,
-        orbitronHeading.variable
-      )}
+      className="h-full antialiased dark font-sans"
       style={{ colorScheme: "dark" }}
     >
-      <body className="min-h-full flex flex-col bg-[#020202] text-zinc-100 selection:bg-emerald-500/20 selection:text-white scroll-smooth overflow-x-hidden">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Noto+Sans:wght@100..900&family=Orbitron:wght@400..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[#020202] text-zinc-100 selection:bg-cyan-500/20 selection:text-white scroll-smooth overflow-x-hidden">
         <Providers>
-          {/* Custom Global Symbiote cursor */}
+          {/* Custom Global Stark HUD cursor */}
           <CustomCursor />
           
           {/* Global Web Audio sound system */}
@@ -64,6 +42,9 @@ export default function RootLayout({
           
           {/* Global achievements manager */}
           <Achievements />
+
+          {/* Global navigation header */}
+          <Navbar />
 
           {/* Page contents */}
           <div className="flex-1 flex flex-col">{children}</div>
