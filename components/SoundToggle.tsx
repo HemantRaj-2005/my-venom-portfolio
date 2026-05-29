@@ -63,8 +63,8 @@ class CyberneticSynth {
       this.osc2.start();
       this.lfo.start();
 
-      // Fade-in ambient drone
-      this.masterGain.gain.linearRampToValueAtTime(0.035, ctx.currentTime + 3); // 3 seconds fade-in
+      // Fade-in ambient drone (set to 0.0 to remain silent in favor of song.mp3)
+      this.masterGain.gain.linearRampToValueAtTime(0.0, ctx.currentTime + 3); // 3 seconds fade-in
 
       this.active = true;
     } catch (e) {
@@ -145,13 +145,31 @@ class CyberneticSynth {
 export default function SoundToggle() {
   const [muted, setMuted] = useState(true);
   const synthRef = useRef<CyberneticSynth | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // Initialize synth and audio once on mount
   useEffect(() => {
-    // Instantiate the synth
     const synth = new CyberneticSynth();
     synthRef.current = synth;
 
-    // Attach global sound handlers so other components can invoke synth sounds
+    const audio = new Audio("/song.mp3");
+    audio.loop = true;
+    audio.volume = 0.35; // 35% volume for ambient background
+    audioRef.current = audio;
+
+    return () => {
+      synth.stop();
+      audio.pause();
+    };
+  }, []);
+
+  // Update handlers and playback when muted changes
+  useEffect(() => {
+    const synth = synthRef.current;
+    const audio = audioRef.current;
+    if (!synth || !audio) return;
+
+    // Set up global sound handlers
     (window as any).playHoverSound = () => {
       if (!muted) synth.playHoverClick();
     };
@@ -159,24 +177,24 @@ export default function SoundToggle() {
       if (!muted) synth.playBtnClick();
     };
 
-    return () => {
+    if (!muted) {
+      synth.start();
+      audio.play().catch((err) => {
+        console.warn("Failed to play background audio:", err);
+      });
+    } else {
       synth.stop();
+      audio.pause();
+    }
+
+    return () => {
       delete (window as any).playHoverSound;
       delete (window as any).playClickSound;
     };
   }, [muted]);
 
   const toggleSound = () => {
-    const nextMuted = !muted;
-    setMuted(nextMuted);
-    
-    if (synthRef.current) {
-      if (!nextMuted) {
-        synthRef.current.start();
-      } else {
-        synthRef.current.stop();
-      }
-    }
+    setMuted((prev) => !prev);
   };
 
   return (

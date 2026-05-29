@@ -782,47 +782,62 @@ export default function AdminDashboard() {
       {/* Main Grid Layout */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
         {/* Sidebar Nav */}
-        <aside className="w-full md:w-60 bg-zinc-950 border-b md:border-b-0 md:border-r border-zinc-900 p-4 space-y-1.5 select-none shrink-0">
-          {[
-            { id: "overview", name: "Overview Analytics", icon: BarChart3 },
-            { id: "leads", name: "Leads (Hire Me)", icon: Briefcase, count: totalLeadsCount },
-            { id: "callbacks", name: "Callback Requests", icon: Calendar, count: totalCallbacksCount },
-            { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
-            { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
-            { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
-            { id: "blogs", name: "Blog Ledger", icon: FileText, count: blogs.length },
-            { id: "experience", name: "Timeline Manager", icon: Briefcase, count: experiences.length },
-            { id: "integrations", name: "Integrations Sync", icon: Cpu },
-            { id: "faqs", name: "FAQ Manager", icon: HelpCircle, count: faqs.length },
-            { id: "resume", name: "Resume Upload", icon: Upload }
-          ].map((tab) => {
-            const Icon = tab.icon;
-            const isSel = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id as any);
-                  setSearchQuery("");
-                }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                  isSel 
-                    ? "bg-zinc-900 border border-zinc-800 text-cyan-400 shadow-md" 
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <Icon className="w-4.5 h-4.5" />
-                  <span>{tab.name}</span>
-                </div>
-                {tab.count !== undefined && tab.count > 0 && (
-                  <span className="bg-zinc-900 border border-zinc-800 text-[10px] px-1.5 py-0.5 rounded-full text-zinc-400 font-mono">
-                    {tab.count}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        <aside className="w-full md:w-60 bg-zinc-950 border-b md:border-b-0 md:border-r border-zinc-900 p-4 select-none shrink-0 flex flex-col justify-between">
+          <div className="space-y-1.5">
+            {[
+              { id: "overview", name: "Overview Analytics", icon: BarChart3 },
+              { id: "leads", name: "Leads (Hire Me)", icon: Briefcase, count: totalLeadsCount },
+              { id: "callbacks", name: "Callback Requests", icon: Calendar, count: totalCallbacksCount },
+              { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
+              { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
+              { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
+              { id: "blogs", name: "Blog Ledger", icon: FileText, count: blogs.length },
+              { id: "experience", name: "Timeline Manager", icon: Briefcase, count: experiences.length },
+              { id: "integrations", name: "Integrations Sync", icon: Cpu },
+              { id: "faqs", name: "FAQ Manager", icon: HelpCircle, count: faqs.length },
+              { id: "resume", name: "Resume Upload", icon: Upload }
+            ].map((tab) => {
+              const Icon = tab.icon;
+              const isSel = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id as any);
+                    setSearchQuery("");
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                    isSel 
+                      ? "bg-zinc-900 border border-zinc-800 text-cyan-400 shadow-md" 
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Icon className="w-4.5 h-4.5" />
+                    <span>{tab.name}</span>
+                  </div>
+                  {tab.count !== undefined && tab.count > 0 && (
+                    <span className="bg-zinc-900 border border-zinc-800 text-[10px] px-1.5 py-0.5 rounded-full text-zinc-400 font-mono">
+                      {tab.count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="pt-4 border-t border-zinc-900 mt-6 md:mt-0">
+            <button
+              onClick={() => {
+                if ((window as any).playClickSound) (window as any).playClickSound();
+                signOut({ callbackUrl: "/" });
+              }}
+              className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider text-red-400 hover:text-red-300 hover:bg-red-950/20 border border-transparent hover:border-red-900/30 transition-all cursor-pointer"
+            >
+              <LogOut className="w-4.5 h-4.5" />
+              <span>Sign Out Session</span>
+            </button>
+          </div>
         </aside>
 
         {/* Dashboard Content view grid */}

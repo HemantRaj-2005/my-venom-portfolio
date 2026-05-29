@@ -75,7 +75,7 @@ export default function Navbar() {
           onMouseEnter={handleHover} 
           className={`hover:text-white transition-colors ${pathname === "/analytics" ? "text-cyan-400" : ""}`}
         >
-          Suit Analytics
+          Coding Analytics
         </Link>
         <Link
           href="/#lead-forms"

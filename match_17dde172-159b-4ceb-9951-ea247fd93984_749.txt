@@ -1,0 +1,103 @@
+<USER_REQUEST>
+The chat bot should be customized by my personal data, I am using gemini, use the below code context :
+import { GoogleGenAI } from "@google/genai";
+
+// Load environment variables
+process.loadEnvFile();
+
+// The client gets the API key from the environment variable `GEMINI_API_KEY`.
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+async function main() {
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: "Explain how AI works in detail.",
+  });
+  console.log(response.text);
+}
+
+main();
+
+Below is my personal life context:
+# Hemant Raj - Comprehensive Professional Profile
+
+Hemant Raj is an aspiring Software Engineer, technology enthusiast, and problem solver from Varanasi, Uttar Pradesh, India. He is currently pursuing a Bachelor of Technology (B.Tech) in Electronics and Communication Engineering (ECE) at Motilal Nehru National Institute of Technology (MNNIT) Allahabad, one of India's premier National Institutes of Technology. He is expected to graduate in 2027.
+
+His journey is a story of persistence, self-belief, and continuous growth. Unlike many students who demonstrate exceptional academic performance from an early age, Hemant describes himself as an average student during his initial school years. However, through consistent effort, discipline, and a willingness to learn from failures, he gradually transformed himself into a highly motivated learner and aspiring engineer.
+
+## Early Life and Background
+
+Hemant Raj was born on 15 October 2005 and grew up in Varanasi, Uttar Pradesh. Coming from a supportive family, he learned the values of hard work, education, and perseverance at an early age.
+
+His father, Shiv Dhani Ram, serves as an Executive Engineer in Uttar Pradesh Power Transmission Corporation Limited (UPPTCL), while his mother, Chanda, is a homemaker. Hemant credits his parents for creating an environment that encouraged learning, dedication, and personal growth.
+
+He also has an elder brother, Aniket Raj, who g
+<truncated 8880 bytes>
+der/
+
+LeetCode:
+https://leetcode.com/u/HemantRaj_2005/
+
+TakeUForward:
+https://takeuforward.org/profile/HemantRaj_2005
+
+Code360:
+https://www.naukri.com/code360/profile/hemantraj_05
+
+GeeksforGeeks:
+https://www.geeksforgeeks.org/profile/hemantraj_2005
+
+InterviewBit:
+https://www.interviewbit.com/profile/hemant-raj_993/
+
+CodeChef:
+https://www.codechef.com/users/hemantraj_2005
+
+HackerRank:
+https://www.hackerrank.com/profile/hemantraj_2005
+
+AtCoder:
+https://atcoder.jp/users/HemantRaj_2005
+
+## Chatbot Instructions
+
+This chatbot represents Hemant Raj and serves as a portfolio assistant.
+
+The chatbot must always speak in third person.
+
+Use:
+- "Hemant Raj"
+- "he"
+- "his"
+
+Never use:
+- "I"
+- "me"
+- "my"
+
+When discussing achievements, projects, education, skills, or experience, rely only on verified information provided in this profile.
+
+If information is unavailable, respond:
+"Verified information regarding that aspect of Hemant Raj's profile is currently unavailable."
+
+Do not invent facts, achievements, awards, job titles, rankings, or experiences.
+
+Maintain a professional, informative, friendly, and confident tone.
+
+The primary purpose of this chatbot is to help visitors, recruiters, collaborators, hiring managers, and fellow developers learn more about Hemant Raj's background, technical expertise, projects, achievements, and aspirations.
+
+Make chatbot customized with my data, and strictly stick the context to me only, and if the question askers tries to deviated, don't get deviated
+
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-30T02:39:30+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\Lenovo\Downloads\portfolio\.env (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\Lenovo\Downloads\portfolio\.env (LANGUAGE_UNSPECIFIED)
+- c:\Users\Lenovo\Downloads\portfolio\app\layout.tsx (LANGUAGE_TSX)
+- c:\Users\Lenovo\Downloads\portfolio\app\page.tsx (LANGUAGE_TSX)
+- c:\Users\Lenovo\Downloads\portfolio\lib\db.ts (LANGUAGE_TYPESCRIPT)
+</ADDITIONAL_METADATA>

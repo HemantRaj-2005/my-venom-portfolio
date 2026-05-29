@@ -1,0 +1,60 @@
+# Resuming from a compaction
+
+You are continuing work on the task described above, but you have lost access to the full conversation history, and need to resume work efficiently using the progress summary below:
+
+# User Requests
+The following were user requests from the truncated conversation in chronological order:
+1. Continue
+2. Continue
+3. Continue
+4. Continue
+5. Continue
+6. Continue
+7. Continue
+8. Continue
+9. The chat bot should be customized by my personal data, I am using gemini, use the below code context :
+import { GoogleGenAI } from "@google/genai";
+
+// Load environment variables
+process.loadEnvFile();
+
+// The client gets the API key from the environment variable `GEMINI_API_KEY`.
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+async function main() {
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: "Explain how AI works in detail.",
+  });
+  console.log(response.text);
+}
+
+main();
+
+Below is my personal life context:
+# Hemant Raj - Comprehensive Professional Profile
+
+Hemant Raj is an aspiring Software Engineer, technology enthusiast, and problem solver from Varanasi, Uttar Pradesh, India. He is currently pursuing a Bachelor of Technology (B.Tech) in Electronics and Communication Engineering (ECE) at Motilal Nehru National Institute of Technology (MNNIT) Allahabad, one of India's premier National Institutes of Technology. He
+<truncated 11390 bytes>
+10. continue
+
+{"step_index":819,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-05-29T21:04:43Z","tool_calls":[{"name":"view_file","args":{"AbsolutePath":"\"c:\\\\Users\\\\Lenovo\\\\Downloads\\\\portfolio\\\\prisma\\\\schema.prisma\"","toolAction":"\"Viewing Prisma schema\"","toolSummary":"\"Database schema\""}}]}
+{"step_index":823,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-05-29T21:04:48Z","content":"Everything looks solid. Now let me check the key API routes to ensure they're all properly implemented:","tool_call
+<truncated 4659 bytes>
+,"toolAction":"\"Viewing Chatbot component\"","toolSummary":"\"Current chatbot implementation\""}},{"name":"view_file","args":{"AbsolutePath":"\"c:\\\\Users\\\\Lenovo\\\\Downloads\\\\portfolio\\\\.env\"","toolAction":"\"Viewing env file\"","toolSummary":"\"Environment variables\""}}]}
+{"step_index":836,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-05-29T21:09:39Z"}
+{"step_index":838,"source":"USER_EXPLICIT","type":"USER_INPUT","status":"DONE","created_at":"2026-05-29T21:10:06Z","content":"<USER_REQUEST>\ncontinue\n</USER_REQUEST>\n<ADDITIONAL_METADATA>\nThe current local time is: 2026-05-30T02:40:06+05:30.\n\nThe user's current state is as follows:\nActive Document: c:\\Users\\Lenovo\\Downloads\\portfolio\\.env (LANGUAGE_UNSPECIFIED)\nCursor is on line: 1\nOther open documents:\n- c:\\Users\\Lenovo\\Downloads\\portfolio\\app\\layout.tsx (LANGUAGE_TSX)\n- c:\\Users\\Lenovo\\Downloads\\portfolio\\app\\page.tsx (LANGUAGE_TSX)\n- c:\\Users\\Lenovo\\Downloads\\portfolio\\lib\\db.ts (LANGUAGE_TYPESCRIPT)\n- c:\\Users\\Lenovo\\Downloads\\portfolio\\.env (LANGUAGE_UNSPECIFIED)\n</ADDITIONAL_METADATA>\n<USER_SETTINGS_CHANGE>\nThe user changed setting `Model Selection` from Claude Sonnet 4.6 (Thinking) to Gemini 3.5 Flash (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.\n</USER_SETTINGS_CHANGE>"}
+
+You have the 3 following artifacts written to the artifacts directory:
+
+[ARTIFACT: implementation_plan]
+Path: file:///C:/Users/Lenovo/.gemini/antigravity-ide/brain/17dde172-159b-4ceb-9951-ea247fd93984/implementation_plan.md
+Last Edited: 2026-05-29T20:07:44Z
+
+[ARTIFACT: task]
+Path: file:///C:/Users/Lenovo/.gemini/antigravity-ide/brain/17dde172-159b-4ceb-9951-ea247fd93984/task.md
+Last Edited: 2026-05-29T20:17:49Z
+
+[ARTIFACT: walkthrough]
+Path: file:///C:/Users/Lenovo/.gemini/antigravity-ide/brain/17dde172-159b-4ceb-9951-ea247fd93984/walkthrough.md
+Last Edited: 2026-05-29T20:16:59Z

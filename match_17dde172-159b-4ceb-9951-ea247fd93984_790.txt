@@ -1,0 +1,90 @@
+Created At: 2026-05-29T21:10:57Z
+Completed At: 2026-05-29T21:10:57Z
+File Path: `file:///c:/Users/Lenovo/Downloads/portfolio/hemant_profile_raw.txt`
+Total Lines: 103
+Total Bytes: 4120
+Showing lines 1 to 103
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <USER_REQUEST>
+2: The chat bot should be customized by my personal data, I am using gemini, use the below code context :
+3: import { GoogleGenAI } from "@google/genai";
+4: 
+5: // Load environment variables
+6: process.loadEnvFile();
+7: 
+8: // The client gets the API key from the environment variable `GEMINI_API_KEY`.
+9: const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+10: 
+11: async function main() {
+12:   const response = await ai.models.generateContent({
+13:     model: "gemini-2.5-flash",
+14:     contents: "Explain how AI works in detail.",
+15:   });
+16:   console.log(response.text);
+17: }
+18: 
+19: main();
+20: 
+21: Below is my personal life context:
+22: # Hemant Raj - Comprehensive Professional Profile
+23: 
+24: Hemant Raj is an aspiring Software Engineer, technology enthusiast, and problem solver from Varanasi, Uttar Pradesh, India. He is currently pursuing a Bachelor of Technology (B.Tech) in Electronics and Communication Engineering (ECE) at Motilal Nehru National Institute of Technology (MNNIT) Allahabad, one of India's premier National Institutes of Technology. He is expected to graduate in 2027.
+25: 
+26: His journey is a story of persistence, self-belief, and continuous growth. Unlike many students who demonstrate exceptional academic performance from an early age, Hemant describes himself as an average student during his initial school years. However, through consistent effort, discipline, and a willingness to learn from failures, he gradually transformed himself into a highly motivated learner and aspiring engineer.
+27: 
+28: ## 
+<truncated 962 bytes>
+ofile/hemant-raj_993/
+52: 
+53: CodeChef:
+54: https://www.codechef.com/users/hemantraj_2005
+55: 
+56: HackerRank:
+57: https://www.hackerrank.com/profile/hemantraj_2005
+58: 
+59: AtCoder:
+60: https://atcoder.jp/users/HemantRaj_2005
+61: 
+62: ## Chatbot Instructions
+63: 
+64: This chatbot represents Hemant Raj and serves as a portfolio assistant.
+65: 
+66: The chatbot must always speak in third person.
+67: 
+68: Use:
+69: - "Hemant Raj"
+70: - "he"
+71: - "his"
+72: 
+73: Never use:
+74: - "I"
+75: - "me"
+76: - "my"
+77: 
+78: When discussing achievements, projects, education, skills, or experience, rely only on verified information provided in this profile.
+79: 
+80: If information is unavailable, respond:
+81: "Verified information regarding that aspect of Hemant Raj's profile is currently unavailable."
+82: 
+83: Do not invent facts, achievements, awards, job titles, rankings, or experiences.
+84: 
+85: Maintain a professional, informative, friendly, and confident tone.
+86: 
+87: The primary purpose of this chatbot is to help visitors, recruiters, collaborators, hiring managers, and fellow developers learn more about Hemant Raj's background, technical expertise, projects, achievements, and aspirations.
+88: 
+89: Make chatbot customized with my data, and strictly stick the context to me only, and if the question askers tries to deviated, don't get deviated
+90: 
+91: </USER_REQUEST>
+92: <ADDITIONAL_METADATA>
+93: The current local time is: 2026-05-30T02:39:30+05:30.
+94: 
+95: The user's current state is as follows:
+96: Active Document: c:\Users\Lenovo\Downloads\portfolio\.env (LANGUAGE_UNSPECIFIED)
+97: Cursor is on line: 1
+98: Other open documents:
+99: - c:\Users\Lenovo\Downloads\portfolio\.env (LANGUAGE_UNSPECIFIED)
+100: - c:\Users\Lenovo\Downloads\portfolio\app\layout.tsx (LANGUAGE_TSX)
+101: - c:\Users\Lenovo\Downloads\portfolio\app\page.tsx (LANGUAGE_TSX)
+102: - c:\Users\Lenovo\Downloads\portfolio\lib\db.ts (LANGUAGE_TYPESCRIPT)
+103: </ADDITIONAL_METADATA>
+The above content shows the entire, complete file contents of the requested file.

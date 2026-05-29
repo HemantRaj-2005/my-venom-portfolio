@@ -9,35 +9,6 @@ interface ChatMessage {
   text: string;
 }
 
-// Local smart responses matched against regex keywords
-const getSpiderResponse = (query: string): string => {
-  const q = query.toLowerCase();
-
-  if (q.includes("hi") || q.includes("hello") || q.includes("hey")) {
-    return "SPIDER-SENSE DETECTS A VISITOR! Welcome to Hemant Raj's high-tech Stark AI Operating System. Command-center diagnostics are online. Ask me about his tech stack, neural code networks, or scheduling a mission with him!";
-  }
-  if (q.includes("skills") || q.includes("languages") || q.includes("stack") || q.includes("code")) {
-    return "STARK AI SYSTEMS REGISTER MULTIPLE PATHWAYS! Hemant commands Next.js 16, React 19, TypeScript, vanilla WebGL shaders, Python, PyTorch, and Docker containers. He excels in scaling services, styling rich user interfaces, and training custom neural code models.";
-  }
-  if (q.includes("project") || q.includes("work") || q.includes("portfolio")) {
-    return "TELEMETRY PROTOCOLS ACTIVE! Hemant has built several key systems: 'Stark-Tech Spider OS' (AI-driven self-healing analyzer), 'Sling-Shot SaaS Core' (NextAuth/Stripe template), and 'Web3 Web-Slinger Gas Tracker' (multichain visualizer). Type '/projects' to inspect his intelligence dossiers!";
-  }
-  if (q.includes("hire") || q.includes("job") || q.includes("work with") || q.includes("contact")) {
-    return "INITIATING COMMUNICATIONS UPLINK! Excellent choice. Fill out the Hire Inquiry form in the command center below, and our spider-signals will instantly notify Hemant. You can also reach him via email at hemantraj2005@gmail.com!";
-  }
-  if (q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("service")) {
-    return "COMMAND CENTER PACKAGES DETECTED: Hemant offers Full Stack Engineering, SaaS templates, custom dashboard visuals, WebGL shader systems, and custom LLM integrations. Checkout the pricing panel below; options start at $49/hr!";
-  }
-  if (q.includes("resume") || q.includes("cv") || q.includes("experience")) {
-    return "DECRYPTING INTEL REPOSITORIES... Hemant's resume dossier is ready for download! Click the 'Resume Dossier' button on the hero dashboard to intercept his full timeline, detailing his development journey from core backend routes to advanced 3D shaders.";
-  }
-  if (q.includes("venom") || q.includes("symbiote") || q.includes("marvel") || q.includes("spider") || q.includes("stark")) {
-    return "WITH GREAT POWER COMES GREAT RESPONSIBILITY! We have overridden all Venom symbiote codes with Stark-tech security grids. The spider-webs are fully functional, responsive at 60FPS, and secure. Try typing 'spider' in the terminal console for override controls...";
-  }
-
-  return "WE SEARCHED OUR NEURAL LOGS... but we do not recognize that query. Try asking us about 'skills', 'projects', 'resume', or 'how to hire Hemant'!";
-};
-
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -58,24 +29,58 @@ export default function Chatbot() {
     }
   }, [messages, isTyping]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputVal.trim()) return;
 
     const userText = inputVal;
+    // Update messages with user query immediately
     setMessages((prev) => [...prev, { sender: "user", text: userText }]);
     setInputVal("");
     setIsTyping(true);
 
     if ((window as any).playClickSound) (window as any).playClickSound();
 
-    setTimeout(() => {
-      const botResponse = getSpiderResponse(userText);
-      setMessages((prev) => [...prev, { sender: "bot", text: botResponse }]);
-      setIsTyping(false);
+    try {
+      // POST the user message and history to the dynamic chat endpoint
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userText,
+          // Send all previous messages except the welcome greeting
+          history: messages.slice(1),
+        }),
+      });
 
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setMessages((prev) => [...prev, { sender: "bot", text: data.response }]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            text: "SYSTEM CONSOLE WARNING: Connection to StarkAI database link failed. Verified information regarding that aspect of Hemant Raj's profile is currently unavailable."
+          }
+        ]);
+      }
+    } catch (error) {
+      console.error("Failed to query AI StarkAI Assistant:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "SYSTEM CONSOLE WARNING: Connection to StarkAI database link failed. Verified information regarding that aspect of Hemant Raj's profile is currently unavailable."
+        }
+      ]);
+    } finally {
+      setIsTyping(false);
       if ((window as any).playHoverSound) (window as any).playHoverSound();
       if ((window as any).triggerChatAchievement) (window as any).triggerChatAchievement();
-    }, 850);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -195,7 +200,8 @@ export default function Chatbot() {
               />
               <button
                 onClick={handleSend}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-500 text-white cursor-pointer active:scale-95 transition-all shadow-md shadow-red-700/10"
+                disabled={isTyping}
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-500 text-white cursor-pointer active:scale-95 transition-all shadow-md shadow-red-700/10 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4" />
               </button>
