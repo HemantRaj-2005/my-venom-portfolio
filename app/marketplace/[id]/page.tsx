@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
-import { ArrowLeft, Star, FileText, Download, GitBranch, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Star, FileText, GitBranch, ShoppingCart } from "lucide-react";
 import RatingForm from "@/components/RatingForm";
 import { connection } from "next/server";
 
@@ -11,7 +11,14 @@ interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
+function formatLoggedDate(createdAt: Date | string | null | undefined): string {
+  if (!createdAt) return "";
+  if (typeof createdAt === "string") return createdAt.slice(0, 10);
+  return createdAt.toISOString().slice(0, 10);
+}
+
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  await connection();
   const { id } = await params;
   const product = await db.product.findUnique({ where: { id } });
 
@@ -26,28 +33,26 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   await connection();
   const { id } = await params;
-  
+
   const product = await db.product.findUnique({
     where: { id },
-    include: { ratings: true }
+    include: { ratings: true },
   });
 
   if (!product) {
     notFound();
   }
 
-  // Calculate average rating
   const ratings = product.ratings || [];
-  const averageRating = ratings.length > 0
-    ? (ratings.reduce((acc: number, r: any) => acc + (r.rating ?? 0), 0) / ratings.length).toFixed(1)
-    : "5.0";
+  const averageRating =
+    ratings.length > 0
+      ? (ratings.reduce((acc, r) => acc + (r.rating ?? 0), 0) / ratings.length).toFixed(1)
+      : "5.0";
 
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
-      {/* Glow overlays */}
       <div className="absolute w-[450px] h-[450px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
 
-      {/* Hero Header Area */}
       <div className="relative h-[30vh] bg-zinc-950 border-b border-[#00E5FF]/15 select-none">
         <Image
           src={product.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=60"}
@@ -78,23 +83,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </div>
       </div>
 
-      {/* Main Grid */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10">
-        
-        {/* Left Columns: Description, Licensing, Ratings */}
         <div className="lg:col-span-2 space-y-10">
-          
-          {/* Section 1: Overview */}
           <section className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8">
             <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-4">
               Asset description
             </h2>
-            <p className="text-zinc-300 leading-relaxed font-sans text-sm md:text-base">
-              {product.description}
-            </p>
-
+            <p className="text-zinc-300 leading-relaxed font-sans text-sm md:text-base">{product.description}</p>
             <div className="flex flex-wrap gap-2 mt-6">
-              {product.features?.map((feat: string, idx: number) => (
+              {product.features?.map((feat, idx) => (
                 <span
                   key={idx}
                   className="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-850 text-[10px] font-mono text-zinc-400 uppercase tracking-wide"
@@ -105,23 +102,21 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </section>
 
-          {/* Section 2: Licensing terms */}
           <section className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8">
             <div className="flex items-center gap-2 text-[#00E5FF] font-mono text-xs uppercase tracking-widest mb-4">
               <FileText className="w-4.5 h-4.5" /> Licensing Agreement
             </div>
             <p className="text-zinc-300 leading-relaxed font-sans text-sm border-l-2 border-[#00E5FF] pl-4">
-              {product.licensing || "Standard Developer Single License. Re-distribution of source codes is forbidden. Custom integrations and commercial SaaS deployment are permitted."}
+              {product.licensing ||
+                "Standard Developer Single License. Re-distribution of source codes is forbidden. Custom integrations and commercial SaaS deployment are permitted."}
             </p>
           </section>
 
-          {/* Section 3: Ratings & Comments */}
           <section className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8">
             <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-6">
               Visitor Reviews
             </h2>
 
-            {/* Averages block */}
             <div className="flex items-center gap-6 mb-8 p-4 rounded-xl border border-[#00E5FF]/15 bg-black/40">
               <div className="text-center shrink-0">
                 <div className="text-4xl font-extrabold text-white font-mono">{averageRating}</div>
@@ -145,18 +140,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            {/* Reviews list grid */}
             <div className="space-y-4 max-h-72 overflow-y-auto custom-scrollbar pr-2 mb-8">
               {ratings.length === 0 ? (
                 <div className="text-center font-mono text-[10px] text-zinc-600 uppercase tracking-widest py-6">
                   No review records synced yet
                 </div>
               ) : (
-                ratings.map((review: any) => (
-                  <div
-                    key={review.id}
-                    className="p-4 rounded-xl border border-zinc-900 bg-zinc-950 space-y-2"
-                  >
+                ratings.map((review) => (
+                  <div key={review.id} className="p-4 rounded-xl border border-zinc-900 bg-zinc-950 space-y-2">
                     <div className="flex justify-between items-center select-none">
                       <span className="text-xs font-bold text-white font-sans">{review.author}</span>
                       <div className="flex gap-0.5 text-amber-400">
@@ -172,37 +163,28 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                       {review.comment || "Rated without comments."}
                     </p>
                     <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">
-                      Logged: {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : ""}
+                      Logged: {formatLoggedDate(review.createdAt)}
                     </div>
                   </div>
                 ))
               )}
             </div>
 
-            {/* Embedded submit rating form */}
             <div className="border-t border-zinc-900 pt-6">
-              <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-4">
-                Submit Review Log
-              </h3>
+              <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-4">Submit Review Log</h3>
               <RatingForm productId={product.id || ""} />
             </div>
           </section>
         </div>
 
-        {/* Right Column: Checkout Pricing info */}
         <div className="space-y-6">
           <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 relative">
             <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-[#E11D2E]/20 via-[#00E5FF]/20 to-[#E11D2E]/20 rounded-t-2xl" />
-            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4">
-              Checkout Gateway
-            </h3>
-            
+            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4">Checkout Gateway</h3>
             <div className="space-y-2">
               <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Pricing Matrix</span>
               <div className="text-4xl font-extrabold text-white font-mono">${(product.price ?? 0).toFixed(2)}</div>
             </div>
-
-            {/* Action buttons */}
             <div className="mt-8 space-y-3">
               <a
                 href={product.demoUrl || "#"}
@@ -213,7 +195,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 <ShoppingCart className="w-4.5 h-4.5" />
                 <span>Acquire Asset</span>
               </a>
-
               {product.githubUrl && (
                 <a
                   href={product.githubUrl}
@@ -226,14 +207,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </a>
               )}
             </div>
-
             <div className="mt-6 border-t border-zinc-900 pt-4 flex flex-col gap-2 font-mono text-[9px] text-zinc-600 uppercase tracking-widest">
               <div>Secure Payment Processing</div>
               <div>Instant ZIP/Git Access Link</div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
