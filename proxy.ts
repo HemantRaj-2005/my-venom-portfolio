@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
+const authSecret =
+  process.env.NEXTAUTH_SECRET ||
+  process.env.AUTH_SECRET ||
+  "fallback-secret-symbiote-108";
+
 // In-memory rate limiting map (IP -> { count, lastResetTime })
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const LIMIT = 5; // 5 requests
@@ -38,7 +43,7 @@ export async function proxy(req: NextRequest) {
   if (pathname.startsWith("/admin/dashboard")) {
     const token = await getToken({
       req,
-      secret: process.env.NEXTAUTH_SECRET || "fallback-secret-symbiote-108",
+      secret: authSecret,
     });
 
     if (!token || token.role !== "ADMIN") {

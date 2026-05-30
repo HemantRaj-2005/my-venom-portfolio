@@ -1,7 +1,16 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { db } from "./db";
+
+type SessionRoleFields = {
+  id?: unknown;
+  role?: unknown;
+};
+
+const authSecret =
+  process.env.NEXTAUTH_SECRET ||
+  process.env.AUTH_SECRET ||
+  "fallback-secret-symbiote-108";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,13 +25,15 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Credentials email and password are required.");
         }
 
-        const envEmail = process.env.ADMIN_EMAIL || "admin@venom.dev";
+        const suppliedEmail = credentials.email.trim().toLowerCase();
+        const suppliedPassword = credentials.password;
+        const envEmail = (process.env.ADMIN_EMAIL || "admin@venom.dev").trim();
         const envPassword = process.env.ADMIN_PASSWORD || "symbiote_roar_2026";
 
         // 1. Direct validation against secure ENV credentials
         if (
-          credentials.email.toLowerCase() === envEmail.toLowerCase() &&
-          credentials.password === envPassword
+          suppliedEmail === envEmail.toLowerCase() &&
+          suppliedPassword === envPassword
         ) {
           return {
             id: "admin-system",
@@ -34,23 +45,24 @@ export const authOptions: NextAuthOptions = {
 
         // 2. Secondary fallback lookup in MongoDB (if connected)
         try {
+          const { db } = await import("./db");
           const user = await db.user.findFirst({
-            where: { email: credentials.email.toLowerCase() }
+            where: { email: suppliedEmail }
           });
 
           if (user && user.hashedPassword) {
-            const isValid = await bcrypt.compare(credentials.password, user.hashedPassword);
+            const isValid = await bcrypt.compare(suppliedPassword, user.hashedPassword);
             if (isValid) {
               return {
                 id: user.id || "",
                 name: user.name || "Administrator",
                 email: user.email,
-                role: (user as any).role || "USER"
+                role: user.role || "USER"
               };
             }
           }
         } catch (e) {
-          console.warn("MongoDB auth lookup failed, falling back to local credentials.", e);
+          console.warn("MongoDB auth lookup failed after ENV credential check.", e);
         }
 
         throw new Error("Access Denied: Invalid security decryption tokens.");
@@ -64,15 +76,17 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        const role = "role" in user && typeof user.role === "string" ? user.role : "USER";
         token.id = user.id;
-        token.role = (user as any).role || "USER";
+        token.role = role;
       }
       return token;
     },
     async session({ session, token }) {
       if (token && session.user) {
-        (session.user as any).id = token.id;
-        (session.user as any).role = token.role;
+        const sessionUser = session.user as typeof session.user & SessionRoleFields;
+        sessionUser.id = token.id;
+        sessionUser.role = token.role;
       }
       return session;
     }
@@ -81,5 +95,5 @@ export const authOptions: NextAuthOptions = {
     signIn: "/admin",
     error: "/admin",
   },
-  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-symbiote-108",
+  secret: authSecret,
 };
