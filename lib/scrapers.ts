@@ -7,6 +7,23 @@ function matchRegex(str: string, regex: RegExp, index = 1): string | null {
   return match && match[index] ? match[index] : null;
 }
 
+function parseNumber(value: string | null | undefined): number {
+  if (!value) return 0;
+  return parseInt(value.replace(/,/g, ""), 10) || 0;
+}
+
+function parseNumberFromRegex(str: string, regex: RegExp): number {
+  return parseNumber(matchRegex(str, regex));
+}
+
+function matchAnyNumber(str: string, regexes: RegExp[]): number {
+  for (const regex of regexes) {
+    const value = parseNumberFromRegex(str, regex);
+    if (value > 0) return value;
+  }
+  return 0;
+}
+
 function githubHeaders(): HeadersInit {
   const headers: Record<string, string> = {
     "User-Agent": "Venom-Analytics/1.0",
@@ -457,12 +474,27 @@ export async function scrapeCodechef(username: string) {
     if (!res.ok) throw new Error("CodeChef profile fetch failed");
     const html = await res.text();
 
-    const rating = parseInt(matchRegex(html, /<div class="rating-number">(\d+)<\/div>/) || "0", 10);
-    const maxRating = parseInt(matchRegex(html, /<small>\(Highest Rating (\d+)\)<\/small>/) || "0", 10);
-    const stars = matchRegex(html, /<span class="rating">([^<]+)<\/span>/) || "N/A";
-    const globalRank = parseInt(matchRegex(html, /Global Rank:[\s\S]*?<strong>(\d+)<\/strong>/) || "0", 10);
-    const countryRank = parseInt(matchRegex(html, /Country Rank:[\s\S]*?<strong>(\d+)<\/strong>/) || "0", 10);
-    const solved = parseInt(matchRegex(html, /Fully Solved \((\d+)\)/) || "0", 10);
+    const rating = matchAnyNumber(html, [
+      /<div class="rating-number">\s*(\d+)\s*<\/div>/,
+      /CodeChef Rating[\s\S]*?<div class="rating-number">\s*(\d+)\s*<\/div>/,
+    ]);
+    const maxRating = parseNumberFromRegex(html, /<small>\(Highest Rating\s*(\d+)\)<\/small>/);
+    const starBlock = matchRegex(html, /<div class="rating-star">([\s\S]*?)<\/div>/);
+    const starCount = starBlock ? (starBlock.match(/&#9733;/g) || []).length : 0;
+    const stars = matchRegex(html, /<span class="rating">([^<]+)<\/span>/) ||
+      (starCount > 0 ? `${starCount} Star` : "N/A");
+    const globalRank = matchAnyNumber(html, [
+      /<strong>\s*([\d,]+)\s*<\/strong>\s*<\/a>\s*Global Rank/,
+      /Global Rank:[\s\S]*?<strong[^>]*>\s*([\d,]+)\s*<\/strong>/,
+    ]);
+    const countryRank = matchAnyNumber(html, [
+      /<strong>\s*([\d,]+)\s*<\/strong>\s*<\/a>\s*Country Rank/,
+      /Country Rank:[\s\S]*?<strong[^>]*>\s*([\d,]+)\s*<\/strong>/,
+    ]);
+    const solved = matchAnyNumber(html, [
+      /Solved:\s*([\d,]+)/i,
+      /Fully Solved \(([\d,]+)\)/i,
+    ]);
 
     if (rating === 0 && solved === 0) throw new Error("No CodeChef data parsed");
 
@@ -494,11 +526,22 @@ export async function scrapeGfg(username: string) {
     if (!res.ok) throw new Error("GFG profile query failed");
     const html = await res.text();
 
-    const codingScore = parseInt(matchRegex(html, /Coding Score<\/span><span class="[^"]*">(\d+)/) || "0", 10);
-    const institutionRank = parseInt(matchRegex(html, /Institution Rank<\/span><span class="[^"]*">#?(\d+)/) || "0", 10);
-    const solved = parseInt(matchRegex(html, /Problems Solved<\/span><span class="[^"]*">(\d+)/) || "0", 10);
+    const codingScore = matchAnyNumber(html, [
+      /Coding Score<\/span><span class="[^"]*">([\d,]+)/,
+      /\\?"score\\?":([\d,]+)/,
+    ]);
+    const institutionRank = matchAnyNumber(html, [
+      /Institution Rank<\/span><span class="[^"]*">#?([\d,]+)/,
+      /\\?"institute_rank\\?":([\d,]+)/,
+    ]);
+    const solved = matchAnyNumber(html, [
+      /Problems Solved<\/span><span class="[^"]*">([\d,]+)/,
+      /\\?"total_problems_solved\\?":([\d,]+)/,
+    ]);
     const streakMatch = matchRegex(html, /(\d+)\s*Day(?:s)?\s*Coding\s*Streak/i);
-    const streak = streakMatch ? parseInt(streakMatch, 10) : 0;
+    const streak = streakMatch
+      ? parseNumber(streakMatch)
+      : parseNumberFromRegex(html, /\\?"pod_solved_longest_streak\\?":([\d,]+)/);
 
     if (solved === 0 && codingScore === 0) throw new Error("No GFG data parsed");
 
@@ -523,7 +566,9 @@ export async function scrapeGfg(username: string) {
 
 export async function scrapeHackerrank(username: string) {
   try {
-    const res = await fetch(`https://www.hackerrank.com/rest/hackers/${username}/profile`);
+    const res = await fetch(`https://www.hackerrank.com/rest/contests/master/hackers/${username}/profile`, {
+      headers: { "User-Agent": "Mozilla/5.0", Accept: "application/json" },
+    });
     if (!res.ok) throw new Error("HackerRank profile fetch failed");
     const parsed = await res.json();
     const data = parsed.model || {};
@@ -532,12 +577,24 @@ export async function scrapeHackerrank(username: string) {
 
     const badges: string[] = [];
     const certifications: string[] = [];
+    let challenges = 0;
+    let rating = typeof data.level === "number" ? data.level * 100 : 0;
+    let rank = 0;
 
-    if (Array.isArray(data.badges)) {
-      data.badges.forEach((b: { badge_name?: string; stars?: number }) => {
+    const badgesRes = await fetch(`https://www.hackerrank.com/rest/hackers/${username}/badges`, {
+      headers: { "User-Agent": "Mozilla/5.0", Accept: "application/json" },
+    });
+    if (badgesRes.ok) {
+      const badgesPayload = await badgesRes.json();
+      const badgeModels = Array.isArray(badgesPayload.models) ? badgesPayload.models : [];
+      badgeModels.forEach((b: { badge_name?: string; stars?: number; solved?: number; current_points?: number; hacker_rank?: number }) => {
         if (b.badge_name) badges.push(`${b.badge_name}${b.stars ? ` (${b.stars} Star)` : ""}`);
+        challenges += b.solved || 0;
+        rating += Math.round(b.current_points || 0);
+        if (b.hacker_rank && (!rank || b.hacker_rank < rank)) rank = b.hacker_rank;
       });
     }
+
     if (Array.isArray(data.certificates)) {
       data.certificates.forEach((c: { name?: string }) => {
         if (c.name) certifications.push(c.name);
@@ -548,11 +605,11 @@ export async function scrapeHackerrank(username: string) {
       success: true,
       data: {
         username,
-        rating: data.score ? Math.round(data.score * 10) : 0,
+        rating,
         badges,
         certifications,
-        challenges: data.challenges_solved || 0,
-        rank: data.rank || 0,
+        challenges,
+        rank,
       },
     };
   } catch (e: unknown) {
@@ -564,17 +621,20 @@ export async function scrapeHackerrank(username: string) {
 
 export async function scrapeHackerearth(username: string) {
   try {
-    const res = await fetch(`https://www.hackerearth.com/@${username}/`, {
+    const normalizedUsername = username.trim().replace(/^@+/, "");
+    const res = await fetch(`https://www.hackerearth.com/@${normalizedUsername}/`, {
       headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
     });
     if (!res.ok) throw new Error("HackerEarth profile fetch failed");
     const html = await res.text();
 
-    const rating = parseInt(matchRegex(html, /Rating[^0-9]*(\d{3,4})/i) || "0", 10);
-    const rank = parseInt(matchRegex(html, /Global Rank[^0-9]*(\d+)/i) || "0", 10);
-    const challenges = parseInt(matchRegex(html, /(\d+)\s*problems?\s*solved/i) || "0", 10);
+    const rating = parseNumberFromRegex(html, /Rating[^0-9]*(\d{3,4})/i);
+    const rank = parseNumberFromRegex(html, /Global Rank[^0-9]*([\d,]+)/i);
+    const challenges = parseNumberFromRegex(html, /([\d,]+)\s*problems?\s*solved/i);
+    const hasProfileShell = new RegExp(`@?${normalizedUsername}`, "i").test(html) ||
+      /Developer Profile on HackerEarth/i.test(html);
 
-    if (rating === 0 && challenges === 0) throw new Error("No HackerEarth data parsed");
+    if (!hasProfileShell && rating === 0 && challenges === 0) throw new Error("No HackerEarth data parsed");
 
     return {
       success: true,
@@ -589,14 +649,21 @@ export async function scrapeHackerearth(username: string) {
 
 export async function scrapeAtcoder(username: string) {
   try {
-    const res = await fetch(`https://atcoder.jp/users/${username}`);
+    const res = await fetch(`https://atcoder.jp/users/${username}`, {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
+    });
     if (!res.ok) throw new Error("AtCoder profile fetch failed");
     const html = await res.text();
 
-    const rating = parseInt(matchRegex(html, /Rating<\/th><td><span[^>]*>(\d+)/) || "0", 10);
-    const maxRating = parseInt(matchRegex(html, /Highest Rating<\/th><td>(\d+)/) || "0", 10);
-    const rank = parseInt(matchRegex(html, /Rank<\/th><td>(\d+)/) || "0", 10);
-    const challenges = parseInt(matchRegex(html, /(\d+)\s*Problems/i) || "0", 10);
+    const ratingCell = matchRegex(html, /<th[^>]*>Rating<\/th><td>([\s\S]*?)<\/td>/);
+    const maxRatingCell = matchRegex(html, /<th[^>]*>Highest Rating<\/th><td>([\s\S]*?)<\/td>/);
+    const rating = parseNumber(cleanText(ratingCell || ""));
+    const maxRating = parseNumber(cleanText(maxRatingCell || ""));
+    const rank = parseNumberFromRegex(html, /<th[^>]*>Rank<\/th><td>\s*([\d,]+)/);
+    const challenges = matchAnyNumber(html, [
+      /<th[^>]*>Rated Matches[\s\S]*?<\/th><td>\s*([\d,]+)/,
+      /([\d,]+)\s*Problems/i,
+    ]);
 
     if (rating === 0 && challenges === 0) throw new Error("No AtCoder data parsed");
 
@@ -690,7 +757,7 @@ export async function scrapeKaggle(username: string) {
           success: true,
           data: {
             username,
-            points: user.totalGoldMedals * 100 + user.totalSilverMedals * 50 + user.totalBronzeMedals * 25 || 0,
+            points: (user.totalGoldMedals || 0) * 100 + (user.totalSilverMedals || 0) * 50 + (user.totalBronzeMedals || 0) * 25,
             rank: user.rankCurrent || 0,
             tier: user.performanceTier || "Novice",
           },
@@ -704,11 +771,12 @@ export async function scrapeKaggle(username: string) {
     if (!res.ok) throw new Error("Kaggle profile fetch failed");
     const html = await res.text();
 
-    const points = parseInt(matchRegex(html, /(\d+)\s*Total Points/i) || "0", 10);
-    const rank = parseInt(matchRegex(html, /Rank[^0-9]*(\d+)/i) || "0", 10);
+    const points = parseNumberFromRegex(html, /([\d,]+)\s*Total Points/i);
+    const rank = parseNumberFromRegex(html, /Rank[^0-9]*([\d,]+)/i);
     const tierMatch = matchRegex(html, /(Novice|Contributor|Expert|Master|Grandmaster)/i);
+    const hasProfileShell = new RegExp(username, "i").test(html) || /Kaggle profile/i.test(html);
 
-    if (points === 0 && rank === 0) throw new Error("No Kaggle data parsed");
+    if (!hasProfileShell && points === 0 && rank === 0) throw new Error("No Kaggle data parsed");
 
     return {
       success: true,

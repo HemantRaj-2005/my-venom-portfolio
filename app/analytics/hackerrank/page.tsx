@@ -9,7 +9,7 @@ import { Layers } from "lucide-react";
 export default function HackerRankAnalytics() {
   const { stats, profile } = useAnalytics();
   const hr = stats?.hackerrank as Record<string, unknown> | undefined;
-  if (!profile?.hackerrank || !hr?.challenges) {
+  if (!profile?.hackerrank || !hr) {
     return <AnalyticsEmptyState platformName="HackerRank" />;
   }
 
@@ -25,9 +25,9 @@ export default function HackerRankAnalytics() {
         <h2 className="text-3xl font-black text-white mt-1.5">HackerRank Analytics</h2>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        <MetricCard label="Rating" value={hr.rating as number} color="text-cyan-400" />
-        <MetricCard label="Rank" value={hr.rank as number} color="text-amber-400" />
-        <MetricCard label="Challenges Solved" value={hr.challenges as number} color="text-emerald-400" />
+        <MetricCard label="Rating" value={(hr.rating as number) ?? 0} color="text-cyan-400" />
+        <MetricCard label="Rank" value={(hr.rank as number) ?? 0} color="text-amber-400" />
+        <MetricCard label="Challenges Solved" value={(hr.challenges as number) ?? 0} color="text-emerald-400" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-zinc-950/40 border border-zinc-900 rounded-2xl p-6">

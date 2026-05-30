@@ -107,7 +107,7 @@ export default function AnalyticsLayout({ children }: { children: React.ReactNod
 
   return (
     <AnalyticsContext.Provider value={{ stats, profile, loading: isLoading, platformStatus, playClick, refetch }}>
-      <div className="min-h-screen bg-[#030303] text-zinc-100 flex flex-col md:flex-row relative overflow-hidden font-sans">
+      <div className="min-h-screen pt-20 bg-[#030303] text-zinc-100 flex flex-col md:flex-row relative overflow-hidden font-sans">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c0e_1px,transparent_1px),linear-gradient(to_bottom,#0c0c0e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_80%,transparent_100%)] pointer-events-none" />
 
         <div className="md:hidden h-14 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 px-4 flex items-center justify-between z-40 relative">

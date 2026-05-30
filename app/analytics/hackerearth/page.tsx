@@ -9,7 +9,7 @@ import { Terminal } from "lucide-react";
 export default function HackerEarthAnalytics() {
   const { stats, profile } = useAnalytics();
   const he = stats?.hackerearth as Record<string, unknown> | undefined;
-  if (!profile?.hackerearth || (!he?.rating && !he?.challenges)) {
+  if (!profile?.hackerearth || !he) {
     return <AnalyticsEmptyState platformName="HackerEarth" />;
   }
 
@@ -22,9 +22,9 @@ export default function HackerEarthAnalytics() {
         <h2 className="text-3xl font-black text-white mt-1.5">HackerEarth Analytics</h2>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        <MetricCard label="Rating" value={he.rating as number} color="text-cyan-400" />
-        <MetricCard label="Global Rank" value={he.rank as number} color="text-amber-400" />
-        <MetricCard label="Challenges Solved" value={he.challenges as number} color="text-emerald-400" />
+        <MetricCard label="Rating" value={(he.rating as number) ?? 0} color="text-cyan-400" />
+        <MetricCard label="Global Rank" value={(he.rank as number) ?? 0} color="text-amber-400" />
+        <MetricCard label="Challenges Solved" value={(he.challenges as number) ?? 0} color="text-emerald-400" />
       </div>
     </div>
   );

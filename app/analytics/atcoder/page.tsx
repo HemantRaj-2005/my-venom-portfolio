@@ -9,7 +9,7 @@ import { Shield } from "lucide-react";
 export default function AtCoderAnalytics() {
   const { stats, profile } = useAnalytics();
   const ac = stats?.atcoder as Record<string, unknown> | undefined;
-  if (!profile?.atcoder || !ac?.rating) {
+  if (!profile?.atcoder || !ac) {
     return <AnalyticsEmptyState platformName="AtCoder" />;
   }
 
@@ -22,10 +22,10 @@ export default function AtCoderAnalytics() {
         <h2 className="text-3xl font-black text-white mt-1.5">AtCoder Analytics</h2>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard label="Rating" value={ac.rating as number} color="text-cyan-400" />
-        <MetricCard label="Max Rating" value={(ac.maxRating as number) || (ac.rating as number)} color="text-amber-400" />
-        <MetricCard label="Rank" value={ac.rank as number} color="text-purple-400" />
-        <MetricCard label="Challenges" value={ac.challenges as number} color="text-emerald-400" />
+        <MetricCard label="Rating" value={(ac.rating as number) ?? 0} color="text-cyan-400" />
+        <MetricCard label="Max Rating" value={(ac.maxRating as number) || (ac.rating as number) || 0} color="text-amber-400" />
+        <MetricCard label="Rank" value={(ac.rank as number) ?? 0} color="text-purple-400" />
+        <MetricCard label="Challenges" value={(ac.challenges as number) ?? 0} color="text-emerald-400" />
       </div>
     </div>
   );

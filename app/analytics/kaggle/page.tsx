@@ -9,7 +9,7 @@ import { Sparkles } from "lucide-react";
 export default function KaggleAnalytics() {
   const { stats, profile } = useAnalytics();
   const kg = stats?.kaggle as Record<string, unknown> | undefined;
-  if (!profile?.kaggle || (!kg?.points && !kg?.rank)) {
+  if (!profile?.kaggle || !kg) {
     return <AnalyticsEmptyState platformName="Kaggle" />;
   }
 
@@ -22,9 +22,9 @@ export default function KaggleAnalytics() {
         <h2 className="text-3xl font-black text-white mt-1.5">Kaggle Analytics</h2>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        <MetricCard label="Points" value={kg.points as number} color="text-cyan-400" />
-        <MetricCard label="Global Rank" value={kg.rank as number} color="text-amber-400" />
-        <MetricCard label="Tier" value={String(kg.tier)} color="text-emerald-400" />
+        <MetricCard label="Points" value={(kg.points as number) ?? 0} color="text-cyan-400" />
+        <MetricCard label="Global Rank" value={(kg.rank as number) ?? 0} color="text-amber-400" />
+        <MetricCard label="Tier" value={String(kg.tier || "Novice")} color="text-emerald-400" />
       </div>
     </div>
   );

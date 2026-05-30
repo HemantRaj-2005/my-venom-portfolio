@@ -9,7 +9,7 @@ import { BookOpen } from "lucide-react";
 export default function DevtoAnalytics() {
   const { stats, profile } = useAnalytics();
   const devto = stats?.devto as Record<string, unknown> | undefined;
-  if (!profile?.devto || !devto?.articles) {
+  if (!profile?.devto || !devto) {
     return <AnalyticsEmptyState platformName="Dev.to" />;
   }
 
@@ -22,9 +22,9 @@ export default function DevtoAnalytics() {
         <h2 className="text-3xl font-black text-white mt-1.5">Dev.to Analytics</h2>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        <MetricCard label="Articles Published" value={devto.articles as number} color="text-cyan-400" />
-        <MetricCard label="Total Reactions" value={devto.reactions as number} color="text-amber-400" />
-        <MetricCard label="Followers" value={devto.followers as number} color="text-emerald-400" />
+        <MetricCard label="Articles Published" value={(devto.articles as number) ?? 0} color="text-cyan-400" />
+        <MetricCard label="Total Reactions" value={(devto.reactions as number) ?? 0} color="text-amber-400" />
+        <MetricCard label="Followers" value={(devto.followers as number) ?? 0} color="text-emerald-400" />
       </div>
     </div>
   );
