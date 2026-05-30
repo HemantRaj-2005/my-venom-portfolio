@@ -26,9 +26,9 @@ export const authOptions: NextAuthOptions = {
         }
 
         const suppliedEmail = credentials.email.trim().toLowerCase();
-        const suppliedPassword = credentials.password;
-        const envEmail = (process.env.ADMIN_EMAIL || "admin@venom.dev").trim();
-        const envPassword = process.env.ADMIN_PASSWORD || "symbiote_roar_2026";
+        const suppliedPassword = credentials.password.trim();
+        const envEmail = (process.env.ADMIN_EMAIL).trim();
+        const envPassword = (process.env.ADMIN_PASSWORD).trim();
 
         // 1. Direct validation against secure ENV credentials
         if (
@@ -37,9 +37,9 @@ export const authOptions: NextAuthOptions = {
         ) {
           return {
             id: "admin-system",
-            name: "Symbiote Admin",
+            name: "Hemant Raj - The Admin",
             email: envEmail,
-            role: "ADMIN"
+            role: "ADMIN" 
           };
         }
 
