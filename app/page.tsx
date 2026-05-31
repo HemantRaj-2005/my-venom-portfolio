@@ -175,7 +175,7 @@ export default function Home() {
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-none font-heading">
-                  Hi, I am {profile?.name || "Content coming soon"} <br />
+                  Hi, I am {profile?.name || "Hemant Raj"} <br />
                   <span className="text-red-500 font-mono text-2xl md:text-3xl block mt-4 border-l-2 border-red-500 pl-4 h-10 select-none">
                     {displayText}
                     <span className="animate-pulse bg-red-500 inline-block w-1.5 h-6 ml-1.5 align-middle" />
@@ -183,7 +183,7 @@ export default function Home() {
                 </h1>
 
                 <p className="text-zinc-400 text-sm md:text-base font-sans max-w-lg leading-relaxed select-text">
-                  {profile?.bio || "Content coming soon"}
+                  {profile?.bio || "I’m a passionate full-stack developer who enjoys building fast, scalable, and user-centric web applications. My goal is to solve real-world problems with clean code and innovative solutions."}
                 </p>
 
                 {/* CTAs Button list */}
