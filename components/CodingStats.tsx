@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Code, Award, Shield, RefreshCw, Clock, CheckCircle2, AlertTriangle, FileDown } from "lucide-react";
+import { Code, Award, Shield, RefreshCw, Clock, CheckCircle2, AlertTriangle, FileText } from "lucide-react";
+import ResumeViewer from "./ResumeViewer";
 
 export default function CodingStats() {
   const [stats, setStats] = useState<any>(null);
@@ -9,6 +10,7 @@ export default function CodingStats() {
   const [isSynced, setIsSynced] = useState<boolean>(false);
   const [lastSynced, setLastSynced] = useState<string | null>(null);
   const [resumeUrl, setResumeUrl] = useState<string | null>(null);
+  const [resumeViewerOpen, setResumeViewerOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -121,21 +123,24 @@ export default function CodingStats() {
         </div>
       </div>
 
-      {/* Resume Download Button */}
+      {/* Resume Viewer Button */}
       {resumeUrl && (
         <div className="flex justify-end">
-          <a
-            href={resumeUrl}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border border-cyan-800/30 bg-cyan-950/10 hover:bg-cyan-950/30 hover:border-cyan-600/40 px-3 py-1.5 rounded-lg transition-all"
+          <button
+            onClick={() => setResumeViewerOpen(true)}
+            className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border border-cyan-800/30 bg-cyan-950/10 hover:bg-cyan-950/30 hover:border-cyan-600/40 px-3 py-1.5 rounded-lg transition-all cursor-pointer"
           >
-            <FileDown className="w-3.5 h-3.5" />
-            Download Resume
-          </a>
+            <FileText className="w-3.5 h-3.5" />
+            View Resume
+          </button>
         </div>
       )}
+
+      <ResumeViewer
+        url={resumeUrl}
+        isOpen={resumeViewerOpen}
+        onClose={() => setResumeViewerOpen(false)}
+      />
 
       {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 select-none">

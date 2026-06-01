@@ -12,6 +12,8 @@ import {
   scrapeStackoverflow,
   scrapeDevto,
   scrapeKaggle,
+  scrapeCode360,
+  scrapeInterviewbit,
 } from "./scrapers";
 import { buildUnifiedHeatmap } from "./analytics/heatmap";
 import { computeDeveloperScores } from "./analytics/scores";
@@ -30,6 +32,8 @@ const PLATFORMS = [
   "stackoverflow",
   "devto",
   "kaggle",
+  "code360",
+  "interviewbit",
 ] as const;
 
 type Platform = (typeof PLATFORMS)[number];
@@ -80,6 +84,12 @@ async function syncPlatform(
       break;
     case "kaggle":
       result = await scrapeKaggle(username);
+      break;
+    case "code360":
+      result = await scrapeCode360(username);
+      break;
+    case "interviewbit":
+      result = await scrapeInterviewbit(username);
       break;
     default:
       result = { success: false, error: "Unknown platform" };
@@ -341,6 +351,38 @@ async function persistPlatformData(platform: Platform, data: Record<string, unkn
         },
       });
       break;
+
+    case "code360":
+      await db.code360Profile.upsert({
+        where: { username: data.username as string },
+        update: record,
+        create: record,
+      });
+      await db.code360History.create({
+        data: {
+          username: data.username as string,
+          date: now,
+          solved: (data.solved as number) || 0,
+          rating: (data.rating as number) || 0,
+        },
+      });
+      break;
+
+    case "interviewbit":
+      await db.interviewbitProfile.upsert({
+        where: { username: data.username as string },
+        update: record,
+        create: record,
+      });
+      await db.interviewbitHistory.create({
+        data: {
+          username: data.username as string,
+          date: now,
+          score: (data.score as number) || 0,
+          solved: (data.solved as number) || 0,
+        },
+      });
+      break;
   }
 }
 
@@ -399,7 +441,9 @@ export async function syncDeveloperStats(
     ((syncResults.geeksforgeeks?.solved as number) || 0) +
     ((syncResults.hackerrank?.challenges as number) || 0) +
     ((syncResults.hackerearth?.challenges as number) || 0) +
-    ((syncResults.atcoder?.challenges as number) || 0);
+    ((syncResults.atcoder?.challenges as number) || 0) +
+    ((syncResults.code360?.solved as number) || 0) +
+    ((syncResults.interviewbit?.solved as number) || 0);
 
   const recalcTotal = totalQuestions;
 
@@ -530,6 +574,8 @@ export async function syncDeveloperStats(
     stackoverflow: syncResults.stackoverflow || null,
     devto: syncResults.devto || null,
     kaggle: syncResults.kaggle || null,
+    code360: syncResults.code360 || null,
+    interviewbit: syncResults.interviewbit || null,
     aggregates: {
       totalQuestions: recalcTotal,
       connectedPlatforms,

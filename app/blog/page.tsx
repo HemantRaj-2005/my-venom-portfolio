@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { BookOpen, Search, Calendar, Clock, ArrowRight } from "lucide-react";
 
@@ -13,6 +14,7 @@ interface Post {
   tags: string[];
   category: string;
   readTime: number;
+  featuredImage?: string | null;
   createdAt: string;
 }
 
@@ -135,6 +137,20 @@ export default function BlogIndexPage() {
               className="group bg-zinc-950 border border-zinc-900 rounded-2xl p-6 md:p-8 hover:border-[#00E5FF]/30 transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-[#00E5FF]/2"
             >
               <div className="flex flex-col gap-4">
+                {/* Featured Image */}
+                {post.featuredImage && (
+                  <div className="relative w-full h-48 md:h-56 rounded-xl overflow-hidden border border-zinc-800/50">
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 768px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
+                  </div>
+                )}
+
                 {/* Meta details */}
                 <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-zinc-500 uppercase tracking-widest select-none">
                   <span className="text-[#00E5FF] bg-[#00E5FF]/5 px-2 py-0.5 rounded border border-[#00E5FF]/20">

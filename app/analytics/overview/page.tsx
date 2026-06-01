@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAnalytics } from "../layout";
+import { useAnalytics } from "../context";
 import MetricCard from "@/components/analytics/MetricCard";
 import UnifiedHeatmap from "@/components/analytics/UnifiedHeatmap";
 import ScoreRadar from "@/components/analytics/ScoreRadar";

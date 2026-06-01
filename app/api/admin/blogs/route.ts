@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { title, slug, content, summary, published, tags, category, readTime, seoTitle, seoDesc } = body;
+    const { title, slug, content, summary, published, tags, category, readTime, featuredImage, seoTitle, seoDesc } = body;
 
     if (!title || !slug) {
       return NextResponse.json({ error: "Title and slug are required" }, { status: 400 });
@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
         tags: Array.isArray(tags) ? tags : [],
         category: category || "Development",
         readTime: Number(readTime) || 5,
+        featuredImage: featuredImage || null,
         seoTitle: seoTitle || title,
         seoDesc: seoDesc || summary || "",
       }
@@ -81,7 +82,7 @@ export async function PUT(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { id, title, slug, content, summary, published, tags, category, readTime, seoTitle, seoDesc } = body;
+    const { id, title, slug, content, summary, published, tags, category, readTime, featuredImage, seoTitle, seoDesc } = body;
 
     if (!id) {
       return NextResponse.json({ error: "Post ID is required" }, { status: 400 });
@@ -98,6 +99,7 @@ export async function PUT(req: NextRequest) {
         tags: Array.isArray(tags) ? tags : [],
         category: category || "Development",
         readTime: Number(readTime) || 5,
+        featuredImage: featuredImage || null,
         seoTitle: seoTitle || title,
         seoDesc: seoDesc || summary || "",
       }

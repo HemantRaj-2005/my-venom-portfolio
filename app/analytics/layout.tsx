@@ -8,29 +8,11 @@ import {
   BarChart3, Cpu, Award, Trophy, Activity, ArrowLeft, Shield,
   GitBranch, Code2, Sparkles, BookOpen, History,
   Terminal, Zap, HelpCircle, GraduationCap,
-  Layers, Menu, X
+  Layers, Menu, X, Flame
 } from "lucide-react";
 import AnalyticsLoading from "./loading";
+import { AnalyticsContext, type AnalyticsContextType } from "./context";
 import type { AnalyticsResponse } from "@/types/analytics";
-
-interface AnalyticsContextType {
-  stats: AnalyticsResponse["stats"];
-  profile: AnalyticsResponse["profile"] | null;
-  loading: boolean;
-  platformStatus: AnalyticsResponse["platformStatus"];
-  playClick: () => void;
-  refetch: () => void;
-}
-
-const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined);
-
-export function useAnalytics() {
-  const context = useContext(AnalyticsContext);
-  if (!context) {
-    throw new Error("useAnalytics must be used within an AnalyticsProvider");
-  }
-  return context;
-}
 
 async function fetchAnalytics(): Promise<AnalyticsResponse> {
   const res = await fetch("/api/analytics");
@@ -77,6 +59,8 @@ export default function AnalyticsLayout({ children }: { children: React.ReactNod
     { id: "stackoverflow", name: "StackOverflow Rep", path: "/analytics/stackoverflow", icon: HelpCircle, handle: profile?.stackoverflow, category: "Communities" },
     { id: "devto", name: "Dev.to Articles", path: "/analytics/devto", icon: BookOpen, handle: profile?.devto, category: "Communities" },
     { id: "kaggle", name: "Kaggle Telemetry", path: "/analytics/kaggle", icon: Sparkles, handle: profile?.kaggle, category: "Communities" },
+    { id: "code360", name: "Code360 Progress", path: "/analytics/code360", icon: Flame, handle: profile?.code360, category: "Platform Analytics" },
+    { id: "interviewbit", name: "InterviewBit Score", path: "/analytics/interviewbit", icon: GraduationCap, handle: profile?.interviewbit, category: "Platform Analytics" },
   ];
 
   const categories = ["Core Metrics", "Platform Analytics", "Communities"];

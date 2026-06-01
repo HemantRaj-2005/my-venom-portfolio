@@ -95,6 +95,8 @@ export default function AdminDashboard() {
   const [stackoverflow, setStackoverflow] = useState("");
   const [devto, setDevto] = useState("");
   const [kaggle, setKaggle] = useState("");
+  const [code360, setCode360] = useState("");
+  const [interviewbit, setInterviewbit] = useState("");
   const [syncLogs, setSyncLogs] = useState<{ platform: string; status: string; message: string | null; duration: number | null; createdAt: string }[]>([]);
   const [envStatus, setEnvStatus] = useState<{ githubToken: boolean; geminiKey: boolean; stackexchangeKey: boolean; kaggleKeys: boolean } | null>(null);
   const [saveLoading, setSaveLoading] = useState(false);
@@ -135,6 +137,8 @@ export default function AdminDashboard() {
   const [blogSummary, setBlogSummary] = useState("");
   const [blogSeoTitle, setBlogSeoTitle] = useState("");
   const [blogSeoDesc, setBlogSeoDesc] = useState("");
+  const [blogFeaturedImage, setBlogFeaturedImage] = useState("");
+  const [blogImageUploading, setBlogImageUploading] = useState(false);
   const [blogBlocks, setBlogBlocks] = useState<any[]>([]);
 
   const addBlogBlock = (type: string) => {
@@ -266,6 +270,7 @@ export default function AdminDashboard() {
       setBlogSummary(post.summary || "");
       setBlogSeoTitle(post.seoTitle || "");
       setBlogSeoDesc(post.seoDesc || "");
+      setBlogFeaturedImage(post.featuredImage || "");
       try {
         if (post.content && post.content.trim().startsWith("[")) {
           setBlogBlocks(JSON.parse(post.content));
@@ -286,12 +291,34 @@ export default function AdminDashboard() {
       setBlogSummary("");
       setBlogSeoTitle("");
       setBlogSeoDesc("");
+      setBlogFeaturedImage("");
       setBlogBlocks([
         { type: "header", content: "New Dynamic Ledger Entry", level: 2 },
         { type: "paragraph", content: "Write details here..." }
       ]);
     }
     setBlogEditorOpen(true);
+  };
+
+  const handleBlogImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setBlogImageUploading(true);
+    try {
+      const form = new FormData();
+      form.append("image", file);
+      const res = await fetch("/api/admin/blogs/upload", { method: "POST", body: form });
+      const result = await res.json();
+      if (result.success && result.url) {
+        setBlogFeaturedImage(result.url);
+      } else {
+        alert(result.error || "Image upload failed.");
+      }
+    } catch {
+      alert("Network error uploading image.");
+    } finally {
+      setBlogImageUploading(false);
+    }
   };
 
   const handleSaveBlog = async () => {
@@ -304,7 +331,7 @@ export default function AdminDashboard() {
     try {
       const tagsArray = blogTags.split(",").map(t => t.trim()).filter(Boolean);
       const contentString = JSON.stringify(blogBlocks);
-      
+
       const payload = {
         id: blogId || undefined,
         title: blogTitle,
@@ -315,6 +342,7 @@ export default function AdminDashboard() {
         tags: tagsArray,
         category: blogCategory,
         readTime: Number(blogReadTime) || 5,
+        featuredImage: blogFeaturedImage || null,
         seoTitle: blogSeoTitle || blogTitle,
         seoDesc: blogSeoDesc || blogSummary || "",
       };
@@ -409,6 +437,8 @@ export default function AdminDashboard() {
         setStackoverflow(result.profile.stackoverflow || "");
         setDevto(result.profile.devto || "");
         setKaggle(result.profile.kaggle || "");
+        setCode360(result.profile.code360 || "");
+        setInterviewbit(result.profile.interviewbit || "");
         setSyncLogs(result.syncLogs || []);
         setEnvStatus(result.envStatus || null);
       }
@@ -440,6 +470,8 @@ export default function AdminDashboard() {
           stackoverflow,
           devto,
           kaggle,
+          code360,
+          interviewbit,
           triggerSync,
           syncPlatform
         })
@@ -1457,6 +1489,28 @@ export default function AdminDashboard() {
                       />
                     </div>
 
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">Code360 (Naukri) Username</label>
+                      <input
+                        type="text"
+                        value={code360}
+                        onChange={(e) => setCode360(e.target.value)}
+                        placeholder="e.g. hemantraj"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest pl-1">InterviewBit Username</label>
+                      <input
+                        type="text"
+                        value={interviewbit}
+                        onChange={(e) => setInterviewbit(e.target.value)}
+                        placeholder="e.g. hemantraj"
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-emerald-500/40 font-sans"
+                      />
+                    </div>
+
                     {envStatus && (
                       <div className="border border-zinc-900 rounded-xl p-4 space-y-2">
                         <h4 className="text-[10px] font-mono uppercase text-zinc-500">API Key Status</h4>
@@ -1820,6 +1874,29 @@ export default function AdminDashboard() {
                               rows={3}
                               className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-cyan-500/40 font-sans resize-none"
                             />
+                          </div>
+
+                          {/* Featured Image Upload */}
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Featured Image</label>
+                            {blogFeaturedImage ? (
+                              <div className="relative">
+                                <img src={blogFeaturedImage} alt="Featured" className="w-full h-32 object-cover rounded-xl border border-zinc-800" />
+                                <button
+                                  type="button"
+                                  onClick={() => setBlogFeaturedImage("")}
+                                  className="absolute top-2 right-2 bg-red-600 hover:bg-red-500 text-white p-1 rounded-lg text-xs cursor-pointer"
+                                >
+                                  <X className="w-3 h-3" />
+                                </button>
+                              </div>
+                            ) : (
+                              <label className="flex items-center justify-center gap-2 w-full bg-zinc-900 border border-zinc-800 border-dashed rounded-xl px-3.5 py-6 text-xs text-zinc-500 cursor-pointer hover:border-cyan-500/40 transition-colors">
+                                <Upload className="w-4 h-4" />
+                                <span>{blogImageUploading ? "Uploading..." : "Upload image"}</span>
+                                <input type="file" accept="image/*" className="hidden" onChange={handleBlogImageUpload} disabled={blogImageUploading} />
+                              </label>
+                            )}
                           </div>
 
                           <div className="flex items-center gap-2 pt-2 select-none">

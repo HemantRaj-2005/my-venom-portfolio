@@ -223,6 +223,26 @@ export type AiReport = $Result.DefaultSelection<Prisma.$AiReportPayload>
  * 
  */
 export type AnalyticsSnapshot = $Result.DefaultSelection<Prisma.$AnalyticsSnapshotPayload>
+/**
+ * Model Code360Profile
+ * 
+ */
+export type Code360Profile = $Result.DefaultSelection<Prisma.$Code360ProfilePayload>
+/**
+ * Model Code360History
+ * 
+ */
+export type Code360History = $Result.DefaultSelection<Prisma.$Code360HistoryPayload>
+/**
+ * Model InterviewbitProfile
+ * 
+ */
+export type InterviewbitProfile = $Result.DefaultSelection<Prisma.$InterviewbitProfilePayload>
+/**
+ * Model InterviewbitHistory
+ * 
+ */
+export type InterviewbitHistory = $Result.DefaultSelection<Prisma.$InterviewbitHistoryPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -733,6 +753,46 @@ export class PrismaClient<
     * ```
     */
   get analyticsSnapshot(): Prisma.AnalyticsSnapshotDelegate<ExtArgs>;
+
+  /**
+   * `prisma.code360Profile`: Exposes CRUD operations for the **Code360Profile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Code360Profiles
+    * const code360Profiles = await prisma.code360Profile.findMany()
+    * ```
+    */
+  get code360Profile(): Prisma.Code360ProfileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.code360History`: Exposes CRUD operations for the **Code360History** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Code360Histories
+    * const code360Histories = await prisma.code360History.findMany()
+    * ```
+    */
+  get code360History(): Prisma.Code360HistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.interviewbitProfile`: Exposes CRUD operations for the **InterviewbitProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InterviewbitProfiles
+    * const interviewbitProfiles = await prisma.interviewbitProfile.findMany()
+    * ```
+    */
+  get interviewbitProfile(): Prisma.InterviewbitProfileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.interviewbitHistory`: Exposes CRUD operations for the **InterviewbitHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InterviewbitHistories
+    * const interviewbitHistories = await prisma.interviewbitHistory.findMany()
+    * ```
+    */
+  get interviewbitHistory(): Prisma.InterviewbitHistoryDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1215,7 +1275,11 @@ export namespace Prisma {
     ContestHistory: 'ContestHistory',
     ActivityHistory: 'ActivityHistory',
     AiReport: 'AiReport',
-    AnalyticsSnapshot: 'AnalyticsSnapshot'
+    AnalyticsSnapshot: 'AnalyticsSnapshot',
+    Code360Profile: 'Code360Profile',
+    Code360History: 'Code360History',
+    InterviewbitProfile: 'InterviewbitProfile',
+    InterviewbitHistory: 'InterviewbitHistory'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1231,7 +1295,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "lead" | "product" | "rating" | "project" | "post" | "comment" | "visitorLog" | "callbackRequest" | "contactMessage" | "newsletterSubscriber" | "devProfile" | "faq" | "experience" | "githubProfile" | "githubHistory" | "leetcodeProfile" | "leetcodeHistory" | "codeforcesProfile" | "codeforcesHistory" | "codechefProfile" | "codechefHistory" | "gfgProfile" | "gfgHistory" | "hackerrankProfile" | "hackerearthProfile" | "atcoderProfile" | "hackerrankHistory" | "hackerearthHistory" | "atcoderHistory" | "stackoverflowHistory" | "devtoHistory" | "kaggleHistory" | "syncLog" | "stackoverflowProfile" | "devtoProfile" | "linkedinProfile" | "kaggleProfile" | "contestHistory" | "activityHistory" | "aiReport" | "analyticsSnapshot"
+      modelProps: "user" | "lead" | "product" | "rating" | "project" | "post" | "comment" | "visitorLog" | "callbackRequest" | "contactMessage" | "newsletterSubscriber" | "devProfile" | "faq" | "experience" | "githubProfile" | "githubHistory" | "leetcodeProfile" | "leetcodeHistory" | "codeforcesProfile" | "codeforcesHistory" | "codechefProfile" | "codechefHistory" | "gfgProfile" | "gfgHistory" | "hackerrankProfile" | "hackerearthProfile" | "atcoderProfile" | "hackerrankHistory" | "hackerearthHistory" | "atcoderHistory" | "stackoverflowHistory" | "devtoHistory" | "kaggleHistory" | "syncLog" | "stackoverflowProfile" | "devtoProfile" | "linkedinProfile" | "kaggleProfile" | "contestHistory" | "activityHistory" | "aiReport" | "analyticsSnapshot" | "code360Profile" | "code360History" | "interviewbitProfile" | "interviewbitHistory"
       txIsolationLevel: never
     }
     model: {
@@ -4340,6 +4404,302 @@ export namespace Prisma {
           count: {
             args: Prisma.AnalyticsSnapshotCountArgs<ExtArgs>
             result: $Utils.Optional<AnalyticsSnapshotCountAggregateOutputType> | number
+          }
+        }
+      }
+      Code360Profile: {
+        payload: Prisma.$Code360ProfilePayload<ExtArgs>
+        fields: Prisma.Code360ProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Code360ProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Code360ProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.Code360ProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Code360ProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          findMany: {
+            args: Prisma.Code360ProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>[]
+          }
+          create: {
+            args: Prisma.Code360ProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          createMany: {
+            args: Prisma.Code360ProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.Code360ProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          update: {
+            args: Prisma.Code360ProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.Code360ProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Code360ProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.Code360ProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360ProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.Code360ProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCode360Profile>
+          }
+          groupBy: {
+            args: Prisma.Code360ProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Code360ProfileGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.Code360ProfileFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.Code360ProfileAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.Code360ProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<Code360ProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      Code360History: {
+        payload: Prisma.$Code360HistoryPayload<ExtArgs>
+        fields: Prisma.Code360HistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Code360HistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Code360HistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.Code360HistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Code360HistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          findMany: {
+            args: Prisma.Code360HistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>[]
+          }
+          create: {
+            args: Prisma.Code360HistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          createMany: {
+            args: Prisma.Code360HistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.Code360HistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          update: {
+            args: Prisma.Code360HistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.Code360HistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Code360HistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.Code360HistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Code360HistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.Code360HistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCode360History>
+          }
+          groupBy: {
+            args: Prisma.Code360HistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Code360HistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.Code360HistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.Code360HistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.Code360HistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<Code360HistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      InterviewbitProfile: {
+        payload: Prisma.$InterviewbitProfilePayload<ExtArgs>
+        fields: Prisma.InterviewbitProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InterviewbitProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InterviewbitProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.InterviewbitProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InterviewbitProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          findMany: {
+            args: Prisma.InterviewbitProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>[]
+          }
+          create: {
+            args: Prisma.InterviewbitProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          createMany: {
+            args: Prisma.InterviewbitProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InterviewbitProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          update: {
+            args: Prisma.InterviewbitProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.InterviewbitProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InterviewbitProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InterviewbitProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.InterviewbitProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInterviewbitProfile>
+          }
+          groupBy: {
+            args: Prisma.InterviewbitProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InterviewbitProfileGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.InterviewbitProfileFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.InterviewbitProfileAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.InterviewbitProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<InterviewbitProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      InterviewbitHistory: {
+        payload: Prisma.$InterviewbitHistoryPayload<ExtArgs>
+        fields: Prisma.InterviewbitHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InterviewbitHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InterviewbitHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.InterviewbitHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InterviewbitHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.InterviewbitHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.InterviewbitHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.InterviewbitHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InterviewbitHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          update: {
+            args: Prisma.InterviewbitHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.InterviewbitHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InterviewbitHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InterviewbitHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewbitHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.InterviewbitHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInterviewbitHistory>
+          }
+          groupBy: {
+            args: Prisma.InterviewbitHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InterviewbitHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.InterviewbitHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.InterviewbitHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.InterviewbitHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<InterviewbitHistoryCountAggregateOutputType> | number
           }
         }
       }
@@ -9589,6 +9949,7 @@ export namespace Prisma {
     published: boolean | null
     category: string | null
     readTime: number | null
+    featuredImage: string | null
     seoTitle: string | null
     seoDesc: string | null
     createdAt: Date | null
@@ -9604,6 +9965,7 @@ export namespace Prisma {
     published: boolean | null
     category: string | null
     readTime: number | null
+    featuredImage: string | null
     seoTitle: string | null
     seoDesc: string | null
     createdAt: Date | null
@@ -9620,6 +9982,7 @@ export namespace Prisma {
     tags: number
     category: number
     readTime: number
+    featuredImage: number
     seoTitle: number
     seoDesc: number
     createdAt: number
@@ -9645,6 +10008,7 @@ export namespace Prisma {
     published?: true
     category?: true
     readTime?: true
+    featuredImage?: true
     seoTitle?: true
     seoDesc?: true
     createdAt?: true
@@ -9660,6 +10024,7 @@ export namespace Prisma {
     published?: true
     category?: true
     readTime?: true
+    featuredImage?: true
     seoTitle?: true
     seoDesc?: true
     createdAt?: true
@@ -9676,6 +10041,7 @@ export namespace Prisma {
     tags?: true
     category?: true
     readTime?: true
+    featuredImage?: true
     seoTitle?: true
     seoDesc?: true
     createdAt?: true
@@ -9779,6 +10145,7 @@ export namespace Prisma {
     tags: string[]
     category: string | null
     readTime: number | null
+    featuredImage: string | null
     seoTitle: string | null
     seoDesc: string | null
     createdAt: Date
@@ -9814,6 +10181,7 @@ export namespace Prisma {
     tags?: boolean
     category?: boolean
     readTime?: boolean
+    featuredImage?: boolean
     seoTitle?: boolean
     seoDesc?: boolean
     createdAt?: boolean
@@ -9833,6 +10201,7 @@ export namespace Prisma {
     tags?: boolean
     category?: boolean
     readTime?: boolean
+    featuredImage?: boolean
     seoTitle?: boolean
     seoDesc?: boolean
     createdAt?: boolean
@@ -9859,6 +10228,7 @@ export namespace Prisma {
       tags: string[]
       category: string | null
       readTime: number | null
+      featuredImage: string | null
       seoTitle: string | null
       seoDesc: string | null
       createdAt: Date
@@ -10265,6 +10635,7 @@ export namespace Prisma {
     readonly tags: FieldRef<"Post", 'String[]'>
     readonly category: FieldRef<"Post", 'String'>
     readonly readTime: FieldRef<"Post", 'Int'>
+    readonly featuredImage: FieldRef<"Post", 'String'>
     readonly seoTitle: FieldRef<"Post", 'String'>
     readonly seoDesc: FieldRef<"Post", 'String'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
@@ -15199,6 +15570,8 @@ export namespace Prisma {
     stackoverflow: string | null
     devto: string | null
     kaggle: string | null
+    code360: string | null
+    interviewbit: string | null
     resumeUrl: string | null
     statsCache: string | null
     platformVisibility: string | null
@@ -15221,6 +15594,8 @@ export namespace Prisma {
     stackoverflow: string | null
     devto: string | null
     kaggle: string | null
+    code360: string | null
+    interviewbit: string | null
     resumeUrl: string | null
     statsCache: string | null
     platformVisibility: string | null
@@ -15244,6 +15619,8 @@ export namespace Prisma {
     stackoverflow: number
     devto: number
     kaggle: number
+    code360: number
+    interviewbit: number
     resumeUrl: number
     statsCache: number
     platformVisibility: number
@@ -15268,6 +15645,8 @@ export namespace Prisma {
     stackoverflow?: true
     devto?: true
     kaggle?: true
+    code360?: true
+    interviewbit?: true
     resumeUrl?: true
     statsCache?: true
     platformVisibility?: true
@@ -15290,6 +15669,8 @@ export namespace Prisma {
     stackoverflow?: true
     devto?: true
     kaggle?: true
+    code360?: true
+    interviewbit?: true
     resumeUrl?: true
     statsCache?: true
     platformVisibility?: true
@@ -15313,6 +15694,8 @@ export namespace Prisma {
     stackoverflow?: true
     devto?: true
     kaggle?: true
+    code360?: true
+    interviewbit?: true
     resumeUrl?: true
     statsCache?: true
     platformVisibility?: true
@@ -15409,6 +15792,8 @@ export namespace Prisma {
     stackoverflow: string | null
     devto: string | null
     kaggle: string | null
+    code360: string | null
+    interviewbit: string | null
     resumeUrl: string | null
     statsCache: string | null
     platformVisibility: string | null
@@ -15449,6 +15834,8 @@ export namespace Prisma {
     stackoverflow?: boolean
     devto?: boolean
     kaggle?: boolean
+    code360?: boolean
+    interviewbit?: boolean
     resumeUrl?: boolean
     statsCache?: boolean
     platformVisibility?: boolean
@@ -15473,6 +15860,8 @@ export namespace Prisma {
     stackoverflow?: boolean
     devto?: boolean
     kaggle?: boolean
+    code360?: boolean
+    interviewbit?: boolean
     resumeUrl?: boolean
     statsCache?: boolean
     platformVisibility?: boolean
@@ -15500,6 +15889,8 @@ export namespace Prisma {
       stackoverflow: string | null
       devto: string | null
       kaggle: string | null
+      code360: string | null
+      interviewbit: string | null
       resumeUrl: string | null
       statsCache: string | null
       platformVisibility: string | null
@@ -15912,6 +16303,8 @@ export namespace Prisma {
     readonly stackoverflow: FieldRef<"DevProfile", 'String'>
     readonly devto: FieldRef<"DevProfile", 'String'>
     readonly kaggle: FieldRef<"DevProfile", 'String'>
+    readonly code360: FieldRef<"DevProfile", 'String'>
+    readonly interviewbit: FieldRef<"DevProfile", 'String'>
     readonly resumeUrl: FieldRef<"DevProfile", 'String'>
     readonly statsCache: FieldRef<"DevProfile", 'String'>
     readonly platformVisibility: FieldRef<"DevProfile", 'String'>
@@ -44726,6 +45119,3764 @@ export namespace Prisma {
 
 
   /**
+   * Model Code360Profile
+   */
+
+  export type AggregateCode360Profile = {
+    _count: Code360ProfileCountAggregateOutputType | null
+    _avg: Code360ProfileAvgAggregateOutputType | null
+    _sum: Code360ProfileSumAggregateOutputType | null
+    _min: Code360ProfileMinAggregateOutputType | null
+    _max: Code360ProfileMaxAggregateOutputType | null
+  }
+
+  export type Code360ProfileAvgAggregateOutputType = {
+    solved: number | null
+    rating: number | null
+    streak: number | null
+  }
+
+  export type Code360ProfileSumAggregateOutputType = {
+    solved: number | null
+    rating: number | null
+    streak: number | null
+  }
+
+  export type Code360ProfileMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    solved: number | null
+    stars: string | null
+    rating: number | null
+    streak: number | null
+    updatedAt: Date | null
+  }
+
+  export type Code360ProfileMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    solved: number | null
+    stars: string | null
+    rating: number | null
+    streak: number | null
+    updatedAt: Date | null
+  }
+
+  export type Code360ProfileCountAggregateOutputType = {
+    id: number
+    username: number
+    solved: number
+    stars: number
+    rating: number
+    streak: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type Code360ProfileAvgAggregateInputType = {
+    solved?: true
+    rating?: true
+    streak?: true
+  }
+
+  export type Code360ProfileSumAggregateInputType = {
+    solved?: true
+    rating?: true
+    streak?: true
+  }
+
+  export type Code360ProfileMinAggregateInputType = {
+    id?: true
+    username?: true
+    solved?: true
+    stars?: true
+    rating?: true
+    streak?: true
+    updatedAt?: true
+  }
+
+  export type Code360ProfileMaxAggregateInputType = {
+    id?: true
+    username?: true
+    solved?: true
+    stars?: true
+    rating?: true
+    streak?: true
+    updatedAt?: true
+  }
+
+  export type Code360ProfileCountAggregateInputType = {
+    id?: true
+    username?: true
+    solved?: true
+    stars?: true
+    rating?: true
+    streak?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type Code360ProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Code360Profile to aggregate.
+     */
+    where?: Code360ProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Profiles to fetch.
+     */
+    orderBy?: Code360ProfileOrderByWithRelationInput | Code360ProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Code360ProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Profiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Profiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Code360Profiles
+    **/
+    _count?: true | Code360ProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Code360ProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Code360ProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Code360ProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Code360ProfileMaxAggregateInputType
+  }
+
+  export type GetCode360ProfileAggregateType<T extends Code360ProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateCode360Profile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCode360Profile[P]>
+      : GetScalarType<T[P], AggregateCode360Profile[P]>
+  }
+
+
+
+
+  export type Code360ProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Code360ProfileWhereInput
+    orderBy?: Code360ProfileOrderByWithAggregationInput | Code360ProfileOrderByWithAggregationInput[]
+    by: Code360ProfileScalarFieldEnum[] | Code360ProfileScalarFieldEnum
+    having?: Code360ProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Code360ProfileCountAggregateInputType | true
+    _avg?: Code360ProfileAvgAggregateInputType
+    _sum?: Code360ProfileSumAggregateInputType
+    _min?: Code360ProfileMinAggregateInputType
+    _max?: Code360ProfileMaxAggregateInputType
+  }
+
+  export type Code360ProfileGroupByOutputType = {
+    id: string
+    username: string
+    solved: number
+    stars: string
+    rating: number
+    streak: number
+    updatedAt: Date
+    _count: Code360ProfileCountAggregateOutputType | null
+    _avg: Code360ProfileAvgAggregateOutputType | null
+    _sum: Code360ProfileSumAggregateOutputType | null
+    _min: Code360ProfileMinAggregateOutputType | null
+    _max: Code360ProfileMaxAggregateOutputType | null
+  }
+
+  type GetCode360ProfileGroupByPayload<T extends Code360ProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Code360ProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Code360ProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Code360ProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], Code360ProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Code360ProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    solved?: boolean
+    stars?: boolean
+    rating?: boolean
+    streak?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["code360Profile"]>
+
+
+  export type Code360ProfileSelectScalar = {
+    id?: boolean
+    username?: boolean
+    solved?: boolean
+    stars?: boolean
+    rating?: boolean
+    streak?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $Code360ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Code360Profile"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      solved: number
+      stars: string
+      rating: number
+      streak: number
+      updatedAt: Date
+    }, ExtArgs["result"]["code360Profile"]>
+    composites: {}
+  }
+
+  type Code360ProfileGetPayload<S extends boolean | null | undefined | Code360ProfileDefaultArgs> = $Result.GetResult<Prisma.$Code360ProfilePayload, S>
+
+  type Code360ProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<Code360ProfileFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Code360ProfileCountAggregateInputType | true
+    }
+
+  export interface Code360ProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Code360Profile'], meta: { name: 'Code360Profile' } }
+    /**
+     * Find zero or one Code360Profile that matches the filter.
+     * @param {Code360ProfileFindUniqueArgs} args - Arguments to find a Code360Profile
+     * @example
+     * // Get one Code360Profile
+     * const code360Profile = await prisma.code360Profile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Code360ProfileFindUniqueArgs>(args: SelectSubset<T, Code360ProfileFindUniqueArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Code360Profile that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {Code360ProfileFindUniqueOrThrowArgs} args - Arguments to find a Code360Profile
+     * @example
+     * // Get one Code360Profile
+     * const code360Profile = await prisma.code360Profile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Code360ProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, Code360ProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Code360Profile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileFindFirstArgs} args - Arguments to find a Code360Profile
+     * @example
+     * // Get one Code360Profile
+     * const code360Profile = await prisma.code360Profile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Code360ProfileFindFirstArgs>(args?: SelectSubset<T, Code360ProfileFindFirstArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Code360Profile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileFindFirstOrThrowArgs} args - Arguments to find a Code360Profile
+     * @example
+     * // Get one Code360Profile
+     * const code360Profile = await prisma.code360Profile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Code360ProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, Code360ProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Code360Profiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Code360Profiles
+     * const code360Profiles = await prisma.code360Profile.findMany()
+     * 
+     * // Get first 10 Code360Profiles
+     * const code360Profiles = await prisma.code360Profile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const code360ProfileWithIdOnly = await prisma.code360Profile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Code360ProfileFindManyArgs>(args?: SelectSubset<T, Code360ProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Code360Profile.
+     * @param {Code360ProfileCreateArgs} args - Arguments to create a Code360Profile.
+     * @example
+     * // Create one Code360Profile
+     * const Code360Profile = await prisma.code360Profile.create({
+     *   data: {
+     *     // ... data to create a Code360Profile
+     *   }
+     * })
+     * 
+     */
+    create<T extends Code360ProfileCreateArgs>(args: SelectSubset<T, Code360ProfileCreateArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Code360Profiles.
+     * @param {Code360ProfileCreateManyArgs} args - Arguments to create many Code360Profiles.
+     * @example
+     * // Create many Code360Profiles
+     * const code360Profile = await prisma.code360Profile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Code360ProfileCreateManyArgs>(args?: SelectSubset<T, Code360ProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Code360Profile.
+     * @param {Code360ProfileDeleteArgs} args - Arguments to delete one Code360Profile.
+     * @example
+     * // Delete one Code360Profile
+     * const Code360Profile = await prisma.code360Profile.delete({
+     *   where: {
+     *     // ... filter to delete one Code360Profile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Code360ProfileDeleteArgs>(args: SelectSubset<T, Code360ProfileDeleteArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Code360Profile.
+     * @param {Code360ProfileUpdateArgs} args - Arguments to update one Code360Profile.
+     * @example
+     * // Update one Code360Profile
+     * const code360Profile = await prisma.code360Profile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Code360ProfileUpdateArgs>(args: SelectSubset<T, Code360ProfileUpdateArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Code360Profiles.
+     * @param {Code360ProfileDeleteManyArgs} args - Arguments to filter Code360Profiles to delete.
+     * @example
+     * // Delete a few Code360Profiles
+     * const { count } = await prisma.code360Profile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Code360ProfileDeleteManyArgs>(args?: SelectSubset<T, Code360ProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Code360Profiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Code360Profiles
+     * const code360Profile = await prisma.code360Profile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Code360ProfileUpdateManyArgs>(args: SelectSubset<T, Code360ProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Code360Profile.
+     * @param {Code360ProfileUpsertArgs} args - Arguments to update or create a Code360Profile.
+     * @example
+     * // Update or create a Code360Profile
+     * const code360Profile = await prisma.code360Profile.upsert({
+     *   create: {
+     *     // ... data to create a Code360Profile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Code360Profile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Code360ProfileUpsertArgs>(args: SelectSubset<T, Code360ProfileUpsertArgs<ExtArgs>>): Prisma__Code360ProfileClient<$Result.GetResult<Prisma.$Code360ProfilePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more Code360Profiles that matches the filter.
+     * @param {Code360ProfileFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const code360Profile = await prisma.code360Profile.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: Code360ProfileFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Code360Profile.
+     * @param {Code360ProfileAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const code360Profile = await prisma.code360Profile.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: Code360ProfileAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Code360Profiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileCountArgs} args - Arguments to filter Code360Profiles to count.
+     * @example
+     * // Count the number of Code360Profiles
+     * const count = await prisma.code360Profile.count({
+     *   where: {
+     *     // ... the filter for the Code360Profiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends Code360ProfileCountArgs>(
+      args?: Subset<T, Code360ProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Code360ProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Code360Profile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Code360ProfileAggregateArgs>(args: Subset<T, Code360ProfileAggregateArgs>): Prisma.PrismaPromise<GetCode360ProfileAggregateType<T>>
+
+    /**
+     * Group by Code360Profile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360ProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Code360ProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Code360ProfileGroupByArgs['orderBy'] }
+        : { orderBy?: Code360ProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Code360ProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCode360ProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Code360Profile model
+   */
+  readonly fields: Code360ProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Code360Profile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Code360ProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Code360Profile model
+   */ 
+  interface Code360ProfileFieldRefs {
+    readonly id: FieldRef<"Code360Profile", 'String'>
+    readonly username: FieldRef<"Code360Profile", 'String'>
+    readonly solved: FieldRef<"Code360Profile", 'Int'>
+    readonly stars: FieldRef<"Code360Profile", 'String'>
+    readonly rating: FieldRef<"Code360Profile", 'Int'>
+    readonly streak: FieldRef<"Code360Profile", 'Int'>
+    readonly updatedAt: FieldRef<"Code360Profile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Code360Profile findUnique
+   */
+  export type Code360ProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Profile to fetch.
+     */
+    where: Code360ProfileWhereUniqueInput
+  }
+
+  /**
+   * Code360Profile findUniqueOrThrow
+   */
+  export type Code360ProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Profile to fetch.
+     */
+    where: Code360ProfileWhereUniqueInput
+  }
+
+  /**
+   * Code360Profile findFirst
+   */
+  export type Code360ProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Profile to fetch.
+     */
+    where?: Code360ProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Profiles to fetch.
+     */
+    orderBy?: Code360ProfileOrderByWithRelationInput | Code360ProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Code360Profiles.
+     */
+    cursor?: Code360ProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Profiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Profiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Code360Profiles.
+     */
+    distinct?: Code360ProfileScalarFieldEnum | Code360ProfileScalarFieldEnum[]
+  }
+
+  /**
+   * Code360Profile findFirstOrThrow
+   */
+  export type Code360ProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Profile to fetch.
+     */
+    where?: Code360ProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Profiles to fetch.
+     */
+    orderBy?: Code360ProfileOrderByWithRelationInput | Code360ProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Code360Profiles.
+     */
+    cursor?: Code360ProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Profiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Profiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Code360Profiles.
+     */
+    distinct?: Code360ProfileScalarFieldEnum | Code360ProfileScalarFieldEnum[]
+  }
+
+  /**
+   * Code360Profile findMany
+   */
+  export type Code360ProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Profiles to fetch.
+     */
+    where?: Code360ProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Profiles to fetch.
+     */
+    orderBy?: Code360ProfileOrderByWithRelationInput | Code360ProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Code360Profiles.
+     */
+    cursor?: Code360ProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Profiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Profiles.
+     */
+    skip?: number
+    distinct?: Code360ProfileScalarFieldEnum | Code360ProfileScalarFieldEnum[]
+  }
+
+  /**
+   * Code360Profile create
+   */
+  export type Code360ProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Code360Profile.
+     */
+    data: XOR<Code360ProfileCreateInput, Code360ProfileUncheckedCreateInput>
+  }
+
+  /**
+   * Code360Profile createMany
+   */
+  export type Code360ProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Code360Profiles.
+     */
+    data: Code360ProfileCreateManyInput | Code360ProfileCreateManyInput[]
+  }
+
+  /**
+   * Code360Profile update
+   */
+  export type Code360ProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Code360Profile.
+     */
+    data: XOR<Code360ProfileUpdateInput, Code360ProfileUncheckedUpdateInput>
+    /**
+     * Choose, which Code360Profile to update.
+     */
+    where: Code360ProfileWhereUniqueInput
+  }
+
+  /**
+   * Code360Profile updateMany
+   */
+  export type Code360ProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Code360Profiles.
+     */
+    data: XOR<Code360ProfileUpdateManyMutationInput, Code360ProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which Code360Profiles to update
+     */
+    where?: Code360ProfileWhereInput
+  }
+
+  /**
+   * Code360Profile upsert
+   */
+  export type Code360ProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Code360Profile to update in case it exists.
+     */
+    where: Code360ProfileWhereUniqueInput
+    /**
+     * In case the Code360Profile found by the `where` argument doesn't exist, create a new Code360Profile with this data.
+     */
+    create: XOR<Code360ProfileCreateInput, Code360ProfileUncheckedCreateInput>
+    /**
+     * In case the Code360Profile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Code360ProfileUpdateInput, Code360ProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * Code360Profile delete
+   */
+  export type Code360ProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+    /**
+     * Filter which Code360Profile to delete.
+     */
+    where: Code360ProfileWhereUniqueInput
+  }
+
+  /**
+   * Code360Profile deleteMany
+   */
+  export type Code360ProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Code360Profiles to delete
+     */
+    where?: Code360ProfileWhereInput
+  }
+
+  /**
+   * Code360Profile findRaw
+   */
+  export type Code360ProfileFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Code360Profile aggregateRaw
+   */
+  export type Code360ProfileAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Code360Profile without action
+   */
+  export type Code360ProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360Profile
+     */
+    select?: Code360ProfileSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Code360History
+   */
+
+  export type AggregateCode360History = {
+    _count: Code360HistoryCountAggregateOutputType | null
+    _avg: Code360HistoryAvgAggregateOutputType | null
+    _sum: Code360HistorySumAggregateOutputType | null
+    _min: Code360HistoryMinAggregateOutputType | null
+    _max: Code360HistoryMaxAggregateOutputType | null
+  }
+
+  export type Code360HistoryAvgAggregateOutputType = {
+    solved: number | null
+    rating: number | null
+  }
+
+  export type Code360HistorySumAggregateOutputType = {
+    solved: number | null
+    rating: number | null
+  }
+
+  export type Code360HistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    solved: number | null
+    rating: number | null
+    createdAt: Date | null
+  }
+
+  export type Code360HistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    solved: number | null
+    rating: number | null
+    createdAt: Date | null
+  }
+
+  export type Code360HistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    solved: number
+    rating: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type Code360HistoryAvgAggregateInputType = {
+    solved?: true
+    rating?: true
+  }
+
+  export type Code360HistorySumAggregateInputType = {
+    solved?: true
+    rating?: true
+  }
+
+  export type Code360HistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    solved?: true
+    rating?: true
+    createdAt?: true
+  }
+
+  export type Code360HistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    solved?: true
+    rating?: true
+    createdAt?: true
+  }
+
+  export type Code360HistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    solved?: true
+    rating?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type Code360HistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Code360History to aggregate.
+     */
+    where?: Code360HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Histories to fetch.
+     */
+    orderBy?: Code360HistoryOrderByWithRelationInput | Code360HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Code360HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Code360Histories
+    **/
+    _count?: true | Code360HistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Code360HistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Code360HistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Code360HistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Code360HistoryMaxAggregateInputType
+  }
+
+  export type GetCode360HistoryAggregateType<T extends Code360HistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCode360History]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCode360History[P]>
+      : GetScalarType<T[P], AggregateCode360History[P]>
+  }
+
+
+
+
+  export type Code360HistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Code360HistoryWhereInput
+    orderBy?: Code360HistoryOrderByWithAggregationInput | Code360HistoryOrderByWithAggregationInput[]
+    by: Code360HistoryScalarFieldEnum[] | Code360HistoryScalarFieldEnum
+    having?: Code360HistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Code360HistoryCountAggregateInputType | true
+    _avg?: Code360HistoryAvgAggregateInputType
+    _sum?: Code360HistorySumAggregateInputType
+    _min?: Code360HistoryMinAggregateInputType
+    _max?: Code360HistoryMaxAggregateInputType
+  }
+
+  export type Code360HistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    solved: number
+    rating: number
+    createdAt: Date
+    _count: Code360HistoryCountAggregateOutputType | null
+    _avg: Code360HistoryAvgAggregateOutputType | null
+    _sum: Code360HistorySumAggregateOutputType | null
+    _min: Code360HistoryMinAggregateOutputType | null
+    _max: Code360HistoryMaxAggregateOutputType | null
+  }
+
+  type GetCode360HistoryGroupByPayload<T extends Code360HistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Code360HistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Code360HistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Code360HistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], Code360HistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Code360HistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    solved?: boolean
+    rating?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["code360History"]>
+
+
+  export type Code360HistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    solved?: boolean
+    rating?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $Code360HistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Code360History"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      solved: number
+      rating: number
+      createdAt: Date
+    }, ExtArgs["result"]["code360History"]>
+    composites: {}
+  }
+
+  type Code360HistoryGetPayload<S extends boolean | null | undefined | Code360HistoryDefaultArgs> = $Result.GetResult<Prisma.$Code360HistoryPayload, S>
+
+  type Code360HistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<Code360HistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Code360HistoryCountAggregateInputType | true
+    }
+
+  export interface Code360HistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Code360History'], meta: { name: 'Code360History' } }
+    /**
+     * Find zero or one Code360History that matches the filter.
+     * @param {Code360HistoryFindUniqueArgs} args - Arguments to find a Code360History
+     * @example
+     * // Get one Code360History
+     * const code360History = await prisma.code360History.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Code360HistoryFindUniqueArgs>(args: SelectSubset<T, Code360HistoryFindUniqueArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Code360History that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {Code360HistoryFindUniqueOrThrowArgs} args - Arguments to find a Code360History
+     * @example
+     * // Get one Code360History
+     * const code360History = await prisma.code360History.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Code360HistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, Code360HistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Code360History that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryFindFirstArgs} args - Arguments to find a Code360History
+     * @example
+     * // Get one Code360History
+     * const code360History = await prisma.code360History.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Code360HistoryFindFirstArgs>(args?: SelectSubset<T, Code360HistoryFindFirstArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Code360History that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryFindFirstOrThrowArgs} args - Arguments to find a Code360History
+     * @example
+     * // Get one Code360History
+     * const code360History = await prisma.code360History.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Code360HistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, Code360HistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Code360Histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Code360Histories
+     * const code360Histories = await prisma.code360History.findMany()
+     * 
+     * // Get first 10 Code360Histories
+     * const code360Histories = await prisma.code360History.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const code360HistoryWithIdOnly = await prisma.code360History.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Code360HistoryFindManyArgs>(args?: SelectSubset<T, Code360HistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Code360History.
+     * @param {Code360HistoryCreateArgs} args - Arguments to create a Code360History.
+     * @example
+     * // Create one Code360History
+     * const Code360History = await prisma.code360History.create({
+     *   data: {
+     *     // ... data to create a Code360History
+     *   }
+     * })
+     * 
+     */
+    create<T extends Code360HistoryCreateArgs>(args: SelectSubset<T, Code360HistoryCreateArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Code360Histories.
+     * @param {Code360HistoryCreateManyArgs} args - Arguments to create many Code360Histories.
+     * @example
+     * // Create many Code360Histories
+     * const code360History = await prisma.code360History.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Code360HistoryCreateManyArgs>(args?: SelectSubset<T, Code360HistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Code360History.
+     * @param {Code360HistoryDeleteArgs} args - Arguments to delete one Code360History.
+     * @example
+     * // Delete one Code360History
+     * const Code360History = await prisma.code360History.delete({
+     *   where: {
+     *     // ... filter to delete one Code360History
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Code360HistoryDeleteArgs>(args: SelectSubset<T, Code360HistoryDeleteArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Code360History.
+     * @param {Code360HistoryUpdateArgs} args - Arguments to update one Code360History.
+     * @example
+     * // Update one Code360History
+     * const code360History = await prisma.code360History.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Code360HistoryUpdateArgs>(args: SelectSubset<T, Code360HistoryUpdateArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Code360Histories.
+     * @param {Code360HistoryDeleteManyArgs} args - Arguments to filter Code360Histories to delete.
+     * @example
+     * // Delete a few Code360Histories
+     * const { count } = await prisma.code360History.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Code360HistoryDeleteManyArgs>(args?: SelectSubset<T, Code360HistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Code360Histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Code360Histories
+     * const code360History = await prisma.code360History.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Code360HistoryUpdateManyArgs>(args: SelectSubset<T, Code360HistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Code360History.
+     * @param {Code360HistoryUpsertArgs} args - Arguments to update or create a Code360History.
+     * @example
+     * // Update or create a Code360History
+     * const code360History = await prisma.code360History.upsert({
+     *   create: {
+     *     // ... data to create a Code360History
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Code360History we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Code360HistoryUpsertArgs>(args: SelectSubset<T, Code360HistoryUpsertArgs<ExtArgs>>): Prisma__Code360HistoryClient<$Result.GetResult<Prisma.$Code360HistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more Code360Histories that matches the filter.
+     * @param {Code360HistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const code360History = await prisma.code360History.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: Code360HistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Code360History.
+     * @param {Code360HistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const code360History = await prisma.code360History.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: Code360HistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Code360Histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryCountArgs} args - Arguments to filter Code360Histories to count.
+     * @example
+     * // Count the number of Code360Histories
+     * const count = await prisma.code360History.count({
+     *   where: {
+     *     // ... the filter for the Code360Histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends Code360HistoryCountArgs>(
+      args?: Subset<T, Code360HistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Code360HistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Code360History.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Code360HistoryAggregateArgs>(args: Subset<T, Code360HistoryAggregateArgs>): Prisma.PrismaPromise<GetCode360HistoryAggregateType<T>>
+
+    /**
+     * Group by Code360History.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Code360HistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Code360HistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Code360HistoryGroupByArgs['orderBy'] }
+        : { orderBy?: Code360HistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Code360HistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCode360HistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Code360History model
+   */
+  readonly fields: Code360HistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Code360History.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Code360HistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Code360History model
+   */ 
+  interface Code360HistoryFieldRefs {
+    readonly id: FieldRef<"Code360History", 'String'>
+    readonly username: FieldRef<"Code360History", 'String'>
+    readonly date: FieldRef<"Code360History", 'DateTime'>
+    readonly solved: FieldRef<"Code360History", 'Int'>
+    readonly rating: FieldRef<"Code360History", 'Int'>
+    readonly createdAt: FieldRef<"Code360History", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Code360History findUnique
+   */
+  export type Code360HistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter, which Code360History to fetch.
+     */
+    where: Code360HistoryWhereUniqueInput
+  }
+
+  /**
+   * Code360History findUniqueOrThrow
+   */
+  export type Code360HistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter, which Code360History to fetch.
+     */
+    where: Code360HistoryWhereUniqueInput
+  }
+
+  /**
+   * Code360History findFirst
+   */
+  export type Code360HistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter, which Code360History to fetch.
+     */
+    where?: Code360HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Histories to fetch.
+     */
+    orderBy?: Code360HistoryOrderByWithRelationInput | Code360HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Code360Histories.
+     */
+    cursor?: Code360HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Code360Histories.
+     */
+    distinct?: Code360HistoryScalarFieldEnum | Code360HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Code360History findFirstOrThrow
+   */
+  export type Code360HistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter, which Code360History to fetch.
+     */
+    where?: Code360HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Histories to fetch.
+     */
+    orderBy?: Code360HistoryOrderByWithRelationInput | Code360HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Code360Histories.
+     */
+    cursor?: Code360HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Code360Histories.
+     */
+    distinct?: Code360HistoryScalarFieldEnum | Code360HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Code360History findMany
+   */
+  export type Code360HistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter, which Code360Histories to fetch.
+     */
+    where?: Code360HistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Code360Histories to fetch.
+     */
+    orderBy?: Code360HistoryOrderByWithRelationInput | Code360HistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Code360Histories.
+     */
+    cursor?: Code360HistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Code360Histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Code360Histories.
+     */
+    skip?: number
+    distinct?: Code360HistoryScalarFieldEnum | Code360HistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Code360History create
+   */
+  export type Code360HistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a Code360History.
+     */
+    data: XOR<Code360HistoryCreateInput, Code360HistoryUncheckedCreateInput>
+  }
+
+  /**
+   * Code360History createMany
+   */
+  export type Code360HistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Code360Histories.
+     */
+    data: Code360HistoryCreateManyInput | Code360HistoryCreateManyInput[]
+  }
+
+  /**
+   * Code360History update
+   */
+  export type Code360HistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a Code360History.
+     */
+    data: XOR<Code360HistoryUpdateInput, Code360HistoryUncheckedUpdateInput>
+    /**
+     * Choose, which Code360History to update.
+     */
+    where: Code360HistoryWhereUniqueInput
+  }
+
+  /**
+   * Code360History updateMany
+   */
+  export type Code360HistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Code360Histories.
+     */
+    data: XOR<Code360HistoryUpdateManyMutationInput, Code360HistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Code360Histories to update
+     */
+    where?: Code360HistoryWhereInput
+  }
+
+  /**
+   * Code360History upsert
+   */
+  export type Code360HistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the Code360History to update in case it exists.
+     */
+    where: Code360HistoryWhereUniqueInput
+    /**
+     * In case the Code360History found by the `where` argument doesn't exist, create a new Code360History with this data.
+     */
+    create: XOR<Code360HistoryCreateInput, Code360HistoryUncheckedCreateInput>
+    /**
+     * In case the Code360History was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Code360HistoryUpdateInput, Code360HistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Code360History delete
+   */
+  export type Code360HistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+    /**
+     * Filter which Code360History to delete.
+     */
+    where: Code360HistoryWhereUniqueInput
+  }
+
+  /**
+   * Code360History deleteMany
+   */
+  export type Code360HistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Code360Histories to delete
+     */
+    where?: Code360HistoryWhereInput
+  }
+
+  /**
+   * Code360History findRaw
+   */
+  export type Code360HistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Code360History aggregateRaw
+   */
+  export type Code360HistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Code360History without action
+   */
+  export type Code360HistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Code360History
+     */
+    select?: Code360HistorySelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InterviewbitProfile
+   */
+
+  export type AggregateInterviewbitProfile = {
+    _count: InterviewbitProfileCountAggregateOutputType | null
+    _avg: InterviewbitProfileAvgAggregateOutputType | null
+    _sum: InterviewbitProfileSumAggregateOutputType | null
+    _min: InterviewbitProfileMinAggregateOutputType | null
+    _max: InterviewbitProfileMaxAggregateOutputType | null
+  }
+
+  export type InterviewbitProfileAvgAggregateOutputType = {
+    score: number | null
+    rank: number | null
+    solved: number | null
+    streak: number | null
+  }
+
+  export type InterviewbitProfileSumAggregateOutputType = {
+    score: number | null
+    rank: number | null
+    solved: number | null
+    streak: number | null
+  }
+
+  export type InterviewbitProfileMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    score: number | null
+    rank: number | null
+    solved: number | null
+    streak: number | null
+    updatedAt: Date | null
+  }
+
+  export type InterviewbitProfileMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    score: number | null
+    rank: number | null
+    solved: number | null
+    streak: number | null
+    updatedAt: Date | null
+  }
+
+  export type InterviewbitProfileCountAggregateOutputType = {
+    id: number
+    username: number
+    score: number
+    rank: number
+    solved: number
+    streak: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InterviewbitProfileAvgAggregateInputType = {
+    score?: true
+    rank?: true
+    solved?: true
+    streak?: true
+  }
+
+  export type InterviewbitProfileSumAggregateInputType = {
+    score?: true
+    rank?: true
+    solved?: true
+    streak?: true
+  }
+
+  export type InterviewbitProfileMinAggregateInputType = {
+    id?: true
+    username?: true
+    score?: true
+    rank?: true
+    solved?: true
+    streak?: true
+    updatedAt?: true
+  }
+
+  export type InterviewbitProfileMaxAggregateInputType = {
+    id?: true
+    username?: true
+    score?: true
+    rank?: true
+    solved?: true
+    streak?: true
+    updatedAt?: true
+  }
+
+  export type InterviewbitProfileCountAggregateInputType = {
+    id?: true
+    username?: true
+    score?: true
+    rank?: true
+    solved?: true
+    streak?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InterviewbitProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InterviewbitProfile to aggregate.
+     */
+    where?: InterviewbitProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitProfiles to fetch.
+     */
+    orderBy?: InterviewbitProfileOrderByWithRelationInput | InterviewbitProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InterviewbitProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InterviewbitProfiles
+    **/
+    _count?: true | InterviewbitProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InterviewbitProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InterviewbitProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InterviewbitProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InterviewbitProfileMaxAggregateInputType
+  }
+
+  export type GetInterviewbitProfileAggregateType<T extends InterviewbitProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateInterviewbitProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInterviewbitProfile[P]>
+      : GetScalarType<T[P], AggregateInterviewbitProfile[P]>
+  }
+
+
+
+
+  export type InterviewbitProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InterviewbitProfileWhereInput
+    orderBy?: InterviewbitProfileOrderByWithAggregationInput | InterviewbitProfileOrderByWithAggregationInput[]
+    by: InterviewbitProfileScalarFieldEnum[] | InterviewbitProfileScalarFieldEnum
+    having?: InterviewbitProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InterviewbitProfileCountAggregateInputType | true
+    _avg?: InterviewbitProfileAvgAggregateInputType
+    _sum?: InterviewbitProfileSumAggregateInputType
+    _min?: InterviewbitProfileMinAggregateInputType
+    _max?: InterviewbitProfileMaxAggregateInputType
+  }
+
+  export type InterviewbitProfileGroupByOutputType = {
+    id: string
+    username: string
+    score: number
+    rank: number
+    solved: number
+    streak: number
+    updatedAt: Date
+    _count: InterviewbitProfileCountAggregateOutputType | null
+    _avg: InterviewbitProfileAvgAggregateOutputType | null
+    _sum: InterviewbitProfileSumAggregateOutputType | null
+    _min: InterviewbitProfileMinAggregateOutputType | null
+    _max: InterviewbitProfileMaxAggregateOutputType | null
+  }
+
+  type GetInterviewbitProfileGroupByPayload<T extends InterviewbitProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InterviewbitProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InterviewbitProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InterviewbitProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], InterviewbitProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InterviewbitProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    score?: boolean
+    rank?: boolean
+    solved?: boolean
+    streak?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["interviewbitProfile"]>
+
+
+  export type InterviewbitProfileSelectScalar = {
+    id?: boolean
+    username?: boolean
+    score?: boolean
+    rank?: boolean
+    solved?: boolean
+    streak?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $InterviewbitProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InterviewbitProfile"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      score: number
+      rank: number
+      solved: number
+      streak: number
+      updatedAt: Date
+    }, ExtArgs["result"]["interviewbitProfile"]>
+    composites: {}
+  }
+
+  type InterviewbitProfileGetPayload<S extends boolean | null | undefined | InterviewbitProfileDefaultArgs> = $Result.GetResult<Prisma.$InterviewbitProfilePayload, S>
+
+  type InterviewbitProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<InterviewbitProfileFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: InterviewbitProfileCountAggregateInputType | true
+    }
+
+  export interface InterviewbitProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InterviewbitProfile'], meta: { name: 'InterviewbitProfile' } }
+    /**
+     * Find zero or one InterviewbitProfile that matches the filter.
+     * @param {InterviewbitProfileFindUniqueArgs} args - Arguments to find a InterviewbitProfile
+     * @example
+     * // Get one InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InterviewbitProfileFindUniqueArgs>(args: SelectSubset<T, InterviewbitProfileFindUniqueArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one InterviewbitProfile that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {InterviewbitProfileFindUniqueOrThrowArgs} args - Arguments to find a InterviewbitProfile
+     * @example
+     * // Get one InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InterviewbitProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, InterviewbitProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first InterviewbitProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileFindFirstArgs} args - Arguments to find a InterviewbitProfile
+     * @example
+     * // Get one InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InterviewbitProfileFindFirstArgs>(args?: SelectSubset<T, InterviewbitProfileFindFirstArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first InterviewbitProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileFindFirstOrThrowArgs} args - Arguments to find a InterviewbitProfile
+     * @example
+     * // Get one InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InterviewbitProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, InterviewbitProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more InterviewbitProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InterviewbitProfiles
+     * const interviewbitProfiles = await prisma.interviewbitProfile.findMany()
+     * 
+     * // Get first 10 InterviewbitProfiles
+     * const interviewbitProfiles = await prisma.interviewbitProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const interviewbitProfileWithIdOnly = await prisma.interviewbitProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InterviewbitProfileFindManyArgs>(args?: SelectSubset<T, InterviewbitProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a InterviewbitProfile.
+     * @param {InterviewbitProfileCreateArgs} args - Arguments to create a InterviewbitProfile.
+     * @example
+     * // Create one InterviewbitProfile
+     * const InterviewbitProfile = await prisma.interviewbitProfile.create({
+     *   data: {
+     *     // ... data to create a InterviewbitProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends InterviewbitProfileCreateArgs>(args: SelectSubset<T, InterviewbitProfileCreateArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many InterviewbitProfiles.
+     * @param {InterviewbitProfileCreateManyArgs} args - Arguments to create many InterviewbitProfiles.
+     * @example
+     * // Create many InterviewbitProfiles
+     * const interviewbitProfile = await prisma.interviewbitProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InterviewbitProfileCreateManyArgs>(args?: SelectSubset<T, InterviewbitProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InterviewbitProfile.
+     * @param {InterviewbitProfileDeleteArgs} args - Arguments to delete one InterviewbitProfile.
+     * @example
+     * // Delete one InterviewbitProfile
+     * const InterviewbitProfile = await prisma.interviewbitProfile.delete({
+     *   where: {
+     *     // ... filter to delete one InterviewbitProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InterviewbitProfileDeleteArgs>(args: SelectSubset<T, InterviewbitProfileDeleteArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one InterviewbitProfile.
+     * @param {InterviewbitProfileUpdateArgs} args - Arguments to update one InterviewbitProfile.
+     * @example
+     * // Update one InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InterviewbitProfileUpdateArgs>(args: SelectSubset<T, InterviewbitProfileUpdateArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more InterviewbitProfiles.
+     * @param {InterviewbitProfileDeleteManyArgs} args - Arguments to filter InterviewbitProfiles to delete.
+     * @example
+     * // Delete a few InterviewbitProfiles
+     * const { count } = await prisma.interviewbitProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InterviewbitProfileDeleteManyArgs>(args?: SelectSubset<T, InterviewbitProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InterviewbitProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InterviewbitProfiles
+     * const interviewbitProfile = await prisma.interviewbitProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InterviewbitProfileUpdateManyArgs>(args: SelectSubset<T, InterviewbitProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InterviewbitProfile.
+     * @param {InterviewbitProfileUpsertArgs} args - Arguments to update or create a InterviewbitProfile.
+     * @example
+     * // Update or create a InterviewbitProfile
+     * const interviewbitProfile = await prisma.interviewbitProfile.upsert({
+     *   create: {
+     *     // ... data to create a InterviewbitProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InterviewbitProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InterviewbitProfileUpsertArgs>(args: SelectSubset<T, InterviewbitProfileUpsertArgs<ExtArgs>>): Prisma__InterviewbitProfileClient<$Result.GetResult<Prisma.$InterviewbitProfilePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more InterviewbitProfiles that matches the filter.
+     * @param {InterviewbitProfileFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const interviewbitProfile = await prisma.interviewbitProfile.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: InterviewbitProfileFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a InterviewbitProfile.
+     * @param {InterviewbitProfileAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const interviewbitProfile = await prisma.interviewbitProfile.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: InterviewbitProfileAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of InterviewbitProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileCountArgs} args - Arguments to filter InterviewbitProfiles to count.
+     * @example
+     * // Count the number of InterviewbitProfiles
+     * const count = await prisma.interviewbitProfile.count({
+     *   where: {
+     *     // ... the filter for the InterviewbitProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends InterviewbitProfileCountArgs>(
+      args?: Subset<T, InterviewbitProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InterviewbitProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InterviewbitProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InterviewbitProfileAggregateArgs>(args: Subset<T, InterviewbitProfileAggregateArgs>): Prisma.PrismaPromise<GetInterviewbitProfileAggregateType<T>>
+
+    /**
+     * Group by InterviewbitProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InterviewbitProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InterviewbitProfileGroupByArgs['orderBy'] }
+        : { orderBy?: InterviewbitProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InterviewbitProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInterviewbitProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InterviewbitProfile model
+   */
+  readonly fields: InterviewbitProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InterviewbitProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InterviewbitProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InterviewbitProfile model
+   */ 
+  interface InterviewbitProfileFieldRefs {
+    readonly id: FieldRef<"InterviewbitProfile", 'String'>
+    readonly username: FieldRef<"InterviewbitProfile", 'String'>
+    readonly score: FieldRef<"InterviewbitProfile", 'Int'>
+    readonly rank: FieldRef<"InterviewbitProfile", 'Int'>
+    readonly solved: FieldRef<"InterviewbitProfile", 'Int'>
+    readonly streak: FieldRef<"InterviewbitProfile", 'Int'>
+    readonly updatedAt: FieldRef<"InterviewbitProfile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InterviewbitProfile findUnique
+   */
+  export type InterviewbitProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitProfile to fetch.
+     */
+    where: InterviewbitProfileWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitProfile findUniqueOrThrow
+   */
+  export type InterviewbitProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitProfile to fetch.
+     */
+    where: InterviewbitProfileWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitProfile findFirst
+   */
+  export type InterviewbitProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitProfile to fetch.
+     */
+    where?: InterviewbitProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitProfiles to fetch.
+     */
+    orderBy?: InterviewbitProfileOrderByWithRelationInput | InterviewbitProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InterviewbitProfiles.
+     */
+    cursor?: InterviewbitProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InterviewbitProfiles.
+     */
+    distinct?: InterviewbitProfileScalarFieldEnum | InterviewbitProfileScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitProfile findFirstOrThrow
+   */
+  export type InterviewbitProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitProfile to fetch.
+     */
+    where?: InterviewbitProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitProfiles to fetch.
+     */
+    orderBy?: InterviewbitProfileOrderByWithRelationInput | InterviewbitProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InterviewbitProfiles.
+     */
+    cursor?: InterviewbitProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InterviewbitProfiles.
+     */
+    distinct?: InterviewbitProfileScalarFieldEnum | InterviewbitProfileScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitProfile findMany
+   */
+  export type InterviewbitProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitProfiles to fetch.
+     */
+    where?: InterviewbitProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitProfiles to fetch.
+     */
+    orderBy?: InterviewbitProfileOrderByWithRelationInput | InterviewbitProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InterviewbitProfiles.
+     */
+    cursor?: InterviewbitProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitProfiles.
+     */
+    skip?: number
+    distinct?: InterviewbitProfileScalarFieldEnum | InterviewbitProfileScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitProfile create
+   */
+  export type InterviewbitProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * The data needed to create a InterviewbitProfile.
+     */
+    data: XOR<InterviewbitProfileCreateInput, InterviewbitProfileUncheckedCreateInput>
+  }
+
+  /**
+   * InterviewbitProfile createMany
+   */
+  export type InterviewbitProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InterviewbitProfiles.
+     */
+    data: InterviewbitProfileCreateManyInput | InterviewbitProfileCreateManyInput[]
+  }
+
+  /**
+   * InterviewbitProfile update
+   */
+  export type InterviewbitProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * The data needed to update a InterviewbitProfile.
+     */
+    data: XOR<InterviewbitProfileUpdateInput, InterviewbitProfileUncheckedUpdateInput>
+    /**
+     * Choose, which InterviewbitProfile to update.
+     */
+    where: InterviewbitProfileWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitProfile updateMany
+   */
+  export type InterviewbitProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InterviewbitProfiles.
+     */
+    data: XOR<InterviewbitProfileUpdateManyMutationInput, InterviewbitProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which InterviewbitProfiles to update
+     */
+    where?: InterviewbitProfileWhereInput
+  }
+
+  /**
+   * InterviewbitProfile upsert
+   */
+  export type InterviewbitProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * The filter to search for the InterviewbitProfile to update in case it exists.
+     */
+    where: InterviewbitProfileWhereUniqueInput
+    /**
+     * In case the InterviewbitProfile found by the `where` argument doesn't exist, create a new InterviewbitProfile with this data.
+     */
+    create: XOR<InterviewbitProfileCreateInput, InterviewbitProfileUncheckedCreateInput>
+    /**
+     * In case the InterviewbitProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InterviewbitProfileUpdateInput, InterviewbitProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * InterviewbitProfile delete
+   */
+  export type InterviewbitProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+    /**
+     * Filter which InterviewbitProfile to delete.
+     */
+    where: InterviewbitProfileWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitProfile deleteMany
+   */
+  export type InterviewbitProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InterviewbitProfiles to delete
+     */
+    where?: InterviewbitProfileWhereInput
+  }
+
+  /**
+   * InterviewbitProfile findRaw
+   */
+  export type InterviewbitProfileFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InterviewbitProfile aggregateRaw
+   */
+  export type InterviewbitProfileAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InterviewbitProfile without action
+   */
+  export type InterviewbitProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitProfile
+     */
+    select?: InterviewbitProfileSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InterviewbitHistory
+   */
+
+  export type AggregateInterviewbitHistory = {
+    _count: InterviewbitHistoryCountAggregateOutputType | null
+    _avg: InterviewbitHistoryAvgAggregateOutputType | null
+    _sum: InterviewbitHistorySumAggregateOutputType | null
+    _min: InterviewbitHistoryMinAggregateOutputType | null
+    _max: InterviewbitHistoryMaxAggregateOutputType | null
+  }
+
+  export type InterviewbitHistoryAvgAggregateOutputType = {
+    score: number | null
+    solved: number | null
+  }
+
+  export type InterviewbitHistorySumAggregateOutputType = {
+    score: number | null
+    solved: number | null
+  }
+
+  export type InterviewbitHistoryMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    score: number | null
+    solved: number | null
+    createdAt: Date | null
+  }
+
+  export type InterviewbitHistoryMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    date: Date | null
+    score: number | null
+    solved: number | null
+    createdAt: Date | null
+  }
+
+  export type InterviewbitHistoryCountAggregateOutputType = {
+    id: number
+    username: number
+    date: number
+    score: number
+    solved: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type InterviewbitHistoryAvgAggregateInputType = {
+    score?: true
+    solved?: true
+  }
+
+  export type InterviewbitHistorySumAggregateInputType = {
+    score?: true
+    solved?: true
+  }
+
+  export type InterviewbitHistoryMinAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    score?: true
+    solved?: true
+    createdAt?: true
+  }
+
+  export type InterviewbitHistoryMaxAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    score?: true
+    solved?: true
+    createdAt?: true
+  }
+
+  export type InterviewbitHistoryCountAggregateInputType = {
+    id?: true
+    username?: true
+    date?: true
+    score?: true
+    solved?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type InterviewbitHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InterviewbitHistory to aggregate.
+     */
+    where?: InterviewbitHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitHistories to fetch.
+     */
+    orderBy?: InterviewbitHistoryOrderByWithRelationInput | InterviewbitHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InterviewbitHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InterviewbitHistories
+    **/
+    _count?: true | InterviewbitHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InterviewbitHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InterviewbitHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InterviewbitHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InterviewbitHistoryMaxAggregateInputType
+  }
+
+  export type GetInterviewbitHistoryAggregateType<T extends InterviewbitHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateInterviewbitHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInterviewbitHistory[P]>
+      : GetScalarType<T[P], AggregateInterviewbitHistory[P]>
+  }
+
+
+
+
+  export type InterviewbitHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InterviewbitHistoryWhereInput
+    orderBy?: InterviewbitHistoryOrderByWithAggregationInput | InterviewbitHistoryOrderByWithAggregationInput[]
+    by: InterviewbitHistoryScalarFieldEnum[] | InterviewbitHistoryScalarFieldEnum
+    having?: InterviewbitHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InterviewbitHistoryCountAggregateInputType | true
+    _avg?: InterviewbitHistoryAvgAggregateInputType
+    _sum?: InterviewbitHistorySumAggregateInputType
+    _min?: InterviewbitHistoryMinAggregateInputType
+    _max?: InterviewbitHistoryMaxAggregateInputType
+  }
+
+  export type InterviewbitHistoryGroupByOutputType = {
+    id: string
+    username: string
+    date: Date
+    score: number
+    solved: number
+    createdAt: Date
+    _count: InterviewbitHistoryCountAggregateOutputType | null
+    _avg: InterviewbitHistoryAvgAggregateOutputType | null
+    _sum: InterviewbitHistorySumAggregateOutputType | null
+    _min: InterviewbitHistoryMinAggregateOutputType | null
+    _max: InterviewbitHistoryMaxAggregateOutputType | null
+  }
+
+  type GetInterviewbitHistoryGroupByPayload<T extends InterviewbitHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InterviewbitHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InterviewbitHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InterviewbitHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], InterviewbitHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InterviewbitHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    score?: boolean
+    solved?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["interviewbitHistory"]>
+
+
+  export type InterviewbitHistorySelectScalar = {
+    id?: boolean
+    username?: boolean
+    date?: boolean
+    score?: boolean
+    solved?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $InterviewbitHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InterviewbitHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      date: Date
+      score: number
+      solved: number
+      createdAt: Date
+    }, ExtArgs["result"]["interviewbitHistory"]>
+    composites: {}
+  }
+
+  type InterviewbitHistoryGetPayload<S extends boolean | null | undefined | InterviewbitHistoryDefaultArgs> = $Result.GetResult<Prisma.$InterviewbitHistoryPayload, S>
+
+  type InterviewbitHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<InterviewbitHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: InterviewbitHistoryCountAggregateInputType | true
+    }
+
+  export interface InterviewbitHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InterviewbitHistory'], meta: { name: 'InterviewbitHistory' } }
+    /**
+     * Find zero or one InterviewbitHistory that matches the filter.
+     * @param {InterviewbitHistoryFindUniqueArgs} args - Arguments to find a InterviewbitHistory
+     * @example
+     * // Get one InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InterviewbitHistoryFindUniqueArgs>(args: SelectSubset<T, InterviewbitHistoryFindUniqueArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one InterviewbitHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {InterviewbitHistoryFindUniqueOrThrowArgs} args - Arguments to find a InterviewbitHistory
+     * @example
+     * // Get one InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InterviewbitHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, InterviewbitHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first InterviewbitHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryFindFirstArgs} args - Arguments to find a InterviewbitHistory
+     * @example
+     * // Get one InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InterviewbitHistoryFindFirstArgs>(args?: SelectSubset<T, InterviewbitHistoryFindFirstArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first InterviewbitHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryFindFirstOrThrowArgs} args - Arguments to find a InterviewbitHistory
+     * @example
+     * // Get one InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InterviewbitHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, InterviewbitHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more InterviewbitHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InterviewbitHistories
+     * const interviewbitHistories = await prisma.interviewbitHistory.findMany()
+     * 
+     * // Get first 10 InterviewbitHistories
+     * const interviewbitHistories = await prisma.interviewbitHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const interviewbitHistoryWithIdOnly = await prisma.interviewbitHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InterviewbitHistoryFindManyArgs>(args?: SelectSubset<T, InterviewbitHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a InterviewbitHistory.
+     * @param {InterviewbitHistoryCreateArgs} args - Arguments to create a InterviewbitHistory.
+     * @example
+     * // Create one InterviewbitHistory
+     * const InterviewbitHistory = await prisma.interviewbitHistory.create({
+     *   data: {
+     *     // ... data to create a InterviewbitHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends InterviewbitHistoryCreateArgs>(args: SelectSubset<T, InterviewbitHistoryCreateArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many InterviewbitHistories.
+     * @param {InterviewbitHistoryCreateManyArgs} args - Arguments to create many InterviewbitHistories.
+     * @example
+     * // Create many InterviewbitHistories
+     * const interviewbitHistory = await prisma.interviewbitHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InterviewbitHistoryCreateManyArgs>(args?: SelectSubset<T, InterviewbitHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InterviewbitHistory.
+     * @param {InterviewbitHistoryDeleteArgs} args - Arguments to delete one InterviewbitHistory.
+     * @example
+     * // Delete one InterviewbitHistory
+     * const InterviewbitHistory = await prisma.interviewbitHistory.delete({
+     *   where: {
+     *     // ... filter to delete one InterviewbitHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InterviewbitHistoryDeleteArgs>(args: SelectSubset<T, InterviewbitHistoryDeleteArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one InterviewbitHistory.
+     * @param {InterviewbitHistoryUpdateArgs} args - Arguments to update one InterviewbitHistory.
+     * @example
+     * // Update one InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InterviewbitHistoryUpdateArgs>(args: SelectSubset<T, InterviewbitHistoryUpdateArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more InterviewbitHistories.
+     * @param {InterviewbitHistoryDeleteManyArgs} args - Arguments to filter InterviewbitHistories to delete.
+     * @example
+     * // Delete a few InterviewbitHistories
+     * const { count } = await prisma.interviewbitHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InterviewbitHistoryDeleteManyArgs>(args?: SelectSubset<T, InterviewbitHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InterviewbitHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InterviewbitHistories
+     * const interviewbitHistory = await prisma.interviewbitHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InterviewbitHistoryUpdateManyArgs>(args: SelectSubset<T, InterviewbitHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InterviewbitHistory.
+     * @param {InterviewbitHistoryUpsertArgs} args - Arguments to update or create a InterviewbitHistory.
+     * @example
+     * // Update or create a InterviewbitHistory
+     * const interviewbitHistory = await prisma.interviewbitHistory.upsert({
+     *   create: {
+     *     // ... data to create a InterviewbitHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InterviewbitHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InterviewbitHistoryUpsertArgs>(args: SelectSubset<T, InterviewbitHistoryUpsertArgs<ExtArgs>>): Prisma__InterviewbitHistoryClient<$Result.GetResult<Prisma.$InterviewbitHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more InterviewbitHistories that matches the filter.
+     * @param {InterviewbitHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const interviewbitHistory = await prisma.interviewbitHistory.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: InterviewbitHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a InterviewbitHistory.
+     * @param {InterviewbitHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const interviewbitHistory = await prisma.interviewbitHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: InterviewbitHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of InterviewbitHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryCountArgs} args - Arguments to filter InterviewbitHistories to count.
+     * @example
+     * // Count the number of InterviewbitHistories
+     * const count = await prisma.interviewbitHistory.count({
+     *   where: {
+     *     // ... the filter for the InterviewbitHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends InterviewbitHistoryCountArgs>(
+      args?: Subset<T, InterviewbitHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InterviewbitHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InterviewbitHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InterviewbitHistoryAggregateArgs>(args: Subset<T, InterviewbitHistoryAggregateArgs>): Prisma.PrismaPromise<GetInterviewbitHistoryAggregateType<T>>
+
+    /**
+     * Group by InterviewbitHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterviewbitHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InterviewbitHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InterviewbitHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: InterviewbitHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InterviewbitHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInterviewbitHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InterviewbitHistory model
+   */
+  readonly fields: InterviewbitHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InterviewbitHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InterviewbitHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InterviewbitHistory model
+   */ 
+  interface InterviewbitHistoryFieldRefs {
+    readonly id: FieldRef<"InterviewbitHistory", 'String'>
+    readonly username: FieldRef<"InterviewbitHistory", 'String'>
+    readonly date: FieldRef<"InterviewbitHistory", 'DateTime'>
+    readonly score: FieldRef<"InterviewbitHistory", 'Int'>
+    readonly solved: FieldRef<"InterviewbitHistory", 'Int'>
+    readonly createdAt: FieldRef<"InterviewbitHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InterviewbitHistory findUnique
+   */
+  export type InterviewbitHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitHistory to fetch.
+     */
+    where: InterviewbitHistoryWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitHistory findUniqueOrThrow
+   */
+  export type InterviewbitHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitHistory to fetch.
+     */
+    where: InterviewbitHistoryWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitHistory findFirst
+   */
+  export type InterviewbitHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitHistory to fetch.
+     */
+    where?: InterviewbitHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitHistories to fetch.
+     */
+    orderBy?: InterviewbitHistoryOrderByWithRelationInput | InterviewbitHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InterviewbitHistories.
+     */
+    cursor?: InterviewbitHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InterviewbitHistories.
+     */
+    distinct?: InterviewbitHistoryScalarFieldEnum | InterviewbitHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitHistory findFirstOrThrow
+   */
+  export type InterviewbitHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitHistory to fetch.
+     */
+    where?: InterviewbitHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitHistories to fetch.
+     */
+    orderBy?: InterviewbitHistoryOrderByWithRelationInput | InterviewbitHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InterviewbitHistories.
+     */
+    cursor?: InterviewbitHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InterviewbitHistories.
+     */
+    distinct?: InterviewbitHistoryScalarFieldEnum | InterviewbitHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitHistory findMany
+   */
+  export type InterviewbitHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which InterviewbitHistories to fetch.
+     */
+    where?: InterviewbitHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InterviewbitHistories to fetch.
+     */
+    orderBy?: InterviewbitHistoryOrderByWithRelationInput | InterviewbitHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InterviewbitHistories.
+     */
+    cursor?: InterviewbitHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InterviewbitHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InterviewbitHistories.
+     */
+    skip?: number
+    distinct?: InterviewbitHistoryScalarFieldEnum | InterviewbitHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewbitHistory create
+   */
+  export type InterviewbitHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a InterviewbitHistory.
+     */
+    data: XOR<InterviewbitHistoryCreateInput, InterviewbitHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * InterviewbitHistory createMany
+   */
+  export type InterviewbitHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InterviewbitHistories.
+     */
+    data: InterviewbitHistoryCreateManyInput | InterviewbitHistoryCreateManyInput[]
+  }
+
+  /**
+   * InterviewbitHistory update
+   */
+  export type InterviewbitHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a InterviewbitHistory.
+     */
+    data: XOR<InterviewbitHistoryUpdateInput, InterviewbitHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which InterviewbitHistory to update.
+     */
+    where: InterviewbitHistoryWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitHistory updateMany
+   */
+  export type InterviewbitHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InterviewbitHistories.
+     */
+    data: XOR<InterviewbitHistoryUpdateManyMutationInput, InterviewbitHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which InterviewbitHistories to update
+     */
+    where?: InterviewbitHistoryWhereInput
+  }
+
+  /**
+   * InterviewbitHistory upsert
+   */
+  export type InterviewbitHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the InterviewbitHistory to update in case it exists.
+     */
+    where: InterviewbitHistoryWhereUniqueInput
+    /**
+     * In case the InterviewbitHistory found by the `where` argument doesn't exist, create a new InterviewbitHistory with this data.
+     */
+    create: XOR<InterviewbitHistoryCreateInput, InterviewbitHistoryUncheckedCreateInput>
+    /**
+     * In case the InterviewbitHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InterviewbitHistoryUpdateInput, InterviewbitHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * InterviewbitHistory delete
+   */
+  export type InterviewbitHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+    /**
+     * Filter which InterviewbitHistory to delete.
+     */
+    where: InterviewbitHistoryWhereUniqueInput
+  }
+
+  /**
+   * InterviewbitHistory deleteMany
+   */
+  export type InterviewbitHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InterviewbitHistories to delete
+     */
+    where?: InterviewbitHistoryWhereInput
+  }
+
+  /**
+   * InterviewbitHistory findRaw
+   */
+  export type InterviewbitHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InterviewbitHistory aggregateRaw
+   */
+  export type InterviewbitHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * InterviewbitHistory without action
+   */
+  export type InterviewbitHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewbitHistory
+     */
+    select?: InterviewbitHistorySelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -44830,6 +48981,7 @@ export namespace Prisma {
     tags: 'tags',
     category: 'category',
     readTime: 'readTime',
+    featuredImage: 'featuredImage',
     seoTitle: 'seoTitle',
     seoDesc: 'seoDesc',
     createdAt: 'createdAt',
@@ -44918,6 +49070,8 @@ export namespace Prisma {
     stackoverflow: 'stackoverflow',
     devto: 'devto',
     kaggle: 'kaggle',
+    code360: 'code360',
+    interviewbit: 'interviewbit',
     resumeUrl: 'resumeUrl',
     statsCache: 'statsCache',
     platformVisibility: 'platformVisibility',
@@ -45334,6 +49488,56 @@ export namespace Prisma {
   };
 
   export type AnalyticsSnapshotScalarFieldEnum = (typeof AnalyticsSnapshotScalarFieldEnum)[keyof typeof AnalyticsSnapshotScalarFieldEnum]
+
+
+  export const Code360ProfileScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    solved: 'solved',
+    stars: 'stars',
+    rating: 'rating',
+    streak: 'streak',
+    updatedAt: 'updatedAt'
+  };
+
+  export type Code360ProfileScalarFieldEnum = (typeof Code360ProfileScalarFieldEnum)[keyof typeof Code360ProfileScalarFieldEnum]
+
+
+  export const Code360HistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    solved: 'solved',
+    rating: 'rating',
+    createdAt: 'createdAt'
+  };
+
+  export type Code360HistoryScalarFieldEnum = (typeof Code360HistoryScalarFieldEnum)[keyof typeof Code360HistoryScalarFieldEnum]
+
+
+  export const InterviewbitProfileScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    score: 'score',
+    rank: 'rank',
+    solved: 'solved',
+    streak: 'streak',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InterviewbitProfileScalarFieldEnum = (typeof InterviewbitProfileScalarFieldEnum)[keyof typeof InterviewbitProfileScalarFieldEnum]
+
+
+  export const InterviewbitHistoryScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    date: 'date',
+    score: 'score',
+    solved: 'solved',
+    createdAt: 'createdAt'
+  };
+
+  export type InterviewbitHistoryScalarFieldEnum = (typeof InterviewbitHistoryScalarFieldEnum)[keyof typeof InterviewbitHistoryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -45888,6 +50092,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"Post">
     category?: StringNullableFilter<"Post"> | string | null
     readTime?: IntNullableFilter<"Post"> | number | null
+    featuredImage?: StringNullableFilter<"Post"> | string | null
     seoTitle?: StringNullableFilter<"Post"> | string | null
     seoDesc?: StringNullableFilter<"Post"> | string | null
     createdAt?: DateTimeFilter<"Post"> | Date | string
@@ -45905,6 +50110,7 @@ export namespace Prisma {
     tags?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
+    featuredImage?: SortOrder
     seoTitle?: SortOrder
     seoDesc?: SortOrder
     createdAt?: SortOrder
@@ -45925,6 +50131,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"Post">
     category?: StringNullableFilter<"Post"> | string | null
     readTime?: IntNullableFilter<"Post"> | number | null
+    featuredImage?: StringNullableFilter<"Post"> | string | null
     seoTitle?: StringNullableFilter<"Post"> | string | null
     seoDesc?: StringNullableFilter<"Post"> | string | null
     createdAt?: DateTimeFilter<"Post"> | Date | string
@@ -45942,6 +50149,7 @@ export namespace Prisma {
     tags?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
+    featuredImage?: SortOrder
     seoTitle?: SortOrder
     seoDesc?: SortOrder
     createdAt?: SortOrder
@@ -45966,6 +50174,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"Post">
     category?: StringNullableWithAggregatesFilter<"Post"> | string | null
     readTime?: IntNullableWithAggregatesFilter<"Post"> | number | null
+    featuredImage?: StringNullableWithAggregatesFilter<"Post"> | string | null
     seoTitle?: StringNullableWithAggregatesFilter<"Post"> | string | null
     seoDesc?: StringNullableWithAggregatesFilter<"Post"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
@@ -46294,6 +50503,8 @@ export namespace Prisma {
     stackoverflow?: StringNullableFilter<"DevProfile"> | string | null
     devto?: StringNullableFilter<"DevProfile"> | string | null
     kaggle?: StringNullableFilter<"DevProfile"> | string | null
+    code360?: StringNullableFilter<"DevProfile"> | string | null
+    interviewbit?: StringNullableFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableFilter<"DevProfile"> | string | null
     statsCache?: StringNullableFilter<"DevProfile"> | string | null
     platformVisibility?: StringNullableFilter<"DevProfile"> | string | null
@@ -46317,6 +50528,8 @@ export namespace Prisma {
     stackoverflow?: SortOrder
     devto?: SortOrder
     kaggle?: SortOrder
+    code360?: SortOrder
+    interviewbit?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
     platformVisibility?: SortOrder
@@ -46343,6 +50556,8 @@ export namespace Prisma {
     stackoverflow?: StringNullableFilter<"DevProfile"> | string | null
     devto?: StringNullableFilter<"DevProfile"> | string | null
     kaggle?: StringNullableFilter<"DevProfile"> | string | null
+    code360?: StringNullableFilter<"DevProfile"> | string | null
+    interviewbit?: StringNullableFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableFilter<"DevProfile"> | string | null
     statsCache?: StringNullableFilter<"DevProfile"> | string | null
     platformVisibility?: StringNullableFilter<"DevProfile"> | string | null
@@ -46366,6 +50581,8 @@ export namespace Prisma {
     stackoverflow?: SortOrder
     devto?: SortOrder
     kaggle?: SortOrder
+    code360?: SortOrder
+    interviewbit?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
     platformVisibility?: SortOrder
@@ -46395,6 +50612,8 @@ export namespace Prisma {
     stackoverflow?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     devto?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     kaggle?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    code360?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
+    interviewbit?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     resumeUrl?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     statsCache?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
     platformVisibility?: StringNullableWithAggregatesFilter<"DevProfile"> | string | null
@@ -48410,6 +52629,252 @@ export namespace Prisma {
     overallScore?: FloatWithAggregatesFilter<"AnalyticsSnapshot"> | number
   }
 
+  export type Code360ProfileWhereInput = {
+    AND?: Code360ProfileWhereInput | Code360ProfileWhereInput[]
+    OR?: Code360ProfileWhereInput[]
+    NOT?: Code360ProfileWhereInput | Code360ProfileWhereInput[]
+    id?: StringFilter<"Code360Profile"> | string
+    username?: StringFilter<"Code360Profile"> | string
+    solved?: IntFilter<"Code360Profile"> | number
+    stars?: StringFilter<"Code360Profile"> | string
+    rating?: IntFilter<"Code360Profile"> | number
+    streak?: IntFilter<"Code360Profile"> | number
+    updatedAt?: DateTimeFilter<"Code360Profile"> | Date | string
+  }
+
+  export type Code360ProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    solved?: SortOrder
+    stars?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Code360ProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    username?: string
+    AND?: Code360ProfileWhereInput | Code360ProfileWhereInput[]
+    OR?: Code360ProfileWhereInput[]
+    NOT?: Code360ProfileWhereInput | Code360ProfileWhereInput[]
+    solved?: IntFilter<"Code360Profile"> | number
+    stars?: StringFilter<"Code360Profile"> | string
+    rating?: IntFilter<"Code360Profile"> | number
+    streak?: IntFilter<"Code360Profile"> | number
+    updatedAt?: DateTimeFilter<"Code360Profile"> | Date | string
+  }, "id" | "username">
+
+  export type Code360ProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    solved?: SortOrder
+    stars?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+    _count?: Code360ProfileCountOrderByAggregateInput
+    _avg?: Code360ProfileAvgOrderByAggregateInput
+    _max?: Code360ProfileMaxOrderByAggregateInput
+    _min?: Code360ProfileMinOrderByAggregateInput
+    _sum?: Code360ProfileSumOrderByAggregateInput
+  }
+
+  export type Code360ProfileScalarWhereWithAggregatesInput = {
+    AND?: Code360ProfileScalarWhereWithAggregatesInput | Code360ProfileScalarWhereWithAggregatesInput[]
+    OR?: Code360ProfileScalarWhereWithAggregatesInput[]
+    NOT?: Code360ProfileScalarWhereWithAggregatesInput | Code360ProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Code360Profile"> | string
+    username?: StringWithAggregatesFilter<"Code360Profile"> | string
+    solved?: IntWithAggregatesFilter<"Code360Profile"> | number
+    stars?: StringWithAggregatesFilter<"Code360Profile"> | string
+    rating?: IntWithAggregatesFilter<"Code360Profile"> | number
+    streak?: IntWithAggregatesFilter<"Code360Profile"> | number
+    updatedAt?: DateTimeWithAggregatesFilter<"Code360Profile"> | Date | string
+  }
+
+  export type Code360HistoryWhereInput = {
+    AND?: Code360HistoryWhereInput | Code360HistoryWhereInput[]
+    OR?: Code360HistoryWhereInput[]
+    NOT?: Code360HistoryWhereInput | Code360HistoryWhereInput[]
+    id?: StringFilter<"Code360History"> | string
+    username?: StringFilter<"Code360History"> | string
+    date?: DateTimeFilter<"Code360History"> | Date | string
+    solved?: IntFilter<"Code360History"> | number
+    rating?: IntFilter<"Code360History"> | number
+    createdAt?: DateTimeFilter<"Code360History"> | Date | string
+  }
+
+  export type Code360HistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    solved?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type Code360HistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: Code360HistoryWhereInput | Code360HistoryWhereInput[]
+    OR?: Code360HistoryWhereInput[]
+    NOT?: Code360HistoryWhereInput | Code360HistoryWhereInput[]
+    username?: StringFilter<"Code360History"> | string
+    date?: DateTimeFilter<"Code360History"> | Date | string
+    solved?: IntFilter<"Code360History"> | number
+    rating?: IntFilter<"Code360History"> | number
+    createdAt?: DateTimeFilter<"Code360History"> | Date | string
+  }, "id">
+
+  export type Code360HistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    solved?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+    _count?: Code360HistoryCountOrderByAggregateInput
+    _avg?: Code360HistoryAvgOrderByAggregateInput
+    _max?: Code360HistoryMaxOrderByAggregateInput
+    _min?: Code360HistoryMinOrderByAggregateInput
+    _sum?: Code360HistorySumOrderByAggregateInput
+  }
+
+  export type Code360HistoryScalarWhereWithAggregatesInput = {
+    AND?: Code360HistoryScalarWhereWithAggregatesInput | Code360HistoryScalarWhereWithAggregatesInput[]
+    OR?: Code360HistoryScalarWhereWithAggregatesInput[]
+    NOT?: Code360HistoryScalarWhereWithAggregatesInput | Code360HistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Code360History"> | string
+    username?: StringWithAggregatesFilter<"Code360History"> | string
+    date?: DateTimeWithAggregatesFilter<"Code360History"> | Date | string
+    solved?: IntWithAggregatesFilter<"Code360History"> | number
+    rating?: IntWithAggregatesFilter<"Code360History"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Code360History"> | Date | string
+  }
+
+  export type InterviewbitProfileWhereInput = {
+    AND?: InterviewbitProfileWhereInput | InterviewbitProfileWhereInput[]
+    OR?: InterviewbitProfileWhereInput[]
+    NOT?: InterviewbitProfileWhereInput | InterviewbitProfileWhereInput[]
+    id?: StringFilter<"InterviewbitProfile"> | string
+    username?: StringFilter<"InterviewbitProfile"> | string
+    score?: IntFilter<"InterviewbitProfile"> | number
+    rank?: IntFilter<"InterviewbitProfile"> | number
+    solved?: IntFilter<"InterviewbitProfile"> | number
+    streak?: IntFilter<"InterviewbitProfile"> | number
+    updatedAt?: DateTimeFilter<"InterviewbitProfile"> | Date | string
+  }
+
+  export type InterviewbitProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewbitProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    username?: string
+    AND?: InterviewbitProfileWhereInput | InterviewbitProfileWhereInput[]
+    OR?: InterviewbitProfileWhereInput[]
+    NOT?: InterviewbitProfileWhereInput | InterviewbitProfileWhereInput[]
+    score?: IntFilter<"InterviewbitProfile"> | number
+    rank?: IntFilter<"InterviewbitProfile"> | number
+    solved?: IntFilter<"InterviewbitProfile"> | number
+    streak?: IntFilter<"InterviewbitProfile"> | number
+    updatedAt?: DateTimeFilter<"InterviewbitProfile"> | Date | string
+  }, "id" | "username">
+
+  export type InterviewbitProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InterviewbitProfileCountOrderByAggregateInput
+    _avg?: InterviewbitProfileAvgOrderByAggregateInput
+    _max?: InterviewbitProfileMaxOrderByAggregateInput
+    _min?: InterviewbitProfileMinOrderByAggregateInput
+    _sum?: InterviewbitProfileSumOrderByAggregateInput
+  }
+
+  export type InterviewbitProfileScalarWhereWithAggregatesInput = {
+    AND?: InterviewbitProfileScalarWhereWithAggregatesInput | InterviewbitProfileScalarWhereWithAggregatesInput[]
+    OR?: InterviewbitProfileScalarWhereWithAggregatesInput[]
+    NOT?: InterviewbitProfileScalarWhereWithAggregatesInput | InterviewbitProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"InterviewbitProfile"> | string
+    username?: StringWithAggregatesFilter<"InterviewbitProfile"> | string
+    score?: IntWithAggregatesFilter<"InterviewbitProfile"> | number
+    rank?: IntWithAggregatesFilter<"InterviewbitProfile"> | number
+    solved?: IntWithAggregatesFilter<"InterviewbitProfile"> | number
+    streak?: IntWithAggregatesFilter<"InterviewbitProfile"> | number
+    updatedAt?: DateTimeWithAggregatesFilter<"InterviewbitProfile"> | Date | string
+  }
+
+  export type InterviewbitHistoryWhereInput = {
+    AND?: InterviewbitHistoryWhereInput | InterviewbitHistoryWhereInput[]
+    OR?: InterviewbitHistoryWhereInput[]
+    NOT?: InterviewbitHistoryWhereInput | InterviewbitHistoryWhereInput[]
+    id?: StringFilter<"InterviewbitHistory"> | string
+    username?: StringFilter<"InterviewbitHistory"> | string
+    date?: DateTimeFilter<"InterviewbitHistory"> | Date | string
+    score?: IntFilter<"InterviewbitHistory"> | number
+    solved?: IntFilter<"InterviewbitHistory"> | number
+    createdAt?: DateTimeFilter<"InterviewbitHistory"> | Date | string
+  }
+
+  export type InterviewbitHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    score?: SortOrder
+    solved?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InterviewbitHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: InterviewbitHistoryWhereInput | InterviewbitHistoryWhereInput[]
+    OR?: InterviewbitHistoryWhereInput[]
+    NOT?: InterviewbitHistoryWhereInput | InterviewbitHistoryWhereInput[]
+    username?: StringFilter<"InterviewbitHistory"> | string
+    date?: DateTimeFilter<"InterviewbitHistory"> | Date | string
+    score?: IntFilter<"InterviewbitHistory"> | number
+    solved?: IntFilter<"InterviewbitHistory"> | number
+    createdAt?: DateTimeFilter<"InterviewbitHistory"> | Date | string
+  }, "id">
+
+  export type InterviewbitHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    score?: SortOrder
+    solved?: SortOrder
+    createdAt?: SortOrder
+    _count?: InterviewbitHistoryCountOrderByAggregateInput
+    _avg?: InterviewbitHistoryAvgOrderByAggregateInput
+    _max?: InterviewbitHistoryMaxOrderByAggregateInput
+    _min?: InterviewbitHistoryMinOrderByAggregateInput
+    _sum?: InterviewbitHistorySumOrderByAggregateInput
+  }
+
+  export type InterviewbitHistoryScalarWhereWithAggregatesInput = {
+    AND?: InterviewbitHistoryScalarWhereWithAggregatesInput | InterviewbitHistoryScalarWhereWithAggregatesInput[]
+    OR?: InterviewbitHistoryScalarWhereWithAggregatesInput[]
+    NOT?: InterviewbitHistoryScalarWhereWithAggregatesInput | InterviewbitHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"InterviewbitHistory"> | string
+    username?: StringWithAggregatesFilter<"InterviewbitHistory"> | string
+    date?: DateTimeWithAggregatesFilter<"InterviewbitHistory"> | Date | string
+    score?: IntWithAggregatesFilter<"InterviewbitHistory"> | number
+    solved?: IntWithAggregatesFilter<"InterviewbitHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"InterviewbitHistory"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -48935,6 +53400,7 @@ export namespace Prisma {
     tags?: PostCreatetagsInput | string[]
     category?: string | null
     readTime?: number | null
+    featuredImage?: string | null
     seoTitle?: string | null
     seoDesc?: string | null
     createdAt?: Date | string
@@ -48952,6 +53418,7 @@ export namespace Prisma {
     tags?: PostCreatetagsInput | string[]
     category?: string | null
     readTime?: number | null
+    featuredImage?: string | null
     seoTitle?: string | null
     seoDesc?: string | null
     createdAt?: Date | string
@@ -48968,6 +53435,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48984,6 +53452,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49001,6 +53470,7 @@ export namespace Prisma {
     tags?: PostCreatetagsInput | string[]
     category?: string | null
     readTime?: number | null
+    featuredImage?: string | null
     seoTitle?: string | null
     seoDesc?: string | null
     createdAt?: Date | string
@@ -49016,6 +53486,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49031,6 +53502,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49368,6 +53840,8 @@ export namespace Prisma {
     stackoverflow?: string | null
     devto?: string | null
     kaggle?: string | null
+    code360?: string | null
+    interviewbit?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
     platformVisibility?: string | null
@@ -49391,6 +53865,8 @@ export namespace Prisma {
     stackoverflow?: string | null
     devto?: string | null
     kaggle?: string | null
+    code360?: string | null
+    interviewbit?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
     platformVisibility?: string | null
@@ -49413,6 +53889,8 @@ export namespace Prisma {
     stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
     devto?: NullableStringFieldUpdateOperationsInput | string | null
     kaggle?: NullableStringFieldUpdateOperationsInput | string | null
+    code360?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewbit?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
     platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49435,6 +53913,8 @@ export namespace Prisma {
     stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
     devto?: NullableStringFieldUpdateOperationsInput | string | null
     kaggle?: NullableStringFieldUpdateOperationsInput | string | null
+    code360?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewbit?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
     platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49458,6 +53938,8 @@ export namespace Prisma {
     stackoverflow?: string | null
     devto?: string | null
     kaggle?: string | null
+    code360?: string | null
+    interviewbit?: string | null
     resumeUrl?: string | null
     statsCache?: string | null
     platformVisibility?: string | null
@@ -49480,6 +53962,8 @@ export namespace Prisma {
     stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
     devto?: NullableStringFieldUpdateOperationsInput | string | null
     kaggle?: NullableStringFieldUpdateOperationsInput | string | null
+    code360?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewbit?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
     platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49502,6 +53986,8 @@ export namespace Prisma {
     stackoverflow?: NullableStringFieldUpdateOperationsInput | string | null
     devto?: NullableStringFieldUpdateOperationsInput | string | null
     kaggle?: NullableStringFieldUpdateOperationsInput | string | null
+    code360?: NullableStringFieldUpdateOperationsInput | string | null
+    interviewbit?: NullableStringFieldUpdateOperationsInput | string | null
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     statsCache?: NullableStringFieldUpdateOperationsInput | string | null
     platformVisibility?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51615,6 +56101,256 @@ export namespace Prisma {
     overallScore?: FloatFieldUpdateOperationsInput | number
   }
 
+  export type Code360ProfileCreateInput = {
+    id?: string
+    username: string
+    solved?: number
+    stars?: string
+    rating?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type Code360ProfileUncheckedCreateInput = {
+    id?: string
+    username: string
+    solved?: number
+    stars?: string
+    rating?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type Code360ProfileUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    solved?: IntFieldUpdateOperationsInput | number
+    stars?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360ProfileUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    solved?: IntFieldUpdateOperationsInput | number
+    stars?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360ProfileCreateManyInput = {
+    id?: string
+    username: string
+    solved?: number
+    stars?: string
+    rating?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type Code360ProfileUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    solved?: IntFieldUpdateOperationsInput | number
+    stars?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360ProfileUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    solved?: IntFieldUpdateOperationsInput | number
+    stars?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360HistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    solved: number
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type Code360HistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    solved: number
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type Code360HistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    solved?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360HistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    solved?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360HistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    solved: number
+    rating: number
+    createdAt?: Date | string
+  }
+
+  export type Code360HistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    solved?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Code360HistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    solved?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitProfileCreateInput = {
+    id?: string
+    username: string
+    score?: number
+    rank?: number
+    solved?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type InterviewbitProfileUncheckedCreateInput = {
+    id?: string
+    username: string
+    score?: number
+    rank?: number
+    solved?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type InterviewbitProfileUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitProfileUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitProfileCreateManyInput = {
+    id?: string
+    username: string
+    score?: number
+    rank?: number
+    solved?: number
+    streak?: number
+    updatedAt?: Date | string
+  }
+
+  export type InterviewbitProfileUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitProfileUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    rank?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitHistoryCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    score: number
+    solved: number
+    createdAt?: Date | string
+  }
+
+  export type InterviewbitHistoryUncheckedCreateInput = {
+    id?: string
+    username: string
+    date: Date | string
+    score: number
+    solved: number
+    createdAt?: Date | string
+  }
+
+  export type InterviewbitHistoryUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    score?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitHistoryUncheckedUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    score?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitHistoryCreateManyInput = {
+    id?: string
+    username: string
+    date: Date | string
+    score: number
+    solved: number
+    createdAt?: Date | string
+  }
+
+  export type InterviewbitHistoryUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    score?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterviewbitHistoryUncheckedUpdateManyInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    score?: IntFieldUpdateOperationsInput | number
+    solved?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -52103,6 +56839,7 @@ export namespace Prisma {
     tags?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
+    featuredImage?: SortOrder
     seoTitle?: SortOrder
     seoDesc?: SortOrder
     createdAt?: SortOrder
@@ -52122,6 +56859,7 @@ export namespace Prisma {
     published?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
+    featuredImage?: SortOrder
     seoTitle?: SortOrder
     seoDesc?: SortOrder
     createdAt?: SortOrder
@@ -52137,6 +56875,7 @@ export namespace Prisma {
     published?: SortOrder
     category?: SortOrder
     readTime?: SortOrder
+    featuredImage?: SortOrder
     seoTitle?: SortOrder
     seoDesc?: SortOrder
     createdAt?: SortOrder
@@ -52329,6 +57068,8 @@ export namespace Prisma {
     stackoverflow?: SortOrder
     devto?: SortOrder
     kaggle?: SortOrder
+    code360?: SortOrder
+    interviewbit?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
     platformVisibility?: SortOrder
@@ -52351,6 +57092,8 @@ export namespace Prisma {
     stackoverflow?: SortOrder
     devto?: SortOrder
     kaggle?: SortOrder
+    code360?: SortOrder
+    interviewbit?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
     platformVisibility?: SortOrder
@@ -52373,6 +57116,8 @@ export namespace Prisma {
     stackoverflow?: SortOrder
     devto?: SortOrder
     kaggle?: SortOrder
+    code360?: SortOrder
+    interviewbit?: SortOrder
     resumeUrl?: SortOrder
     statsCache?: SortOrder
     platformVisibility?: SortOrder
@@ -53695,6 +58440,166 @@ export namespace Prisma {
     overallScore?: SortOrder
   }
 
+  export type Code360ProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    solved?: SortOrder
+    stars?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Code360ProfileAvgOrderByAggregateInput = {
+    solved?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+  }
+
+  export type Code360ProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    solved?: SortOrder
+    stars?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Code360ProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    solved?: SortOrder
+    stars?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Code360ProfileSumOrderByAggregateInput = {
+    solved?: SortOrder
+    rating?: SortOrder
+    streak?: SortOrder
+  }
+
+  export type Code360HistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    solved?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type Code360HistoryAvgOrderByAggregateInput = {
+    solved?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type Code360HistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    solved?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type Code360HistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    solved?: SortOrder
+    rating?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type Code360HistorySumOrderByAggregateInput = {
+    solved?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type InterviewbitProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewbitProfileAvgOrderByAggregateInput = {
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+  }
+
+  export type InterviewbitProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewbitProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewbitProfileSumOrderByAggregateInput = {
+    score?: SortOrder
+    rank?: SortOrder
+    solved?: SortOrder
+    streak?: SortOrder
+  }
+
+  export type InterviewbitHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    score?: SortOrder
+    solved?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InterviewbitHistoryAvgOrderByAggregateInput = {
+    score?: SortOrder
+    solved?: SortOrder
+  }
+
+  export type InterviewbitHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    score?: SortOrder
+    solved?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InterviewbitHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    date?: SortOrder
+    score?: SortOrder
+    solved?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InterviewbitHistorySumOrderByAggregateInput = {
+    score?: SortOrder
+    solved?: SortOrder
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
     unset?: boolean
@@ -54396,6 +59301,7 @@ export namespace Prisma {
     tags?: PostCreatetagsInput | string[]
     category?: string | null
     readTime?: number | null
+    featuredImage?: string | null
     seoTitle?: string | null
     seoDesc?: string | null
     createdAt?: Date | string
@@ -54412,6 +59318,7 @@ export namespace Prisma {
     tags?: PostCreatetagsInput | string[]
     category?: string | null
     readTime?: number | null
+    featuredImage?: string | null
     seoTitle?: string | null
     seoDesc?: string | null
     createdAt?: Date | string
@@ -54443,6 +59350,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54458,6 +59366,7 @@ export namespace Prisma {
     tags?: PostUpdatetagsInput | string[]
     category?: NullableStringFieldUpdateOperationsInput | string | null
     readTime?: NullableIntFieldUpdateOperationsInput | number | null
+    featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
     seoTitle?: NullableStringFieldUpdateOperationsInput | string | null
     seoDesc?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54703,6 +59612,22 @@ export namespace Prisma {
      * @deprecated Use AnalyticsSnapshotDefaultArgs instead
      */
     export type AnalyticsSnapshotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AnalyticsSnapshotDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Code360ProfileDefaultArgs instead
+     */
+    export type Code360ProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Code360ProfileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Code360HistoryDefaultArgs instead
+     */
+    export type Code360HistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Code360HistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use InterviewbitProfileDefaultArgs instead
+     */
+    export type InterviewbitProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InterviewbitProfileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use InterviewbitHistoryDefaultArgs instead
+     */
+    export type InterviewbitHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InterviewbitHistoryDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

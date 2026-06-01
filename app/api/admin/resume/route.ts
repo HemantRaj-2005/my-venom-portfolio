@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import path from "path";
-import fs from "fs";
+import { uploadToCloudinary, deleteFromCloudinary, getCloudinaryPublicId } from "@/lib/cloudinary";
 
 // GET: return current resume URL
 export async function GET() {
@@ -21,7 +20,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    const role = (session?.user as any)?.role;
+    const role = (session?.user as Record<string, unknown>)?.role;
     if (!session || role !== "ADMIN") {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
@@ -30,67 +29,81 @@ export async function POST(req: NextRequest) {
     const file = formData.get("resume") as File | null;
 
     if (!file) {
-      return NextResponse.json({ success: false, error: "No file received." }, { status: 400 });
+      return NextResponse.json({ success: false, error: "No file received. Please select a PDF file." }, { status: 400 });
     }
 
-    if (!file.name.endsWith(".pdf")) {
-      return NextResponse.json({ success: false, error: "Only PDF files are accepted." }, { status: 400 });
+    if (file.type !== "application/pdf" && !file.name.endsWith(".pdf")) {
+      return NextResponse.json({ success: false, error: "Only PDF files are accepted. Received: " + file.type }, { status: 400 });
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      return NextResponse.json({ success: false, error: "File size exceeds 10 MB limit." }, { status: 400 });
+      return NextResponse.json({ success: false, error: "File size exceeds 10 MB limit. Current size: " + Math.round(file.size / 1024 / 1024) + " MB" }, { status: 400 });
     }
 
-    // Ensure /public/uploads directory exists
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
+    // Delete old resume from Cloudinary if exists
+    const existing = await db.devProfile.findFirst();
+    if (existing?.resumeUrl) {
+      const oldPublicId = getCloudinaryPublicId(existing.resumeUrl);
+      if (oldPublicId) {
+        try {
+          await deleteFromCloudinary(oldPublicId);
+        } catch (e) {
+          console.warn("Failed to delete old resume from Cloudinary:", e);
+        }
+      }
     }
 
-    const destPath = path.join(uploadsDir, "resume.pdf");
-
-    // Write file buffer to disk
+    // Upload to Cloudinary
     const buffer = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(destPath, buffer);
+    const result = await uploadToCloudinary(buffer, {
+      folder: "resumes",
+      resourceType: "raw",
+    });
 
-    const resumeUrl = "/uploads/resume.pdf";
+    if (!result.success || !result.url) {
+      return NextResponse.json({ success: false, error: result.error || "Cloudinary upload failed." }, { status: 500 });
+    }
 
     // Update the devProfile resumeUrl in DB
-    const existing = await db.devProfile.findFirst();
     if (existing) {
       await db.devProfile.update({
         where: { id: existing.id },
-        data: { resumeUrl },
+        data: { resumeUrl: result.url },
       });
     } else {
       await db.devProfile.create({
-        data: { resumeUrl },
+        data: { resumeUrl: result.url },
       });
     }
 
-    return NextResponse.json({ success: true, resumeUrl });
-  } catch (e: any) {
+    return NextResponse.json({ success: true, resumeUrl: result.url });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Upload failed.";
     console.error("Resume upload error:", e);
-    return NextResponse.json({ success: false, error: e?.message || "Upload failed." }, { status: 500 });
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }
 
 // DELETE: remove the uploaded resume
-export async function DELETE(req: NextRequest) {
+export async function DELETE() {
   try {
     const session = await getServerSession(authOptions);
-    const role = (session?.user as any)?.role;
+    const role = (session?.user as Record<string, unknown>)?.role;
     if (!session || role !== "ADMIN") {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
 
-    const destPath = path.join(process.cwd(), "public", "uploads", "resume.pdf");
-    if (fs.existsSync(destPath)) {
-      fs.unlinkSync(destPath);
-    }
-
     const existing = await db.devProfile.findFirst();
-    if (existing) {
+    if (existing?.resumeUrl) {
+      const publicId = getCloudinaryPublicId(existing.resumeUrl);
+      if (publicId) {
+        try {
+          await deleteFromCloudinary(publicId);
+        } catch (e) {
+          console.warn("Failed to delete resume from Cloudinary:", e);
+        }
+      }
+
       await db.devProfile.update({
         where: { id: existing.id },
         data: { resumeUrl: null },
@@ -98,8 +111,9 @@ export async function DELETE(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (e: any) {
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Delete failed.";
     console.error("Resume delete error:", e);
-    return NextResponse.json({ success: false, error: e?.message || "Delete failed." }, { status: 500 });
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

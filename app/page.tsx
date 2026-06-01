@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { 
-  Shield, Code, ArrowRight, Download, Calendar, Mail, 
-  Terminal as TermIcon, MessageSquare, ChevronDown, Check, Zap, Sparkles 
+import {
+  Shield, Code, ArrowRight, FileText, Calendar, Mail,
+  Terminal as TermIcon, MessageSquare, ChevronDown, Check, Zap, Sparkles
 } from "lucide-react";
 import LoadingScreen from "@/components/LoadingScreen";
 import SpiderCore from "@/components/SpiderCore";
@@ -14,10 +14,12 @@ import InteractiveOrbit from "@/components/InteractiveOrbit";
 import ContactForm from "@/components/ContactForm";
 import Chatbot from "@/components/Chatbot";
 import CommandPalette from "@/components/CommandPalette";
+import ResumeViewer from "@/components/ResumeViewer";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
+  const [resumeViewerOpen, setResumeViewerOpen] = useState(false);
   const [experiences, setExperiences] = useState<any[]>([]);
 
   // Typewriter: displayed text in state (for rendering), all logic in refs
@@ -210,20 +212,18 @@ export default function Home() {
                   </Link>
 
                   {profile?.resumeUrl ? (
-                    <a
-                      href={profile.resumeUrl}
-                      download
-                      onClick={handleClick}
+                    <button
+                      onClick={() => { setResumeViewerOpen(true); handleClick(); }}
                       onMouseEnter={handleHover}
                       className="flex items-center gap-2 border border-zinc-800 bg-zinc-950/60 hover:bg-zinc-900 font-semibold text-zinc-300 hover:text-white px-5 py-3 rounded-xl transition-all cursor-pointer text-xs uppercase tracking-wider active:scale-95"
-                      title="Download Developer Resume"
+                      title="View Developer Resume"
                     >
-                      <Download className="w-4 h-4" />
+                      <FileText className="w-4 h-4" />
                       <span>Resume dossier</span>
-                    </a>
+                    </button>
                   ) : (
                     <div className="flex items-center gap-2 border border-zinc-900 bg-zinc-950/20 text-zinc-600 px-5 py-3 rounded-xl text-xs uppercase tracking-wider cursor-not-allowed">
-                      <Download className="w-4 h-4" />
+                      <FileText className="w-4 h-4" />
                       <span>Resume coming soon</span>
                     </div>
                   )}
@@ -326,6 +326,13 @@ export default function Home() {
 
           {/* Keyboard shortcut command palette */}
           <CommandPalette />
+
+          {/* Resume PDF Viewer Popup */}
+          <ResumeViewer
+            url={profile?.resumeUrl || null}
+            isOpen={resumeViewerOpen}
+            onClose={() => setResumeViewerOpen(false)}
+          />
         </div>
       )}
     </>

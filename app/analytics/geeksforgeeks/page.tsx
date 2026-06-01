@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAnalytics } from "../layout";
+import { useAnalytics } from "../context";
 import AnalyticsEmptyState from "@/components/AnalyticsEmptyState";
 import MetricCard from "@/components/analytics/MetricCard";
 import { GraduationCap } from "lucide-react";

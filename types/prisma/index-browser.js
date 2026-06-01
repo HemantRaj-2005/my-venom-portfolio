@@ -201,6 +201,7 @@ exports.Prisma.PostScalarFieldEnum = {
   tags: 'tags',
   category: 'category',
   readTime: 'readTime',
+  featuredImage: 'featuredImage',
   seoTitle: 'seoTitle',
   seoDesc: 'seoDesc',
   createdAt: 'createdAt',
@@ -271,6 +272,8 @@ exports.Prisma.DevProfileScalarFieldEnum = {
   stackoverflow: 'stackoverflow',
   devto: 'devto',
   kaggle: 'kaggle',
+  code360: 'code360',
+  interviewbit: 'interviewbit',
   resumeUrl: 'resumeUrl',
   statsCache: 'statsCache',
   platformVisibility: 'platformVisibility',
@@ -596,6 +599,44 @@ exports.Prisma.AnalyticsSnapshotScalarFieldEnum = {
   overallScore: 'overallScore'
 };
 
+exports.Prisma.Code360ProfileScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  solved: 'solved',
+  stars: 'stars',
+  rating: 'rating',
+  streak: 'streak',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Code360HistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  solved: 'solved',
+  rating: 'rating',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InterviewbitProfileScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  score: 'score',
+  rank: 'rank',
+  solved: 'solved',
+  streak: 'streak',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InterviewbitHistoryScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  date: 'date',
+  score: 'score',
+  solved: 'solved',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -649,7 +690,11 @@ exports.Prisma.ModelName = {
   ContestHistory: 'ContestHistory',
   ActivityHistory: 'ActivityHistory',
   AiReport: 'AiReport',
-  AnalyticsSnapshot: 'AnalyticsSnapshot'
+  AnalyticsSnapshot: 'AnalyticsSnapshot',
+  Code360Profile: 'Code360Profile',
+  Code360History: 'Code360History',
+  InterviewbitProfile: 'InterviewbitProfile',
+  InterviewbitHistory: 'InterviewbitHistory'
 };
 
 /**

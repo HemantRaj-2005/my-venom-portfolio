@@ -21,6 +21,8 @@ export interface AnalyticsProfile {
   stackoverflow: string | null;
   devto: string | null;
   kaggle: string | null;
+  code360: string | null;
+  interviewbit: string | null;
   resumeUrl: string | null;
 }
 
@@ -47,6 +49,8 @@ export interface AggregatedStats {
   stackoverflow?: Record<string, unknown>;
   devto?: Record<string, unknown>;
   kaggle?: Record<string, unknown>;
+  code360?: Record<string, unknown>;
+  interviewbit?: Record<string, unknown>;
   aggregates?: Record<string, unknown>;
   scores?: Record<string, number | null>;
   heatmapStats?: Record<string, unknown>;

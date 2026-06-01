@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useAnalytics } from "../layout";
+import { useAnalytics } from "../context";
 import { Cpu, TrendingUp, TrendingDown, Award } from "lucide-react";
 
 export default function AIInsightsPage() {

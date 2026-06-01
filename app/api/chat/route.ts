@@ -64,6 +64,12 @@ export async function POST(req: NextRequest) {
       if (stats.geeksforgeeks) {
         dynamicContext += `- GeeksforGeeks: Coding Score ${stats.geeksforgeeks.codingScore ?? "N/A"}, Institution Rank ${stats.geeksforgeeks.institutionRank ?? "N/A"}, Solved ${stats.geeksforgeeks.solved ?? "N/A"} problems.\n`;
       }
+      if (stats.code360) {
+        dynamicContext += `- Code360 (Naukri): Solved ${stats.code360.solved ?? "N/A"} problems, Rating ${stats.code360.rating ?? "N/A"}, Stars ${stats.code360.stars ?? "N/A"}, Streak ${stats.code360.streak ?? 0} days.\n`;
+      }
+      if (stats.interviewbit) {
+        dynamicContext += `- InterviewBit: Score ${stats.interviewbit.score ?? "N/A"}, Rank ${stats.interviewbit.rank ?? "N/A"}, Solved ${stats.interviewbit.solved ?? "N/A"} problems, Streak ${stats.interviewbit.streak ?? 0} days.\n`;
+      }
       if (stats.scores?.overallScore) {
         dynamicContext += `- Overall Developer Score: ${stats.scores.overallScore}/100\n`;
       }
@@ -111,6 +117,12 @@ Strictly adhere to the following rules:
 Do not attempt to answer or guess.
 4. Do NOT get deviated. Maintain a professional, informative, friendly, and confident tone. If the user tries to deviate, ask irrelevant questions (e.g. asking for recipe, writing code unrelated to Hemant, asking about general trivia, roleplaying, or general questions not about Hemant's portfolio), politely refuse and guide them back to Hemant Raj's portfolio.
 5. The primary purpose of this chatbot is to help visitors, recruiters, collaborators, hiring managers, and developers learn more about Hemant Raj's background, technical expertise, projects, achievements, and aspirations.
+6. When users ask about CONTACTING, HIRING, or SOCIAL MEDIA (e.g., "How can I hire?", "What's their LinkedIn?", "How to contact?", "Instagram?", "Email?"), ALWAYS provide:
+   - The relevant profile URLs from the Professional Links section above
+   - Direct links to coding profiles they ask about
+   - Guidance on hiring: mention the contact form on the portfolio website, or suggest reaching out via GitHub/LinkedIn
+   - Be specific, helpful, and include actionable links
+7. When the user explicitly requests a STRUCTURED or JSON response, respond with valid JSON inside a \`\`\`json code block. Use this format for data-heavy comparisons, statistics, or when the user asks for "list", "JSON", "structured", or "table" format.
 
 Here is the verified context about Hemant Raj:
 

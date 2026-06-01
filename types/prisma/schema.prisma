@@ -93,20 +93,21 @@ model Project {
 
 // Technical Blog
 model Post {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  slug      String    @unique
-  content   String // markdown content
-  summary   String? // AI generated summary or manual summary
-  published Boolean   @default(false)
-  tags      String[]
-  category  String?
-  readTime  Int?
-  seoTitle  String?
-  seoDesc   String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  comments  Comment[]
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  slug          String    @unique
+  content       String // markdown content
+  summary       String? // AI generated summary or manual summary
+  published     Boolean   @default(false)
+  tags          String[]
+  category      String?
+  readTime      Int?
+  featuredImage String? // Cloudinary URL for featured image
+  seoTitle      String?
+  seoDesc       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  comments      Comment[]
 }
 
 model Comment {
@@ -177,6 +178,8 @@ model DevProfile {
   stackoverflow      String?
   devto              String?
   kaggle             String?
+  code360            String?
+  interviewbit       String?
   resumeUrl          String?
   statsCache         String?
   platformVisibility String?
@@ -571,4 +574,52 @@ model AnalyticsSnapshot {
   overallScore Float
 
   @@map("analytics_snapshots")
+}
+
+// Code360 (Naukri) Profiles
+model Code360Profile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  solved    Int      @default(0)
+  stars     String   @default("N/A")
+  rating    Int      @default(0)
+  streak    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("code360_profiles")
+}
+
+model Code360History {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  date      DateTime
+  solved    Int
+  rating    Int
+  createdAt DateTime @default(now())
+
+  @@map("code360_history")
+}
+
+// InterviewBit Profiles
+model InterviewbitProfile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  score     Int      @default(0)
+  rank      Int      @default(0)
+  solved    Int      @default(0)
+  streak    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("interviewbit_profiles")
+}
+
+model InterviewbitHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  date      DateTime
+  score     Int
+  solved    Int
+  createdAt DateTime @default(now())
+
+  @@map("interviewbit_history")
 }

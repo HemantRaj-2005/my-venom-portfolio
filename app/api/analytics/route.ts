@@ -43,6 +43,8 @@ export async function GET() {
       "stackoverflow",
       "devto",
       "kaggle",
+      "code360",
+      "interviewbit",
     ].map((platform) => {
       const handle = (profile as Record<string, unknown>)[platform];
       const log = recentLogs.find((l) => l.platform === platform);
@@ -72,6 +74,8 @@ export async function GET() {
         stackoverflow: profile.stackoverflow || null,
         devto: profile.devto || null,
         kaggle: profile.kaggle || null,
+        code360: (profile as Record<string, unknown>).code360 as string || null,
+        interviewbit: (profile as Record<string, unknown>).interviewbit as string || null,
         resumeUrl: profile.resumeUrl || null,
       } satisfies AnalyticsProfile,
       stats,

@@ -14,6 +14,8 @@ const VALID_PLATFORMS = [
   "stackoverflow",
   "devto",
   "kaggle",
+  "code360",
+  "interviewbit",
 ];
 
 export async function GET(
@@ -125,6 +127,22 @@ export async function GET(
       case "kaggle":
         profileData = await db.kaggleProfile.findUnique({ where: { username: handle } });
         history = await db.kaggleHistory.findMany({
+          where: { username: handle },
+          orderBy: { date: "desc" },
+          take: 30,
+        });
+        break;
+      case "code360":
+        profileData = await db.code360Profile.findUnique({ where: { username: handle } });
+        history = await db.code360History.findMany({
+          where: { username: handle },
+          orderBy: { date: "desc" },
+          take: 30,
+        });
+        break;
+      case "interviewbit":
+        profileData = await db.interviewbitProfile.findUnique({ where: { username: handle } });
+        history = await db.interviewbitHistory.findMany({
           where: { username: handle },
           orderBy: { date: "desc" },
           take: 30,

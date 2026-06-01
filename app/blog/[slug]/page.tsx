@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { ArrowLeft, Calendar, Clock, BookOpen } from "lucide-react";
@@ -80,6 +81,21 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
         <h1 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-white leading-tight neon-glow-red">
           {post.title}
         </h1>
+
+        {/* Featured Image */}
+        {post.featuredImage && (
+          <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden border border-zinc-800/50 mt-6">
+            <Image
+              src={post.featuredImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 896px"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/40 to-transparent" />
+          </div>
+        )}
 
         {/* Summary banner */}
         {post.summary && (

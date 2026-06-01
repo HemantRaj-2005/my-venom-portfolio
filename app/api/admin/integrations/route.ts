@@ -67,6 +67,8 @@ export async function POST(req: NextRequest) {
       stackoverflow,
       devto,
       kaggle,
+      code360,
+      interviewbit,
       platformVisibility,
       aiInsightsEnabled,
       triggerSync,
@@ -89,6 +91,8 @@ export async function POST(req: NextRequest) {
       stackoverflow,
       devto,
       kaggle,
+      code360,
+      interviewbit,
       platformVisibility: platformVisibility
         ? JSON.stringify(platformVisibility)
         : undefined,
@@ -116,7 +120,9 @@ export async function POST(req: NextRequest) {
       hackerearth ||
       stackoverflow ||
       devto ||
-      kaggle;
+      kaggle ||
+      code360 ||
+      interviewbit;
 
     if (triggerSync && hasHandles) {
       if (singlePlatform && PLATFORMS.includes(singlePlatform as Platform)) {

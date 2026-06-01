@@ -266,6 +266,7 @@ export async function scrapeLeetcode(username: string) {
             matchedUser(username: $username) {
               submitStatsGlobal {
                 acSubmissionNum { difficulty count }
+                totalSubmissionNum { difficulty count }
               }
               profile { ranking reputation }
               userCalendar { submissionCalendar }
@@ -298,13 +299,22 @@ export async function scrapeLeetcode(username: string) {
     let streak = 0;
 
     const matched = stats.matchedUser as {
-      submitStatsGlobal?: { acSubmissionNum?: { difficulty: string; count: number }[] };
+      submitStatsGlobal?: {
+        acSubmissionNum?: { difficulty: string; count: number }[];
+        totalSubmissionNum?: { difficulty: string; count: number }[];
+      };
       profile?: { ranking?: number };
       userCalendar?: { submissionCalendar?: string };
     } | null;
 
     if (matched) {
       const acs = matched.submitStatsGlobal?.acSubmissionNum || [];
+      const totalSubs = matched.submitStatsGlobal?.totalSubmissionNum || [];
+      const totalAllSubmissions = totalSubs.find((a) => a.difficulty === "All")?.count || 0;
+      const acceptedAll = acs.find((a) => a.difficulty === "All")?.count || 0;
+      if (totalAllSubmissions > 0) {
+        acceptance = ((acceptedAll / totalAllSubmissions) * 100).toFixed(1) + "%";
+      }
       totalSolved = acs.find((a) => a.difficulty === "All")?.count || 0;
       easySolved = acs.find((a) => a.difficulty === "Easy")?.count || 0;
       mediumSolved = acs.find((a) => a.difficulty === "Medium")?.count || 0;
@@ -790,6 +800,136 @@ export async function scrapeKaggle(username: string) {
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : "Unknown error";
     console.error("Kaggle scrape error:", message);
+    return { success: false, error: message };
+  }
+}
+
+export async function scrapeCode360(username: string) {
+  const headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.naukri.com/",
+  };
+
+  // Try multiple URL patterns
+  const urls = [
+    `https://www.naukri.com/code360/profile/${username}`,
+    `https://www.naukri.com/code360/api/v1/users/profile/${username}`,
+    `https://www.codingninjas.com/studio/profile/${username}`,
+  ];
+
+  for (const url of urls) {
+    try {
+      const res = await fetch(url, { headers, redirect: "follow" });
+      if (!res.ok) continue;
+      const html = await res.text();
+
+      // Check for JSON response (API endpoint)
+      if (html.trim().startsWith("{") || html.trim().startsWith("[")) {
+        try {
+          const json = JSON.parse(html);
+          const data = json.data || json.profile || json.user || json;
+          return {
+            success: true,
+            data: {
+              username,
+              solved: data.problemsSolved ?? data.solved ?? data.totalProblemsSolved ?? 0,
+              rating: data.rating ?? data.contestRating ?? 0,
+              streak: data.streak ?? data.currentStreak ?? 0,
+              stars: data.stars ?? data.starRating ?? "N/A",
+            },
+          };
+        } catch { /* not JSON, continue */ }
+      }
+
+      // Parse HTML response
+      const solved = matchAnyNumber(html, [
+        /problems?\s*solved[:\s]*(\d[\d,]*)/i,
+        /(\d[\d,]*)\s*problems?\s*solved/i,
+        /"problemsSolved"[:\s]*(\d[\d,]*)/i,
+        /solved[:\s]*(\d[\d,]*)/i,
+        /"totalProblemsSolved"[:\s]*(\d[\d,]*)/i,
+      ]);
+
+      const rating = matchAnyNumber(html, [
+        /rating[:\s]*(\d[\d,]*)/i,
+        /"rating"[:\s]*(\d[\d,]*)/i,
+        /(\d[\d,]*)\s*rating/i,
+        /"contestRating"[:\s]*(\d[\d,]*)/i,
+      ]);
+
+      const streak = matchAnyNumber(html, [
+        /streak[:\s]*(\d[\d,]*)/i,
+        /"streak"[:\s]*(\d[\d,]*)/i,
+        /(\d[\d,]*)\s*days?\s*streak/i,
+        /"currentStreak"[:\s]*(\d[\d,]*)/i,
+      ]);
+
+      const starsMatch = matchRegex(html, /(\d+\.?\d*)\s*stars?/i) || matchRegex(html, /"stars"[:\s]*"?(\d+\.?\d*)"?/i) || matchRegex(html, /"starRating"[:\s]*"?([^",}]+)"?/i);
+      const stars = starsMatch || "N/A";
+
+      const hasProfile = new RegExp(username, "i").test(html) || /code360|coding.?ninja/i.test(html);
+      if (hasProfile || solved > 0 || rating > 0) {
+        return {
+          success: true,
+          data: { username, solved, rating, streak, stars },
+        };
+      }
+    } catch { /* try next URL */ }
+  }
+
+  // All attempts failed - return graceful failure
+  return {
+    success: false,
+    error: "Code360 profile could not be fetched. The platform blocks server-side requests. Data may need to be synced manually or via a browser-based approach.",
+  };
+}
+
+export async function scrapeInterviewbit(username: string) {
+  try {
+    const res = await fetch(`https://www.interviewbit.com/profile/${username}/`, {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
+    });
+    if (!res.ok) throw new Error("InterviewBit profile fetch failed");
+    const html = await res.text();
+
+    const score = matchAnyNumber(html, [
+      /score[:\s]*(\d[\d,]*)/i,
+      /"score"[:\s]*(\d[\d,]*)/i,
+      /(\d[\d,]*)\s*score/i,
+      /total\s*score[:\s]*(\d[\d,]*)/i,
+    ]);
+
+    const rank = matchAnyNumber(html, [
+      /rank[:\s]*#?(\d[\d,]*)/i,
+      /"rank"[:\s]*(\d[\d,]*)/i,
+      /#(\d[\d,]*)\s*rank/i,
+    ]);
+
+    const solved = matchAnyNumber(html, [
+      /problems?\s*solved[:\s]*(\d[\d,]*)/i,
+      /(\d[\d,]*)\s*problems?\s*solved/i,
+      /"problemsSolved"[:\s]*(\d[\d,]*)/i,
+      /solved[:\s]*(\d[\d,]*)/i,
+    ]);
+
+    const streak = matchAnyNumber(html, [
+      /streak[:\s]*(\d[\d,]*)/i,
+      /"streak"[:\s]*(\d[\d,]*)/i,
+      /(\d[\d,]*)\s*days?\s*streak/i,
+    ]);
+
+    const hasProfile = new RegExp(username, "i").test(html) || /interviewbit.*profile/i.test(html);
+    if (!hasProfile && score === 0 && solved === 0) throw new Error("No InterviewBit data parsed");
+
+    return {
+      success: true,
+      data: { username, score, rank, solved, streak },
+    };
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Unknown error";
+    console.error("InterviewBit scrape error:", message);
     return { success: false, error: message };
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { MessageSquare, Send, X } from "lucide-react";
+import { MessageSquare, Send, X, Maximize2, Minimize2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ChatJsonRenderer from "./ChatJsonRenderer";
 
 interface ChatMessage {
   sender: "user" | "bot";
@@ -11,6 +12,7 @@ interface ChatMessage {
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputVal, setInputVal] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -106,7 +108,11 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-22 right-6 z-[1000] w-80 sm:w-96 h-[480px] flex flex-col bg-[#050a12]/95 border border-cyan-500/20 rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/5 backdrop-blur-md"
+            className={`fixed z-[1000] flex flex-col bg-[#050a12]/95 border border-cyan-500/20 rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/5 backdrop-blur-md transition-all duration-300 ${
+              isExpanded
+                ? "inset-4 sm:inset-10"
+                : "bottom-22 right-6 w-80 sm:w-96 h-[480px]"
+            }`}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#050505] border-b border-zinc-900 select-none">
@@ -122,12 +128,21 @@ export default function Chatbot() {
                   </span>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-4.5 h-4.5" />
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="text-zinc-500 hover:text-white transition-colors cursor-pointer p-1"
+                  title={isExpanded ? "Collapse" : "Expand"}
+                >
+                  {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X className="w-4.5 h-4.5" />
+                </button>
+              </div>
             </div>
 
             {/* Message History Grid */}
@@ -149,7 +164,11 @@ export default function Chatbot() {
                         StarkAI
                       </div>
                     )}
-                    {msg.text}
+                    {msg.sender === "bot" ? (
+                      <ChatJsonRenderer content={msg.text} />
+                    ) : (
+                      msg.text
+                    )}
                   </div>
                 </div>
               ))}
@@ -175,7 +194,7 @@ export default function Chatbot() {
 
             {/* Suggestions Quick Chips */}
             <div className="px-4 py-2 border-t border-zinc-900 bg-zinc-950 flex flex-wrap gap-1.5 max-h-20 overflow-y-auto select-none">
-              {["Skills Stack", "Active Projects", "Download Resume", "How to Hire"].map((chip) => (
+              {["Skills Stack", "Active Projects", "How to Hire", "Contact Info", "LeetCode Stats", "JSON Stats"].map((chip) => (
                 <button
                   key={chip}
                   onClick={() => {

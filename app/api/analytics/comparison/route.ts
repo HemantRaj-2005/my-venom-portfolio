@@ -57,10 +57,16 @@ export async function GET() {
         activity: 0,
       },
       {
-        name: "GitHub",
-        solved: stats.github?.metrics?.totalCommits || 0,
-        rating: stats.github?.metrics?.totalStars || 0,
-        activity: stats.github?.metrics?.streak || 0,
+        name: "Code360",
+        solved: stats.code360?.solved || 0,
+        rating: stats.code360?.rating || 0,
+        activity: stats.code360?.streak || 0,
+      },
+      {
+        name: "InterviewBit",
+        solved: stats.interviewbit?.solved || 0,
+        rating: stats.interviewbit?.score || 0,
+        activity: stats.interviewbit?.streak || 0,
       },
     ].filter((p) => p.solved > 0 || p.rating > 0);
 
