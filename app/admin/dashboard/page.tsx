@@ -71,7 +71,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   // Selected tab state
-  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations" | "faqs" | "blogs" | "resume" | "experience">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "leads" | "callbacks" | "messages" | "subscribers" | "visitors" | "integrations" | "faqs" | "blogs" | "resume" | "experience" | "projects">("overview");
 
   // Database lists
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -140,6 +140,30 @@ export default function AdminDashboard() {
   const [blogFeaturedImage, setBlogFeaturedImage] = useState("");
   const [blogImageUploading, setBlogImageUploading] = useState(false);
   const [blogBlocks, setBlogBlocks] = useState<any[]>([]);
+
+  // Project states & editor
+  const [projects, setProjects] = useState<any[]>([]);
+  const [projectLoading, setProjectLoading] = useState(false);
+  const [projectEditorOpen, setProjectEditorOpen] = useState(false);
+  const [projectId, setProjectId] = useState("");
+  const [projectTitle, setProjectTitle] = useState("");
+  const [projectSlug, setProjectSlug] = useState("");
+  const [projectOverview, setProjectOverview] = useState("");
+  const [projectFeatures, setProjectFeatures] = useState("");
+  const [projectChallenges, setProjectChallenges] = useState("");
+  const [projectArchitecture, setProjectArchitecture] = useState("");
+  const [projectTechStack, setProjectTechStack] = useState("");
+  const [projectSchemaUrl, setProjectSchemaUrl] = useState("");
+  const [projectApiFlow, setProjectApiFlow] = useState("");
+  const [projectDeployment, setProjectDeployment] = useState("");
+  const [projectGallery, setProjectGallery] = useState<string[]>([]);
+  const [projectDemoVideo, setProjectDemoVideo] = useState("");
+  const [projectLiveUrl, setProjectLiveUrl] = useState("");
+  const [projectGithubUrl, setProjectGithubUrl] = useState("");
+  const [projectPerformance, setProjectPerformance] = useState<number | "">("");
+  const [projectSeoTitle, setProjectSeoTitle] = useState("");
+  const [projectSeoDesc, setProjectSeoDesc] = useState("");
+  const [projectImageUploading, setProjectImageUploading] = useState(false);
 
   const addBlogBlock = (type: string) => {
     let newBlock = {};
@@ -385,6 +409,160 @@ export default function AdminDashboard() {
       console.error(e);
       alert("Network error deleting post.");
     }
+  };
+
+  // Project CRUD handlers
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/admin/projects");
+      const result = await res.json();
+      if (result.success) {
+        setProjects(result.projects || []);
+      }
+    } catch (e) {
+      console.error("Dashboard Projects fetch error:", e);
+    }
+  };
+
+  const resetProjectForm = () => {
+    setProjectId("");
+    setProjectTitle("");
+    setProjectSlug("");
+    setProjectOverview("");
+    setProjectFeatures("");
+    setProjectChallenges("");
+    setProjectArchitecture("");
+    setProjectTechStack("");
+    setProjectSchemaUrl("");
+    setProjectApiFlow("");
+    setProjectDeployment("");
+    setProjectGallery([]);
+    setProjectDemoVideo("");
+    setProjectLiveUrl("");
+    setProjectGithubUrl("");
+    setProjectPerformance("");
+    setProjectSeoTitle("");
+    setProjectSeoDesc("");
+  };
+
+  const handleOpenProjectEditor = (proj?: any) => {
+    if (proj) {
+      setProjectId(proj.id);
+      setProjectTitle(proj.title || "");
+      setProjectSlug(proj.slug || "");
+      setProjectOverview(proj.overview || "");
+      setProjectFeatures(Array.isArray(proj.features) ? proj.features.join(", ") : "");
+      setProjectChallenges(proj.challenges || "");
+      setProjectArchitecture(proj.architecture || "");
+      setProjectTechStack(Array.isArray(proj.techStack) ? proj.techStack.join(", ") : "");
+      setProjectSchemaUrl(proj.schemaUrl || "");
+      setProjectApiFlow(proj.apiFlow || "");
+      setProjectDeployment(proj.deployment || "");
+      setProjectGallery(Array.isArray(proj.gallery) ? proj.gallery : []);
+      setProjectDemoVideo(proj.demoVideo || "");
+      setProjectLiveUrl(proj.liveUrl || "");
+      setProjectGithubUrl(proj.githubUrl || "");
+      setProjectPerformance(proj.performance ?? "");
+      setProjectSeoTitle(proj.seoTitle || "");
+      setProjectSeoDesc(proj.seoDesc || "");
+    } else {
+      resetProjectForm();
+    }
+    setProjectEditorOpen(true);
+  };
+
+  const handleSaveProject = async () => {
+    if (!projectTitle.trim() || !projectSlug.trim() || !projectOverview.trim()) {
+      alert("Title, slug, and overview are required.");
+      return;
+    }
+    setProjectLoading(true);
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const payload = {
+        id: projectId || undefined,
+        title: projectTitle,
+        slug: projectSlug,
+        overview: projectOverview,
+        features: projectFeatures.split(",").map((s: string) => s.trim()).filter(Boolean),
+        challenges: projectChallenges || null,
+        architecture: projectArchitecture || null,
+        techStack: projectTechStack.split(",").map((s: string) => s.trim()).filter(Boolean),
+        schemaUrl: projectSchemaUrl || null,
+        apiFlow: projectApiFlow || null,
+        deployment: projectDeployment || null,
+        gallery: projectGallery,
+        demoVideo: projectDemoVideo || null,
+        liveUrl: projectLiveUrl || null,
+        githubUrl: projectGithubUrl || null,
+        performance: projectPerformance || null,
+        seoTitle: projectSeoTitle || projectTitle,
+        seoDesc: projectSeoDesc || projectOverview,
+      };
+
+      const method = projectId ? "PUT" : "POST";
+      const res = await fetch("/api/admin/projects", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setProjectEditorOpen(false);
+        resetProjectForm();
+        fetchProjects();
+      } else {
+        alert(result.error || "Failed to save project.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error saving project.");
+    } finally {
+      setProjectLoading(false);
+    }
+  };
+
+  const handleDeleteProject = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this project?")) return;
+    if ((window as any).playClickSound) (window as any).playClickSound();
+    try {
+      const res = await fetch(`/api/admin/projects?id=${id}`, { method: "DELETE" });
+      const result = await res.json();
+      if (result.success) {
+        fetchProjects();
+        if (projectId === id) resetProjectForm();
+      } else {
+        alert(result.error || "Failed to delete project.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Network error deleting project.");
+    }
+  };
+
+  const handleProjectGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    setProjectImageUploading(true);
+    try {
+      for (let i = 0; i < files.length; i++) {
+        const form = new FormData();
+        form.append("image", files[i]);
+        const res = await fetch("/api/admin/blogs/upload", { method: "POST", body: form });
+        const result = await res.json();
+        if (result.success && result.url) {
+          setProjectGallery((prev) => [...prev, result.url]);
+        }
+      }
+    } catch {
+      alert("Network error uploading image.");
+    } finally {
+      setProjectImageUploading(false);
+    }
+  };
+
+  const removeProjectGalleryImage = (index: number) => {
+    setProjectGallery((prev) => prev.filter((_, i) => i !== index));
   };
 
   // Authenticate user check
@@ -653,6 +831,7 @@ export default function AdminDashboard() {
       fetchBlogs();
       fetchResume();
       fetchExperiences();
+      fetchProjects();
     }
   }, [status]);
 
@@ -838,6 +1017,7 @@ export default function AdminDashboard() {
               { id: "messages", name: "Messages", icon: Mail, count: totalMsgsCount },
               { id: "subscribers", name: "Newsletter", icon: FileDown, count: subscribers.length },
               { id: "visitors", name: "Visitor Log", icon: Users, count: totalVisits },
+              { id: "projects", name: "Projects Arsenal", icon: Package, count: projects.length },
               { id: "blogs", name: "Blog Ledger", icon: FileText, count: blogs.length },
               { id: "experience", name: "Timeline Manager", icon: Briefcase, count: experiences.length },
               { id: "integrations", name: "Integrations Sync", icon: Cpu },
@@ -1688,6 +1868,246 @@ export default function AdminDashboard() {
                       </div>
                     )}
                   </div>
+                </div>
+              )}
+
+              {/* Projects Manager */}
+              {activeTab === "projects" && (
+                <div className="space-y-8">
+                  {!projectEditorOpen ? (
+                    <>
+                      {/* Projects List */}
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-b border-zinc-900 pb-3 mb-1">
+                            Projects Arsenal Manager
+                          </h3>
+                          <p className="text-[11px] text-zinc-500 font-sans">
+                            Manage portfolio projects. Each project gets its own dedicated page.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => handleOpenProjectEditor()}
+                          className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-5 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs active:scale-95"
+                        >
+                          <Plus className="w-4 h-4" />
+                          New Project
+                        </button>
+                      </div>
+
+                      {projects.length === 0 ? (
+                        <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-12 text-center text-zinc-600 font-mono text-xs uppercase tracking-widest">
+                          No projects in database. Create your first project.
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 gap-4">
+                          {projects.map((proj) => (
+                            <div key={proj.id} className="bg-zinc-950 border border-zinc-900 rounded-xl p-5 flex gap-4">
+                              {/* Thumbnail */}
+                              {proj.gallery?.[0] && (
+                                <img src={proj.gallery[0]} alt={proj.title} className="w-24 h-24 object-cover rounded-lg border border-zinc-800 shrink-0" />
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="min-w-0">
+                                    <h4 className="text-sm font-bold text-white truncate">{proj.title}</h4>
+                                    <p className="text-[10px] font-mono text-cyan-400 mt-0.5">/projects/{proj.slug}</p>
+                                  </div>
+                                  <div className="flex gap-2 shrink-0">
+                                    <button
+                                      onClick={() => handleOpenProjectEditor(proj)}
+                                      className="text-[9px] font-mono text-cyan-400 hover:text-cyan-300 border border-zinc-800 hover:border-cyan-900 bg-black/60 px-2.5 py-1 rounded transition-all uppercase tracking-wider cursor-pointer"
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      onClick={() => handleDeleteProject(proj.id)}
+                                      className="text-[9px] font-mono text-red-500 hover:text-red-400 border border-zinc-800 hover:border-red-900 bg-black/60 px-2.5 py-1 rounded transition-all uppercase tracking-wider cursor-pointer"
+                                    >
+                                      Delete
+                                    </button>
+                                  </div>
+                                </div>
+                                <p className="text-xs text-zinc-500 mt-2 line-clamp-2 font-sans">{proj.overview}</p>
+                                <div className="flex flex-wrap gap-1.5 mt-2">
+                                  {proj.techStack?.slice(0, 5).map((t: string) => (
+                                    <span key={t} className="text-[9px] font-mono bg-zinc-900 text-zinc-400 px-2 py-0.5 rounded border border-zinc-800">{t}</span>
+                                  ))}
+                                  {proj.techStack?.length > 5 && (
+                                    <span className="text-[9px] font-mono text-zinc-600">+{proj.techStack.length - 5}</span>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-3 mt-2 text-[9px] font-mono text-zinc-600 uppercase tracking-wider">
+                                  {proj.liveUrl && <span className="text-emerald-500">Live</span>}
+                                  {proj.githubUrl && <span className="text-zinc-400">GitHub</span>}
+                                  {proj.performance && <span className="text-amber-500">LHS: {proj.performance}</span>}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {/* Project Editor */}
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400">
+                          {projectId ? "Edit Project" : "Create New Project"}
+                        </h3>
+                        <button
+                          onClick={() => { setProjectEditorOpen(false); resetProjectForm(); }}
+                          className="text-zinc-500 hover:text-white transition-colors cursor-pointer p-1"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 space-y-5">
+                        {/* Basic Info */}
+                        <div className="space-y-4">
+                          <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border-b border-zinc-800/50 pb-2">Basic Information</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Project Title *</label>
+                              <input type="text" value={projectTitle} onChange={(e) => setProjectTitle(e.target.value)} placeholder="Stark-Tech Spider OS" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">URL Slug *</label>
+                              <input type="text" value={projectSlug} onChange={(e) => setProjectSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))} placeholder="stark-spider-os" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-mono" />
+                            </div>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Overview *</label>
+                            <textarea value={projectOverview} onChange={(e) => setProjectOverview(e.target.value)} placeholder="A brief description of the project..." rows={3} className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans resize-none" />
+                          </div>
+                        </div>
+
+                        {/* Tech & Features */}
+                        <div className="space-y-4">
+                          <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border-b border-zinc-800/50 pb-2">Tech & Features</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Tech Stack (comma separated)</label>
+                              <input type="text" value={projectTechStack} onChange={(e) => setProjectTechStack(e.target.value)} placeholder="Next.js, React, Prisma" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Performance Score (Lighthouse)</label>
+                              <input type="number" min="0" max="100" value={projectPerformance} onChange={(e) => setProjectPerformance(e.target.value ? Number(e.target.value) : "")} placeholder="98" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-mono" />
+                            </div>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Features (comma separated)</label>
+                            <input type="text" value={projectFeatures} onChange={(e) => setProjectFeatures(e.target.value)} placeholder="Real-time analysis, AI refactoring, CI/CD integration" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                          </div>
+                        </div>
+
+                        {/* Technical Details */}
+                        <div className="space-y-4">
+                          <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border-b border-zinc-800/50 pb-2">Technical Details</h4>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Challenges</label>
+                            <textarea value={projectChallenges} onChange={(e) => setProjectChallenges(e.target.value)} placeholder="Engineering challenges faced..." rows={3} className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans resize-none" />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Architecture</label>
+                            <textarea value={projectArchitecture} onChange={(e) => setProjectArchitecture(e.target.value)} placeholder="Architecture description..." rows={3} className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans resize-none" />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Schema / DB Info</label>
+                              <input type="text" value={projectSchemaUrl} onChange={(e) => setProjectSchemaUrl(e.target.value)} placeholder="Prisma schema description" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">API Flow</label>
+                              <input type="text" value={projectApiFlow} onChange={(e) => setProjectApiFlow(e.target.value)} placeholder="POST /api/analyze -> ..." className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Deployment</label>
+                            <input type="text" value={projectDeployment} onChange={(e) => setProjectDeployment(e.target.value)} placeholder="Deployed on Vercel with serverless functions" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                          </div>
+                        </div>
+
+                        {/* Links */}
+                        <div className="space-y-4">
+                          <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border-b border-zinc-800/50 pb-2">Links & Media</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Live URL</label>
+                              <input type="url" value={projectLiveUrl} onChange={(e) => setProjectLiveUrl(e.target.value)} placeholder="https://..." className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">GitHub URL</label>
+                              <input type="url" value={projectGithubUrl} onChange={(e) => setProjectGithubUrl(e.target.value)} placeholder="https://github.com/..." className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Demo Video URL</label>
+                            <input type="url" value={projectDemoVideo} onChange={(e) => setProjectDemoVideo(e.target.value)} placeholder="https://youtube.com/..." className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                          </div>
+
+                          {/* Gallery Upload */}
+                          <div className="space-y-2">
+                            <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Gallery Images</label>
+                            {projectGallery.length > 0 && (
+                              <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
+                                {projectGallery.map((url, i) => (
+                                  <div key={i} className="relative group">
+                                    <img src={url} alt={`Gallery ${i + 1}`} className="w-full h-24 object-cover rounded-lg border border-zinc-800" />
+                                    <button
+                                      type="button"
+                                      onClick={() => removeProjectGalleryImage(i)}
+                                      className="absolute top-1 right-1 bg-red-600 hover:bg-red-500 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                                    >
+                                      <X className="w-3 h-3" />
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            <label className="flex items-center justify-center gap-2 w-full bg-zinc-900 border border-zinc-800 border-dashed rounded-xl px-3.5 py-6 text-xs text-zinc-500 cursor-pointer hover:border-cyan-500/40 transition-colors">
+                              <Upload className="w-4 h-4" />
+                              <span>{projectImageUploading ? "Uploading..." : "Upload gallery images"}</span>
+                              <input type="file" accept="image/*" multiple className="hidden" onChange={handleProjectGalleryUpload} disabled={projectImageUploading} />
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* SEO */}
+                        <div className="space-y-4">
+                          <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#00E5FF] border-b border-zinc-800/50 pb-2">SEO</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">SEO Title</label>
+                              <input type="text" value={projectSeoTitle} onChange={(e) => setProjectSeoTitle(e.target.value)} placeholder="Defaults to project title" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest pl-1">SEO Description</label>
+                              <input type="text" value={projectSeoDesc} onChange={(e) => setProjectSeoDesc(e.target.value)} placeholder="Defaults to overview" className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-cyan-500/40 text-xs font-sans" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Save Button */}
+                        <div className="flex gap-3 pt-2">
+                          <button
+                            onClick={handleSaveProject}
+                            disabled={projectLoading}
+                            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-8 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs active:scale-95 disabled:opacity-50"
+                          >
+                            {projectLoading ? "Saving..." : projectId ? "Update Project" : "Create Project"}
+                          </button>
+                          <button
+                            onClick={() => { setProjectEditorOpen(false); resetProjectForm(); }}
+                            className="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-400 py-2.5 px-6 rounded-xl cursor-pointer transition-colors uppercase tracking-wider text-xs"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
 

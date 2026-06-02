@@ -5,17 +5,21 @@ import { useAnalytics } from "../context";
 import MetricCard from "@/components/analytics/MetricCard";
 import UnifiedHeatmap from "@/components/analytics/UnifiedHeatmap";
 import ScoreRadar from "@/components/analytics/ScoreRadar";
-import { Flame, Cpu, Activity } from "lucide-react";
+import { Flame, Cpu, Activity, GitBranch, Code2 } from "lucide-react";
 
 export default function AnalyticsOverview() {
   const { stats } = useAnalytics();
   if (!stats) return null;
 
   const agg = stats.aggregates as Record<string, unknown> | undefined;
-  const heatmapData =
-    (agg?.unifiedHeatmap as { date: string; count: number }[] | undefined) ||
-    (stats.github as { heatmap?: { date: string; count: number }[] })?.heatmap ||
-    [];
+
+  // Separate heatmaps
+  const githubHeatmap =
+    (stats.github as { heatmap?: { date: string; count: number }[] })?.heatmap || [];
+
+  // DSA heatmap from leetcode
+  const leetcodeData = stats.leetcode as { heatmap?: { date: string; count: number }[] } | undefined;
+  const dsaHeatmap = leetcodeData?.heatmap || [];
 
   const scoreEntries = [
     { name: "DSA Score", key: "dsaScore" },
@@ -80,11 +84,25 @@ export default function AnalyticsOverview() {
         <ScoreRadar scores={(stats.scores as Record<string, number | null>) || {}} />
       </div>
 
+      {/* GitHub Heatmap */}
       <UnifiedHeatmap
-        data={heatmapData}
-        longestStreak={(stats.heatmapStats as { longestStreak?: number })?.longestStreak || (agg?.maxStreak as number) || 0}
-        totalActivity={(agg?.totalCommits as number) || 0}
+        data={githubHeatmap}
+        title="GitHub Contribution Heatmap"
+        longestStreak={(stats.heatmapStats as { longestStreak?: number })?.longestStreak || 0}
+        totalActivity={githubHeatmap.reduce((sum, c) => sum + c.count, 0)}
+        variant="github"
       />
+
+      {/* DSA Heatmap */}
+      {dsaHeatmap.length > 0 && (
+        <UnifiedHeatmap
+          data={dsaHeatmap}
+          title="DSA Problem Solving Heatmap"
+          longestStreak={0}
+          totalActivity={dsaHeatmap.reduce((sum, c) => sum + c.count, 0)}
+          variant="dsa"
+        />
+      )}
     </div>
   );
 }

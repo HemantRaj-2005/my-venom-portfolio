@@ -517,6 +517,9 @@ export async function syncDeveloperStats(
           streak: syncResults.leetcode.streak || 0,
           ranking: syncResults.leetcode.ranking || 0,
           contestRating: syncResults.leetcode.contestRating || 0,
+          heatmap: syncResults.leetcode.heatmap
+            ? JSON.parse(syncResults.leetcode.heatmap as string)
+            : [],
           contestRank: syncResults.leetcode.contestRank || "N/A",
           contestHistory: syncResults.leetcode.contestHistory
             ? JSON.parse(syncResults.leetcode.contestHistory as string)

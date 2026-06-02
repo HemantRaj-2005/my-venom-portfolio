@@ -297,6 +297,7 @@ export async function scrapeLeetcode(username: string) {
     let acceptance = "0%";
     let ranking = 0;
     let streak = 0;
+    let leetcodeHeatmap: { date: string; count: number }[] = [];
 
     const matched = stats.matchedUser as {
       submitStatsGlobal?: {
@@ -324,10 +325,13 @@ export async function scrapeLeetcode(username: string) {
       if (matched.userCalendar?.submissionCalendar) {
         try {
           const cal = JSON.parse(matched.userCalendar.submissionCalendar) as Record<string, number>;
-          const dates = Object.keys(cal).sort();
-          streak = calculateStreak(
-            dates.map((d) => ({ date: new Date(parseInt(d, 10) * 1000).toISOString().split("T")[0], count: cal[d] }))
-          );
+          leetcodeHeatmap = Object.entries(cal)
+            .map(([ts, count]) => ({
+              date: new Date(parseInt(ts, 10) * 1000).toISOString().split("T")[0],
+              count,
+            }))
+            .sort((a, b) => a.date.localeCompare(b.date));
+          streak = calculateStreak(leetcodeHeatmap);
         } catch {
           /* streak stays 0 */
         }
@@ -392,6 +396,7 @@ export async function scrapeLeetcode(username: string) {
         contestRank,
         contestHistory: JSON.stringify(contestLogs),
         topicSolve: JSON.stringify(topicSolve),
+        heatmap: JSON.stringify(leetcodeHeatmap),
       },
     };
   } catch (e: unknown) {

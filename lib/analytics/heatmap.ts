@@ -20,6 +20,11 @@ export interface HeatmapStats {
   yearly: { year: string; count: number }[];
 }
 
+export interface SeparateHeatmaps {
+  github: HeatmapCell[];
+  dsa: HeatmapCell[];
+}
+
 function mergePlatformHeatmaps(
   platforms: { name: string; data: HeatmapCell[] }[]
 ): UnifiedHeatmapCell[] {
@@ -114,6 +119,15 @@ export function buildUnifiedHeatmap(
     }
   }
 
+  const lc = syncResults.leetcode as { heatmap?: string } | undefined;
+  if (lc?.heatmap) {
+    try {
+      platformHeatmaps.push({ name: "leetcode", data: JSON.parse(lc.heatmap) });
+    } catch {
+      /* skip */
+    }
+  }
+
   const daily = mergePlatformHeatmaps(platformHeatmaps);
   const { currentStreak, longestStreak } = computeStreaks(daily);
   const activeDays = daily.filter((c) => c.count > 0).length;
@@ -140,10 +154,46 @@ export function buildUnifiedHeatmap(
   };
 }
 
+export function buildSeparateHeatmaps(
+  syncResults: Record<string, unknown>
+): SeparateHeatmaps {
+  const githubCells: HeatmapCell[] = [];
+  const dsaCells: HeatmapCell[] = [];
+
+  // GitHub heatmap
+  const gh = syncResults.github as { heatmap?: string } | undefined;
+  if (gh?.heatmap) {
+    try {
+      githubCells.push(...JSON.parse(gh.heatmap));
+    } catch { /* skip */ }
+  }
+
+  // LeetCode heatmap (DSA)
+  const lc = syncResults.leetcode as { heatmap?: string } | undefined;
+  if (lc?.heatmap) {
+    try {
+      dsaCells.push(...JSON.parse(lc.heatmap));
+    } catch { /* skip */ }
+  }
+
+  return {
+    github: githubCells.sort((a, b) => a.date.localeCompare(b.date)),
+    dsa: dsaCells.sort((a, b) => a.date.localeCompare(b.date)),
+  };
+}
+
 export function getHeatmapColor(count: number): string {
   if (count === 0) return "bg-zinc-950 border-zinc-950/60";
   if (count <= 2) return "bg-[#0b2838] border-cyan-950/10";
   if (count <= 4) return "bg-[#0f4b62] border-cyan-800/20";
   if (count <= 6) return "bg-[#147a96] border-cyan-600/20";
   return "bg-cyan-400 border-cyan-300/30";
+}
+
+export function getDsaHeatmapColor(count: number): string {
+  if (count === 0) return "bg-zinc-950 border-zinc-950/60";
+  if (count <= 2) return "bg-[#2d1b3d] border-purple-950/10";
+  if (count <= 4) return "bg-[#4a2060] border-purple-800/20";
+  if (count <= 6) return "bg-[#7c3aed] border-purple-600/20";
+  return "bg-purple-400 border-purple-300/30";
 }
