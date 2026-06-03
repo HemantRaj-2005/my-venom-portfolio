@@ -4,6 +4,7 @@ import React from "react";
 import { useAnalytics } from "../context";
 import MetricCard from "@/components/analytics/MetricCard";
 import UnifiedHeatmap from "@/components/analytics/UnifiedHeatmap";
+import PlatformCalendar from "@/components/analytics/PlatformCalendar";
 import ScoreRadar from "@/components/analytics/ScoreRadar";
 import { Flame, Cpu, Activity, GitBranch, Code2 } from "lucide-react";
 
@@ -20,6 +21,8 @@ export default function AnalyticsOverview() {
   // DSA heatmap from leetcode
   const leetcodeData = stats.leetcode as { heatmap?: { date: string; count: number }[] } | undefined;
   const dsaHeatmap = leetcodeData?.heatmap || [];
+
+  // Combined data for calendar
 
   const scoreEntries = [
     { name: "DSA Score", key: "dsaScore" },
@@ -82,6 +85,27 @@ export default function AnalyticsOverview() {
           </div>
         </div>
         <ScoreRadar scores={(stats.scores as Record<string, number | null>) || {}} />
+      </div>
+
+      {/* Separate Platform Calendars with Year Selector */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <PlatformCalendar
+          data={githubHeatmap}
+          title="GitHub Activity"
+          variant="github"
+          onDateSelect={(date) => {
+            console.log("GitHub selected date:", date);
+          }}
+        />
+
+        <PlatformCalendar
+          data={dsaHeatmap}
+          title="DSA / CP Activity"
+          variant="dsa"
+          onDateSelect={(date) => {
+            console.log("DSA selected date:", date);
+          }}
+        />
       </div>
 
       {/* GitHub Heatmap */}

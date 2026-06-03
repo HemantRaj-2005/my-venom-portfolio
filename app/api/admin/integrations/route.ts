@@ -137,6 +137,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, profile, stats });
   } catch (e) {
     console.error("Integrations save error:", e);
-    return NextResponse.json({ error: "Failed to update configuration details." }, { status: 500 });
+    const errorMessage = e instanceof Error ? e.message : "Failed to update configuration details.";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
