@@ -146,11 +146,13 @@ async function persistPlatformData(platform: Platform, data: Record<string, unkn
       }
       break;
 
-    case "leetcode":
+    case "leetcode": {
+      const { heatmap: _h, ...leetcodeDbData } = data;
+      const leetcodeRecord = leetcodeDbData as never;
       await db.leetcodeProfile.upsert({
         where: { username: data.username as string },
-        update: record,
-        create: record,
+        update: leetcodeRecord,
+        create: leetcodeRecord,
       });
       await db.leetcodeHistory.create({
         data: {
@@ -185,6 +187,7 @@ async function persistPlatformData(platform: Platform, data: Record<string, unkn
         }
       }
       break;
+    }
 
     case "codeforces":
       await db.codeforcesProfile.upsert({
