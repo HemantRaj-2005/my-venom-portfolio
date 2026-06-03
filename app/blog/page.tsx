@@ -60,8 +60,33 @@ export default function BlogIndexPage() {
         p.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())))
   );
 
+  const blogSchema = posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "The Stark Ledger - Technical Blog by Hemant Raj",
+    "description": "Chronicles of software engineering, algorithms tutorials, and machine learning articles.",
+    "url": "https://hemantraj.dev/blog",
+    "blogPost": posts.map((post) => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.summary,
+      "url": `https://hemantraj.dev/blog/${post.slug}`,
+      "datePublished": post.createdAt,
+      "author": {
+        "@type": "Person",
+        "name": "Hemant Raj"
+      }
+    }))
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
+      {blogSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+        />
+      )}
       {/* Background glow overlay */}
       <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
 
@@ -142,7 +167,7 @@ export default function BlogIndexPage() {
                   <div className="relative w-full h-48 md:h-56 rounded-xl overflow-hidden border border-zinc-800/50">
                     <Image
                       src={post.featuredImage}
-                      alt={post.title}
+                      alt={`Featured cover illustration for: ${post.title}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 768px"
@@ -169,9 +194,11 @@ export default function BlogIndexPage() {
                 {/* Article Header title */}
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00E5FF] transition-colors duration-200"
+                  className="group"
                 >
-                  {post.title}
+                  <h2 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00E5FF] transition-colors duration-200">
+                    {post.title}
+                  </h2>
                 </Link>
 
                 <p className="text-sm text-zinc-400 font-sans leading-relaxed">

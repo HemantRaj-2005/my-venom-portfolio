@@ -6,11 +6,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let projectUrls: any[] = [];
   let postUrls: any[] = [];
+  let productUrls: any[] = [];
 
   try {
-    const [projects, posts] = await Promise.all([
+    const [projects, posts, products] = await Promise.all([
       db.project.findMany(),
-      db.post.findMany({ where: { published: true } })
+      db.post.findMany({ where: { published: true } }),
+      db.product.findMany({ where: { isApproved: true } })
     ]);
 
     projectUrls = (projects as any[]).map((p: any) => ({
@@ -22,6 +24,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     postUrls = (posts as any[]).map((p: any) => ({
       url: `${baseUrl}/blog/${p.slug}`,
+      lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
+
+    productUrls = (products as any[]).map((p: any) => ({
+      url: `${baseUrl}/marketplace/${p.id}`,
       lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
@@ -57,5 +66,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  return [...staticUrls, ...projectUrls, ...postUrls];
+  return [...staticUrls, ...projectUrls, ...postUrls, ...productUrls];
 }

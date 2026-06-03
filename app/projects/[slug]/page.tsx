@@ -21,14 +21,28 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   if (!project) return { title: "Dossier Not Found" };
 
+  const title = `${project.title} | Software Engineering Project by Hemant Raj`;
+  const description = project.seoDesc || project.overview;
+
   return {
-    title: `${project.title} - AI Engineer Portfolio`,
-    description: project.seoDesc || project.overview,
-    openGraph: {
-      title: project.seoTitle || project.title,
-      description: project.seoDesc || project.overview,
-      images: project.gallery.length > 0 ? [{ url: project.gallery[0] }] : [],
+    title,
+    description,
+    alternates: {
+      canonical: `/projects/${slug}`,
     },
+    openGraph: {
+      title: project.seoTitle || title,
+      description,
+      images: project.gallery.length > 0 ? [{ url: project.gallery[0] }] : [],
+      type: "website",
+      url: `/projects/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.seoTitle || title,
+      description,
+      images: project.gallery.length > 0 ? [project.gallery[0]] : [],
+    }
   };
 }
 
@@ -45,8 +59,34 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": project.title,
+    "description": project.overview,
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows",
+    "softwareVersion": "1.0.0",
+    "downloadUrl": project.githubUrl || undefined,
+    "featureList": project.features,
+    "author": {
+      "@type": "Person",
+      "name": "Hemant Raj",
+      "url": "https://hemantraj.dev"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       {/* Background elements */}
       <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
       <div className="absolute w-[400px] h-[400px] bg-[#E11D2E]/2 rounded-full blur-[120px] bottom-1/4 left-[-100px] pointer-events-none" />
@@ -55,7 +95,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <div className="relative h-[40vh] md:h-[50vh] bg-zinc-950 border-b border-[#00E5FF]/15 select-none">
         <Image
           src={project.gallery[0] || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=60"}
-          alt={project.title}
+          alt={`Full screen showcase cover banner for the ${project.title} software engineering project by Hemant Raj`}
           fill
           className="object-cover opacity-35"
           priority
@@ -240,7 +280,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   <div key={idx} className="relative h-44 rounded-xl border border-zinc-900 overflow-hidden bg-zinc-900 shadow">
                     <Image
                       src={image}
-                      alt={`${project.title} Screenshot ${idx + 1}`}
+                      alt={`System interface dashboard screenshot ${idx + 1} for ${project.title} application portfolio`}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-300"
                     />

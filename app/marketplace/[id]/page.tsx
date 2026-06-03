@@ -24,9 +24,28 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   if (!product) return { title: "Product Not Found" };
 
+  const title = `${product.title} | Code Asset on Stark-Tech Marketplace`;
+  const description = product.description;
+
   return {
-    title: `${product.title} - Stark-Tech Code Marketplace`,
-    description: product.description,
+    title,
+    description,
+    alternates: {
+      canonical: `/marketplace/${id}`,
+    },
+    openGraph: {
+      title,
+      description,
+      images: product.image ? [{ url: product.image }] : [],
+      url: `/marketplace/${id}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: product.image ? [product.image] : [],
+    }
   };
 }
 
@@ -49,14 +68,39 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       ? (ratings.reduce((acc, r) => acc + (r.rating ?? 0), 0) / ratings.length).toFixed(1)
       : "5.0";
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.title,
+    "description": product.description,
+    "image": product.image || undefined,
+    "category": product.category,
+    "offers": {
+      "@type": "Offer",
+      "price": product.price || "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": `https://hemantraj.dev/marketplace/${product.id}`
+    },
+    "aggregateRating": ratings.length > 0 ? {
+      "@type": "AggregateRating",
+      "ratingValue": averageRating,
+      "reviewCount": ratings.length
+    } : undefined
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="absolute w-[450px] h-[450px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/4 right-[-100px] pointer-events-none" />
 
       <div className="relative h-[30vh] bg-zinc-950 border-b border-[#00E5FF]/15 select-none">
         <Image
           src={product.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=60"}
-          alt={product.title}
+          alt={`Product detail display illustration for code asset: ${product.title}`}
           fill
           className="object-cover opacity-25"
           priority

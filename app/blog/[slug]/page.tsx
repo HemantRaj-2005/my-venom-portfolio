@@ -19,13 +19,29 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) return { title: "Article Not Found" };
 
+  const title = `${post.title} | Technical Blog by Hemant Raj`;
+  const description = post.summary || "Technical chronicles.";
+
   return {
-    title: `${post.title} - The Stark Ledger`,
-    description: post.summary || "Technical chronicles.",
-    openGraph: {
-      title: post.seoTitle || post.title,
-      description: post.seoDesc || post.summary || "Technical blog article details.",
+    title,
+    description,
+    alternates: {
+      canonical: `/blog/${slug}`,
     },
+    openGraph: {
+      title: post.seoTitle || title,
+      description: post.seoDesc || description,
+      url: `/blog/${slug}`,
+      type: "article",
+      publishedTime: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+      modifiedTime: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+      authors: ["Hemant Raj"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.seoTitle || title,
+      description: post.seoDesc || description,
+    }
   };
 }
 
@@ -43,8 +59,36 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": post.title,
+    "description": post.summary || undefined,
+    "image": post.featuredImage || undefined,
+    "datePublished": post.createdAt,
+    "dateModified": post.updatedAt,
+    "author": {
+      "@type": "Person",
+      "name": "Hemant Raj",
+      "url": "https://hemantraj.dev"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Hemant Raj"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://hemantraj.dev/blog/${post.slug}`
+    },
+    "keywords": post.tags.join(", ")
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans pb-24 relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* Dynamic Scroll Progress Bar */}
       <BlogScrollProgress />
 
@@ -87,7 +131,7 @@ export default async function BlogPostDetailPage({ params }: BlogPostPageProps) 
           <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden border border-zinc-800/50 mt-6">
             <Image
               src={post.featuredImage}
-              alt={post.title}
+              alt={`Featured cover image for technical ledger article: ${post.title}`}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 896px"

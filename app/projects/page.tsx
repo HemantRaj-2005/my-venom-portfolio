@@ -89,8 +89,33 @@ export default function ProjectsPage() {
         p.techStack.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())))
   );
 
+  const projectsSchema = projects.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Hemant Raj - Software Engineering Projects Showcase",
+    "description": "Dossiers of full stack applications, AI tools, and system designs built by Hemant Raj.",
+    "url": "https://hemantraj.dev/projects",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": projects.length,
+      "itemListElement": projects.map((proj, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "url": `https://hemantraj.dev/projects/${proj.slug}`,
+        "name": proj.title,
+        "description": proj.overview
+      }))
+    }
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
+      {projectsSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsSchema) }}
+        />
+      )}
       {/* Background Ambient lights */}
       <div className="absolute w-[500px] h-[500px] bg-red-500/2 rounded-full blur-[150px] top-[-100px] right-[-100px] pointer-events-none animate-pulse" />
       <div className="absolute w-[400px] h-[400px] bg-cyan-500/2 rounded-full blur-[100px] bottom-[-100px] left-[-100px] pointer-events-none" />
@@ -194,7 +219,7 @@ export default function ProjectsPage() {
                 <div className="h-44 relative overflow-hidden bg-zinc-900">
                   <Image
                     src={proj.gallery[0] || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60"}
-                    alt={proj.title}
+                    alt={`Interactive system screenshot and dashboard preview of the ${proj.title} software project by Hemant Raj`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-115 group-hover:rotate-1"
                   />

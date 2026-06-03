@@ -20,10 +20,28 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
   const [resumeViewerOpen, setResumeViewerOpen] = useState(false);
-  const [experiences, setExperiences] = useState<any[]>([]);
+  const [experiences, setExperiences] = useState<any[]>([
+    {
+      id: "default-exp-1",
+      year: "2024",
+      title: "Software Engineering Intern / AI Intern",
+      description: "Engineered scalable backend systems and integrated large language models (LLM applications). Optimized database designs and designed microservices using React, Next.js, Django, and Python.",
+    },
+    {
+      id: "default-exp-2",
+      year: "2023",
+      title: "Full Stack Developer / Web Developer Intern",
+      description: "Developed modern web applications and single page applications (SPA) using React.js and Django REST Framework. Automated cloud deployments and setup CI/CD pipelines.",
+    }
+  ]);
 
   // Typewriter: displayed text in state (for rendering), all logic in refs
-  const [words, setWords] = useState<string[]>([]);
+  const [words, setWords] = useState<string[]>([
+    "AI Engineer",
+    "Full Stack Developer",
+    "Competitive Programmer",
+    "Software Engineer"
+  ]);
   const [displayText, setDisplayText] = useState("");
 
   // All typewriter machine state lives in a single ref — never causes re-renders
@@ -77,7 +95,23 @@ export default function Home() {
   }, [loading, words]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
-  const [faqs, setFaqs] = useState<{ id: string; question: string; answer: string }[]>([]);
+  const [faqs, setFaqs] = useState<{ id: string; question: string; answer: string }[]>([
+    {
+      id: "faq-1",
+      question: "What programming languages and frameworks do you specialize in?",
+      answer: "I specialize in modern software engineering with Python (Django, FastAPI), JavaScript/TypeScript (Next.js, React.js, Express.js), Java, and C++. For databases, I use MongoDB, PostgreSQL, and Redis, deployed with Docker on AWS and Google Cloud."
+    },
+    {
+      id: "faq-2",
+      question: "Do you have experience building artificial intelligence and machine learning applications?",
+      answer: "Yes! As an AI Engineer, I develop Generative AI and LLM applications using LangChain, OpenAI API, and vector databases. I specialize in Retrieval Augmented Generation (RAG systems) and custom agentic AI chatbots."
+    },
+    {
+      id: "faq-3",
+      question: "How do you prepare for competitive programming and DSA problem solving?",
+      answer: "I am an active Competitive Programmer on LeetCode, Codeforces, and GeeksforGeeks. I focus on advanced algorithms, dynamic programming, graphs, and trees, solving complex problems daily to keep my analytical skills sharp for coding interview preparation."
+    }
+  ]);
 
   // Log visitor view analytics, fetch FAQs, profile, and experiences
   useEffect(() => {
@@ -153,6 +187,43 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "mainEntity": {
+              "@type": "Person",
+              "name": "Hemant Raj",
+              "alternateName": ["Hemant Raj Developer", "Hemant Raj AI Engineer", "Hemant Raj Programmer"],
+              "description": "AI Engineer & Full Stack Developer specializing in Next.js, React, Django, and LLM Applications.",
+              "image": "https://hemantraj.dev/hero.png",
+              "jobTitle": "Software Engineer",
+              "knowsAbout": [
+                "Software Engineering",
+                "Artificial Intelligence",
+                "Machine Learning",
+                "Full Stack Development",
+                "Data Structures",
+                "Algorithms",
+                "Competitive Programming",
+                "Next.js",
+                "React.js",
+                "Django",
+                "TypeScript",
+                "Python"
+              ],
+              "url": "https://hemantraj.dev",
+              "sameAs": [
+                "https://github.com/hemantraj2005",
+                "https://leetcode.com/hemantraj2005",
+                "https://codeforces.com/profile/hemantraj2005"
+              ]
+            }
+          })
+        }}
+      />
       {/* 1. Cinematic Spider-Verse loading screen */}
       <LoadingScreen onComplete={() => setLoading(false)} />
 
@@ -185,7 +256,7 @@ export default function Home() {
                 </h1>
 
                 <p className="text-zinc-400 text-sm md:text-base font-sans max-w-lg leading-relaxed select-text">
-                  {profile?.bio || "I’m a passionate full-stack developer who enjoys building fast, scalable, and user-centric web applications. My goal is to solve real-world problems with clean code and innovative solutions."}
+                  {profile?.bio || "I’m Hemant Raj, a Computer Science Student and Full Stack Software Engineer specializing in building scalable systems, distributed systems, and AI-powered applications. With deep expertise in Data Structures and Algorithms (DSA), Next.js React frontend engineering, and Django backend development, I create production-grade developer tools and web applications."}
                 </p>
 
                 {/* CTAs Button list */}

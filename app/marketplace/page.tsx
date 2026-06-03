@@ -74,8 +74,33 @@ export default function MarketplacePage() {
         p.category.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
+  const marketplaceSchema = products.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Stark-Tech Code Marketplace - SaaS templates & codebases",
+    "description": "Acquire high-quality production-grade SaaS boilerplates, neural model weights, and custom UI kits.",
+    "url": "https://hemantraj.dev/marketplace",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": products.length,
+      "itemListElement": products.map((prod, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "url": `https://hemantraj.dev/marketplace/${prod.id}`,
+        "name": prod.title,
+        "description": prod.description
+      }))
+    }
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 py-24 px-6 md:px-12 relative overflow-hidden font-sans">
+      {marketplaceSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(marketplaceSchema) }}
+        />
+      )}
       {/* Background glow */}
       <div className="absolute w-[500px] h-[500px] bg-[#00E5FF]/2 rounded-full blur-[140px] top-1/3 left-1/3 pointer-events-none" />
 
@@ -145,7 +170,7 @@ export default function MarketplacePage() {
                   <div className="w-full md:w-44 h-44 relative rounded-xl overflow-hidden shrink-0 bg-zinc-900">
                     <Image
                       src={prod.image}
-                      alt={prod.title}
+                      alt={`Featured SaaS template thumbnail: ${prod.title}`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -158,9 +183,9 @@ export default function MarketplacePage() {
                         </span>
                         <div className="text-lg font-black text-white font-mono">${prod.price.toFixed(2)}</div>
                       </div>
-                      <h3 className="text-base font-bold text-white mt-3 group-hover:text-[#00E5FF] transition-colors">
+                      <h2 className="text-base font-bold text-white mt-3 group-hover:text-[#00E5FF] transition-colors">
                         {prod.title}
-                      </h3>
+                      </h2>
                       <p className="text-xs text-zinc-400 mt-2 font-sans line-clamp-2 leading-relaxed">
                         {prod.description}
                       </p>
@@ -213,7 +238,7 @@ export default function MarketplacePage() {
                   <div className="h-44 relative bg-zinc-900 overflow-hidden">
                     <Image
                       src={prod.image}
-                      alt={prod.title}
+                      alt={`Developer code asset preview: ${prod.title}`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -224,9 +249,9 @@ export default function MarketplacePage() {
 
                   <div className="p-6">
                     <div className="flex justify-between items-start gap-4">
-                      <h3 className="text-sm font-bold text-white group-hover:text-[#00E5FF] transition-colors leading-relaxed">
-                        {prod.title}
-                      </h3>
+                    <h2 className="text-sm font-bold text-white group-hover:text-[#00E5FF] transition-colors leading-relaxed">
+                      {prod.title}
+                    </h2>
                       <div className="text-sm font-bold text-[#00E5FF] font-mono">${prod.price.toFixed(2)}</div>
                     </div>
                     <p className="text-xs text-zinc-400 mt-2 font-sans line-clamp-3 leading-relaxed">
