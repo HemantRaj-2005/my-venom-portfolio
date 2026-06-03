@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarDays } from "lucide-react";
+import { getYear, format } from "date-fns";
 
 interface PlatformCalendarProps {
   data: { date: string; count: number }[];
@@ -20,7 +21,6 @@ export default function PlatformCalendar({
   selectedDate,
   onDateSelect,
 }: PlatformCalendarProps) {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [selectedYear, setSelectedYear] = useState<number>(getYear(new Date()));
 
   // Filter data for selected year

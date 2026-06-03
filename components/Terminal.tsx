@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Terminal as TermIcon, ShieldAlert, Sparkles, X, ChevronRight } from "lucide-react";
+import { Terminal as TermIcon, ShieldAlert, X, ChevronRight } from "lucide-react";
 
 interface TerminalLine {
   text: string;
@@ -10,19 +10,14 @@ interface TerminalLine {
 
 export default function Terminal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [history, setHistory] = useState<TerminalLine[]>([]);
+  const [history, setHistory] = useState<TerminalLine[]>([
+    { text: "SpiderOS v1.0.8 - Stark Command Synchronized", type: "system" },
+    { text: "Type 'help' for a list of available cybernetic commands.", type: "output" }
+  ]);
   const [inputValue, setInputValue] = useState("");
   const [glitchActive, setGlitchActive] = useState(false);
   const bufferEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // Initialize welcome logs
-  useEffect(() => {
-    setHistory([
-      { text: "SpiderOS v1.0.8 - Stark Command Synchronized", type: "system" },
-      { text: "Type 'help' for a list of available cybernetic commands.", type: "output" }
-    ]);
-  }, []);
 
   // Auto-scroll to bottom of terminal output
   useEffect(() => {

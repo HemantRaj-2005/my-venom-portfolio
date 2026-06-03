@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "types/prisma/**",
     "next-env.d.ts",
+    "test-db.js",
   ]),
 ]);
 
