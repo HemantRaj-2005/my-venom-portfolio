@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { format, getYear, setYear } from "date-fns";
-import { CalendarDays, CalendarHeatmap, GitBranch } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 
 interface PlatformCalendarProps {
   data: { date: string; count: number }[];
@@ -12,6 +11,7 @@ interface PlatformCalendarProps {
   selectedDate?: string;
   onDateSelect?: (date: string) => void;
 }
+
 
 export default function PlatformCalendar({
   data,
@@ -35,32 +35,7 @@ export default function PlatformCalendar({
     return acc;
   }, {} as Record<string, number>);
 
-  const dayButton = (button: any, date: Date) => {
-    const dateStr = format(date, 'yyyy-MM-dd');
-    const count = dateLookup[dateStr] || 0;
-    const maxCount = 10; // Maximum expected activity per day
-
-    if (count > 0) {
-      const intensity = Math.min(count / maxCount, 1);
-      const baseColor = variant === "github" ? "green" : "blue";
-      const bgColor = `${baseColor}-500`;
-
-      return React.cloneElement(button, {
-        className: `relative ${button.props.className || ''}`,
-        style: {
-          ...button.props.style,
-          backgroundColor: intensity === 0 ? undefined : `${bgColor}/${Math.round(10 + intensity * 40)}`,
-        },
-      });
-    }
-
-    return button;
-  };
-
   const selectedDateObj = selectedDate ? new Date(selectedDate) : undefined;
-  const buttonProps = selectedDateObj && format(selectedDateObj, 'yyyy') === selectedYear.toString()
-    ? { selected: selectedDateObj }
-    : {};
 
   const selectedDateData = selectedDate ? dateLookup[selectedDate] || 0 : 0;
 
@@ -92,13 +67,11 @@ export default function PlatformCalendar({
           mode="single"
           selected={selectedDateObj}
           onSelect={(date) => {
-            if (date) {
+            if (date instanceof Date) {
               onDateSelect?.(format(date, 'yyyy-MM-dd'));
             }
           }}
           className="p-2"
-          {...buttonProps}
-          components={{ dayButton }}
         />
       </div>
 
